@@ -1,27 +1,47 @@
 
-import React from 'react';
+import React, { useState } from 'react';
+import { Button } from './ui/button';
+import { Input } from './ui/input';
 
 const ContactSection = () => {
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Newsletter signup:', email);
+    setEmail('');
+  };
+
   return (
-    <section className="bg-slate-700 py-20">
+    <section className="bg-primary py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <div className="w-32 h-4 bg-gray-300 rounded mx-auto mb-4"></div>
-          <span className="text-xs bg-gray-200 px-2 py-1 rounded">SECTION LABEL</span>
-          
-          <div className="w-1/3 h-10 bg-gray-200 rounded mx-auto mt-6"></div>
-          <span className="text-xs bg-gray-200 px-2 py-1 rounded mt-2 inline-block">CONTACT TITLE</span>
+          <p className="text-primary-foreground/80 font-inter text-sm uppercase tracking-wider mb-4">Stay Connected</p>
+          <h2 className="font-marcellus text-4xl font-normal text-primary-foreground leading-tight mb-8">
+            Let Us Reach You
+          </h2>
+          <p className="text-primary-foreground/80 font-inter text-lg max-w-2xl mx-auto">
+            Subscribe to our newsletter for insights on business excellence, strategic partnerships, and industry developments across Eastern Africa.
+          </p>
         </div>
         
         <div className="max-w-md mx-auto">
-          <div className="flex">
-            <div className="flex-1 h-12 bg-gray-300 rounded-l-lg"></div>
-            <div className="w-20 h-12 bg-gray-400 rounded-r-lg"></div>
-          </div>
-          <div className="text-center mt-2">
-            <span className="text-xs bg-gray-200 px-2 py-1 rounded">EMAIL INPUT</span>
-            <span className="text-xs bg-gray-200 px-1 py-0.5 rounded ml-2">SEND BTN</span>
-          </div>
+          <form onSubmit={handleSubmit} className="flex">
+            <Input
+              type="email"
+              placeholder="Enter your email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="flex-1 bg-white border-white text-foreground placeholder:text-muted-foreground font-inter rounded-none"
+              required
+            />
+            <Button 
+              type="submit"
+              className="bg-foreground hover:bg-foreground/90 text-background font-inter font-medium px-8 rounded-none ml-0"
+            >
+              Send
+            </Button>
+          </form>
         </div>
       </div>
     </section>

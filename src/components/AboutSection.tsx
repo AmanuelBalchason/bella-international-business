@@ -1,45 +1,59 @@
 
 import React from 'react';
+import { Button } from './ui/button';
 
 const AboutSection = () => {
+  const values = [
+    {
+      title: 'Uncompromised Quality',
+      description: 'We maintain the highest standards in all our business operations and strategic partnerships.'
+    },
+    {
+      title: 'Strategic Leadership',
+      description: 'Our research-focused approach drives innovation and sustainable growth across all sectors.'
+    },
+    {
+      title: 'Ethical Foundation',
+      description: 'Trust, transparency, and mutual benefit form the cornerstone of our business relationships.'
+    }
+  ];
+
   return (
-    <section className="py-20">
+    <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
           {/* Left side - Content */}
-          <div>
-            <div className="w-16 h-4 bg-gray-400 rounded mb-4"></div>
-            <span className="text-xs bg-gray-200 px-2 py-1 rounded">SECTION LABEL</span>
-            
-            <div className="w-3/4 h-10 bg-gray-500 rounded mt-6 mb-6"></div>
-            <span className="text-xs bg-gray-200 px-2 py-1 rounded">SECTION HEADLINE</span>
-            
-            <div className="mt-6 space-y-3">
-              <div className="w-full h-4 bg-gray-400 rounded"></div>
-              <div className="w-5/6 h-4 bg-gray-400 rounded"></div>
-              <div className="w-4/5 h-4 bg-gray-400 rounded"></div>
-              <div className="w-3/4 h-4 bg-gray-400 rounded"></div>
+          <div className="space-y-8">
+            <div>
+              <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4">About Us</p>
+              <h2 className="font-marcellus text-4xl font-normal text-foreground leading-tight mb-6">
+                Building Excellence Across Eastern Africa
+              </h2>
+              <p className="text-muted-foreground font-inter text-lg leading-relaxed">
+                At Bella International Business, we are committed to realizing our vision by building a highly motivated, research-focused workforce dedicated to cultivating long-term relationships with our strategic partners and the communities we serve.
+              </p>
             </div>
-            <span className="text-xs bg-gray-200 px-2 py-1 rounded ml-2">ABOUT CONTENT</span>
             
-            <div className="mt-8">
-              <div className="w-24 h-10 bg-gray-600 rounded"></div>
-              <span className="ml-2 text-xs bg-gray-200 px-2 py-1 rounded">LEARN MORE BTN</span>
+            <div>
+              <Button 
+                variant="outline" 
+                className="border-foreground text-foreground hover:bg-foreground hover:text-background font-inter font-medium px-8 py-3 rounded-none"
+              >
+                Learn More About Us
+              </Button>
             </div>
           </div>
           
-          {/* Right side - Features/Values */}
+          {/* Right side - Values */}
           <div className="space-y-8">
-            {[1, 2, 3].map((item) => (
-              <div key={item} className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-gray-400 rounded-lg flex-shrink-0"></div>
+            {values.map((value, index) => (
+              <div key={index} className="flex items-start space-x-6 group">
+                <div className="w-12 h-12 bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors duration-200">
+                  <span className="text-primary font-marcellus text-lg">{index + 1}</span>
+                </div>
                 <div className="flex-1">
-                  <div className="w-3/4 h-5 bg-gray-500 rounded mb-2"></div>
-                  <div className="space-y-2">
-                    <div className="w-full h-3 bg-gray-400 rounded"></div>
-                    <div className="w-4/5 h-3 bg-gray-400 rounded"></div>
-                  </div>
-                  <span className="text-xs bg-gray-200 px-1 py-0.5 rounded mt-1 inline-block">VALUE {item}</span>
+                  <h3 className="font-inter font-semibold text-foreground text-lg mb-2">{value.title}</h3>
+                  <p className="text-muted-foreground font-inter leading-relaxed">{value.description}</p>
                 </div>
               </div>
             ))}

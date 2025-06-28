@@ -2,69 +2,73 @@
 import React from 'react';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="bg-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Company Info */}
-          <div>
-            <div className="flex items-center mb-6">
-              <div className="w-10 h-10 bg-gray-400 rounded"></div>
+          <div className="space-y-6">
+            <div className="flex items-center">
+              <div className="w-10 h-10 bg-primary flex items-center justify-center">
+                <span className="text-primary-foreground font-marcellus text-lg font-bold">B</span>
+              </div>
               <div className="ml-3">
-                <div className="w-20 h-4 bg-gray-400 rounded"></div>
-                <div className="w-14 h-2 bg-gray-300 rounded mt-1"></div>
+                <h3 className="font-marcellus text-lg font-normal text-foreground">Bella International</h3>
+                <p className="text-xs text-muted-foreground font-inter">Business Excellence</p>
               </div>
             </div>
-            <span className="text-xs bg-gray-200 px-2 py-1 rounded">COMPANY LOGO</span>
             
-            <div className="mt-6 space-y-2">
-              <div className="w-32 h-3 bg-gray-400 rounded"></div>
-              <div className="w-28 h-3 bg-gray-400 rounded"></div>
+            <div className="space-y-2">
+              <p className="text-muted-foreground font-inter text-sm">Nairobi, Kenya</p>
+              <p className="text-muted-foreground font-inter text-sm">Eastern Africa</p>
             </div>
-            <span className="text-xs bg-gray-200 px-2 py-1 rounded mt-2 inline-block">ADDRESS</span>
           </div>
           
-          {/* Pages Links */}
+          {/* Quick Links */}
           <div>
-            <div className="w-16 h-4 bg-gray-500 rounded mb-6"></div>
-            <span className="text-xs bg-gray-200 px-2 py-1 rounded">PAGES</span>
-            
-            <div className="space-y-3 mt-4">
-              {[1, 2, 3, 4].map((item) => (
-                <div key={item} className="w-20 h-3 bg-gray-400 rounded"></div>
-              ))}
+            <h4 className="font-inter font-semibold text-foreground mb-6">Quick Links</h4>
+            <div className="space-y-3">
+              <a href="#" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">About Us</a>
+              <a href="#" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Our Services</a>
+              <a href="#" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Business Sectors</a>
+              <a href="#" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Leadership</a>
             </div>
           </div>
           
           {/* Contact Info */}
           <div>
-            <div className="w-16 h-4 bg-gray-500 rounded mb-6"></div>
-            <span className="text-xs bg-gray-200 px-2 py-1 rounded">CONTACT</span>
-            
-            <div className="space-y-3 mt-4">
-              <div className="w-28 h-3 bg-gray-400 rounded"></div>
-              <div className="w-32 h-3 bg-gray-400 rounded"></div>
+            <h4 className="font-inter font-semibold text-foreground mb-6">Contact</h4>
+            <div className="space-y-3">
+              <p className="text-muted-foreground font-inter text-sm">+254 XXX XXX XXX</p>
+              <p className="text-muted-foreground font-inter text-sm">info@bellainternational.com</p>
             </div>
-            <span className="text-xs bg-gray-200 px-2 py-1 rounded mt-2 inline-block">PHONE & EMAIL</span>
           </div>
           
-          {/* Tagline & Social */}
+          {/* Company Vision */}
           <div>
-            <div className="w-3/4 h-6 bg-gray-500 rounded mb-6"></div>
-            <span className="text-xs bg-gray-200 px-2 py-1 rounded">COMPANY TAGLINE</span>
-            
-            <div className="flex space-x-4 mt-6">
-              {[1, 2, 3].map((item) => (
-                <div key={item} className="w-8 h-8 bg-gray-400 rounded"></div>
-              ))}
+            <h4 className="font-marcellus text-lg font-normal text-foreground mb-6">
+              Excellence in Every Partnership
+            </h4>
+            <div className="flex space-x-4">
+              <div className="w-8 h-8 bg-secondary border border-border flex items-center justify-center hover:border-primary/30 transition-colors duration-200">
+                <span className="text-muted-foreground text-xs">LI</span>
+              </div>
+              <div className="w-8 h-8 bg-secondary border border-border flex items-center justify-center hover:border-primary/30 transition-colors duration-200">
+                <span className="text-muted-foreground text-xs">TW</span>
+              </div>
+              <div className="w-8 h-8 bg-secondary border border-border flex items-center justify-center hover:border-primary/30 transition-colors duration-200">
+                <span className="text-muted-foreground text-xs">FB</span>
+              </div>
             </div>
-            <span className="text-xs bg-gray-200 px-2 py-1 rounded mt-2 inline-block">SOCIAL ICONS</span>
           </div>
         </div>
         
-        <div className="border-t border-gray-200 mt-12 pt-8 text-center">
-          <div className="w-48 h-3 bg-gray-400 rounded mx-auto"></div>
-          <span className="text-xs bg-gray-200 px-2 py-1 rounded mt-2 inline-block">COPYRIGHT TEXT</span>
+        <div className="border-t border-border mt-12 pt-8 text-center">
+          <p className="text-muted-foreground font-inter text-sm">
+            © {currentYear} Bella International Business. All rights reserved. | Privacy Policy | Terms of Service
+          </p>
         </div>
       </div>
     </footer>

@@ -1,36 +1,36 @@
 
 import React from 'react';
+import { Button } from './ui/button';
 
 const Header = () => {
   return (
-    <header className="bg-white shadow-sm">
+    <header className="bg-white border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          {/* Logo placeholder */}
+        <div className="flex justify-between items-center py-6">
+          {/* Logo */}
           <div className="flex items-center">
-            <div className="w-12 h-12 bg-gray-400 rounded"></div>
-            <div className="ml-3">
-              <div className="w-24 h-4 bg-gray-400 rounded"></div>
-              <div className="w-16 h-2 bg-gray-300 rounded mt-1"></div>
+            <div className="w-12 h-12 bg-primary rounded-none flex items-center justify-center">
+              <span className="text-primary-foreground font-marcellus text-xl font-bold">B</span>
             </div>
-            <span className="ml-2 text-xs bg-gray-200 px-2 py-1 rounded">LOGO + TEXT</span>
+            <div className="ml-4">
+              <h1 className="font-marcellus text-xl font-normal text-foreground">Bella International</h1>
+              <p className="text-sm text-muted-foreground font-inter">Business Excellence</p>
+            </div>
           </div>
           
           {/* Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            <div className="w-12 h-4 bg-gray-400 rounded"></div>
-            <div className="w-16 h-4 bg-gray-400 rounded"></div>
-            <div className="w-14 h-4 bg-gray-400 rounded"></div>
-            <div className="w-18 h-4 bg-gray-400 rounded"></div>
-            <div className="w-14 h-4 bg-gray-400 rounded"></div>
-            <span className="text-xs bg-gray-200 px-2 py-1 rounded ml-2">NAV LINKS</span>
+          <nav className="hidden md:flex space-x-12">
+            <a href="#" className="font-inter font-medium text-foreground hover:text-primary transition-colors duration-200">About</a>
+            <a href="#" className="font-inter font-medium text-foreground hover:text-primary transition-colors duration-200">Services</a>
+            <a href="#" className="font-inter font-medium text-foreground hover:text-primary transition-colors duration-200">Sectors</a>
+            <a href="#" className="font-inter font-medium text-foreground hover:text-primary transition-colors duration-200">Leadership</a>
+            <a href="#" className="font-inter font-medium text-foreground hover:text-primary transition-colors duration-200">Contact</a>
           </nav>
           
           {/* CTA Button */}
-          <div className="flex items-center">
-            <div className="w-24 h-8 bg-gray-500 rounded"></div>
-            <span className="ml-2 text-xs bg-gray-200 px-2 py-1 rounded">CTA BUTTON</span>
-          </div>
+          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium px-8 py-3 rounded-none">
+            Get In Touch
+          </Button>
         </div>
       </div>
     </header>

@@ -2,36 +2,57 @@
 import React from 'react';
 
 const TestimonialsSection = () => {
+  const testimonials = [
+    {
+      quote: "Bella International's commitment to excellence and strategic approach has been instrumental in our successful partnership across multiple sectors.",
+      client: "Strategic Partner",
+      company: "Real Estate Division"
+    },
+    {
+      quote: "Their research-focused methodology and ethical foundation make them the ideal partner for long-term business relationships in Eastern Africa.",
+      client: "Healthcare Partner", 
+      company: "Medical Services"
+    },
+    {
+      quote: "The quality and speed of their operations, combined with their inclusive approach, sets them apart in the competitive business landscape.", 
+      client: "Agri-Business Client",
+      company: "Agricultural Solutions"
+    },
+    {
+      quote: "Working with Bella International has transformed our automotive operations through their innovative solutions and strategic partnerships.",
+      client: "Automotive Partner",
+      company: "Fleet Management"
+    }
+  ];
+
   return (
-    <section className="bg-gray-50 py-20">
+    <section className="bg-secondary py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <div className="w-40 h-4 bg-gray-400 rounded mx-auto mb-4"></div>
-          <span className="text-xs bg-gray-200 px-2 py-1 rounded">SECTION LABEL</span>
-          
-          <div className="w-1/3 h-10 bg-gray-500 rounded mx-auto mt-6"></div>
-          <span className="text-xs bg-gray-200 px-2 py-1 rounded mt-2 inline-block">TESTIMONIALS TITLE</span>
+          <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4">Success Stories</p>
+          <h2 className="font-marcellus text-4xl font-normal text-foreground leading-tight">
+            Client Testimonials
+          </h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {[1, 2, 3, 4].map((item) => (
-            <div key={item} className="bg-white p-8 rounded-lg shadow-sm">
-              <div className="w-8 h-6 bg-gray-400 rounded mb-4"></div>
-              <span className="text-xs bg-gray-200 px-1 py-0.5 rounded">QUOTE MARK</span>
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className="bg-white border border-border p-8 space-y-6">
+              <div className="text-primary text-4xl font-marcellus leading-none">"</div>
               
-              <div className="mt-4 space-y-3">
-                <div className="w-full h-3 bg-gray-400 rounded"></div>
-                <div className="w-5/6 h-3 bg-gray-400 rounded"></div>
-                <div className="w-4/5 h-3 bg-gray-400 rounded"></div>
-              </div>
-              <span className="text-xs bg-gray-200 px-2 py-1 rounded mt-2 inline-block">TESTIMONIAL TEXT</span>
+              <blockquote className="text-muted-foreground font-inter leading-relaxed text-base">
+                {testimonial.quote}
+              </blockquote>
               
-              <div className="flex items-center mt-6">
-                <div className="w-12 h-12 bg-gray-400 rounded-full"></div>
-                <div className="ml-4">
-                  <div className="w-24 h-4 bg-gray-500 rounded mb-1"></div>
-                  <div className="w-20 h-3 bg-gray-400 rounded"></div>
-                  <span className="text-xs bg-gray-200 px-1 py-0.5 rounded ml-2">CLIENT {item}</span>
+              <div className="flex items-center space-x-4 pt-4 border-t border-border">
+                <div className="w-12 h-12 bg-primary/10 flex items-center justify-center">
+                  <span className="text-primary font-marcellus text-sm">
+                    {testimonial.client.charAt(0)}
+                  </span>
+                </div>
+                <div>
+                  <div className="font-inter font-semibold text-foreground">{testimonial.client}</div>
+                  <div className="text-muted-foreground font-inter text-sm">{testimonial.company}</div>
                 </div>
               </div>
             </div>

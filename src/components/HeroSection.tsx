@@ -1,52 +1,58 @@
 
 import React from 'react';
+import { Button } from './ui/button';
 
 const HeroSection = () => {
   return (
-    <section className="bg-gray-50 py-20">
+    <section className="bg-white py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left side - Content */}
-          <div>
-            <div className="w-3/4 h-12 bg-gray-500 rounded mb-6"></div>
-            <span className="text-xs bg-gray-200 px-2 py-1 rounded">MAIN HEADLINE</span>
-            
-            <div className="mt-6 space-y-3">
-              <div className="w-full h-4 bg-gray-400 rounded"></div>
-              <div className="w-5/6 h-4 bg-gray-400 rounded"></div>
-              <div className="w-4/5 h-4 bg-gray-400 rounded"></div>
+          <div className="space-y-8">
+            <div>
+              <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4">Eastern Africa's Premier</p>
+              <h1 className="font-marcellus text-5xl lg:text-6xl font-normal text-foreground leading-tight">
+                Strategic Business Solutions
+              </h1>
             </div>
-            <span className="text-xs bg-gray-200 px-2 py-1 rounded ml-2">DESCRIPTION TEXT</span>
             
-            <div className="mt-8">
-              <div className="w-32 h-10 bg-gray-600 rounded"></div>
-              <span className="ml-2 text-xs bg-gray-200 px-2 py-1 rounded">PRIMARY CTA</span>
+            <p className="text-muted-foreground font-inter text-lg leading-relaxed max-w-lg">
+              Driving excellence across Real Estate, Healthcare, Agri-Business, and Automotives through strategic partnerships built on trust, transparency, and mutual benefit.
+            </p>
+            
+            <div>
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium px-10 py-4 rounded-none text-base">
+                Explore Our Services
+              </Button>
             </div>
             
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-8 mt-12">
-              <div className="text-center">
-                <div className="w-16 h-8 bg-gray-500 rounded mx-auto mb-2"></div>
-                <div className="w-20 h-3 bg-gray-400 rounded mx-auto"></div>
-                <span className="text-xs bg-gray-200 px-1 py-0.5 rounded">STAT 1</span>
+            <div className="grid grid-cols-3 gap-8 pt-12 border-t border-border">
+              <div>
+                <div className="font-marcellus text-3xl font-normal text-foreground mb-2">15+</div>
+                <p className="text-muted-foreground font-inter text-sm">Years of Excellence</p>
               </div>
-              <div className="text-center">
-                <div className="w-16 h-8 bg-gray-500 rounded mx-auto mb-2"></div>
-                <div className="w-20 h-3 bg-gray-400 rounded mx-auto"></div>
-                <span className="text-xs bg-gray-200 px-1 py-0.5 rounded">STAT 2</span>
+              <div>
+                <div className="font-marcellus text-3xl font-normal text-foreground mb-2">4</div>
+                <p className="text-muted-foreground font-inter text-sm">Core Business Sectors</p>
               </div>
-              <div className="text-center">
-                <div className="w-16 h-8 bg-gray-500 rounded mx-auto mb-2"></div>
-                <div className="w-20 h-3 bg-gray-400 rounded mx-auto"></div>
-                <span className="text-xs bg-gray-200 px-1 py-0.5 rounded">STAT 3</span>
+              <div>
+                <div className="font-marcellus text-3xl font-normal text-foreground mb-2">100+</div>
+                <p className="text-muted-foreground font-inter text-sm">Strategic Partners</p>
               </div>
             </div>
           </div>
           
-          {/* Right side - Image */}
+          {/* Right side - Image Placeholder */}
           <div className="relative">
-            <div className="w-full h-96 bg-gray-400 rounded-lg"></div>
-            <span className="absolute top-4 left-4 text-xs bg-white px-2 py-1 rounded shadow">HERO IMAGE</span>
+            <div className="w-full h-[600px] bg-gradient-to-br from-secondary to-muted border border-border flex items-center justify-center">
+              <div className="text-center space-y-4">
+                <div className="w-16 h-16 bg-primary/10 mx-auto flex items-center justify-center">
+                  <span className="text-primary font-marcellus text-2xl">B</span>
+                </div>
+                <p className="text-muted-foreground font-inter text-sm">Professional Business Environment</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
