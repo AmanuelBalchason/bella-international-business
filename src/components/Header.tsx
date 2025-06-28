@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Button } from './ui/button';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -8,7 +9,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-6">
           {/* Logo */}
-          <div className="flex items-center">
+          <Link to="/" className="flex items-center">
             <div className="w-12 h-12 bg-primary rounded-none flex items-center justify-center">
               <span className="text-primary-foreground font-marcellus text-xl font-bold">B</span>
             </div>
@@ -16,15 +17,15 @@ const Header = () => {
               <h1 className="font-marcellus text-xl font-normal text-foreground">Bella International</h1>
               <p className="text-sm text-muted-foreground font-inter">Business Excellence</p>
             </div>
-          </div>
+          </Link>
           
           {/* Navigation */}
           <nav className="hidden md:flex space-x-12">
-            <a href="#" className="font-inter font-medium text-foreground hover:text-primary transition-colors duration-200">About</a>
-            <a href="#" className="font-inter font-medium text-foreground hover:text-primary transition-colors duration-200">Services</a>
-            <a href="#" className="font-inter font-medium text-foreground hover:text-primary transition-colors duration-200">Sectors</a>
-            <a href="#" className="font-inter font-medium text-foreground hover:text-primary transition-colors duration-200">Leadership</a>
-            <a href="#" className="font-inter font-medium text-foreground hover:text-primary transition-colors duration-200">Contact</a>
+            <Link to="/about" className="font-inter font-medium text-muted-foreground hover:text-primary transition-colors duration-200">About</Link>
+            <Link to="/articles" className="font-inter font-medium text-muted-foreground hover:text-primary transition-colors duration-200">Articles</Link>
+            <Link to="/sectors" className="font-inter font-medium text-muted-foreground hover:text-primary transition-colors duration-200">Sectors</Link>
+            <Link to="/leadership" className="font-inter font-medium text-muted-foreground hover:text-primary transition-colors duration-200">Leadership</Link>
+            <Link to="/contact" className="font-inter font-medium text-muted-foreground hover:text-primary transition-colors duration-200">Contact</Link>
           </nav>
           
           {/* CTA Button */}

@@ -1,27 +1,32 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const BusinessSectors = () => {
   const sectors = [
     {
       number: '01',
       title: 'Real Estate',
-      description: 'Premium property development and strategic real estate investment solutions across Eastern Africa.'
+      description: 'Premium property development and strategic real estate investment solutions across Eastern Africa.',
+      slug: 'real-estate'
     },
     {
       number: '02', 
       title: 'Healthcare',
-      description: 'Comprehensive healthcare services and medical facility management with focus on quality care.'
+      description: 'Comprehensive healthcare services and medical facility management with focus on quality care.',
+      slug: 'healthcare'
     },
     {
       number: '03',
       title: 'Agri-Business', 
-      description: 'Sustainable agricultural practices and supply chain optimization for food security.'
+      description: 'Sustainable agricultural practices and supply chain optimization for food security.',
+      slug: 'agri-business'
     },
     {
       number: '04',
       title: 'Automotives',
-      description: 'Automotive solutions, fleet management, and transportation infrastructure development.'
+      description: 'Automotive solutions, fleet management, and transportation infrastructure development.',
+      slug: 'automotives'
     }
   ];
 
@@ -37,19 +42,23 @@ const BusinessSectors = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {sectors.map((sector, index) => (
-            <div key={index} className="bg-white border border-border p-8 group hover:border-primary/30 transition-all duration-200">
+            <Link 
+              key={index} 
+              to={`/sectors/${sector.slug}`}
+              className="bg-white border border-border p-8 group hover:border-primary/30 transition-all duration-200 block"
+            >
               <div className="text-right mb-6">
                 <span className="font-marcellus text-2xl text-primary">{sector.number}</span>
               </div>
               
-              <h3 className="font-marcellus text-xl font-normal text-foreground mb-4">
+              <h3 className="font-inter text-xl font-semibold text-foreground mb-4">
                 {sector.title}
               </h3>
               
               <p className="text-muted-foreground font-inter text-sm leading-relaxed">
                 {sector.description}
               </p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

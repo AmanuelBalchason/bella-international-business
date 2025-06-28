@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Button } from './ui/button';
+import AnimatedCounter from './AnimatedCounter';
 
 const HeroSection = () => {
   return (
@@ -26,18 +27,18 @@ const HeroSection = () => {
               </Button>
             </div>
             
-            {/* Stats */}
+            {/* Stats with animated counters */}
             <div className="grid grid-cols-3 gap-8 pt-12 border-t border-border">
               <div>
-                <div className="font-marcellus text-3xl font-normal text-foreground mb-2">15+</div>
+                <AnimatedCounter end={15} suffix="+" delay={500} duration={1500} />
                 <p className="text-muted-foreground font-inter text-sm">Years of Excellence</p>
               </div>
               <div>
-                <div className="font-marcellus text-3xl font-normal text-foreground mb-2">4</div>
+                <AnimatedCounter end={4} delay={2200} duration={800} />
                 <p className="text-muted-foreground font-inter text-sm">Core Business Sectors</p>
               </div>
               <div>
-                <div className="font-marcellus text-3xl font-normal text-foreground mb-2">100+</div>
+                <AnimatedCounter end={100} suffix="+" delay={3200} duration={2000} />
                 <p className="text-muted-foreground font-inter text-sm">Strategic Partners</p>
               </div>
             </div>

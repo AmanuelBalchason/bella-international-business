@@ -21,7 +21,7 @@ const Footer = () => {
             </div>
             
             <div className="space-y-2">
-              <p className="text-muted-foreground font-inter text-sm">Nairobi, Kenya</p>
+              <p className="text-muted-foreground font-inter text-sm">Addis Ababa, Ethiopia</p>
               <p className="text-muted-foreground font-inter text-sm">Eastern Africa</p>
             </div>
           </div>
@@ -41,7 +41,7 @@ const Footer = () => {
           <div>
             <h4 className="font-inter font-semibold text-foreground mb-6">Contact</h4>
             <div className="space-y-3">
-              <p className="text-muted-foreground font-inter text-sm">+254 XXX XXX XXX</p>
+              <p className="text-muted-foreground font-inter text-sm">+251 XXX XXX XXX</p>
               <p className="text-muted-foreground font-inter text-sm">info@bellainternational.com</p>
             </div>
           </div>
