@@ -3,14 +3,14 @@ import React from 'react';
 
 const ClientLogos = () => {
   const partners = [
-    'Strategic Partner 1',
-    'Strategic Partner 2', 
-    'Strategic Partner 3',
-    'Strategic Partner 4',
-    'Strategic Partner 5',
-    'Strategic Partner 6',
-    'Strategic Partner 7',
-    'Strategic Partner 8'
+    { name: 'EthioTelecom', logo: 'ET' },
+    { name: 'Commercial Bank of Ethiopia', logo: 'CBE' },
+    { name: 'Ethiopian Airlines', logo: 'EA' },
+    { name: 'Dangote Industries', logo: 'DI' },
+    { name: 'Awash Bank', logo: 'AB' },
+    { name: 'East African Holdings', logo: 'EAH' },
+    { name: 'Horn Petroleum', logo: 'HP' },
+    { name: 'Midroc Group', logo: 'MG' }
   ];
 
   return (
@@ -22,13 +22,16 @@ const ClientLogos = () => {
         </div>
         
         <div className="relative">
-          <div className="flex animate-scroll">
+          <div className="flex animate-scroll hover:animate-none hover:[animation-duration:2s] transition-all duration-300">
             {partners.concat(partners).map((partner, index) => (
               <div key={index} className="flex-shrink-0 mx-8">
-                <div className="w-32 h-20 bg-white border border-border flex items-center justify-center hover:border-primary/30 transition-colors duration-200">
-                  <span className="text-muted-foreground font-inter text-xs text-center px-2">
-                    {partner}
-                  </span>
+                <div className="w-32 h-20 bg-white border border-border flex items-center justify-center hover:border-primary/30 transition-colors duration-200 group">
+                  <div className="text-center">
+                    <div className="font-marcellus text-primary text-lg font-bold mb-1">{partner.logo}</div>
+                    <span className="text-muted-foreground font-inter text-xs leading-tight">
+                      {partner.name}
+                    </span>
+                  </div>
                 </div>
               </div>
             ))}

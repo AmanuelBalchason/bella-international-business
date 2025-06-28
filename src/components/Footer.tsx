@@ -22,7 +22,7 @@ const Footer = () => {
             
             <div className="space-y-2">
               <p className="text-muted-foreground font-inter text-sm">Addis Ababa, Ethiopia</p>
-              <p className="text-muted-foreground font-inter text-sm">Eastern Africa</p>
+              <p className="text-muted-foreground font-inter text-sm">Horn of Africa</p>
             </div>
           </div>
           
@@ -30,7 +30,7 @@ const Footer = () => {
           <div>
             <h4 className="font-inter font-semibold text-foreground mb-6">Quick Links</h4>
             <div className="space-y-3">
-              <a href="#" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">About Us</a>
+              <a href="#" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Our Story</a>
               <a href="#" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Our Services</a>
               <a href="#" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Business Sectors</a>
               <a href="#" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Leadership</a>

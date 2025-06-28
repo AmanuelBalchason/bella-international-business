@@ -119,3 +119,7 @@ All colors MUST be HSL.
 .animate-scroll {
   animation: scroll 30s linear infinite;
 }
+
+.animate-scroll:hover {
+  animation-duration: 60s;
+}

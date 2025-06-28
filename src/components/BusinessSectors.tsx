@@ -7,7 +7,7 @@ const BusinessSectors = () => {
     {
       number: '01',
       title: 'Real Estate',
-      description: 'Premium property development and strategic real estate investment solutions across Eastern Africa.',
+      description: 'Premium property development and strategic real estate investment solutions across Horn of Africa.',
       slug: 'real-estate'
     },
     {
@@ -18,9 +18,9 @@ const BusinessSectors = () => {
     },
     {
       number: '03',
-      title: 'Agri-Business', 
-      description: 'Sustainable agricultural practices and supply chain optimization for food security.',
-      slug: 'agri-business'
+      title: 'Acha Forest Coffee', 
+      description: 'Sustainable coffee cultivation and supply chain optimization for premium Ethiopian coffee.',
+      slug: 'acha-forest-coffee'
     },
     {
       number: '04',

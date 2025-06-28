@@ -11,14 +11,14 @@ const HeroSection = () => {
           {/* Left side - Content */}
           <div className="space-y-8">
             <div>
-              <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4">Eastern Africa's Premier</p>
+              <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4">Horn of Africa's Premier</p>
               <h1 className="font-marcellus text-5xl lg:text-6xl font-normal text-foreground leading-tight">
                 Strategic Business Solutions
               </h1>
             </div>
             
             <p className="text-muted-foreground font-inter text-lg leading-relaxed max-w-lg">
-              Driving excellence across Real Estate, Healthcare, Agri-Business, and Automotives through strategic partnerships built on trust, transparency, and mutual benefit.
+              Driving excellence across Real Estate, Healthcare, Acha Forest Coffee, and Automotives through strategic partnerships built on trust, transparency, and mutual benefit.
             </p>
             
             <div>
@@ -27,18 +27,18 @@ const HeroSection = () => {
               </Button>
             </div>
             
-            {/* Stats with animated counters */}
+            {/* Stats with animated counters - synchronized timing */}
             <div className="grid grid-cols-3 gap-8 pt-12 border-t border-border">
               <div>
-                <AnimatedCounter end={15} suffix="+" delay={500} duration={1500} />
+                <AnimatedCounter end={15} suffix="+" delay={200} duration={2000} />
                 <p className="text-muted-foreground font-inter text-sm">Years of Excellence</p>
               </div>
               <div>
-                <AnimatedCounter end={4} delay={2200} duration={800} />
+                <AnimatedCounter end={4} delay={200} duration={2000} />
                 <p className="text-muted-foreground font-inter text-sm">Core Business Sectors</p>
               </div>
               <div>
-                <AnimatedCounter end={100} suffix="+" delay={3200} duration={2000} />
+                <AnimatedCounter end={100} suffix="+" delay={200} duration={2000} />
                 <p className="text-muted-foreground font-inter text-sm">Strategic Partners</p>
               </div>
             </div>
