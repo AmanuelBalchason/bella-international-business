@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
@@ -16,7 +17,7 @@ const SectorDetail = () => {
       content: 'Our real estate division is committed to developing premium properties that meet international standards while addressing the unique needs of local markets. We focus on sustainable development practices and innovative architectural solutions that enhance community value.',
       vision: 'Shaping the Future of Urban Development',
       mission: 'To create sustainable, innovative, and community-focused real estate solutions that enhance quality of life while delivering exceptional returns to our partners.',
-      services: ['Residential Development', 'Commercial Properties', 'Property Management', 'Real Estate Investment'],
+      resources: ['Property Investment Guide', 'Market Analysis Report', 'Development Portfolio', 'Sustainability Whitepaper'],
       stats: { projects: '25+', value: '$50M+', locations: '5 Cities' },
       images: [
         { src: 'photo-1560518883-ce09059eeffa', title: 'Modern Residential Complex', description: 'State-of-the-art residential development in Addis Ababa' },
@@ -30,7 +31,7 @@ const SectorDetail = () => {
       content: 'We provide comprehensive healthcare solutions including medical facility management, healthcare service delivery, and medical equipment procurement. Our commitment to quality care drives everything we do, ensuring accessible and affordable healthcare for communities across the Horn of Africa.',
       vision: 'Accessible Healthcare for All Communities',
       mission: 'To provide exceptional healthcare services through innovative solutions, qualified professionals, and state-of-the-art facilities that serve the diverse needs of our communities.',
-      services: ['Medical Facilities', 'Healthcare Management', 'Medical Equipment', 'Healthcare Consulting'],
+      resources: ['Healthcare Excellence Report', 'Medical Equipment Catalog', 'Quality Standards Guide', 'Community Health Impact'],
       stats: { facilities: '12', patients: '10K+', specialists: '50+' },
       images: [
         { src: 'photo-1576091160399-112ba8d25d1f', title: 'Modern Medical Facilities', description: 'State-of-the-art healthcare facilities with advanced equipment' },
@@ -44,7 +45,7 @@ const SectorDetail = () => {
       content: 'Our coffee operations focus on sustainable agricultural practices, innovative farming techniques, and supply chain optimization to deliver premium Ethiopian coffee to global markets. We work directly with local farmers to ensure fair trade practices and environmental sustainability.',
       vision: 'Premium Ethiopian Coffee for Global Markets',
       mission: 'To cultivate and deliver the finest Ethiopian coffee while supporting local communities through sustainable farming practices and fair trade partnerships.',
-      services: ['Coffee Cultivation', 'Processing & Roasting', 'Export Services', 'Quality Assurance'],
+      resources: ['Coffee Quality Report', 'Sustainability Practices', 'Export Documentation', 'Farmer Partnership Guide'],
       stats: { farms: '8', tons: '500+ Annually', export: '15 Countries' },
       images: [
         { src: 'photo-1447933601403-0c6688de566e', title: 'Coffee Plantations', description: 'Lush coffee farms in the Ethiopian highlands' },
@@ -58,7 +59,7 @@ const SectorDetail = () => {
       content: 'We offer comprehensive automotive services including vehicle sales, fleet management solutions, maintenance services, and transportation infrastructure development to support regional mobility and economic growth across the Horn of Africa.',
       vision: 'Driving Regional Mobility and Growth',
       mission: 'To provide comprehensive automotive solutions that enhance transportation efficiency, support economic development, and contribute to regional connectivity.',
-      services: ['Vehicle Sales', 'Fleet Management', 'Maintenance Services', 'Infrastructure Development'],
+      resources: ['Fleet Management Guide', 'Vehicle Specifications', 'Maintenance Protocols', 'Transportation Analysis'],
       stats: { vehicles: '200+', routes: '25', clients: '80+' },
       images: [
         { src: 'photo-1449824913935-59a10b8d2000', title: 'Fleet Management', description: 'Comprehensive fleet management solutions' },
@@ -74,9 +75,8 @@ const SectorDetail = () => {
     return <div>Sector not found</div>;
   }
 
-  const handleDownloadPDF = () => {
-    // Placeholder for PDF download functionality
-    console.log(`Downloading ${sector.title} company profile...`);
+  const handleDownloadPDF = (resourceName: string) => {
+    console.log(`Downloading ${resourceName}...`);
   };
 
   return (
@@ -126,39 +126,44 @@ const SectorDetail = () => {
               <p className="text-muted-foreground font-inter leading-relaxed">{sector.mission}</p>
             </div>
           </div>
-
-          {/* Download Section */}
-          <div className="text-center mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-            <Button 
-              onClick={handleDownloadPDF}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium px-8 py-3 rounded-none inline-flex items-center gap-2 hover:scale-105 transition-all duration-200"
-            >
-              <Download className="w-5 h-5" />
-              Download Company Profile
-            </Button>
-          </div>
         </div>
       </section>
       
-      {/* Content & Services */}
-      <section className="bg-white py-24">
+      {/* Content */}
+      <section className="bg-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-lg mx-auto mb-16 animate-fade-in">
+          <div className="prose prose-lg mx-auto animate-fade-in">
             <p className="text-muted-foreground font-inter text-lg leading-relaxed">
               {sector.content}
             </p>
           </div>
+        </div>
+      </section>
 
-          <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <h3 className="font-marcellus text-2xl font-normal text-foreground mb-8 text-center">Our Services</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {sector.services.map((service, index) => (
-                <div key={index} className="bg-secondary border border-border p-6 hover:border-primary/30 transition-all duration-200 hover:shadow-lg parallax-fast" style={{ animationDelay: `${index * 0.1}s` }}>
-                  <h4 className="font-inter font-semibold text-foreground mb-2">{service}</h4>
-                  <p className="text-muted-foreground font-inter text-sm">Comprehensive solutions tailored to your needs</p>
+      {/* Resources Section */}
+      <section className="bg-secondary py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 animate-fade-in">
+            <h3 className="font-marcellus text-3xl font-normal text-foreground mb-4">Resources</h3>
+            <p className="text-muted-foreground font-inter text-lg">Download reports, whitepapers to learn more</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            {sector.resources.map((resource, index) => (
+              <button
+                key={index}
+                onClick={() => handleDownloadPDF(resource)}
+                className="bg-white border border-border p-6 hover:shadow-lg transition-all duration-200 text-left group"
+              >
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="font-inter font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-200">{resource}</h4>
+                    <p className="text-muted-foreground font-inter text-sm">Download PDF resource</p>
+                  </div>
+                  <Download className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
                 </div>
-              ))}
-            </div>
+              </button>
+            ))}
           </div>
         </div>
       </section>

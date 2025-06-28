@@ -9,34 +9,34 @@ const Leadership = () => {
   const leaders = [
     {
       name: 'Abel Yeshitila',
-      position: 'Chief Executive Officer',
+      position: 'CEO, Bella International Business',
       bio: 'With over 15 years of experience in strategic business development, Abel has been instrumental in establishing Bella International as a leading business conglomerate in the Horn of Africa. His visionary leadership and commitment to excellence have driven the company\'s expansion across multiple sectors.',
       expertise: ['Strategic Planning', 'Business Development', 'Market Expansion', 'Partnership Development'],
-      email: 'abel@bellainter.com',
+      email: 'ceo@bellainter.com',
       image: 'photo-1472099645785-5658abf4ff4e'
     },
     {
       name: 'Mulugeta Demissie',
-      position: 'Chief Operating Officer',
+      position: 'Senior Advisor to the CEO',
       bio: 'Mulugeta brings exceptional operational expertise and has overseen the successful integration of our diverse business units. His focus on operational excellence and process optimization has been crucial to our sustained growth and market leadership.',
       expertise: ['Operations Management', 'Process Optimization', 'Quality Assurance', 'Team Leadership'],
       email: 'mulugeta@bellainter.com',
       image: 'photo-1507003211169-0a1dd7228f2d'
     },
     {
-      name: 'Henok Assefa',
-      position: 'Chief Financial Officer',
-      bio: 'As our CFO, Henok has established robust financial frameworks that support our ambitious growth plans. His expertise in financial planning and risk management has been fundamental to our successful expansion across the Horn of Africa.',
+      name: 'Chirotaw Assefa',
+      position: 'CFO and COO, Bella International',
+      bio: 'As our CFO and COO, Chirotaw has established robust financial frameworks that support our ambitious growth plans. His expertise in financial planning and risk management has been fundamental to our successful expansion across the Horn of Africa.',
       expertise: ['Financial Planning', 'Risk Management', 'Investment Strategy', 'Corporate Finance'],
-      email: 'henok@bellainter.com',
+      email: 'chirotaw@bellainter.com',
       image: 'photo-1519085360753-af0119f7cbe7'
     },
     {
-      name: 'Belaynesh Kinfu',
-      position: 'Chief Marketing Officer',
-      bio: 'Belaynesh leads our marketing initiatives and brand development across all sectors. Her innovative approach to marketing and deep understanding of regional markets have been key to establishing Bella International\'s strong market presence.',
-      expertise: ['Brand Development', 'Market Research', 'Digital Marketing', 'Strategic Communications'],
-      email: 'belaynesh@bellainter.com',
+      name: 'Temesgen Wubayehu',
+      position: 'Managing Director, Bella Healthcare',
+      bio: 'Temesgen leads our healthcare initiatives and manages all healthcare operations. His innovative approach to healthcare delivery and deep understanding of regional healthcare needs have been key to establishing Bella International\'s strong healthcare presence.',
+      expertise: ['Healthcare Management', 'Medical Operations', 'Healthcare Innovation', 'Strategic Healthcare Planning'],
+      email: 'temesgen@bellainter.com',
       image: 'photo-1494790108755-2616b612b786'
     }
   ];

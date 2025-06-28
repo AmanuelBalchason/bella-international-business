@@ -28,7 +28,7 @@ const Articles = () => {
       title: 'Healthcare Innovation in the Horn of Africa',
       excerpt: 'How technological advancement is revolutionizing healthcare delivery across Eastern Africa.',
       category: 'Healthcare',
-      author: 'Mulugeta Demissie',
+      author: 'Temesgen Wubayehu',
       date: '2024-01-10',
       readTime: '7 min read',
       image: 'photo-1576091160399-112ba8d25d1f',
@@ -39,7 +39,7 @@ const Articles = () => {
       title: 'Ethiopian Coffee: From Heritage to Global Markets',
       excerpt: 'The journey of Acha Forest Coffee and sustainable farming practices in Ethiopia.',
       category: 'Coffee',
-      author: 'Henok Assefa',
+      author: 'Chirotaw Assefa',
       date: '2024-01-05',
       readTime: '6 min read',
       image: 'photo-1447933601403-0c6688de566e',
@@ -50,7 +50,7 @@ const Articles = () => {
       title: 'Transportation Infrastructure Development',
       excerpt: 'Building robust automotive solutions for regional connectivity and economic growth.',
       category: 'Automotive',
-      author: 'Belaynesh Kinfu',
+      author: 'Mulugeta Demissie',
       date: '2023-12-28',
       readTime: '4 min read',
       image: 'photo-1449824913935-59a10b8d2000',
@@ -72,10 +72,76 @@ const Articles = () => {
       title: 'Sustainable Development Goals in Practice',
       excerpt: 'How Bella International integrates sustainability into all business operations.',
       category: 'Sustainability',
-      author: 'Mulugeta Demissie',
+      author: 'Temesgen Wubayehu',
       date: '2023-12-15',
       readTime: '6 min read',
       image: 'photo-1441974231531-c6227db76b6e',
+      featured: false
+    },
+    {
+      id: 7,
+      title: 'Digital Transformation in Ethiopian Healthcare',
+      excerpt: 'Implementing telemedicine and digital health solutions across rural communities.',
+      category: 'Healthcare',
+      author: 'Temesgen Wubayehu',
+      date: '2023-12-10',
+      readTime: '5 min read',
+      image: 'photo-1559757148-5c350d0d3c56',
+      featured: false
+    },
+    {
+      id: 8,
+      title: 'Coffee Export Markets: Opportunities and Challenges',
+      excerpt: 'Analyzing global coffee trade dynamics and Ethiopian market positioning.',
+      category: 'Coffee',
+      author: 'Chirotaw Assefa',
+      date: '2023-12-05',
+      readTime: '7 min read',
+      image: 'photo-1498804103079-a6351b050096',
+      featured: false
+    },
+    {
+      id: 9,
+      title: 'Fleet Management Technology in East Africa',
+      excerpt: 'How IoT and smart systems are revolutionizing transportation logistics.',
+      category: 'Automotive',
+      author: 'Mulugeta Demissie',
+      date: '2023-11-28',
+      readTime: '6 min read',
+      image: 'photo-1550355291-bbee04a92027',
+      featured: false
+    },
+    {
+      id: 10,
+      title: 'Sustainable Real Estate: Building for the Future',
+      excerpt: 'Green building practices and sustainable architecture in Ethiopian construction.',
+      category: 'Real Estate',
+      author: 'Abel Yeshitila',
+      date: '2023-11-20',
+      readTime: '5 min read',
+      image: 'photo-1582407947304-fd86f028f716',
+      featured: false
+    },
+    {
+      id: 11,
+      title: 'Community Healthcare Initiatives in Rural Ethiopia',
+      excerpt: 'Expanding healthcare access through mobile clinics and community programs.',
+      category: 'Healthcare',
+      author: 'Temesgen Wubayehu',
+      date: '2023-11-15',
+      readTime: '8 min read',
+      image: 'photo-1538108149393-fbbd81895907',
+      featured: false
+    },
+    {
+      id: 12,
+      title: 'The Economics of Ethiopian Coffee Production',
+      excerpt: 'Understanding market dynamics, pricing, and farmer sustainability in coffee trade.',
+      category: 'Coffee',
+      author: 'Chirotaw Assefa',
+      date: '2023-11-10',
+      readTime: '9 min read',
+      image: 'photo-1509042239860-f550ce710b93',
       featured: false
     }
   ];
@@ -108,34 +174,36 @@ const Articles = () => {
             </p>
           </div>
 
-          {/* Search and Filter */}
-          <div className="flex flex-col md:flex-row gap-4 mb-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+          {/* Search Bar - Full Width and Centered */}
+          <div className="mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <div className="relative max-w-2xl mx-auto">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
               <Input
                 type="text"
-                placeholder="Search articles..."
+                placeholder="Search articles and insights..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 bg-white border-border font-inter rounded-none"
+                className="pl-12 pr-4 py-4 text-center bg-white border-border font-inter rounded-none text-lg"
               />
             </div>
-            <div className="flex gap-2 flex-wrap">
-              {categories.map((category) => (
-                <Button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  variant={selectedCategory === category ? "default" : "outline"}
-                  className={`font-inter rounded-none ${
-                    selectedCategory === category 
-                      ? 'bg-primary text-primary-foreground' 
-                      : 'bg-white border-border hover:bg-secondary'
-                  }`}
-                >
-                  {category}
-                </Button>
-              ))}
-            </div>
+          </div>
+
+          {/* Filter Buttons */}
+          <div className="flex justify-center gap-2 flex-wrap animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            {categories.map((category) => (
+              <Button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                variant={selectedCategory === category ? "default" : "outline"}
+                className={`font-inter rounded-none transition-all duration-200 ${
+                  selectedCategory === category 
+                    ? 'bg-primary text-primary-foreground' 
+                    : 'bg-white border-border hover:bg-secondary hover:border-primary/30'
+                }`}
+              >
+                {category}
+              </Button>
+            ))}
           </div>
         </div>
       </section>
@@ -149,7 +217,7 @@ const Articles = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {featuredArticles.map((article, index) => (
-                <Card key={article.id} className="group hover:shadow-xl transition-all duration-300 border-border bg-white animate-fade-in overflow-hidden" style={{ animationDelay: `${index * 0.1}s` }}>
+                <Card key={article.id} className="group hover:shadow-xl transition-all duration-300 border-border bg-white animate-fade-in overflow-hidden hover:-translate-y-1" style={{ animationDelay: `${index * 0.1}s` }}>
                   <div className="relative h-48 overflow-hidden">
                     <div 
                       className="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
@@ -203,7 +271,7 @@ const Articles = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {regularArticles.map((article, index) => (
-              <Card key={article.id} className="group hover:shadow-lg transition-all duration-300 border-border bg-white animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+              <Card key={article.id} className="group hover:shadow-lg transition-all duration-300 border-border bg-white animate-fade-in hover:-translate-y-1" style={{ animationDelay: `${index * 0.1}s` }}>
                 <CardContent className="p-0">
                   <div className="flex">
                     <div className="flex-1 p-6">

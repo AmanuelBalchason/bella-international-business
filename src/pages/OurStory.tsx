@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -8,51 +9,75 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '../components/ui/accordion';
-import { Play } from 'lucide-react';
+import { Play, ChevronDown } from 'lucide-react';
 
 const OurStory = () => {
   const timeline = [
     {
       year: '2008',
       title: 'Foundation & Vision',
-      content: 'Bella International was founded with a vision to become the foremost provider of strategic business solutions in the Horn of Africa. Starting as a small consultancy, we laid the groundwork for what would become a diversified business conglomerate.',
-      details: 'Our founders, Abel Yeshitila and Mulugeta Demissie, identified key opportunities in the emerging Ethiopian market and established the company with a focus on real estate development and strategic partnerships.',
-      images: ['Foundation', 'Vision', 'Strategy']
+      summary: 'Bella International was founded with a vision to become the foremost provider of strategic business solutions in the Horn of Africa.',
+      content: 'Our founders, Abel Yeshitila and Mulugeta Demissie, identified key opportunities in the emerging Ethiopian market and established the company with a focus on real estate development and strategic partnerships. Starting as a small consultancy, we laid the groundwork for what would become a diversified business conglomerate with a clear mission to serve the regional business community.',
+      images: [
+        { title: 'Foundation Ceremony', description: 'The historic founding of Bella International Business', content: 'On a pivotal day in 2008, our founders gathered to establish what would become the leading business conglomerate in the Horn of Africa.' },
+        { title: 'Vision Planning', description: 'Strategic planning sessions that shaped our future', content: 'Intensive planning sessions where our leadership team outlined the comprehensive vision for multi-sector expansion.' },
+        { title: 'First Office', description: 'Our humble beginnings in Addis Ababa', content: 'The modest office space that served as the launching pad for our ambitious business goals and regional expansion plans.' }
+      ]
     },
     {
       year: '2012',
       title: 'Healthcare Integration',
-      content: 'Expanded into healthcare services, recognizing the critical need for quality medical facilities and services across the region. This marked our commitment to improving community health outcomes.',
-      details: 'We established our first medical facility in Addis Ababa and began developing comprehensive healthcare management systems. This expansion allowed us to serve over 1,000 patients in our first year of healthcare operations.',
-      images: ['Healthcare', 'Medical Facilities', 'Community Health']
+      summary: 'Expanded into healthcare services, recognizing the critical need for quality medical facilities across the region.',
+      content: 'We established our first medical facility in Addis Ababa and began developing comprehensive healthcare management systems. This expansion allowed us to serve over 1,000 patients in our first year of healthcare operations, marking our commitment to improving community health outcomes through strategic partnerships with medical professionals and international healthcare organizations.',
+      images: [
+        { title: 'First Medical Facility', description: 'Opening of our flagship healthcare center', content: 'The grand opening of our first medical facility marked our entry into the healthcare sector with state-of-the-art equipment.' },
+        { title: 'Medical Team', description: 'Assembling our expert healthcare professionals', content: 'Recruitment of top medical professionals from across the region to deliver world-class healthcare services.' },
+        { title: 'Community Outreach', description: 'Healthcare programs reaching rural communities', content: 'Mobile healthcare units and community programs extending our medical services to underserved areas.' }
+      ]
     },
     {
       year: '2015',
       title: 'Acha Forest Coffee Heritage',
-      content: 'Launched Acha Forest Coffee operations, embracing Ethiopia\'s rich coffee heritage and establishing sustainable farming partnerships with local communities.',
-      details: 'Our coffee division was built on principles of fair trade and environmental sustainability. We began working with 8 partner farms and established direct trade relationships with international buyers, exporting to our first 5 countries.',
-      images: ['Coffee Heritage', 'Sustainable Farming', 'Fair Trade']
+      summary: 'Launched Acha Forest Coffee operations, embracing Ethiopia\'s rich coffee heritage and establishing sustainable farming partnerships.',
+      content: 'Our coffee division was built on principles of fair trade and environmental sustainability. We began working with 8 partner farms and established direct trade relationships with international buyers, exporting to our first 5 countries. This venture connected us directly to Ethiopia\'s legendary coffee origins, where the story of Khaldi and the discovery of coffee beans continues to inspire our sustainable agricultural practices.',
+      images: [
+        { title: 'Coffee Heritage', description: 'Connecting to Ethiopia\'s coffee legacy', content: 'Establishing our operations near the legendary birthplace of coffee, honoring the rich heritage of Ethiopian coffee culture.' },
+        { title: 'Sustainable Farming', description: 'Implementing eco-friendly cultivation methods', content: 'Working with local farmers to develop sustainable farming practices that protect the environment while producing premium coffee.' },
+        { title: 'Global Export', description: 'Reaching international coffee markets', content: 'Successfully establishing export relationships with buyers across 5 countries, bringing Ethiopian coffee to the world.' }
+      ]
     },
     {
       year: '2018',
       title: 'Automotive Solutions',
-      content: 'Entered the automotive sector with comprehensive fleet management and transportation infrastructure development services, supporting regional economic growth.',
-      details: 'We identified the growing need for reliable transportation solutions and established partnerships with major automotive brands. Our fleet management services began serving over 50 clients across various industries.',
-      images: ['Automotive', 'Fleet Management', 'Transportation']
+      summary: 'Entered the automotive sector with comprehensive fleet management and transportation infrastructure development services.',
+      content: 'We identified the growing need for reliable transportation solutions and established partnerships with major automotive brands. Our fleet management services began serving over 50 clients across various industries, supporting regional economic growth through improved mobility and logistics solutions. This expansion included vehicle import operations, maintenance services, and transportation infrastructure development projects.',
+      images: [
+        { title: 'Fleet Launch', description: 'Introduction of comprehensive fleet services', content: 'Launching our automotive division with a modern fleet of vehicles and comprehensive management solutions.' },
+        { title: 'Partnership Network', description: 'Building relationships with automotive brands', content: 'Establishing strategic partnerships with leading automotive manufacturers and service providers across the region.' },
+        { title: 'Infrastructure Projects', description: 'Supporting transportation development', content: 'Contributing to regional transportation infrastructure projects that enhance connectivity and economic development.' }
+      ]
     },
     {
       year: '2020',
       title: 'Digital Transformation',
-      content: 'Embraced digital transformation across all sectors, implementing cutting-edge technology solutions to enhance service delivery and operational efficiency.',
-      details: 'During the global pandemic, we accelerated our digital initiatives, implementing telemedicine services, digital coffee trading platforms, and IoT-enabled fleet management systems.',
-      images: ['Digital Innovation', 'Technology', 'Digital Platforms']
+      summary: 'Embraced digital transformation across all sectors, implementing cutting-edge technology solutions.',
+      content: 'During the global pandemic, we accelerated our digital initiatives, implementing telemedicine services, digital coffee trading platforms, and IoT-enabled fleet management systems. This technological advancement enhanced our service delivery and operational efficiency across all business sectors, positioning us as an innovative leader in the regional market.',
+      images: [
+        { title: 'Digital Innovation', description: 'Implementing advanced technology solutions', content: 'Rolling out comprehensive digital transformation initiatives across all business sectors during the global pandemic.' },
+        { title: 'Telemedicine Launch', description: 'Revolutionizing healthcare delivery', content: 'Launching telemedicine services to maintain healthcare access during challenging times while embracing digital innovation.' },
+        { title: 'Smart Systems', description: 'IoT and smart technology integration', content: 'Implementing IoT-enabled systems for fleet management and digital platforms for coffee trading operations.' }
+      ]
     },
     {
       year: '2023',
       title: 'Regional Expansion',
-      content: 'Achieved significant regional expansion, establishing strategic partnerships across the Horn of Africa and reaching 100+ strategic partners.',
-      details: 'Our expansion strategy focused on building strong local partnerships while maintaining our core values of quality, integrity, and community development. We now operate in 5 major cities across the region.',
-      images: ['Regional Growth', 'Strategic Partnerships', 'Market Leadership']
+      summary: 'Achieved significant regional expansion, establishing strategic partnerships across the Horn of Africa.',
+      content: 'Our expansion strategy focused on building strong local partnerships while maintaining our core values of quality, integrity, and community development. We now operate in 5 major cities across the region, reaching 100+ strategic partners and creating employment opportunities for over 400 permanent and contract employees. This growth represents our commitment to becoming the foremost business partner in the Horn of Africa.',
+      images: [
+        { title: 'Regional Presence', description: 'Expanding across the Horn of Africa', content: 'Establishing operations in 5 major cities across the region, building a comprehensive network of business partnerships.' },
+        { title: 'Strategic Alliances', description: 'Building lasting business relationships', content: 'Developing over 100 strategic partnerships that drive mutual growth and regional economic development.' },
+        { title: 'Employment Growth', description: 'Creating opportunities for 400+ employees', content: 'Generating meaningful employment opportunities while contributing to regional economic development and community growth.' }
+      ]
     }
   ];
 
@@ -70,7 +95,7 @@ const OurStory = () => {
           ...prev,
           [index]: (prev[index] + 1) % timeline[index].images.length
         }));
-      }, 3000 + index * 500)
+      }, 4000 + index * 500)
     );
 
     return () => intervals.forEach(clearInterval);
@@ -125,54 +150,68 @@ const OurStory = () => {
           </div>
 
           <div className="relative">
-            {/* Vertical Line */}
             <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-border animate-fade-in"></div>
             
-            {/* Timeline Items */}
             <div className="space-y-12">
               {timeline.map((item, index) => (
                 <div key={index} className="relative flex items-start animate-slide-up" style={{ animationDelay: `${index * 0.2}s` }}>
-                  {/* Year Circle */}
                   <div className="flex-shrink-0 w-16 h-16 bg-primary rounded-full flex items-center justify-center z-10 hover:scale-110 transition-transform duration-200">
                     <span className="text-primary-foreground font-inter font-bold text-sm">
                       {item.year}
                     </span>
                   </div>
                   
-                  {/* Content */}
                   <div className="ml-8 flex-1">
-                    <div className="bg-white border border-border p-8 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                      {/* Slideshow Image Placeholder */}
-                      <div className="w-full h-48 bg-gradient-to-br from-secondary to-muted border border-border flex items-center justify-center mb-6 overflow-hidden relative hover:scale-105 transition-transform duration-300">
+                    <div className="bg-white border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
+                      {/* Image Slideshow */}
+                      <div className="w-full h-64 bg-gradient-to-br from-secondary to-muted border-b border-border overflow-hidden relative">
                         <div 
                           key={currentImageIndex[index]}
-                          className="text-center animate-fade-in"
+                          className="w-full h-full flex items-center justify-center animate-fade-in"
                         >
-                          <div className="w-12 h-12 bg-primary/10 mx-auto flex items-center justify-center mb-3">
-                            <span className="text-primary font-marcellus text-lg">{item.year}</span>
+                          <div className="text-center space-y-4 p-6">
+                            <div className="w-16 h-16 bg-primary/10 mx-auto flex items-center justify-center">
+                              <span className="text-primary font-marcellus text-2xl">{item.year}</span>
+                            </div>
+                            <h4 className="font-marcellus text-xl text-foreground">
+                              {item.images[currentImageIndex[index]].title}
+                            </h4>
+                            <p className="text-muted-foreground font-inter text-sm">
+                              {item.images[currentImageIndex[index]].description}
+                            </p>
                           </div>
-                          <p className="text-muted-foreground font-inter text-sm">
-                            {item.images[currentImageIndex[index]]}
-                          </p>
                         </div>
                       </div>
                       
-                      <Accordion type="single" collapsible defaultValue={`item-${index}`}>
+                      <Accordion type="single" collapsible className="p-6">
                         <AccordionItem value={`item-${index}`} className="border-none">
                           <AccordionTrigger className="hover:no-underline text-left p-0 group">
-                            <div>
+                            <div className="w-full">
                               <h3 className="font-marcellus text-2xl font-normal text-foreground mb-2 group-hover:text-primary transition-colors duration-200">
                                 {item.title}
                               </h3>
                               <p className="text-muted-foreground font-inter leading-relaxed">
-                                {item.content}
+                                {item.summary}
                               </p>
                             </div>
                           </AccordionTrigger>
                           <AccordionContent className="pt-4">
-                            <p className="text-muted-foreground font-inter text-sm leading-relaxed">
-                              {item.details}
-                            </p>
+                            <div className="space-y-4">
+                              <p className="text-muted-foreground font-inter leading-relaxed">
+                                {item.content}
+                              </p>
+                              <div 
+                                key={`content-${currentImageIndex[index]}`}
+                                className="bg-secondary border border-border p-4 animate-fade-in"
+                              >
+                                <h5 className="font-inter font-semibold text-foreground mb-2">
+                                  {item.images[currentImageIndex[index]].title}
+                                </h5>
+                                <p className="text-muted-foreground font-inter text-sm">
+                                  {item.images[currentImageIndex[index]].content}
+                                </p>
+                              </div>
+                            </div>
                           </AccordionContent>
                         </AccordionItem>
                       </Accordion>
