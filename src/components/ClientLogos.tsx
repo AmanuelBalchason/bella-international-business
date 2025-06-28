@@ -22,10 +22,10 @@ const ClientLogos = () => {
         </div>
         
         <div className="relative">
-          <div className="flex animate-scroll hover:animate-none hover:[animation-duration:2s] transition-all duration-300">
+          <div className="flex animate-scroll">
             {partners.concat(partners).map((partner, index) => (
               <div key={index} className="flex-shrink-0 mx-8">
-                <div className="w-32 h-20 bg-white border border-border flex items-center justify-center hover:border-primary/30 transition-colors duration-200 group">
+                <div className="w-32 h-20 bg-white border border-border flex items-center justify-center transition-colors duration-200 group">
                   <div className="text-center">
                     <div className="font-marcellus text-primary text-lg font-bold mb-1">{partner.logo}</div>
                     <span className="text-muted-foreground font-inter text-xs leading-tight">

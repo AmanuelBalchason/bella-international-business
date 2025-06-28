@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ChevronRight } from 'lucide-react';
 
 const BusinessSectors = () => {
   const sectors = [
@@ -45,7 +46,7 @@ const BusinessSectors = () => {
             <Link 
               key={index} 
               to={`/sectors/${sector.slug}`}
-              className="bg-white border border-border p-8 group hover:border-primary/30 transition-all duration-200 block"
+              className="bg-white border border-border p-8 group hover:border-primary/30 transition-all duration-200 block relative"
             >
               <div className="text-right mb-6">
                 <span className="font-marcellus text-2xl text-primary">{sector.number}</span>
@@ -55,9 +56,13 @@ const BusinessSectors = () => {
                 {sector.title}
               </h3>
               
-              <p className="text-muted-foreground font-inter text-sm leading-relaxed">
+              <p className="text-muted-foreground font-inter text-sm leading-relaxed mb-6">
                 {sector.description}
               </p>
+
+              <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                <ChevronRight className="w-5 h-5 text-primary" />
+              </div>
             </Link>
           ))}
         </div>

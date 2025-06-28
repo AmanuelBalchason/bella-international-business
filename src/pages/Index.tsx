@@ -3,9 +3,9 @@ import React from 'react';
 import Header from '../components/Header';
 import HeroSection from '../components/HeroSection';
 import ClientLogos from '../components/ClientLogos';
-import AboutSection from '../components/AboutSection';
+import AnimatedAboutSection from '../components/AnimatedAboutSection';
 import BusinessSectors from '../components/BusinessSectors';
-import LeadershipSection from '../components/LeadershipSection';
+import LeadershipSlideshow from '../components/LeadershipSlideshow';
 import TestimonialsSection from '../components/TestimonialsSection';
 import FAQSection from '../components/FAQSection';
 import ContactSection from '../components/ContactSection';
@@ -17,9 +17,9 @@ const Index = () => {
       <Header />
       <HeroSection />
       <ClientLogos />
-      <AboutSection />
+      <AnimatedAboutSection />
       <BusinessSectors />
-      <LeadershipSection />
+      <LeadershipSlideshow />
       <TestimonialsSection />
       <FAQSection />
       <ContactSection />

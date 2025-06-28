@@ -15,7 +15,6 @@ const Header = () => {
             </div>
             <div className="ml-4">
               <h1 className="font-marcellus text-xl font-normal text-foreground">Bella International</h1>
-              <p className="text-sm text-muted-foreground font-inter">Business Excellence</p>
             </div>
           </Link>
           

@@ -1,30 +1,26 @@
 
 import React from 'react';
 import { Button } from './ui/button';
+import { Link } from 'react-router-dom';
 import AnimatedCounter from './AnimatedCounter';
+import DynamicHero from './DynamicHero';
+import DynamicHeroImage from './DynamicHeroImage';
 
 const HeroSection = () => {
   return (
     <section className="bg-white py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left side - Content */}
+          {/* Left side - Dynamic Content */}
           <div className="space-y-8">
-            <div>
-              <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4">Horn of Africa's Premier</p>
-              <h1 className="font-marcellus text-5xl lg:text-6xl font-normal text-foreground leading-tight">
-                Strategic Business Solutions
-              </h1>
-            </div>
-            
-            <p className="text-muted-foreground font-inter text-lg leading-relaxed max-w-lg">
-              Driving excellence across Real Estate, Healthcare, Acha Forest Coffee, and Automotives through strategic partnerships built on trust, transparency, and mutual benefit.
-            </p>
+            <DynamicHero />
             
             <div>
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium px-10 py-4 rounded-none text-base">
-                Explore Our Services
-              </Button>
+              <Link to="/sectors">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium px-10 py-4 rounded-none text-base">
+                  Explore Our Impact
+                </Button>
+              </Link>
             </div>
             
             {/* Stats with animated counters - synchronized timing */}
@@ -44,17 +40,8 @@ const HeroSection = () => {
             </div>
           </div>
           
-          {/* Right side - Image Placeholder */}
-          <div className="relative">
-            <div className="w-full h-[600px] bg-gradient-to-br from-secondary to-muted border border-border flex items-center justify-center">
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 bg-primary/10 mx-auto flex items-center justify-center">
-                  <span className="text-primary font-marcellus text-2xl">B</span>
-                </div>
-                <p className="text-muted-foreground font-inter text-sm">Professional Business Environment</p>
-              </div>
-            </div>
-          </div>
+          {/* Right side - Dynamic Image */}
+          <DynamicHeroImage />
         </div>
       </div>
     </section>
