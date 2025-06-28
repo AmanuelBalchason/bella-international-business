@@ -2,140 +2,133 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { Card, CardContent } from '../components/ui/card';
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+import AnimatedCounter from '../components/AnimatedCounter';
 
 const Sectors = () => {
   const sectors = [
     {
-      number: '01',
       title: 'Real Estate',
-      description: 'Premium property development and strategic real estate investment solutions across Horn of Africa.',
       slug: 'real-estate',
-      details: 'Our real estate division focuses on developing premium properties that meet international standards while addressing local market needs.',
-      stats: { projects: '25+', value: '$50M+', locations: '5' }
+      description: 'Comprehensive real estate development and property management solutions across the Horn of Africa.',
+      details: 'From residential complexes to commercial developments, we create spaces that combine functionality with aesthetic appeal.',
+      icon: 'RE'
     },
     {
-      number: '02', 
       title: 'Healthcare',
-      description: 'Comprehensive healthcare services and medical facility management with focus on quality care.',
       slug: 'healthcare',
-      details: 'We provide comprehensive healthcare solutions including medical facility management and healthcare service delivery.',
-      stats: { facilities: '12', patients: '10K+', specialists: '50+' }
+      description: 'Quality healthcare services and medical facility management with a focus on community wellness.',
+      details: 'Providing accessible, high-quality healthcare services through modern facilities and professional medical teams.',
+      icon: 'HC'
     },
     {
-      number: '03',
-      title: 'Acha Forest Coffee', 
-      description: 'Sustainable coffee cultivation and supply chain optimization for premium Ethiopian coffee.',
+      title: 'Acha Forest Coffee',
       slug: 'acha-forest-coffee',
-      details: 'Our coffee operations focus on sustainable practices and innovative supply chain solutions for premium Ethiopian coffee.',
-      stats: { farms: '8', tons: '500+', export: '15 Countries' }
+      description: 'Premium coffee production and export services celebrating Ethiopia\'s rich coffee heritage.',
+      details: 'From farm to cup, we ensure quality at every step while supporting sustainable farming practices.',
+      icon: 'AC'
     },
     {
-      number: '04',
       title: 'Automotives',
-      description: 'Automotive solutions, fleet management, and transportation infrastructure development.',
       slug: 'automotives',
-      details: 'We offer comprehensive automotive services including fleet management and transportation infrastructure development.',
-      stats: { vehicles: '200+', routes: '25', clients: '80+' }
+      description: 'Fleet management and automotive solutions supporting regional transportation infrastructure.',
+      details: 'Comprehensive automotive services including fleet management, maintenance, and transportation solutions.',
+      icon: 'AU'
     }
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-grid-pattern">
       <Header />
       
       {/* Hero Section */}
       <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4">Our Expertise</p>
             <h1 className="font-marcellus text-5xl font-normal text-foreground leading-tight mb-6">
-              Business Sectors
+              Our Sectors
             </h1>
-            <p className="text-muted-foreground font-inter text-lg max-w-3xl mx-auto">
-              Bella International operates across four core business sectors, delivering excellence and innovation in each area across the Horn of Africa.
+            <p className="text-muted-foreground font-inter text-xl leading-relaxed max-w-3xl mx-auto">
+              Discover how Bella International creates value across four key business sectors, 
+              driving growth and innovation throughout the Horn of Africa.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="bg-secondary py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="font-marcellus text-4xl text-primary mb-2">15+</div>
-              <p className="text-muted-foreground font-inter text-sm">Years of Experience</p>
+          
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+            <div className="text-center">
+              <AnimatedCounter end={15} suffix="+" delay={200} duration={2000} />
+              <p className="text-muted-foreground font-inter text-sm">Years of Growth</p>
             </div>
-            <div>
-              <div className="font-marcellus text-4xl text-primary mb-2">4</div>
-              <p className="text-muted-foreground font-inter text-sm">Core Sectors</p>
+            <div className="text-center">
+              <AnimatedCounter end={4} delay={200} duration={2000} />
+              <p className="text-muted-foreground font-inter text-sm">Business Sectors</p>
             </div>
-            <div>
-              <div className="font-marcellus text-4xl text-primary mb-2">100+</div>
+            <div className="text-center">
+              <AnimatedCounter end={100} suffix="+" delay={200} duration={2000} />
               <p className="text-muted-foreground font-inter text-sm">Strategic Partners</p>
             </div>
           </div>
         </div>
       </section>
-      
+
       {/* Sectors Grid */}
-      <section className="bg-white py-24">
+      <section className="bg-secondary py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {sectors.map((sector, index) => (
-              <div 
-                key={index} 
-                className="bg-white border border-border group hover:border-primary/30 transition-all duration-200"
-              >
-                {/* Image Placeholder */}
-                <div className="w-full h-64 bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-12 h-12 bg-primary/10 mx-auto flex items-center justify-center mb-3">
-                      <span className="text-primary font-marcellus text-xl">{sector.number}</span>
-                    </div>
-                    <p className="text-muted-foreground font-inter text-sm">{sector.title} Operations</p>
-                  </div>
-                </div>
-                
-                {/* Content */}
-                <div className="p-8">
+              <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-border bg-white animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                <CardContent className="p-8">
                   <div className="flex items-start justify-between mb-6">
-                    <span className="font-marcellus text-3xl text-primary">{sector.number}</span>
+                    <div className="w-16 h-16 bg-primary/10 flex items-center justify-center">
+                      <span className="text-primary font-marcellus text-xl">{sector.icon}</span>
+                    </div>
+                    <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
                   </div>
                   
-                  <h2 className="font-marcellus text-2xl font-normal text-foreground mb-4">
+                  <h3 className="font-marcellus text-2xl font-normal text-foreground mb-4">
                     {sector.title}
-                  </h2>
+                  </h3>
                   
-                  <p className="text-muted-foreground font-inter text-base leading-relaxed mb-4">
+                  <p className="text-muted-foreground font-inter leading-relaxed mb-4">
                     {sector.description}
                   </p>
                   
                   <p className="text-muted-foreground font-inter text-sm leading-relaxed mb-6">
                     {sector.details}
                   </p>
-
-                  {/* Stats */}
-                  <div className="grid grid-cols-3 gap-4 mb-6">
-                    {Object.entries(sector.stats).map(([key, value]) => (
-                      <div key={key} className="text-center">
-                        <div className="font-marcellus text-lg text-primary">{value}</div>
-                        <p className="text-muted-foreground font-inter text-xs capitalize">{key}</p>
-                      </div>
-                    ))}
-                  </div>
-
+                  
                   <Link 
                     to={`/sectors/${sector.slug}`}
-                    className="inline-block bg-primary text-primary-foreground font-inter font-medium px-6 py-3 rounded-none hover:bg-primary/90 transition-colors duration-200"
+                    className="inline-flex items-center text-primary font-inter font-medium hover:text-primary/80 transition-colors duration-200"
                   >
                     Learn More
+                    <ArrowRight className="w-4 h-4 ml-2" />
                   </Link>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-primary py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-marcellus text-4xl font-normal text-primary-foreground mb-6">
+            Ready to Partner With Us?
+          </h2>
+          <p className="text-primary-foreground/80 font-inter text-lg leading-relaxed mb-8">
+            Join our network of strategic partners and discover opportunities across our diverse business sectors.
+          </p>
+          <Link 
+            to="/contact"
+            className="inline-block bg-white hover:bg-white/90 text-primary font-inter font-medium px-8 py-4 transition-colors duration-200"
+          >
+            Get In Touch
+          </Link>
         </div>
       </section>
       

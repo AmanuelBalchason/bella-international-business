@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,15 +11,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Company Info */}
           <div className="space-y-6">
-            <div className="flex items-center">
+            <Link to="/" className="flex items-center">
               <div className="w-10 h-10 bg-primary flex items-center justify-center">
                 <span className="text-primary-foreground font-marcellus text-lg font-bold">B</span>
               </div>
               <div className="ml-3">
                 <h3 className="font-marcellus text-lg font-normal text-foreground">Bella International</h3>
-                <p className="text-xs text-muted-foreground font-inter">Business Excellence</p>
               </div>
-            </div>
+            </Link>
             
             <div className="space-y-2">
               <p className="text-muted-foreground font-inter text-sm">Addis Ababa, Ethiopia</p>
@@ -30,10 +30,10 @@ const Footer = () => {
           <div>
             <h4 className="font-inter font-semibold text-foreground mb-6">Quick Links</h4>
             <div className="space-y-3">
-              <a href="#" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Our Story</a>
-              <a href="#" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Our Services</a>
-              <a href="#" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Business Sectors</a>
-              <a href="#" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Leadership</a>
+              <Link to="/our-story" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Our Story</Link>
+              <Link to="/articles" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Articles</Link>
+              <Link to="/sectors" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Sectors</Link>
+              <Link to="/leadership" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Leadership</Link>
             </div>
           </div>
           
@@ -42,7 +42,7 @@ const Footer = () => {
             <h4 className="font-inter font-semibold text-foreground mb-6">Contact</h4>
             <div className="space-y-3">
               <p className="text-muted-foreground font-inter text-sm">+251 XXX XXX XXX</p>
-              <p className="text-muted-foreground font-inter text-sm">info@bellainternational.com</p>
+              <p className="text-muted-foreground font-inter text-sm">info@bellainter.com</p>
             </div>
           </div>
           
