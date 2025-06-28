@@ -1,14 +1,14 @@
-
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import AnimatedCounter from '../components/AnimatedCounter';
+import { Button } from '../components/ui/button';
 import { 
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '../components/ui/accordion';
+import { Play } from 'lucide-react';
 
 const OurStory = () => {
   const timeline = [
@@ -70,7 +70,7 @@ const OurStory = () => {
           ...prev,
           [index]: (prev[index] + 1) % timeline[index].images.length
         }));
-      }, 3000 + index * 500) // Staggered timing for each slideshow
+      }, 3000 + index * 500)
     );
 
     return () => intervals.forEach(clearInterval);
@@ -84,26 +84,23 @@ const OurStory = () => {
       <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
+            <div className="animate-fade-in">
               <h1 className="font-marcellus text-5xl font-normal text-foreground leading-tight mb-6">
                 Our Story
               </h1>
               <p className="text-muted-foreground font-inter text-xl leading-relaxed mb-8">
                 From humble beginnings to regional leadership - discover the journey of Bella International Business across the Horn of Africa.
               </p>
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <AnimatedCounter end={15} suffix="+" delay={200} duration={2000} />
-                  <p className="text-muted-foreground font-inter text-sm">Years of Growth</p>
-                </div>
-                <div>
-                  <AnimatedCounter end={4} delay={200} duration={2000} />
-                  <p className="text-muted-foreground font-inter text-sm">Business Sectors</p>
-                </div>
-              </div>
+              <Button 
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium px-8 py-4 rounded-none inline-flex items-center gap-2"
+                onClick={() => window.open('#company-profile-video', '_blank')}
+              >
+                <Play className="w-5 h-5" />
+                Learn More
+              </Button>
             </div>
             
-            <div className="w-full h-[500px] bg-gradient-to-br from-secondary to-muted border border-border flex items-center justify-center animate-fade-in">
+            <div className="w-full h-[500px] bg-gradient-to-br from-secondary to-muted border border-border flex items-center justify-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="text-center">
                 <div className="w-20 h-20 bg-primary/10 mx-auto flex items-center justify-center mb-4">
                   <span className="text-primary font-marcellus text-3xl">B</span>
@@ -118,7 +115,7 @@ const OurStory = () => {
       {/* Timeline Section */}
       <section className="bg-secondary py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-fade-in">
             <h2 className="font-marcellus text-4xl font-normal text-foreground mb-6">
               Our Journey Through Time
             </h2>
@@ -134,9 +131,9 @@ const OurStory = () => {
             {/* Timeline Items */}
             <div className="space-y-12">
               {timeline.map((item, index) => (
-                <div key={index} className="relative flex items-start animate-fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
+                <div key={index} className="relative flex items-start animate-slide-up" style={{ animationDelay: `${index * 0.2}s` }}>
                   {/* Year Circle */}
-                  <div className="flex-shrink-0 w-16 h-16 bg-primary rounded-full flex items-center justify-center z-10">
+                  <div className="flex-shrink-0 w-16 h-16 bg-primary rounded-full flex items-center justify-center z-10 hover:scale-110 transition-transform duration-200">
                     <span className="text-primary-foreground font-inter font-bold text-sm">
                       {item.year}
                     </span>
@@ -144,9 +141,9 @@ const OurStory = () => {
                   
                   {/* Content */}
                   <div className="ml-8 flex-1">
-                    <div className="bg-white border border-border p-8 hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
+                    <div className="bg-white border border-border p-8 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                       {/* Slideshow Image Placeholder */}
-                      <div className="w-full h-48 bg-gradient-to-br from-secondary to-muted border border-border flex items-center justify-center mb-6 overflow-hidden relative">
+                      <div className="w-full h-48 bg-gradient-to-br from-secondary to-muted border border-border flex items-center justify-center mb-6 overflow-hidden relative hover:scale-105 transition-transform duration-300">
                         <div 
                           key={currentImageIndex[index]}
                           className="text-center animate-fade-in"
@@ -162,9 +159,9 @@ const OurStory = () => {
                       
                       <Accordion type="single" collapsible defaultValue={`item-${index}`}>
                         <AccordionItem value={`item-${index}`} className="border-none">
-                          <AccordionTrigger className="hover:no-underline text-left p-0">
+                          <AccordionTrigger className="hover:no-underline text-left p-0 group">
                             <div>
-                              <h3 className="font-marcellus text-2xl font-normal text-foreground mb-2">
+                              <h3 className="font-marcellus text-2xl font-normal text-foreground mb-2 group-hover:text-primary transition-colors duration-200">
                                 {item.title}
                               </h3>
                               <p className="text-muted-foreground font-inter leading-relaxed">
@@ -197,7 +194,7 @@ const OurStory = () => {
               <p className="text-muted-foreground font-inter text-lg leading-relaxed mb-8">
                 To become the foremost provider of Real Estate, Healthcare, Acha Forest Coffee and Automotives in the Horn of Africa. We strive to be the employer of choice for professionals in the region.
               </p>
-              <div className="w-full h-64 bg-gradient-to-br from-secondary to-muted border border-border flex items-center justify-center">
+              <div className="w-full h-64 bg-gradient-to-br from-secondary to-muted border border-border flex items-center justify-center hover:scale-105 transition-transform duration-300">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-primary/10 mx-auto flex items-center justify-center mb-4">
                     <span className="text-primary font-marcellus text-2xl">V</span>
@@ -212,7 +209,7 @@ const OurStory = () => {
               <p className="text-muted-foreground font-inter text-lg leading-relaxed mb-8">
                 We are committed to realizing our vision by building a highly motivated, research-focused workforce dedicated to cultivating long-term relationships with our strategic partners and the communities we serve.
               </p>
-              <div className="w-full h-64 bg-gradient-to-br from-secondary to-muted border border-border flex items-center justify-center">
+              <div className="w-full h-64 bg-gradient-to-br from-secondary to-muted border border-border flex items-center justify-center hover:scale-105 transition-transform duration-300">
                 <div className="text-center">
                   <div className="w-16 h-16 bg-primary/10 mx-auto flex items-center justify-center mb-4">
                     <span className="text-primary font-marcellus text-2xl">M</span>

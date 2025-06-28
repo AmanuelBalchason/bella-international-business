@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LocationLink from './LocationLink';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -21,8 +22,7 @@ const Footer = () => {
             </Link>
             
             <div className="space-y-2">
-              <p className="text-muted-foreground font-inter text-sm">Addis Ababa, Ethiopia</p>
-              <p className="text-muted-foreground font-inter text-sm">Horn of Africa</p>
+              <LocationLink />
             </div>
           </div>
           
@@ -30,10 +30,10 @@ const Footer = () => {
           <div>
             <h4 className="font-inter font-semibold text-foreground mb-6">Quick Links</h4>
             <div className="space-y-3">
-              <Link to="/our-story" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Our Story</Link>
-              <Link to="/articles" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Articles</Link>
-              <Link to="/sectors" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Sectors</Link>
-              <Link to="/leadership" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Leadership</Link>
+              <Link to="/our-story" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 hover-underline">Our Story</Link>
+              <Link to="/articles" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 hover-underline">Articles</Link>
+              <Link to="/sectors" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 hover-underline">Sectors</Link>
+              <Link to="/leadership" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 hover-underline">Leadership</Link>
             </div>
           </div>
           
@@ -52,13 +52,13 @@ const Footer = () => {
               Excellence in Every Partnership
             </h4>
             <div className="flex space-x-4">
-              <div className="w-8 h-8 bg-secondary border border-border flex items-center justify-center hover:border-primary/30 transition-colors duration-200">
+              <div className="w-8 h-8 bg-secondary border border-border flex items-center justify-center hover:border-primary/30 transition-colors duration-200 hover:scale-110">
                 <span className="text-muted-foreground text-xs">LI</span>
               </div>
-              <div className="w-8 h-8 bg-secondary border border-border flex items-center justify-center hover:border-primary/30 transition-colors duration-200">
+              <div className="w-8 h-8 bg-secondary border border-border flex items-center justify-center hover:border-primary/30 transition-colors duration-200 hover:scale-110">
                 <span className="text-muted-foreground text-xs">TW</span>
               </div>
-              <div className="w-8 h-8 bg-secondary border border-border flex items-center justify-center hover:border-primary/30 transition-colors duration-200">
+              <div className="w-8 h-8 bg-secondary border border-border flex items-center justify-center hover:border-primary/30 transition-colors duration-200 hover:scale-110">
                 <span className="text-muted-foreground text-xs">FB</span>
               </div>
             </div>

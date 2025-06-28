@@ -20,15 +20,15 @@ const Header = () => {
           
           {/* Navigation */}
           <nav className="hidden md:flex space-x-12">
-            <Link to="/our-story" className="font-inter font-medium text-muted-foreground hover:text-primary transition-colors duration-200">Our Story</Link>
-            <Link to="/articles" className="font-inter font-medium text-muted-foreground hover:text-primary transition-colors duration-200">Articles</Link>
-            <Link to="/sectors" className="font-inter font-medium text-muted-foreground hover:text-primary transition-colors duration-200">Sectors</Link>
-            <Link to="/leadership" className="font-inter font-medium text-muted-foreground hover:text-primary transition-colors duration-200">Leadership</Link>
-            <Link to="/contact" className="font-inter font-medium text-muted-foreground hover:text-primary transition-colors duration-200">Contact</Link>
+            <Link to="/our-story" className="font-inter font-medium text-muted-foreground hover:text-primary transition-colors duration-200 hover-underline">Our Story</Link>
+            <Link to="/articles" className="font-inter font-medium text-muted-foreground hover:text-primary transition-colors duration-200 hover-underline">Articles</Link>
+            <Link to="/sectors" className="font-inter font-medium text-muted-foreground hover:text-primary transition-colors duration-200 hover-underline">Sectors</Link>
+            <Link to="/leadership" className="font-inter font-medium text-muted-foreground hover:text-primary transition-colors duration-200 hover-underline">Leadership</Link>
+            <Link to="/contact" className="font-inter font-medium text-muted-foreground hover:text-primary transition-colors duration-200 hover-underline">Contact</Link>
           </nav>
           
           {/* CTA Button */}
-          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium px-8 py-3 rounded-none">
+          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium px-8 py-3 rounded-none hover:scale-105 transition-all duration-200">
             Get In Touch
           </Button>
         </div>

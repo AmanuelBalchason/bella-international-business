@@ -6,7 +6,7 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Phone, Mail, MapPin } from 'lucide-react';
-import AnimatedCounter from '../components/AnimatedCounter';
+import LocationLink from '../components/LocationLink';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -36,29 +36,13 @@ const Contact = () => {
       {/* Hero Section */}
       <section className="bg-white py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 animate-fade-in">
             <h1 className="font-marcellus text-5xl font-normal text-foreground leading-tight mb-6">
               Contact Us
             </h1>
             <p className="text-muted-foreground font-inter text-xl leading-relaxed">
               Get in touch with our team for strategic business partnerships and opportunities across the Horn of Africa.
             </p>
-          </div>
-          
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto mb-16">
-            <div className="text-center">
-              <AnimatedCounter end={15} suffix="+" delay={200} duration={2000} />
-              <p className="text-muted-foreground font-inter text-sm">Years of Growth</p>
-            </div>
-            <div className="text-center">
-              <AnimatedCounter end={4} delay={200} duration={2000} />
-              <p className="text-muted-foreground font-inter text-sm">Business Sectors</p>
-            </div>
-            <div className="text-center">
-              <AnimatedCounter end={100} suffix="+" delay={200} duration={2000} />
-              <p className="text-muted-foreground font-inter text-sm">Strategic Partners</p>
-            </div>
           </div>
         </div>
       </section>
@@ -69,7 +53,7 @@ const Contact = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             
             {/* Contact Form */}
-            <div>
+            <div className="animate-fade-in">
               <h2 className="font-marcellus text-3xl font-normal text-foreground mb-8">
                 Leave Us A Message
               </h2>
@@ -120,15 +104,18 @@ const Contact = () => {
               </form>
             </div>
             
-            {/* Contact Image & Info */}
-            <div className="space-y-8">
-              <div className="w-full h-[400px] bg-gradient-to-br from-muted to-secondary border border-border flex items-center justify-center">
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 bg-primary/10 mx-auto flex items-center justify-center">
-                    <span className="text-primary font-marcellus text-2xl">B</span>
-                  </div>
-                  <p className="text-muted-foreground font-inter text-sm">Bella International Headquarters</p>
-                </div>
+            {/* Contact Map & Info */}
+            <div className="space-y-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <div className="w-full h-[400px] rounded-lg overflow-hidden border border-border">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3940.855468811491!2d38.767563976057204!3d8.985444091074173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e0!3m2!1sen!2set!4v1751109689891!5m2!1sen!2set" 
+                  width="100%" 
+                  height="100%" 
+                  style={{border:0}} 
+                  allowFullScreen 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
               </div>
               
               {/* Contact Details */}
@@ -159,7 +146,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-inter font-medium text-foreground">Address</p>
-                    <p className="text-muted-foreground font-inter text-sm">Addis Ababa, Ethiopia<br />Horn of Africa</p>
+                    <LocationLink />
                   </div>
                 </div>
               </div>
