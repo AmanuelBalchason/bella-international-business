@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
@@ -7,7 +6,6 @@ import ImageSlideshow from '../components/ImageSlideshow';
 import { Download, Play, MapPin, Calendar, TrendingUp, Award, Users, Leaf, Mail, Phone, Send } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import { Badge } from '../components/ui/badge';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
@@ -280,369 +278,348 @@ const SectorDetail = () => {
       {/* Enhanced Content Sections */}
       <section className="bg-secondary py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Tabs defaultValue="overview" className="w-full">
-            <TabsList className="grid w-full grid-cols-6 mb-8">
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="process">Process</TabsTrigger>
-              <TabsTrigger value="data">Analytics</TabsTrigger>
-              <TabsTrigger value="locations">Locations</TabsTrigger>
-              <TabsTrigger value="media">Media</TabsTrigger>
-              <TabsTrigger value="contact">Contact</TabsTrigger>
-            </TabsList>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Award className="w-5 h-5 text-primary" />
+                  Vision
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">{sector.vision}</p>
+              </CardContent>
+            </Card>
 
-            <TabsContent value="overview">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Award className="w-5 h-5 text-primary" />
-                      Vision
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">{sector.vision}</p>
-                  </CardContent>
-                </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Users className="w-5 h-5 text-primary" />
+                  Mission
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">{sector.mission}</p>
+              </CardContent>
+            </Card>
 
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Users className="w-5 h-5 text-primary" />
-                      Mission
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">{sector.mission}</p>
-                  </CardContent>
-                </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Award className="w-5 h-5 text-primary" />
+                  Certifications
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2">
+                  {sector.certifications.map((cert, index) => (
+                    <Badge key={index} variant="secondary">{cert}</Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
 
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Award className="w-5 h-5 text-primary" />
-                      Certifications
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      {sector.certifications.map((cert, index) => (
-                        <Badge key={index} variant="secondary">{cert}</Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Users className="w-5 h-5 text-primary" />
+                  Key Partnerships
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2">
+                  {sector.partnerships.map((partner, index) => (
+                    <Badge key={index} variant="outline">{partner}</Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
 
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Users className="w-5 h-5 text-primary" />
-                      Key Partnerships
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      {sector.partnerships.map((partner, index) => (
-                        <Badge key={index} variant="outline">{partner}</Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </TabsContent>
-
-            <TabsContent value="process">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Calendar className="w-5 h-5 text-primary" />
-                    Process Timeline
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-8">
-                    {sector.processSteps.map((step, index) => (
-                      <div key={index} className="flex items-start gap-4">
-                        <div className="flex-shrink-0 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-semibold">
-                          {index + 1}
-                        </div>
-                        <div className="flex-grow">
-                          <h4 className="font-semibold text-foreground mb-2">{step.step}</h4>
-                          <p className="text-muted-foreground mb-2">{step.description}</p>
-                          <Badge variant="secondary">{step.duration}</Badge>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="data">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <TrendingUp className="w-5 h-5 text-primary" />
-                      Growth Over Time
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      {sector.dataMetrics.production.map((data, index) => (
-                        <div key={index} className="flex items-center justify-between">
-                          <span className="text-sm font-medium">{data.year}</span>
-                          <div className="flex-1 mx-4">
-                            <div className="w-full bg-secondary rounded-full h-2">
-                              <div 
-                                className="bg-primary h-2 rounded-full transition-all duration-500"
-                                style={{ width: `${(data.value / maxValue) * 100}%` }}
-                              />
-                            </div>
-                          </div>
-                          <span className="text-sm font-semibold">{data.value}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Award className="w-5 h-5 text-primary" />
-                      Quality Metrics
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      {sector.dataMetrics.quality.map((metric, index) => (
-                        <div key={index} className="flex items-center justify-between">
-                          <span className="text-sm font-medium">{metric.metric}</span>
-                          <div className="flex-1 mx-4">
-                            <div className="w-full bg-secondary rounded-full h-2">
-                              <div 
-                                className="bg-green-500 h-2 rounded-full transition-all duration-500"
-                                style={{ width: `${metric.score}%` }}
-                              />
-                            </div>
-                          </div>
-                          <span className="text-sm font-semibold">{metric.score}%</span>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </TabsContent>
-
-            <TabsContent value="locations">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <MapPin className="w-5 h-5 text-primary" />
-                    Our Locations
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {sector.locations.map((location, index) => (
-                      <div key={index} className="border border-border rounded-lg p-4 hover:shadow-md transition-shadow">
-                        <h4 className="font-semibold text-foreground mb-2">{location.name}</h4>
-                        <p className="text-muted-foreground text-sm mb-2">{location.projects} active projects</p>
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <MapPin className="w-3 h-3" />
-                          <span>{location.coords[1].toFixed(4)}, {location.coords[0].toFixed(4)}</span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="media">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Calendar className="w-5 h-5 text-primary" />
+                Process Timeline
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
               <div className="space-y-8">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Play className="w-5 h-5 text-primary" />
-                      Video Content
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {sector.videos.map((video, index) => (
-                        <div key={index} className="group cursor-pointer">
-                          <div className="relative overflow-hidden rounded-lg mb-3">
-                            <img
-                              src={`https://images.unsplash.com/${video.thumbnail}?auto=format&fit=crop&w=400&q=80`}
-                              alt={video.title}
-                              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                            <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                              <Play className="w-12 h-12 text-white" />
-                            </div>
-                            <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
-                              {video.duration}
-                            </div>
-                          </div>
-                          <h4 className="font-semibold text-foreground">{video.title}</h4>
-                        </div>
-                      ))}
+                {sector.processSteps.map((step, index) => (
+                  <div key={index} className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-semibold">
+                      {index + 1}
                     </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Download className="w-5 h-5 text-primary" />
-                      Resources & Documentation
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {sector.resources.map((resource, index) => (
-                        <button
-                          key={index}
-                          onClick={() => handleDownloadPDF(resource)}
-                          className="border border-border p-4 hover:shadow-md transition-all duration-200 text-left group rounded-lg"
-                        >
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <h4 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-200">{resource}</h4>
-                              <p className="text-muted-foreground text-sm">Download PDF resource</p>
-                            </div>
-                            <Download className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
-                          </div>
-                        </button>
-                      ))}
+                    <div className="flex-grow">
+                      <h4 className="font-semibold text-foreground mb-2">{step.step}</h4>
+                      <p className="text-muted-foreground mb-2">{step.description}</p>
+                      <Badge variant="secondary">{step.duration}</Badge>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                ))}
               </div>
-            </TabsContent>
+            </CardContent>
+          </Card>
 
-            <TabsContent value="contact">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Mail className="w-5 h-5 text-primary" />
-                      Get In Touch
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <form onSubmit={handleContactSubmit} className="space-y-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <Label htmlFor="name">Name</Label>
-                          <Input
-                            id="name"
-                            value={contactForm.name}
-                            onChange={(e) => setContactForm({...contactForm, name: e.target.value})}
-                            required
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="email">Email</Label>
-                          <Input
-                            id="email"
-                            type="email"
-                            value={contactForm.email}
-                            onChange={(e) => setContactForm({...contactForm, email: e.target.value})}
-                            required
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <TrendingUp className="w-5 h-5 text-primary" />
+                  Growth Over Time
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {sector.dataMetrics.production.map((data, index) => (
+                    <div key={index} className="flex items-center justify-between">
+                      <span className="text-sm font-medium">{data.year}</span>
+                      <div className="flex-1 mx-4">
+                        <div className="w-full bg-secondary rounded-full h-2">
+                          <div 
+                            className="bg-primary h-2 rounded-full transition-all duration-500"
+                            style={{ width: `${(data.value / maxValue) * 100}%` }}
                           />
                         </div>
                       </div>
-                      
-                      <div>
-                        <Label htmlFor="company">Company</Label>
-                        <Input
-                          id="company"
-                          value={contactForm.company}
-                          onChange={(e) => setContactForm({...contactForm, company: e.target.value})}
-                        />
-                      </div>
+                      <span className="text-sm font-semibold">{data.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
 
-                      <div>
-                        <Label htmlFor="inquiryType">Inquiry Type</Label>
-                        <Select value={contactForm.inquiryType} onValueChange={(value) => setContactForm({...contactForm, inquiryType: value})}>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select inquiry type" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="partnership">Partnership Opportunity</SelectItem>
-                            <SelectItem value="investment">Investment Inquiry</SelectItem>
-                            <SelectItem value="consultation">Consultation Request</SelectItem>
-                            <SelectItem value="general">General Information</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      <div>
-                        <Label htmlFor="message">Message</Label>
-                        <Textarea
-                          id="message"
-                          rows={4}
-                          value={contactForm.message}
-                          onChange={(e) => setContactForm({...contactForm, message: e.target.value})}
-                          required
-                        />
-                      </div>
-
-                      <Button type="submit" className="w-full">
-                        <Send className="w-4 h-4 mr-2" />
-                        Send Message
-                      </Button>
-                    </form>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Phone className="w-5 h-5 text-primary" />
-                      Contact Information
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-2">Direct Contact</h4>
-                      <div className="space-y-2 text-muted-foreground">
-                        <div className="flex items-center gap-2">
-                          <Mail className="w-4 h-4" />
-                          <span>{slug}@acha.com</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Phone className="w-4 h-4" />
-                          <span>+251 11 123 4567</span>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Award className="w-5 h-5 text-primary" />
+                  Quality Metrics
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {sector.dataMetrics.quality.map((metric, index) => (
+                    <div key={index} className="flex items-center justify-between">
+                      <span className="text-sm font-medium">{metric.metric}</span>
+                      <div className="flex-1 mx-4">
+                        <div className="w-full bg-secondary rounded-full h-2">
+                          <div 
+                            className="bg-green-500 h-2 rounded-full transition-all duration-500"
+                            style={{ width: `${metric.score}%` }}
+                          />
                         </div>
                       </div>
+                      <span className="text-sm font-semibold">{metric.score}%</span>
                     </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
 
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Mail className="w-5 h-5 text-primary" />
+                  Get In Touch
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleContactSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <h4 className="font-semibold text-foreground mb-2">Newsletter Subscription</h4>
-                      <p className="text-muted-foreground text-sm mb-3">Stay updated with our latest developments and opportunities.</p>
-                      <div className="flex gap-2">
-                        <Input placeholder="Your email address" className="flex-1" />
-                        <Button variant="outline">Subscribe</Button>
+                      <Label htmlFor="name">Name</Label>
+                      <Input
+                        id="name"
+                        value={contactForm.name}
+                        onChange={(e) => setContactForm({...contactForm, name: e.target.value})}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="email">Email</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        value={contactForm.email}
+                        onChange={(e) => setContactForm({...contactForm, email: e.target.value})}
+                        required
+                      />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="company">Company</Label>
+                    <Input
+                      id="company"
+                      value={contactForm.company}
+                      onChange={(e) => setContactForm({...contactForm, company: e.target.value})}
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="inquiryType">Inquiry Type</Label>
+                    <Select value={contactForm.inquiryType} onValueChange={(value) => setContactForm({...contactForm, inquiryType: value})}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select inquiry type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="partnership">Partnership Opportunity</SelectItem>
+                        <SelectItem value="investment">Investment Inquiry</SelectItem>
+                        <SelectItem value="consultation">Consultation Request</SelectItem>
+                        <SelectItem value="general">General Information</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="message">Message</Label>
+                    <Textarea
+                      id="message"
+                      rows={4}
+                      value={contactForm.message}
+                      onChange={(e) => setContactForm({...contactForm, message: e.target.value})}
+                      required
+                    />
+                  </div>
+
+                  <Button type="submit" className="w-full">
+                    <Send className="w-4 h-4 mr-2" />
+                    Send Message
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Phone className="w-5 h-5 text-primary" />
+                  Contact Information
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">Direct Contact</h4>
+                  <div className="space-y-2 text-muted-foreground">
+                    <div className="flex items-center gap-2">
+                      <Mail className="w-4 h-4" />
+                      <span>{slug}@acha.com</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Phone className="w-4 h-4" />
+                      <span>+251 11 123 4567</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">Newsletter Subscription</h4>
+                  <p className="text-muted-foreground text-sm mb-3">Stay updated with our latest developments and opportunities.</p>
+                  <div className="flex gap-2">
+                    <Input placeholder="Your email address" className="flex-1" />
+                    <Button variant="outline">Subscribe</Button>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">Office Hours</h4>
+                  <div className="text-muted-foreground text-sm space-y-1">
+                    <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                    <p>Saturday: 9:00 AM - 2:00 PM</p>
+                    <p>Sunday: Closed</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Media Section - Moved outside tabs */}
+          <div className="mt-16 space-y-8">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Play className="w-5 h-5 text-primary" />
+                  Video Content
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {sector.videos.map((video, index) => (
+                    <div key={index} className="group cursor-pointer">
+                      <div className="relative overflow-hidden rounded-lg mb-3">
+                        <img
+                          src={`https://images.unsplash.com/${video.thumbnail}?auto=format&fit=crop&w=400&q=80`}
+                          alt={video.title}
+                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <Play className="w-12 h-12 text-white" />
+                        </div>
+                        <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                          {video.duration}
+                        </div>
+                      </div>
+                      <h4 className="font-semibold text-foreground">{video.title}</h4>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Download className="w-5 h-5 text-primary" />
+                  Resources & Documentation
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {sector.resources.map((resource, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleDownloadPDF(resource)}
+                      className="border border-border p-4 hover:shadow-md transition-all duration-200 text-left group rounded-lg"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h4 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-200">{resource}</h4>
+                          <p className="text-muted-foreground text-sm">Download PDF resource</p>
+                        </div>
+                        <Download className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Locations Section - Moved outside tabs */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <MapPin className="w-5 h-5 text-primary" />
+                  Our Locations
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {sector.locations.map((location, index) => (
+                    <div key={index} className="border border-border rounded-lg p-4 hover:shadow-md transition-shadow">
+                      <h4 className="font-semibold text-foreground mb-2">{location.name}</h4>
+                      <p className="text-muted-foreground text-sm mb-2">{location.projects} active projects</p>
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <MapPin className="w-3 h-3" />
+                        <span>{location.coords[1].toFixed(4)}, {location.coords[0].toFixed(4)}</span>
                       </div>
                     </div>
-
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-2">Office Hours</h4>
-                      <div className="text-muted-foreground text-sm space-y-1">
-                        <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
-                        <p>Saturday: 9:00 AM - 2:00 PM</p>
-                        <p>Sunday: Closed</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </TabsContent>
-          </Tabs>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
       

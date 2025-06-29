@@ -41,8 +41,8 @@ const Footer = () => {
           <div>
             <h4 className="font-inter font-semibold text-foreground mb-6">Contact</h4>
             <div className="space-y-3">
-              <p className="text-muted-foreground font-inter text-sm">+251 XXX XXX XXX</p>
-              <p className="text-muted-foreground font-inter text-sm">info@bellainter.com</p>
+              <a href="tel:+251XXXXXXX" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">+251 XXX XXX XXX</a>
+              <a href="mailto:info@bellainter.com" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">info@bellainter.com</a>
             </div>
           </div>
           
