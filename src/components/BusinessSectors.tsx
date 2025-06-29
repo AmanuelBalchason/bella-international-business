@@ -39,25 +39,7 @@ const BusinessSectors = () => {
   ];
 
   return (
-    <section className="bg-secondary py-24 relative overflow-hidden paper-texture">
-      {/* Animated Square Grid Pattern */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-10 right-10">
-          <div className="grid grid-cols-8 gap-2 opacity-3">
-            {Array.from({ length: 64 }).map((_, i) => (
-              <div
-                key={i}
-                className="w-4 h-4 border border-primary/20 rounded-sm animate-pulse"
-                style={{
-                  animationDelay: `${(i % 8) * 0.15}s`,
-                  animationDuration: '4s'
-                }}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-
+    <section className="bg-secondary py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4 animate-fade-in">Our Expertise</p>

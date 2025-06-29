@@ -43,24 +43,6 @@ const Sectors = () => {
       
       {/* Hero Section */}
       <section className="bg-white py-24 relative overflow-hidden">
-        {/* Animated Square Grid Pattern */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-16 left-16">
-            <div className="grid grid-cols-10 gap-2 opacity-4">
-              {Array.from({ length: 100 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="w-5 h-5 border border-primary/25 rounded-sm animate-pulse"
-                  style={{
-                    animationDelay: `${(i % 10) * 0.12}s`,
-                    animationDuration: '3.5s'
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h1 className="font-marcellus text-5xl font-normal text-foreground leading-tight mb-6">
@@ -72,7 +54,7 @@ const Sectors = () => {
             </p>
           </div>
           
-          {/* Stats - removed bobbing effects */}
+          {/* Stats */}
           <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
             <div className="text-center">
               <div className="font-marcellus text-3xl text-primary mb-2">15+</div>
@@ -91,7 +73,7 @@ const Sectors = () => {
       </section>
 
       {/* Sectors Grid */}
-      <section className="bg-secondary py-24 paper-texture">
+      <section className="bg-secondary py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {sectors.map((sector, index) => (
@@ -129,7 +111,7 @@ const Sectors = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-primary py-24 paper-texture">
+      <section className="bg-primary py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-marcellus text-4xl font-normal text-primary-foreground mb-6">
             Ready to Partner With Us?

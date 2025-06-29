@@ -9,24 +9,6 @@ import DynamicHeroImage from './DynamicHeroImage';
 const HeroSection = () => {
   return (
     <section className="bg-white py-24 relative overflow-hidden">
-      {/* Animated Square Grid Pattern */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-20">
-          <div className="grid grid-cols-12 gap-3 opacity-5">
-            {Array.from({ length: 144 }).map((_, i) => (
-              <div
-                key={i}
-                className="w-6 h-6 border border-primary/30 rounded-sm animate-pulse"
-                style={{
-                  animationDelay: `${(i % 12) * 0.1}s`,
-                  animationDuration: '3s'
-                }}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left side - Dynamic Content */}
@@ -41,7 +23,7 @@ const HeroSection = () => {
               </Link>
             </div>
             
-            {/* Stats with counters - removed bobbing effects */}
+            {/* Stats with counters */}
             <div className="grid grid-cols-3 gap-8 pt-12 border-t border-border">
               <div>
                 <div className="font-marcellus text-3xl text-primary mb-2">15+</div>
