@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -19,6 +18,11 @@ const ArticleDetail = () => {
     readTime: string;
     image: string;
     excerpt: string;
+    embeddedImages: Array<{
+      position: number;
+      image: string;
+      caption: string;
+    }>;
   }> = {
     '1': {
       title: 'The Future of Real Estate Development in Ethiopia',
@@ -73,7 +77,24 @@ const ArticleDetail = () => {
       date: '2024-01-15',
       readTime: '8 min read',
       image: 'photo-1560518883-ce09059eeffa',
-      excerpt: 'Exploring emerging trends and opportunities in Ethiopian real estate markets, with focus on sustainable development practices.'
+      excerpt: 'Exploring emerging trends and opportunities in Ethiopian real estate markets, with focus on sustainable development practices.',
+      embeddedImages: [
+        {
+          position: 3,
+          image: 'photo-1486406146926-c627a92ad1ab',
+          caption: 'Modern mixed-use development showcasing sustainable architecture'
+        },
+        {
+          position: 8,
+          image: 'photo-1497366216548-37526070297c',
+          caption: 'Smart building technology integration in contemporary developments'
+        },
+        {
+          position: 12,
+          image: 'photo-1560472354-b33ff0c44a43',
+          caption: 'Community-centered development planning and design'
+        }
+      ]
     },
     '2': {
       title: 'Healthcare Innovation in the Horn of Africa',
@@ -164,7 +185,24 @@ const ArticleDetail = () => {
       date: '2024-01-10',
       readTime: '10 min read',
       image: 'photo-1576091160399-112ba8d25d1f',
-      excerpt: 'How technological advancement is revolutionizing healthcare delivery across Eastern Africa.'
+      excerpt: 'How technological advancement is revolutionizing healthcare delivery across Eastern Africa.',
+      embeddedImages: [
+        {
+          position: 4,
+          image: 'photo-1581091226825-a6a2a5aee158',
+          caption: 'Healthcare workers using digital technology for patient care'
+        },
+        {
+          position: 9,
+          image: 'photo-1488590528505-98d2b5aba04b',
+          caption: 'Telemedicine consultation connecting rural patients with specialists'
+        },
+        {
+          position: 15,
+          image: 'photo-1518770660439-4636190af475',
+          caption: 'Advanced diagnostic equipment in modern healthcare facilities'
+        }
+      ]
     }
   };
 
@@ -193,6 +231,81 @@ const ArticleDetail = () => {
       </div>
     );
   }
+
+  const renderArticleContent = () => {
+    const paragraphs = article.content.split('\n\n');
+    let paragraphCount = 0;
+
+    return paragraphs.map((paragraph, index) => {
+      const elements = [];
+      
+      if (paragraph.startsWith('##')) {
+        elements.push(
+          <h2 key={`h2-${index}`} className="font-marcellus text-4xl font-normal text-foreground mt-16 mb-8 first:mt-0 leading-tight">
+            {paragraph.replace('## ', '')}
+          </h2>
+        );
+      } else if (paragraph.startsWith('###')) {
+        elements.push(
+          <h3 key={`h3-${index}`} className="font-marcellus text-3xl font-normal text-foreground mt-12 mb-6 leading-tight">
+            {paragraph.replace('### ', '')}
+          </h3>
+        );
+      } else if (paragraph.startsWith('- ')) {
+        const listItems = paragraph.split('\n').filter(item => item.startsWith('- '));
+        elements.push(
+          <ul key={`ul-${index}`} className="space-y-4 mb-8 pl-6">
+            {listItems.map((item, itemIndex) => (
+              <li key={itemIndex} className="text-muted-foreground leading-relaxed text-lg relative">
+                <span className="absolute -left-6 top-0 text-primary font-bold">•</span>
+                <span dangerouslySetInnerHTML={{ __html: item.replace('- **', '<strong>').replace('**:', ':</strong>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+              </li>
+            ))}
+          </ul>
+        );
+      } else if (paragraph.match(/^\d+\./)) {
+        const listItems = paragraph.split('\n').filter(item => item.match(/^\d+\./));
+        elements.push(
+          <ol key={`ol-${index}`} className="space-y-4 mb-8 pl-6">
+            {listItems.map((item, itemIndex) => (
+              <li key={itemIndex} className="text-muted-foreground leading-relaxed text-lg">
+                <span dangerouslySetInnerHTML={{ __html: item.replace(/^\d+\. \*\*(.*?)\*\*/, '<strong>$1</strong>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+              </li>
+            ))}
+          </ol>
+        );
+      } else if (paragraph.trim()) {
+        paragraphCount++;
+        elements.push(
+          <p key={`p-${index}`} className="text-muted-foreground leading-relaxed mb-8 text-lg font-inter">
+            <span dangerouslySetInnerHTML={{ __html: paragraph.replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>') }} />
+          </p>
+        );
+
+        // Check if we should insert an embedded image after this paragraph
+        const embeddedImage = article.embeddedImages?.find(img => img.position === paragraphCount);
+        if (embeddedImage) {
+          elements.push(
+            <div key={`img-${index}`} className="my-12 animate-fade-in">
+              <div className="relative overflow-hidden rounded-lg shadow-lg group">
+                <img
+                  src={`https://images.unsplash.com/${embeddedImage.image}?auto=format&fit=crop&w=1200&q=80`}
+                  alt={embeddedImage.caption}
+                  className="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+              <p className="text-center text-muted-foreground font-inter text-sm mt-4 italic">
+                {embeddedImage.caption}
+              </p>
+            </div>
+          );
+        }
+      }
+      
+      return elements;
+    }).flat();
+  };
 
   return (
     <div className="min-h-screen bg-grid-pattern">
@@ -261,10 +374,14 @@ const ArticleDetail = () => {
 
           {/* Featured Image */}
           <div className="mb-16 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <div 
-              className="w-full h-96 bg-cover bg-center rounded-lg shadow-lg"
-              style={{ backgroundImage: `url(https://images.unsplash.com/${article.image}?auto=format&fit=crop&w=1200&q=80)` }}
-            />
+            <div className="relative overflow-hidden rounded-lg shadow-lg group">
+              <img
+                src={`https://images.unsplash.com/${article.image}?auto=format&fit=crop&w=1200&q=80`}
+                alt={article.title}
+                className="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </div>
           </div>
         </div>
       </section>
@@ -272,49 +389,11 @@ const ArticleDetail = () => {
       {/* Article Content */}
       <section className="bg-secondary py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white p-12 rounded-lg shadow-sm animate-fade-in" style={{ animationDelay: '0.3s' }}>
-            <div className="prose prose-lg max-w-none font-inter text-foreground">
-              {article.content.split('\n\n').map((paragraph, index) => {
-                if (paragraph.startsWith('##')) {
-                  return (
-                    <h2 key={index} className="font-marcellus text-3xl font-normal text-foreground mt-12 mb-6 first:mt-0">
-                      {paragraph.replace('## ', '')}
-                    </h2>
-                  );
-                } else if (paragraph.startsWith('###')) {
-                  return (
-                    <h3 key={index} className="font-marcellus text-2xl font-normal text-foreground mt-10 mb-4">
-                      {paragraph.replace('### ', '')}
-                    </h3>
-                  );
-                } else if (paragraph.startsWith('- ')) {
-                  const listItems = paragraph.split('\n').filter(item => item.startsWith('- '));
-                  return (
-                    <ul key={index} className="list-disc list-inside space-y-2 mb-6 text-muted-foreground">
-                      {listItems.map((item, itemIndex) => (
-                        <li key={itemIndex}>{item.replace('- ', '')}</li>
-                      ))}
-                    </ul>
-                  );
-                } else if (paragraph.match(/^\d+\./)) {
-                  const listItems = paragraph.split('\n').filter(item => item.match(/^\d+\./));
-                  return (
-                    <ol key={index} className="list-decimal list-inside space-y-2 mb-6 text-muted-foreground">
-                      {listItems.map((item, itemIndex) => (
-                        <li key={itemIndex}>{item.replace(/^\d+\. /, '')}</li>
-                      ))}
-                    </ol>
-                  );
-                } else {
-                  return (
-                    <p key={index} className="text-muted-foreground leading-relaxed mb-6">
-                      {paragraph}
-                    </p>
-                  );
-                }
-              })}
+          <article className="bg-white p-12 rounded-lg shadow-sm animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <div className="prose prose-lg max-w-none">
+              {renderArticleContent()}
             </div>
-          </div>
+          </article>
 
           {/* Author Bio */}
           <div className="mt-16 bg-white p-8 rounded-lg shadow-sm animate-fade-in" style={{ animationDelay: '0.4s' }}>
