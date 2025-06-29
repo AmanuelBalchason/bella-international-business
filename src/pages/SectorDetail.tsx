@@ -1,15 +1,29 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ImageSlideshow from '../components/ImageSlideshow';
-import { Download } from 'lucide-react';
+import { Download, Play, MapPin, Calendar, TrendingUp, Award, Users, Leaf, Mail, Phone, Send } from 'lucide-react';
 import { Button } from '../components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import { Badge } from '../components/ui/badge';
+import { Input } from '../components/ui/input';
+import { Textarea } from '../components/ui/textarea';
+import { Label } from '../components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 
 const SectorDetail = () => {
   const { slug } = useParams<{ slug: string }>();
-  
+  const [contactForm, setContactForm] = useState({
+    name: '',
+    email: '',
+    company: '',
+    message: '',
+    inquiryType: ''
+  });
+
   const sectorData = {
     'real-estate': {
       title: 'Real Estate',
@@ -23,6 +37,40 @@ const SectorDetail = () => {
         { src: 'photo-1560518883-ce09059eeffa', title: 'Modern Residential Complex', description: 'State-of-the-art residential development in Addis Ababa' },
         { src: 'photo-1545324418-cc1a3fa10c00', title: 'Commercial Properties', description: 'Prime commercial real estate locations' },
         { src: 'photo-1582407947304-fd86f028f716', title: 'Sustainable Development', description: 'Eco-friendly building practices and green spaces' }
+      ],
+      processSteps: [
+        { step: 'Site Analysis', description: 'Comprehensive land assessment and feasibility studies', duration: '2-3 months' },
+        { step: 'Design & Planning', description: 'Architectural design and regulatory approvals', duration: '3-4 months' },
+        { step: 'Construction', description: 'Quality construction with sustainable practices', duration: '12-18 months' },
+        { step: 'Marketing & Sales', description: 'Strategic marketing and client acquisition', duration: '6-12 months' }
+      ],
+      certifications: ['LEED Certified', 'ISO 9001:2015', 'Green Building Council', 'Local Housing Authority'],
+      partnerships: ['Local Contractors', 'International Architects', 'Government Bodies', 'Financial Institutions'],
+      dataMetrics: {
+        production: [
+          { year: '2020', value: 8 },
+          { year: '2021', value: 12 },
+          { year: '2022', value: 18 },
+          { year: '2023', value: 25 }
+        ],
+        quality: [
+          { metric: 'Client Satisfaction', score: 95 },
+          { metric: 'On-Time Delivery', score: 88 },
+          { metric: 'Sustainability Rating', score: 92 },
+          { metric: 'Cost Efficiency', score: 85 }
+        ]
+      },
+      locations: [
+        { name: 'Addis Ababa', projects: 12, coords: [38.7469, 9.0320] },
+        { name: 'Dire Dawa', projects: 5, coords: [41.8661, 9.5928] },
+        { name: 'Hawassa', projects: 4, coords: [38.4762, 7.0469] },
+        { name: 'Bahir Dar', projects: 3, coords: [37.3957, 11.5942] },
+        { name: 'Mekelle', projects: 1, coords: [39.4753, 13.4967] }
+      ],
+      videos: [
+        { title: 'Project Showcase', thumbnail: 'photo-1560518883-ce09059eeffa', duration: '3:45' },
+        { title: 'Construction Process', thumbnail: 'photo-1545324418-cc1a3fa10c00', duration: '2:30' },
+        { title: 'Client Testimonials', thumbnail: 'photo-1582407947304-fd86f028f716', duration: '4:15' }
       ]
     },
     'healthcare': {
@@ -37,6 +85,40 @@ const SectorDetail = () => {
         { src: 'photo-1576091160399-112ba8d25d1f', title: 'Modern Medical Facilities', description: 'State-of-the-art healthcare facilities with advanced equipment' },
         { src: 'photo-1559757148-5c350d0d3c56', title: 'Healthcare Professionals', description: 'Dedicated medical professionals providing quality care' },
         { src: 'photo-1538108149393-fbbd81895907', title: 'Community Health Programs', description: 'Comprehensive community health initiatives' }
+      ],
+      processSteps: [
+        { step: 'Patient Registration', description: 'Comprehensive patient intake and medical history', duration: '15-30 min' },
+        { step: 'Consultation', description: 'Expert medical consultation and diagnosis', duration: '30-45 min' },
+        { step: 'Treatment', description: 'Personalized treatment plans and procedures', duration: 'Varies' },
+        { step: 'Follow-up', description: 'Continued care and monitoring', duration: 'Ongoing' }
+      ],
+      certifications: ['WHO Standards', 'ISO 15189', 'Joint Commission', 'Ministry of Health Accreditation'],
+      partnerships: ['Medical Universities', 'International Health Organizations', 'Pharmaceutical Companies', 'Insurance Providers'],
+      dataMetrics: {
+        production: [
+          { year: '2020', value: 8000 },
+          { year: '2021', value: 9500 },
+          { year: '2022', value: 12000 },
+          { year: '2023', value: 15000 }
+        ],
+        quality: [
+          { metric: 'Patient Satisfaction', score: 96 },
+          { metric: 'Treatment Success Rate', score: 94 },
+          { metric: 'Wait Time Efficiency', score: 87 },
+          { metric: 'Safety Standards', score: 98 }
+        ]
+      },
+      locations: [
+        { name: 'Addis Ababa', projects: 5, coords: [38.7469, 9.0320] },
+        { name: 'Dire Dawa', projects: 2, coords: [41.8661, 9.5928] },
+        { name: 'Hawassa', projects: 2, coords: [38.4762, 7.0469] },
+        { name: 'Bahir Dar', projects: 2, coords: [37.3957, 11.5942] },
+        { name: 'Mekelle', projects: 1, coords: [39.4753, 13.4967] }
+      ],
+      videos: [
+        { title: 'Facility Tour', thumbnail: 'photo-1576091160399-112ba8d25d1f', duration: '5:20' },
+        { title: 'Medical Team', thumbnail: 'photo-1559757148-5c350d0d3c56', duration: '3:15' },
+        { title: 'Patient Stories', thumbnail: 'photo-1538108149393-fbbd81895907', duration: '4:45' }
       ]
     },
     'acha-forest-coffee': {
@@ -51,6 +133,39 @@ const SectorDetail = () => {
         { src: 'photo-1447933601403-0c6688de566e', title: 'Coffee Plantations', description: 'Lush coffee farms in the Ethiopian highlands' },
         { src: 'photo-1498804103079-a6351b050096', title: 'Coffee Processing', description: 'Traditional and modern coffee processing methods' },
         { src: 'photo-1509042239860-f550ce710b93', title: 'Quality Control', description: 'Rigorous quality testing and certification processes' }
+      ],
+      processSteps: [
+        { step: 'Cultivation', description: 'Sustainable farming practices in forest conditions', duration: '9-12 months' },
+        { step: 'Harvesting', description: 'Hand-picked selection of ripe cherries', duration: '3-4 months' },
+        { step: 'Processing', description: 'Wet and dry processing methods', duration: '2-4 weeks' },
+        { step: 'Export', description: 'Quality control and international shipping', duration: '1-2 weeks' }
+      ],
+      certifications: ['Organic Certified', 'Fair Trade', 'Rainforest Alliance', 'UTZ Certified'],
+      partnerships: ['Local Farmers', 'Export Cooperatives', 'International Buyers', 'Certification Bodies'],
+      dataMetrics: {
+        production: [
+          { year: '2020', value: 320 },
+          { year: '2021', value: 380 },
+          { year: '2022', value: 450 },
+          { year: '2023', value: 500 }
+        ],
+        quality: [
+          { metric: 'Bean Quality Score', score: 94 },
+          { metric: 'Farmer Satisfaction', score: 91 },
+          { metric: 'Export Success Rate', score: 98 },
+          { metric: 'Sustainability Rating', score: 96 }
+        ]
+      },
+      locations: [
+        { name: 'Kaffa Zone', projects: 3, coords: [36.2399, 7.2672] },
+        { name: 'Jimma Zone', projects: 2, coords: [36.8344, 7.6773] },
+        { name: 'Illubabor Zone', projects: 2, coords: [35.9342, 8.5569] },
+        { name: 'Sidama Zone', projects: 1, coords: [38.4762, 6.8453] }
+      ],
+      videos: [
+        { title: 'Farm to Cup Journey', thumbnail: 'photo-1447933601403-0c6688de566e', duration: '6:30' },
+        { title: 'Farmer Testimonials', thumbnail: 'photo-1498804103079-a6351b050096', duration: '4:20' },
+        { title: 'Processing Methods', thumbnail: 'photo-1509042239860-f550ce710b93', duration: '3:45' }
       ]
     },
     'automotives': {
@@ -65,6 +180,40 @@ const SectorDetail = () => {
         { src: 'photo-1449824913935-59a10b8d2000', title: 'Fleet Management', description: 'Comprehensive fleet management solutions' },
         { src: 'photo-1550355291-bbee04a92027', title: 'Vehicle Maintenance', description: 'Professional automotive maintenance services' },
         { src: 'photo-1486754735734-325b5831c3ad', title: 'Transportation Infrastructure', description: 'Supporting regional transportation development' }
+      ],
+      processSteps: [
+        { step: 'Assessment', description: 'Client needs analysis and fleet evaluation', duration: '1-2 weeks' },
+        { step: 'Planning', description: 'Route optimization and vehicle selection', duration: '2-3 weeks' },
+        { step: 'Implementation', description: 'Fleet deployment and system integration', duration: '1-2 months' },
+        { step: 'Monitoring', description: 'Ongoing maintenance and performance tracking', duration: 'Ongoing' }
+      ],
+      certifications: ['ISO 9001:2015', 'Transport Authority License', 'Safety Standards Compliance', 'Environmental Certification'],
+      partnerships: ['Vehicle Manufacturers', 'Insurance Companies', 'Fuel Suppliers', 'Maintenance Centers'],
+      dataMetrics: {
+        production: [
+          { year: '2020', value: 120 },
+          { year: '2021', value: 150 },
+          { year: '2022', value: 180 },
+          { year: '2023', value: 200 }
+        ],
+        quality: [
+          { metric: 'Fleet Uptime', score: 96 },
+          { metric: 'Client Satisfaction', score: 93 },
+          { metric: 'Safety Record', score: 98 },
+          { metric: 'Cost Efficiency', score: 89 }
+        ]
+      },
+      locations: [
+        { name: 'Addis Ababa', projects: 8, coords: [38.7469, 9.0320] },
+        { name: 'Dire Dawa', projects: 5, coords: [41.8661, 9.5928] },
+        { name: 'Hawassa', projects: 4, coords: [38.4762, 7.0469] },
+        { name: 'Bahir Dar', projects: 4, coords: [37.3957, 11.5942] },
+        { name: 'Mekelle', projects: 4, coords: [39.4753, 13.4967] }
+      ],
+      videos: [
+        { title: 'Fleet Operations', thumbnail: 'photo-1449824913935-59a10b8d2000', duration: '4:15' },
+        { title: 'Maintenance Excellence', thumbnail: 'photo-1550355291-bbee04a92027', duration: '3:30' },
+        { title: 'Client Success Stories', thumbnail: 'photo-1486754735734-325b5831c3ad', duration: '5:00' }
       ]
     }
   };
@@ -78,6 +227,21 @@ const SectorDetail = () => {
   const handleDownloadPDF = (resourceName: string) => {
     console.log(`Downloading ${resourceName}...`);
   };
+
+  const handleContactSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Contact form submitted:', contactForm);
+    // Reset form
+    setContactForm({
+      name: '',
+      email: '',
+      company: '',
+      message: '',
+      inquiryType: ''
+    });
+  };
+
+  const maxValue = Math.max(...sector.dataMetrics.production.map(d => d.value));
 
   return (
     <div className="min-h-screen bg-grid-pattern">
@@ -113,58 +277,372 @@ const SectorDetail = () => {
         </div>
       </section>
 
-      {/* Vision & Mission */}
+      {/* Enhanced Content Sections */}
       <section className="bg-secondary py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="animate-fade-in parallax-medium">
-              <h3 className="font-marcellus text-2xl font-normal text-foreground mb-4">Vision</h3>
-              <p className="text-muted-foreground font-inter leading-relaxed">{sector.vision}</p>
-            </div>
-            <div className="animate-fade-in parallax-slow" style={{ animationDelay: '0.2s' }}>
-              <h3 className="font-marcellus text-2xl font-normal text-foreground mb-4">Mission</h3>
-              <p className="text-muted-foreground font-inter leading-relaxed">{sector.mission}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Content */}
-      <section className="bg-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-lg mx-auto animate-fade-in">
-            <p className="text-muted-foreground font-inter text-lg leading-relaxed">
-              {sector.content}
-            </p>
-          </div>
-        </div>
-      </section>
+          <Tabs defaultValue="overview" className="w-full">
+            <TabsList className="grid w-full grid-cols-6 mb-8">
+              <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="process">Process</TabsTrigger>
+              <TabsTrigger value="data">Analytics</TabsTrigger>
+              <TabsTrigger value="locations">Locations</TabsTrigger>
+              <TabsTrigger value="media">Media</TabsTrigger>
+              <TabsTrigger value="contact">Contact</TabsTrigger>
+            </TabsList>
 
-      {/* Resources Section */}
-      <section className="bg-secondary py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 animate-fade-in">
-            <h3 className="font-marcellus text-3xl font-normal text-foreground mb-4">Resources</h3>
-            <p className="text-muted-foreground font-inter text-lg">Download reports, whitepapers to learn more</p>
-          </div>
+            <TabsContent value="overview">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Award className="w-5 h-5 text-primary" />
+                      Vision
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">{sector.vision}</p>
+                  </CardContent>
+                </Card>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            {sector.resources.map((resource, index) => (
-              <button
-                key={index}
-                onClick={() => handleDownloadPDF(resource)}
-                className="bg-white border border-border p-6 hover:shadow-lg transition-all duration-200 text-left group"
-              >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h4 className="font-inter font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-200">{resource}</h4>
-                    <p className="text-muted-foreground font-inter text-sm">Download PDF resource</p>
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Users className="w-5 h-5 text-primary" />
+                      Mission
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">{sector.mission}</p>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Award className="w-5 h-5 text-primary" />
+                      Certifications
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      {sector.certifications.map((cert, index) => (
+                        <Badge key={index} variant="secondary">{cert}</Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Users className="w-5 h-5 text-primary" />
+                      Key Partnerships
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      {sector.partnerships.map((partner, index) => (
+                        <Badge key={index} variant="outline">{partner}</Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="process">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Calendar className="w-5 h-5 text-primary" />
+                    Process Timeline
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-8">
+                    {sector.processSteps.map((step, index) => (
+                      <div key={index} className="flex items-start gap-4">
+                        <div className="flex-shrink-0 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-semibold">
+                          {index + 1}
+                        </div>
+                        <div className="flex-grow">
+                          <h4 className="font-semibold text-foreground mb-2">{step.step}</h4>
+                          <p className="text-muted-foreground mb-2">{step.description}</p>
+                          <Badge variant="secondary">{step.duration}</Badge>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <Download className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
-                </div>
-              </button>
-            ))}
-          </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="data">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <TrendingUp className="w-5 h-5 text-primary" />
+                      Growth Over Time
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {sector.dataMetrics.production.map((data, index) => (
+                        <div key={index} className="flex items-center justify-between">
+                          <span className="text-sm font-medium">{data.year}</span>
+                          <div className="flex-1 mx-4">
+                            <div className="w-full bg-secondary rounded-full h-2">
+                              <div 
+                                className="bg-primary h-2 rounded-full transition-all duration-500"
+                                style={{ width: `${(data.value / maxValue) * 100}%` }}
+                              />
+                            </div>
+                          </div>
+                          <span className="text-sm font-semibold">{data.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Award className="w-5 h-5 text-primary" />
+                      Quality Metrics
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {sector.dataMetrics.quality.map((metric, index) => (
+                        <div key={index} className="flex items-center justify-between">
+                          <span className="text-sm font-medium">{metric.metric}</span>
+                          <div className="flex-1 mx-4">
+                            <div className="w-full bg-secondary rounded-full h-2">
+                              <div 
+                                className="bg-green-500 h-2 rounded-full transition-all duration-500"
+                                style={{ width: `${metric.score}%` }}
+                              />
+                            </div>
+                          </div>
+                          <span className="text-sm font-semibold">{metric.score}%</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="locations">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <MapPin className="w-5 h-5 text-primary" />
+                    Our Locations
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {sector.locations.map((location, index) => (
+                      <div key={index} className="border border-border rounded-lg p-4 hover:shadow-md transition-shadow">
+                        <h4 className="font-semibold text-foreground mb-2">{location.name}</h4>
+                        <p className="text-muted-foreground text-sm mb-2">{location.projects} active projects</p>
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                          <MapPin className="w-3 h-3" />
+                          <span>{location.coords[1].toFixed(4)}, {location.coords[0].toFixed(4)}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            <TabsContent value="media">
+              <div className="space-y-8">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Play className="w-5 h-5 text-primary" />
+                      Video Content
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      {sector.videos.map((video, index) => (
+                        <div key={index} className="group cursor-pointer">
+                          <div className="relative overflow-hidden rounded-lg mb-3">
+                            <img
+                              src={`https://images.unsplash.com/${video.thumbnail}?auto=format&fit=crop&w=400&q=80`}
+                              alt={video.title}
+                              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                            <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <Play className="w-12 h-12 text-white" />
+                            </div>
+                            <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                              {video.duration}
+                            </div>
+                          </div>
+                          <h4 className="font-semibold text-foreground">{video.title}</h4>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Download className="w-5 h-5 text-primary" />
+                      Resources & Documentation
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {sector.resources.map((resource, index) => (
+                        <button
+                          key={index}
+                          onClick={() => handleDownloadPDF(resource)}
+                          className="border border-border p-4 hover:shadow-md transition-all duration-200 text-left group rounded-lg"
+                        >
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <h4 className="font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-200">{resource}</h4>
+                              <p className="text-muted-foreground text-sm">Download PDF resource</p>
+                            </div>
+                            <Download className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="contact">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Mail className="w-5 h-5 text-primary" />
+                      Get In Touch
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <form onSubmit={handleContactSubmit} className="space-y-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <Label htmlFor="name">Name</Label>
+                          <Input
+                            id="name"
+                            value={contactForm.name}
+                            onChange={(e) => setContactForm({...contactForm, name: e.target.value})}
+                            required
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="email">Email</Label>
+                          <Input
+                            id="email"
+                            type="email"
+                            value={contactForm.email}
+                            onChange={(e) => setContactForm({...contactForm, email: e.target.value})}
+                            required
+                          />
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <Label htmlFor="company">Company</Label>
+                        <Input
+                          id="company"
+                          value={contactForm.company}
+                          onChange={(e) => setContactForm({...contactForm, company: e.target.value})}
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="inquiryType">Inquiry Type</Label>
+                        <Select value={contactForm.inquiryType} onValueChange={(value) => setContactForm({...contactForm, inquiryType: value})}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select inquiry type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="partnership">Partnership Opportunity</SelectItem>
+                            <SelectItem value="investment">Investment Inquiry</SelectItem>
+                            <SelectItem value="consultation">Consultation Request</SelectItem>
+                            <SelectItem value="general">General Information</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div>
+                        <Label htmlFor="message">Message</Label>
+                        <Textarea
+                          id="message"
+                          rows={4}
+                          value={contactForm.message}
+                          onChange={(e) => setContactForm({...contactForm, message: e.target.value})}
+                          required
+                        />
+                      </div>
+
+                      <Button type="submit" className="w-full">
+                        <Send className="w-4 h-4 mr-2" />
+                        Send Message
+                      </Button>
+                    </form>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Phone className="w-5 h-5 text-primary" />
+                      Contact Information
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-2">Direct Contact</h4>
+                      <div className="space-y-2 text-muted-foreground">
+                        <div className="flex items-center gap-2">
+                          <Mail className="w-4 h-4" />
+                          <span>{slug}@acha.com</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Phone className="w-4 h-4" />
+                          <span>+251 11 123 4567</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-2">Newsletter Subscription</h4>
+                      <p className="text-muted-foreground text-sm mb-3">Stay updated with our latest developments and opportunities.</p>
+                      <div className="flex gap-2">
+                        <Input placeholder="Your email address" className="flex-1" />
+                        <Button variant="outline">Subscribe</Button>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-2">Office Hours</h4>
+                      <div className="text-muted-foreground text-sm space-y-1">
+                        <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                        <p>Saturday: 9:00 AM - 2:00 PM</p>
+                        <p>Sunday: Closed</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </section>
       
