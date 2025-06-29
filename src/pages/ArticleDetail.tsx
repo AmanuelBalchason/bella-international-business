@@ -213,18 +213,38 @@ const ArticleDetail = () => {
       <div className="min-h-screen bg-grid-pattern">
         <Header />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="text-center">
-            <h1 className="font-marcellus text-4xl font-normal text-foreground mb-4">
+          <div className="text-center relative">
+            {/* Square Grid Pattern */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div className="grid grid-cols-8 gap-2 opacity-10">
+                  {Array.from({ length: 64 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="w-8 h-8 border border-primary/20 rounded-sm animate-pulse"
+                      style={{
+                        animationDelay: `${(i % 8) * 0.1}s`,
+                        animationDuration: '2s'
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            <h1 className="font-marcellus text-4xl font-normal text-foreground mb-4 relative z-10">
               Article Not Found
             </h1>
-            <p className="text-muted-foreground font-inter mb-8">
+            <p className="text-muted-foreground font-inter mb-8 relative z-10">
               The article you're looking for doesn't exist.
             </p>
-            <Link to="/articles">
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium px-8 py-3 rounded-none">
-                Back to Articles
-              </Button>
-            </Link>
+            <div className="relative z-10">
+              <Link to="/articles">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium px-8 py-3 rounded-none">
+                  Back to Articles
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
         <Footer />
