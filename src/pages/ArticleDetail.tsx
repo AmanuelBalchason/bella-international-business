@@ -10,8 +10,17 @@ const ArticleDetail = () => {
   const { id } = useParams();
 
   // Sample article data (in a real app, this would come from an API)
-  const articles = {
-    1: {
+  const articles: Record<string, {
+    title: string;
+    content: string;
+    category: string;
+    author: string;
+    date: string;
+    readTime: string;
+    image: string;
+    excerpt: string;
+  }> = {
+    '1': {
       title: 'The Future of Real Estate Development in Ethiopia',
       content: `Ethiopia's real estate sector is experiencing unprecedented growth, driven by rapid urbanization and economic development. As one of Africa's fastest-growing economies, the country presents unique opportunities and challenges for developers and investors alike.
 
@@ -66,7 +75,7 @@ const ArticleDetail = () => {
       image: 'photo-1560518883-ce09059eeffa',
       excerpt: 'Exploring emerging trends and opportunities in Ethiopian real estate markets, with focus on sustainable development practices.'
     },
-    2: {
+    '2': {
       title: 'Healthcare Innovation in the Horn of Africa',
       content: `The healthcare landscape in the Horn of Africa is undergoing a dramatic transformation, driven by technological innovation and strategic investments in health infrastructure. This evolution presents both unprecedented opportunities and unique challenges that require innovative solutions.
 
@@ -159,7 +168,7 @@ const ArticleDetail = () => {
     }
   };
 
-  const article = articles[id as keyof typeof articles];
+  const article = id ? articles[id] : undefined;
 
   if (!article) {
     return (
