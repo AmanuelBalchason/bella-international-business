@@ -71,7 +71,7 @@ const BusinessSectors = () => {
                   <span className="font-marcellus text-3xl text-primary opacity-60 group-hover:opacity-100 transition-opacity duration-300">{sector.number}</span>
                 </div>
                 
-                <h3 className="font-inter text-xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
+                <h3 className="font-inter text-xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors duration-300 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right group-hover:after:scale-x-100 group-hover:after:origin-left after:transition-transform after:duration-300">
                   {sector.title}
                 </h3>
                 

@@ -99,7 +99,7 @@ const Sectors = () => {
                   
                   <Link 
                     to={`/sectors/${sector.slug}`}
-                    className="inline-flex items-center text-primary font-inter font-medium hover:text-primary/80 transition-colors duration-200"
+                    className="inline-flex items-center text-primary font-inter font-medium hover:text-primary/80 transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300"
                   >
                     Learn More
                   </Link>
@@ -121,7 +121,7 @@ const Sectors = () => {
           </p>
           <Link 
             to="/contact"
-            className="inline-block bg-white hover:bg-white/90 text-primary font-inter font-medium px-8 py-4 transition-colors duration-200"
+            className="inline-block bg-white hover:bg-white/90 text-primary font-inter font-medium px-8 py-4 transition-all duration-200 relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-primary/10 before:to-transparent before:transition-all before:duration-500 hover:before:left-[100%] hover:scale-105"
           >
             Get In Touch
           </Link>
