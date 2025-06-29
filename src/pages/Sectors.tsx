@@ -4,8 +4,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Card, CardContent } from '../components/ui/card';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
-import AnimatedCounter from '../components/AnimatedCounter';
 
 const Sectors = () => {
   const sectors = [
@@ -44,8 +42,26 @@ const Sectors = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="bg-white py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-white py-24 relative overflow-hidden">
+        {/* Animated Square Grid Pattern */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-16 left-16">
+            <div className="grid grid-cols-10 gap-2 opacity-4">
+              {Array.from({ length: 100 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="w-5 h-5 border border-primary/25 rounded-sm animate-pulse"
+                  style={{
+                    animationDelay: `${(i % 10) * 0.12}s`,
+                    animationDuration: '3.5s'
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h1 className="font-marcellus text-5xl font-normal text-foreground leading-tight mb-6">
               Our Sectors
@@ -56,18 +72,18 @@ const Sectors = () => {
             </p>
           </div>
           
-          {/* Stats */}
+          {/* Stats - removed bobbing effects */}
           <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
             <div className="text-center">
-              <AnimatedCounter end={15} suffix="+" delay={200} duration={2000} />
+              <div className="font-marcellus text-3xl text-primary mb-2">15+</div>
               <p className="text-muted-foreground font-inter text-sm">Years of Growth</p>
             </div>
             <div className="text-center">
-              <AnimatedCounter end={4} delay={200} duration={2000} />
+              <div className="font-marcellus text-3xl text-primary mb-2">4</div>
               <p className="text-muted-foreground font-inter text-sm">Business Sectors</p>
             </div>
             <div className="text-center">
-              <AnimatedCounter end={100} suffix="+" delay={200} duration={2000} />
+              <div className="font-marcellus text-3xl text-primary mb-2">100+</div>
               <p className="text-muted-foreground font-inter text-sm">Strategic Partners</p>
             </div>
           </div>
@@ -75,7 +91,7 @@ const Sectors = () => {
       </section>
 
       {/* Sectors Grid */}
-      <section className="bg-secondary py-24">
+      <section className="bg-secondary py-24 paper-texture">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {sectors.map((sector, index) => (
@@ -85,7 +101,6 @@ const Sectors = () => {
                     <div className="w-16 h-16 bg-primary/10 flex items-center justify-center">
                       <span className="text-primary font-marcellus text-xl">{sector.icon}</span>
                     </div>
-                    <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-200" />
                   </div>
                   
                   <h3 className="font-marcellus text-2xl font-normal text-foreground mb-4">
@@ -105,7 +120,6 @@ const Sectors = () => {
                     className="inline-flex items-center text-primary font-inter font-medium hover:text-primary/80 transition-colors duration-200"
                   >
                     Learn More
-                    <ArrowRight className="w-4 h-4 ml-2" />
                   </Link>
                 </CardContent>
               </Card>
@@ -115,7 +129,7 @@ const Sectors = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-primary py-24">
+      <section className="bg-primary py-24 paper-texture">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-marcellus text-4xl font-normal text-primary-foreground mb-6">
             Ready to Partner With Us?

@@ -25,7 +25,7 @@ const DynamicHeroImage = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 4000);
+    }, 3000); // Changed to 3 seconds for smoother automatic slideshow
 
     return () => clearInterval(interval);
   }, []);
@@ -36,23 +36,36 @@ const DynamicHeroImage = () => {
     <div className="relative overflow-hidden group">
       <div 
         key={currentIndex}
-        className="w-full h-[600px] relative transition-all duration-1000 ease-out transform hover:scale-105"
+        className="w-full h-[600px] relative transition-all duration-1000 ease-in-out transform hover:scale-105"
       >
         <div 
-          className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-out"
+          className="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-in-out"
           style={{ 
             backgroundImage: `url(https://images.unsplash.com/${currentImage.image}?auto=format&fit=crop&w=1200&q=80)` 
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-primary/60 transition-opacity duration-700" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-primary/60 transition-opacity duration-1000" />
         
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center space-y-4 text-white transform transition-all duration-700 group-hover:scale-110">
+          <div className="text-center space-y-4 text-white transform transition-all duration-1000 group-hover:scale-110">
             <div className="w-16 h-16 bg-white/20 backdrop-blur-sm mx-auto flex items-center justify-center rounded-full border border-white/30 transition-all duration-500 hover:bg-white/30">
               <span className="text-white font-marcellus text-2xl">{currentImage.icon}</span>
             </div>
             <p className="text-white/90 font-inter text-sm font-medium tracking-wide">{currentImage.placeholder}</p>
           </div>
+        </div>
+
+        {/* Slideshow Indicators */}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === currentIndex ? 'bg-white' : 'bg-white/50'
+              }`}
+              onClick={() => setCurrentIndex(index)}
+            />
+          ))}
         </div>
       </div>
     </div>

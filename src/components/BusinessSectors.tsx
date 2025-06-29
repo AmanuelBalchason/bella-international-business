@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight } from 'lucide-react';
 
 const BusinessSectors = () => {
   const sectors = [
@@ -40,8 +39,26 @@ const BusinessSectors = () => {
   ];
 
   return (
-    <section className="bg-secondary py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-secondary py-24 relative overflow-hidden paper-texture">
+      {/* Animated Square Grid Pattern */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-10 right-10">
+          <div className="grid grid-cols-8 gap-2 opacity-3">
+            {Array.from({ length: 64 }).map((_, i) => (
+              <div
+                key={i}
+                className="w-4 h-4 border border-primary/20 rounded-sm animate-pulse"
+                style={{
+                  animationDelay: `${(i % 8) * 0.15}s`,
+                  animationDuration: '4s'
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4 animate-fade-in">Our Expertise</p>
           <h2 className="font-marcellus text-4xl font-normal text-foreground leading-tight animate-fade-in" style={{ animationDelay: '0.2s' }}>
@@ -79,12 +96,6 @@ const BusinessSectors = () => {
                 <p className="text-muted-foreground font-inter text-sm leading-relaxed mb-6 group-hover:text-foreground/80 transition-colors duration-300">
                   {sector.description}
                 </p>
-
-                <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-                  <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
-                    <ChevronRight className="w-5 h-5 text-primary" />
-                  </div>
-                </div>
               </div>
             </Link>
           ))}
