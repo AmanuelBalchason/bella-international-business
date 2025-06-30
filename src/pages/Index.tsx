@@ -10,6 +10,7 @@ import TestimonialsSection from '../components/TestimonialsSection';
 import FAQSection from '../components/FAQSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
+import { Toaster } from '../components/ui/toaster';
 
 const Index = () => {
   return (
@@ -24,6 +25,7 @@ const Index = () => {
       <FAQSection />
       <ContactSection />
       <Footer />
+      <Toaster />
     </div>
   );
 };
