@@ -1,20 +1,47 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import AdminAuth from '@/components/AdminAuth';
+import AdminSetup from '@/components/AdminSetup';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Database, Users, FileText, MessageSquare, Settings, LogOut } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 const Admin = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
+  const [hasAdminUsers, setHasAdminUsers] = useState<boolean | null>(null);
 
-  if (loading) {
+  useEffect(() => {
+    const checkAdminUsers = async () => {
+      try {
+        const { count, error } = await supabase
+          .from('admin_users')
+          .select('*', { count: 'exact', head: true })
+          .eq('role', 'admin');
+        
+        if (error) throw error;
+        setHasAdminUsers((count || 0) > 0);
+      } catch (error) {
+        console.error('Error checking admin users:', error);
+        setHasAdminUsers(false);
+      }
+    };
+
+    checkAdminUsers();
+  }, []);
+
+  if (loading || hasAdminUsers === null) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
       </div>
     );
+  }
+
+  // If no admin users exist, show the setup page
+  if (!hasAdminUsers) {
+    return <AdminSetup />;
   }
 
   if (!user || !isAdmin) {

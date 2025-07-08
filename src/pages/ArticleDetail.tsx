@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { ArrowLeft, Calendar, User, Clock, Share2, BookOpen } from 'lucide-react';
 import { Button } from '../components/ui/button';
+import DOMPurify from 'dompurify';
 
 const ArticleDetail = () => {
   const { id } = useParams();
@@ -278,7 +279,7 @@ const ArticleDetail = () => {
             {listItems.map((item, itemIndex) => (
               <li key={itemIndex} className="text-muted-foreground leading-relaxed text-lg relative">
                 <span className="absolute -left-6 top-0 text-primary font-bold">•</span>
-                <span dangerouslySetInnerHTML={{ __html: item.replace('- **', '<strong>').replace('**:', ':</strong>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+                <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item.replace('- **', '<strong>').replace('**:', ':</strong>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')) }} />
               </li>
             ))}
           </ul>
@@ -289,7 +290,7 @@ const ArticleDetail = () => {
           <ol key={`ol-${index}`} className="space-y-4 mb-8 pl-6">
             {listItems.map((item, itemIndex) => (
               <li key={itemIndex} className="text-muted-foreground leading-relaxed text-lg">
-                <span dangerouslySetInnerHTML={{ __html: item.replace(/^\d+\. \*\*(.*?)\*\*/, '<strong>$1</strong>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
+                <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item.replace(/^\d+\. \*\*(.*?)\*\*/, '<strong>$1</strong>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')) }} />
               </li>
             ))}
           </ol>
@@ -298,7 +299,7 @@ const ArticleDetail = () => {
         paragraphCount++;
         elements.push(
           <p key={`p-${index}`} className="text-muted-foreground leading-relaxed mb-8 text-lg font-inter">
-            <span dangerouslySetInnerHTML={{ __html: paragraph.replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>') }} />
+            <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(paragraph.replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>')) }} />
           </p>
         );
 
