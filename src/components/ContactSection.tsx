@@ -56,9 +56,19 @@ const ContactSection = () => {
         throw error;
       }
 
+      // Send welcome email
+      const { error: emailError } = await supabase.functions.invoke('send-welcome-email', {
+        body: { email: email, source: 'website' }
+      });
+
+      if (emailError) {
+        console.error('Welcome email error:', emailError);
+        // Don't fail the subscription if email fails
+      }
+
       toast({
         title: "Successfully subscribed!",
-        description: "Thank you for subscribing to our newsletter. You'll receive updates on business excellence and industry insights.",
+        description: "Thank you for subscribing! Check your email for a welcome message.",
       });
 
       setEmail('');

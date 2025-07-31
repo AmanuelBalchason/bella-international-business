@@ -10,8 +10,29 @@ const Header = () => {
         <div className="flex justify-between items-center py-6">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <div className="w-12 h-12 bg-primary rounded-none flex items-center justify-center">
-              <span className="text-primary-foreground font-marcellus text-xl font-bold">B</span>
+            <div className="logo-cube group cursor-pointer">
+              <div className="cube-container">
+                <div className="cube">
+                  <div className="face front">
+                    <span className="text-primary-foreground font-marcellus text-xl font-bold">B</span>
+                  </div>
+                  <div className="face back">
+                    <span className="text-background font-marcellus text-xl font-bold">B</span>
+                  </div>
+                  <div className="face right">
+                    <span className="text-primary-foreground font-marcellus text-xl font-bold">B</span>
+                  </div>
+                  <div className="face left">
+                    <span className="text-background font-marcellus text-xl font-bold">B</span>
+                  </div>
+                  <div className="face top">
+                    <span className="text-primary-foreground font-marcellus text-xl font-bold">B</span>
+                  </div>
+                  <div className="face bottom">
+                    <span className="text-background font-marcellus text-xl font-bold">B</span>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="ml-4">
               <h1 className="font-marcellus text-xl font-normal text-foreground">Bella International</h1>
