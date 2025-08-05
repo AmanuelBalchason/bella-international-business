@@ -60,24 +60,31 @@ const Leadership = () => {
       </section>
 
       {/* Company Story Section */}
-      <section className="bg-secondary py-16">
+      <section className="bg-secondary py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 animate-fade-in">
-            <h2 className="font-marcellus text-4xl font-normal text-foreground mb-6">
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="font-marcellus text-4xl font-normal text-foreground mb-12">
               Our Team's Combined Experience
             </h2>
-            <div className="max-w-4xl mx-auto space-y-6 text-muted-foreground font-inter leading-relaxed">
-              <p>
-                Bella International Business is a company with a clear vision, now operating under a new name. "Bella" comes from Latin and means beautiful, reflecting our focus on beauty within our diverse portfolio. The Bella Group encompasses import-export, agro-industry, and real estate development.
-              </p>
-              <p>
-                Our amazing journey started at a family-run historic coffee farm, nestled close to the place where the legendary Khaldi first discovered coffee beans. This inspired the birth of Bella International Business in 2013. With an initial capital of Birr 4,563,630, we delved into the world of car imports, real estate, and pharmaceutical business.
-              </p>
-              <p>
-                Throughout the past 13 years, we've not only garnered valuable experience but also fostered strategic alliances across multiple sectors, resulting in the creation of job opportunities for over 400 permanent and contract employees as we continue to expand our horizons. Our agro-industry not only holds economic significance but also emphasizes natural beauty, while our real estate projects prioritize both strength and beauty. Our name truly reflects our identity and work.
-              </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto text-left">
+              <div className="space-y-6 text-muted-foreground font-inter leading-relaxed">
+                <p>
+                  Bella International Business is a company with a clear vision, now operating under a new name. "Bella" comes from Latin and means beautiful, reflecting our focus on beauty within our diverse portfolio. The Bella Group encompasses import-export, agro-industry, and real estate development.
+                </p>
+                <p>
+                  Our amazing journey started at a family-run historic coffee farm, nestled close to the place where the legendary Khaldi first discovered coffee beans. This inspired the birth of Bella International Business in 2013.
+                </p>
+              </div>
+              <div className="space-y-6 text-muted-foreground font-inter leading-relaxed">
+                <p>
+                  With an initial capital of Birr 4,563,630, we delved into the world of car imports, real estate, and pharmaceutical business.
+                </p>
+                <p>
+                  Throughout the past 13 years, we've not only garnered valuable experience but also fostered strategic alliances across multiple sectors, resulting in the creation of job opportunities for over 400 permanent and contract employees as we continue to expand our horizons. Our agro-industry not only holds economic significance but also emphasizes natural beauty, while our real estate projects prioritize both strength and beauty.
+                </p>
+              </div>
             </div>
-            <div className="mt-8">
+            <div className="mt-12">
               <a 
                 href="/our-story"
                 className="inline-block bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium px-8 py-3 rounded-none transition-colors duration-200 hover-underline"
