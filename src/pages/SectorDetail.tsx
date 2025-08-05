@@ -276,9 +276,9 @@ const SectorDetail = () => {
       </section>
 
       {/* Enhanced Content Sections */}
-      <section className="bg-secondary py-16">
+      <section className="bg-secondary py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -336,7 +336,7 @@ const SectorDetail = () => {
             </Card>
           </div>
 
-          <Card>
+          <Card className="mb-16">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-primary" />
@@ -361,7 +361,7 @@ const SectorDetail = () => {
             </CardContent>
           </Card>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -417,7 +417,7 @@ const SectorDetail = () => {
             </Card>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -536,7 +536,7 @@ const SectorDetail = () => {
           </div>
 
           {/* Media Section - Moved outside tabs */}
-          <div className="mt-16 space-y-8">
+          <div className="space-y-16">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
