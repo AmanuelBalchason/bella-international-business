@@ -64,7 +64,7 @@ const Leadership = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="font-marcellus text-4xl font-normal text-foreground mb-6">
-              34 Years Of Experience
+              Our Team's Combined Experience
             </h2>
             <div className="max-w-4xl mx-auto space-y-6 text-muted-foreground font-inter leading-relaxed">
               <p>
