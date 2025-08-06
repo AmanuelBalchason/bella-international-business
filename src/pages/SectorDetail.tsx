@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ImageSlideshow from '../components/ImageSlideshow';
+import LocationMapDialog from '../components/LocationMapDialog';
 import { Download, Play, MapPin, Calendar, TrendingUp, Award, Users, Leaf, Mail, Phone, Send } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
@@ -21,6 +22,11 @@ const SectorDetail = () => {
     message: '',
     inquiryType: ''
   });
+  const [selectedLocation, setSelectedLocation] = useState<{
+    name: string;
+    coords: number[];
+    projects: number;
+  } | null>(null);
 
   const sectorData = {
     'real-estate': {
@@ -607,14 +613,18 @@ const SectorDetail = () => {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {sector.locations.map((location, index) => (
-                    <div key={index} className="border border-border rounded-lg p-4 hover:shadow-md transition-shadow">
-                      <h4 className="font-semibold text-foreground mb-2">{location.name}</h4>
+                    <button
+                      key={index}
+                      onClick={() => setSelectedLocation(location)}
+                      className="border border-border rounded-lg p-4 hover:shadow-md transition-all duration-200 text-left group"
+                    >
+                      <h4 className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-200">{location.name}</h4>
                       <p className="text-muted-foreground text-sm mb-2">{location.projects} active projects</p>
                       <div className="flex items-center gap-2 text-xs text-muted-foreground">
                         <MapPin className="w-3 h-3" />
                         <span>{location.coords[1].toFixed(4)}, {location.coords[0].toFixed(4)}</span>
                       </div>
-                    </div>
+                    </button>
                   ))}
                 </div>
               </CardContent>
@@ -624,6 +634,15 @@ const SectorDetail = () => {
       </section>
       
       <Footer />
+      
+      {/* Location Map Dialog */}
+      {selectedLocation && (
+        <LocationMapDialog
+          isOpen={!!selectedLocation}
+          onClose={() => setSelectedLocation(null)}
+          location={selectedLocation}
+        />
+      )}
     </div>
   );
 };
