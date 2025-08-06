@@ -26,14 +26,12 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article, featured = fa
                 {article.category}
               </Badge>
             </div>
-            {article.executiveSummary && (
-              <div className="absolute bottom-4 right-4">
-                <Badge variant="secondary" className="bg-white/90 text-foreground">
-                  <Tag className="w-3 h-3 mr-1" />
-                  Executive Summary
-                </Badge>
-              </div>
-            )}
+            <div className="absolute bottom-4 right-4">
+              <Badge variant="secondary" className="bg-white/90 text-foreground">
+                <Tag className="w-3 h-3 mr-1" />
+                {article.tags[0] || article.category}
+              </Badge>
+            </div>
           </div>
           <CardContent className="p-6">
             <div className="flex items-center gap-4 text-muted-foreground font-inter text-sm mb-4">

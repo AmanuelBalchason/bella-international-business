@@ -8,6 +8,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import NewsletterForm from '@/features/newsletter/components/NewsletterForm';
+import StaticDotPattern from '@/components/StaticDotPattern';
 
 interface Article {
   id: string;
@@ -114,8 +115,9 @@ const Blog: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="bg-primary text-primary-foreground py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-primary text-primary-foreground py-24 relative overflow-hidden">
+        <StaticDotPattern />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <h1 className="font-marcellus text-5xl font-normal mb-6">
               Insights & Expertise
@@ -298,7 +300,8 @@ const Blog: React.FC = () => {
         </section>
 
         {/* Newsletter Signup */}
-        <section className="mt-20 bg-muted rounded-lg p-8 text-center">
+        <section className="mt-20 bg-muted rounded-lg p-8 text-center relative overflow-hidden">
+          <StaticDotPattern />
           <h3 className="font-marcellus text-2xl font-normal text-foreground mb-4">
             Stay Updated
           </h3>
@@ -306,7 +309,7 @@ const Blog: React.FC = () => {
             Subscribe to our newsletter for the latest insights on business excellence, 
             strategic partnerships, and industry developments.
           </p>
-          <div className="max-w-md mx-auto">
+          <div className="max-w-md mx-auto relative z-10">
             <NewsletterForm />
           </div>
         </section>

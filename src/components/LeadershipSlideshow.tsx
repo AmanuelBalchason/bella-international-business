@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import StaticDotPattern from './StaticDotPattern';
 
 const LeadershipSlideshow = () => {
   const leaders = [
@@ -59,7 +60,8 @@ const LeadershipSlideshow = () => {
   const currentLeader = leaders[currentIndex];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-white relative overflow-hidden">
+      <StaticDotPattern />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           {/* Left side - Professional Image */}

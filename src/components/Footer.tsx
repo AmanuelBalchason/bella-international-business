@@ -2,13 +2,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LocationLink from './LocationLink';
+import StaticDotPattern from './StaticDotPattern';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-white py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-white py-16 relative overflow-hidden">
+      <StaticDotPattern />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Company Info */}
           <div className="space-y-6">
@@ -45,7 +47,7 @@ const Footer = () => {
           <div>
             <h4 className="font-inter font-semibold text-foreground mb-6">Contact</h4>
             <div className="space-y-3">
-              <a href="tel:+251XXXXXXX" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">+251 XXX XXX XXX</a>
+              <a href="tel:+251962777777" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">+251 962 777777</a>
               <a href="mailto:info@bellainter.com" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">info@bellainter.com</a>
             </div>
           </div>

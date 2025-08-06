@@ -68,13 +68,13 @@ const ArticleDetail = () => {
       if (paragraph.startsWith('##')) {
         elements.push(
           <h2 key={`h2-${index}`} className="font-marcellus text-4xl font-normal text-foreground mt-16 mb-8 first:mt-0 leading-tight">
-            {paragraph.replace('## ', '')}
+            {paragraph.replace(/^##\s*/, '')}
           </h2>
         );
       } else if (paragraph.startsWith('###')) {
         elements.push(
           <h3 key={`h3-${index}`} className="font-marcellus text-3xl font-normal text-foreground mt-12 mb-6 leading-tight">
-            {paragraph.replace('### ', '')}
+            {paragraph.replace(/^###\s*/, '')}
           </h3>
         );
       } else if (paragraph.startsWith('- ')) {

@@ -888,8 +888,63 @@ Our experience provides a blueprint for healthcare logistics in emerging markets
     image: 'photo-1576091160399-112ba8d25d1f',
     featured: false,
     tags: ['healthcare', 'cold-chain', 'logistics', 'pandemic response', 'operations']
+  },
+  {
+    id: '5',
+    title: 'Case Study: Cutting Glove Defect Rates by 38% with BiMax',
+    slug: 'cutting-glove-defect-rates-bimax',
+    excerpt: 'A joint lean-manufacturing sprint with Indian supplier BiMax that redefined QA on nitrile lines.',
+    content: 'Detailed case study content...',
+    category: 'Healthcare',
+    author: { name: 'Girum Assefa', title: 'Procurement Excellence Lead', company: 'Bella Healthcare' },
+    date: '2024-01-05',
+    readTime: '7 min read',
+    image: 'photo-1576091160550-2173dba999ef',
+    featured: false,
+    tags: ['healthcare', 'quality assurance', 'manufacturing', 'partnerships']
+  },
+  {
+    id: '6', 
+    title: 'Why Addis Renters Will Pay a Premium for 15-Minute Neighborhoods',
+    slug: 'addis-renters-premium-15-minute-neighborhoods',
+    excerpt: 'Consumer-experience data shows walkability beats square footage when targeting young professionals.',
+    content: 'Detailed analysis content...',
+    category: 'Real Estate',
+    author: { name: 'Hana Tesfaye', title: 'Senior Market Analyst', company: 'Bella Real Estate' },
+    date: '2024-01-03',
+    readTime: '6 min read',
+    image: 'photo-1545324418-cc1a3fa10c00',
+    featured: false,
+    tags: ['real estate', 'urban planning', 'market analysis', 'lifestyle']
+  },
+  {
+    id: '7',
+    title: 'Carbon Credits 101 for African Agribusinesses',
+    slug: 'carbon-credits-african-agribusinesses',
+    excerpt: 'A plain-language primer on how Acha Forest Coffee is monetizing shade-grown acreage through voluntary carbon markets.',
+    content: 'Comprehensive guide content...',
+    category: 'Coffee',
+    author: { name: 'Abiy Melaku', title: 'Sustainability Manager', company: 'Acha Forest Coffee' },
+    date: '2024-01-01',
+    readTime: '9 min read',
+    image: 'photo-1447933601403-0c6688de566e',
+    featured: false,
+    tags: ['sustainability', 'carbon credits', 'coffee', 'environmental']
+  },
+  {
+    id: '8',
+    title: 'After-Sales Service as a Revenue Engine: Lessons from Bella Automotive',
+    slug: 'after-sales-service-revenue-engine',
+    excerpt: 'Turning every service bay into a data-driven upsell channel using predictive maintenance algorithms.',
+    content: 'Strategic insights content...',
+    category: 'Automotive',
+    author: { name: 'Samrawit Tekle', title: 'After-Sales Director', company: 'Bella Automotive' },
+    date: '2023-12-28',
+    readTime: '8 min read',
+    image: 'photo-1549317661-bd32c8ce0db2',
+    featured: false,
+    tags: ['automotive', 'customer service', 'revenue optimization', 'technology']
   }
-  // Add remaining 16 articles here...
 ];
 
 export const allArticles = [...articles, ...additionalArticles];

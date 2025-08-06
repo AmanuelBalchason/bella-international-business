@@ -13,7 +13,8 @@ const Leadership = () => {
       bio: 'With over 15 years of experience in strategic business development, Abel has been instrumental in establishing Bella International as a leading business conglomerate in the Horn of Africa. His visionary leadership and commitment to excellence have driven the company\'s expansion across multiple sectors.',
       expertise: ['Strategic Planning', 'Business Development', 'Market Expansion', 'Partnership Development'],
       email: 'ceo@bellainter.com',
-      image: 'photo-1472099645785-5658abf4ff4e'
+      image: 'photo-1472099645785-5658abf4ff4e',
+      hoverImage: 'photo-1560250097-0b93528c311a' // Office/at-work photo
     },
     {
       name: 'Mulugeta Demissie',
@@ -21,7 +22,8 @@ const Leadership = () => {
       bio: 'Mulugeta brings exceptional operational expertise and has overseen the successful integration of our diverse business units. His focus on operational excellence and process optimization has been crucial to our sustained growth and market leadership.',
       expertise: ['Operations Management', 'Process Optimization', 'Quality Assurance', 'Team Leadership'],
       email: 'mulugeta@bellainter.com',
-      image: 'photo-1507003211169-0a1dd7228f2d'
+      image: 'photo-1507003211169-0a1dd7228f2d',
+      hoverImage: 'photo-1521737604893-d14cc237f11d' // Conference room photo
     },
     {
       name: 'Chirotaw Assefa',
@@ -29,7 +31,8 @@ const Leadership = () => {
       bio: 'As our CFO and COO, Chirotaw has established robust financial frameworks that support our ambitious growth plans. His expertise in financial planning and risk management has been fundamental to our successful expansion across the Horn of Africa.',
       expertise: ['Financial Planning', 'Risk Management', 'Investment Strategy', 'Corporate Finance'],
       email: 'chirotaw@bellainter.com',
-      image: 'photo-1519085360753-af0119f7cbe7'
+      image: 'photo-1519085360753-af0119f7cbe7',
+      hoverImage: 'photo-1556157382-97eda2d62296' // Office workspace photo
     },
     {
       name: 'Temesgen Wubayehu',
@@ -37,7 +40,8 @@ const Leadership = () => {
       bio: 'Temesgen leads our healthcare initiatives and manages all healthcare operations. His innovative approach to healthcare delivery and deep understanding of regional healthcare needs have been key to establishing Bella International\'s strong healthcare presence.',
       expertise: ['Healthcare Management', 'Medical Operations', 'Healthcare Innovation', 'Strategic Healthcare Planning'],
       email: 'temesgen@bellainter.com',
-      image: 'photo-1494790108755-2616b612b786'
+      image: 'photo-1494790108755-2616b612b786',
+      hoverImage: 'photo-1559757148-5c350d0d3c56' // Healthcare facility photo
     }
   ];
 
@@ -103,9 +107,15 @@ const Leadership = () => {
             {leaders.map((leader, index) => (
               <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-border bg-white animate-fade-in overflow-hidden" style={{ animationDelay: `${index * 0.2}s` }}>
                 <div className="relative h-80 overflow-hidden">
+                  {/* Default image */}
                   <div 
-                    className="w-full h-full bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
+                    className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-500 group-hover:opacity-0"
                     style={{ backgroundImage: `url(https://images.unsplash.com/${leader.image}?auto=format&fit=crop&w=600&q=80)` }}
+                  />
+                  {/* Hover image */}
+                  <div 
+                    className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-500 opacity-0 group-hover:opacity-100"
+                    style={{ backgroundImage: `url(https://images.unsplash.com/${leader.hoverImage}?auto=format&fit=crop&w=600&q=80)` }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   <div className="absolute bottom-6 left-6 text-white">

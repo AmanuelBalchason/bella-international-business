@@ -7,6 +7,8 @@ import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import LocationLink from '../components/LocationLink';
+import { useCreateContactSubmission } from '../hooks/useContactSubmissions';
+import { useToast } from '../hooks/use-toast';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -14,12 +16,34 @@ const Contact = () => {
     email: '',
     message: ''
   });
+  
+  const createSubmission = useCreateContactSubmission();
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Contact form submitted:', formData);
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
+    try {
+      await createSubmission.mutateAsync({
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        form_type: 'contact_page'
+      });
+      
+      toast({
+        title: "Message sent successfully!",
+        description: "Thank you for your message. We'll get back to you soon at info@bellainter.com",
+      });
+      
+      // Reset form
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      toast({
+        title: "Failed to send message",
+        description: "Please try again or contact us directly at info@bellainter.com",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -97,9 +121,10 @@ const Contact = () => {
                 
                 <Button 
                   type="submit"
+                  disabled={createSubmission.isPending}
                   className="bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium px-12 py-4 rounded-none w-full"
                 >
-                  Send
+                  {createSubmission.isPending ? 'Sending...' : 'Send'}
                 </Button>
               </form>
             </div>
@@ -126,7 +151,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-inter font-medium text-foreground">Phone</p>
-                    <p className="text-muted-foreground font-inter text-sm">+251 XXX XXX XXX</p>
+                    <p className="text-muted-foreground font-inter text-sm">+251 962 777777</p>
                   </div>
                 </div>
                 
