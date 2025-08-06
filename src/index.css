@@ -96,6 +96,8 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground font-inter;
+    background-image: radial-gradient(circle, hsl(134, 20%, 40%, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
   }
 
   .font-marcellus {

@@ -47,6 +47,63 @@ export type Database = {
         }
         Relationships: []
       }
+      announcements: {
+        Row: {
+          background_color: string | null
+          banner_type: string
+          content: string
+          created_at: string
+          created_by: string | null
+          end_date: string | null
+          id: string
+          is_dismissible: boolean
+          link_text: string | null
+          link_url: string | null
+          sort_order: number | null
+          start_date: string | null
+          status: Database["public"]["Enums"]["content_status"]
+          text_color: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          background_color?: string | null
+          banner_type?: string
+          content: string
+          created_at?: string
+          created_by?: string | null
+          end_date?: string | null
+          id?: string
+          is_dismissible?: boolean
+          link_text?: string | null
+          link_url?: string | null
+          sort_order?: number | null
+          start_date?: string | null
+          status?: Database["public"]["Enums"]["content_status"]
+          text_color?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          background_color?: string | null
+          banner_type?: string
+          content?: string
+          created_at?: string
+          created_by?: string | null
+          end_date?: string | null
+          id?: string
+          is_dismissible?: boolean
+          link_text?: string | null
+          link_url?: string | null
+          sort_order?: number | null
+          start_date?: string | null
+          status?: Database["public"]["Enums"]["content_status"]
+          text_color?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       articles: {
         Row: {
           author_id: string | null
@@ -204,6 +261,113 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      client_logos: {
+        Row: {
+          company_name: string
+          created_at: string
+          created_by: string | null
+          id: string
+          is_featured: boolean
+          logo_image_id: string | null
+          sort_order: number | null
+          status: Database["public"]["Enums"]["content_status"]
+          updated_at: string
+          website_url: string | null
+        }
+        Insert: {
+          company_name: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          is_featured?: boolean
+          logo_image_id?: string | null
+          sort_order?: number | null
+          status?: Database["public"]["Enums"]["content_status"]
+          updated_at?: string
+          website_url?: string | null
+        }
+        Update: {
+          company_name?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          is_featured?: boolean
+          logo_image_id?: string | null
+          sort_order?: number | null
+          status?: Database["public"]["Enums"]["content_status"]
+          updated_at?: string
+          website_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "client_logos_logo_image_id_fkey"
+            columns: ["logo_image_id"]
+            isOneToOne: false
+            referencedRelation: "media_library"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      contact_submissions: {
+        Row: {
+          assigned_to: string | null
+          company: string | null
+          created_at: string
+          email: string
+          form_type: string | null
+          id: string
+          message: string
+          metadata: Json | null
+          name: string
+          notes: string | null
+          phone: string | null
+          priority: string | null
+          response_date: string | null
+          response_sent: boolean
+          status: string
+          subject: string | null
+          updated_at: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          company?: string | null
+          created_at?: string
+          email: string
+          form_type?: string | null
+          id?: string
+          message: string
+          metadata?: Json | null
+          name: string
+          notes?: string | null
+          phone?: string | null
+          priority?: string | null
+          response_date?: string | null
+          response_sent?: boolean
+          status?: string
+          subject?: string | null
+          updated_at?: string
+        }
+        Update: {
+          assigned_to?: string | null
+          company?: string | null
+          created_at?: string
+          email?: string
+          form_type?: string | null
+          id?: string
+          message?: string
+          metadata?: Json | null
+          name?: string
+          notes?: string | null
+          phone?: string | null
+          priority?: string | null
+          response_date?: string | null
+          response_sent?: boolean
+          status?: string
+          subject?: string | null
+          updated_at?: string
+        }
+        Relationships: []
       }
       content_categories: {
         Row: {
