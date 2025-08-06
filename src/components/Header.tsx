@@ -11,17 +11,10 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <div className="w-12 h-12 rounded-none flex items-center justify-center">
-              {/* Light theme logo (dark logo on light background) */}
               <img 
                 src="/lovable-uploads/86eb8f2e-1821-43df-b989-ffbbf78559a0.png" 
                 alt="Bella International Logo"
-                className="w-full h-full object-contain dark:hidden"
-              />
-              {/* Dark theme logo (light logo on dark background) */}
-              <img 
-                src="/lovable-uploads/3631314f-4676-4fe2-995e-3b9fd0d668fc.png" 
-                alt="Bella International Logo"
-                className="w-full h-full object-contain hidden dark:block"
+                className="w-full h-full object-contain"
               />
             </div>
             <div className="ml-4">
