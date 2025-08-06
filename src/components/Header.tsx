@@ -12,7 +12,7 @@ const Header = () => {
           <Link to="/" className="flex items-center">
             <div className="w-12 h-12 rounded-none flex items-center justify-center">
               <img 
-                src="/lovable-uploads/86eb8f2e-1821-43df-b989-ffbbf78559a0.png" 
+                src="/lovable-uploads/c24d2544-5172-490b-ac93-2e853c8ea806.png" 
                 alt="Bella International Logo"
                 className="w-full h-full object-contain"
               />
