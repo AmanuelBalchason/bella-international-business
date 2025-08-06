@@ -2,212 +2,17 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { ArrowLeft, Calendar, User, Clock, Share2, BookOpen } from 'lucide-react';
+import { ArrowLeft, Calendar, User, Clock, Share2, BookOpen, Tag, Building } from 'lucide-react';
 import { Button } from '../components/ui/button';
+import { Badge } from '../components/ui/badge';
 import DOMPurify from 'dompurify';
+import { allArticles } from '../data/articles';
+import { ExecutiveSummary } from '../components/ExecutiveSummary';
 
 const ArticleDetail = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
 
-  // Sample article data (in a real app, this would come from an API)
-  const articles: Record<string, {
-    title: string;
-    content: string;
-    category: string;
-    author: string;
-    date: string;
-    readTime: string;
-    image: string;
-    excerpt: string;
-    embeddedImages: Array<{
-      position: number;
-      image: string;
-      caption: string;
-    }>;
-  }> = {
-    '1': {
-      title: 'The Future of Real Estate Development in Ethiopia',
-      content: `Ethiopia's real estate sector is experiencing unprecedented growth, driven by rapid urbanization and economic development. As one of Africa's fastest-growing economies, the country presents unique opportunities and challenges for developers and investors alike.
-
-      ## Current Market Dynamics
-
-      The Ethiopian real estate market has shown remarkable resilience despite global economic uncertainties. Key factors driving this growth include:
-
-      - **Urban Population Growth**: With over 20% annual urban population growth, demand for housing continues to outpace supply
-      - **Economic Diversification**: Government initiatives to diversify beyond agriculture are creating new commercial opportunities
-      - **Infrastructure Development**: Major infrastructure projects are opening up previously inaccessible areas for development
-
-      ## Sustainable Development Practices
-
-      At Bella International, we believe that sustainable development is not just an option—it's a necessity. Our approach to real estate development incorporates:
-
-      ### Environmental Considerations
-      We prioritize green building practices that reduce environmental impact while providing long-term cost savings for residents and businesses. This includes the use of locally-sourced materials, energy-efficient designs, and water conservation systems.
-
-      ### Social Impact
-      Our developments are designed to strengthen communities by providing not just housing, but also spaces for commerce, education, and recreation. We work closely with local communities to ensure our projects meet their needs and respect their cultural values.
-
-      ### Economic Sustainability
-      By partnering with local contractors and suppliers, we ensure that the economic benefits of our projects stay within the communities we serve. This approach creates jobs and builds local capacity in the construction industry.
-
-      ## Emerging Trends
-
-      Several trends are shaping the future of Ethiopian real estate:
-
-      1. **Mixed-Use Developments**: Combining residential, commercial, and office spaces in single complexes
-      2. **Smart Building Technology**: Integration of IoT and automation systems for improved efficiency
-      3. **Affordable Housing Solutions**: Innovative financing and construction methods to address the housing deficit
-      4. **Green Certification**: Increasing demand for environmentally certified buildings
-
-      ## Challenges and Opportunities
-
-      While the opportunities are significant, developers must navigate several challenges:
-
-      - **Regulatory Environment**: Understanding and complying with evolving building codes and regulations
-      - **Financing**: Securing appropriate financing structures for large-scale development projects
-      - **Infrastructure**: Coordinating with infrastructure development to ensure adequate utilities and transportation
-      - **Skills Gap**: Building local capacity in modern construction techniques and project management
-
-      ## Looking Forward
-
-      The future of real estate development in Ethiopia is bright. With continued economic growth, urbanization, and government support for the construction sector, we expect to see continued innovation and expansion in the coming years.
-
-      Our commitment at Bella International is to be at the forefront of this growth, delivering projects that not only meet market demand but also contribute to the sustainable development of Ethiopian communities.`,
-      category: 'Real Estate',
-      author: 'Abel Yeshitila',
-      date: '2024-01-15',
-      readTime: '8 min read',
-      image: 'photo-1560518883-ce09059eeffa',
-      excerpt: 'Exploring emerging trends and opportunities in Ethiopian real estate markets, with focus on sustainable development practices.',
-      embeddedImages: [
-        {
-          position: 3,
-          image: 'photo-1486406146926-c627a92ad1ab',
-          caption: 'Modern mixed-use development showcasing sustainable architecture'
-        },
-        {
-          position: 8,
-          image: 'photo-1497366216548-37526070297c',
-          caption: 'Smart building technology integration in contemporary developments'
-        },
-        {
-          position: 12,
-          image: 'photo-1560472354-b33ff0c44a43',
-          caption: 'Community-centered development planning and design'
-        }
-      ]
-    },
-    '2': {
-      title: 'Healthcare Innovation in the Horn of Africa',
-      content: `The healthcare landscape in the Horn of Africa is undergoing a dramatic transformation, driven by technological innovation and strategic investments in health infrastructure. This evolution presents both unprecedented opportunities and unique challenges that require innovative solutions.
-
-      ## The Current Healthcare Landscape
-
-      The Horn of Africa faces significant healthcare challenges, with many rural communities lacking access to basic medical services. However, this challenge is spurring innovation and creating opportunities for transformative solutions.
-
-      ### Key Challenges
-      - **Geographic Barriers**: Vast rural areas with limited transportation infrastructure
-      - **Healthcare Worker Shortage**: Insufficient numbers of trained medical professionals
-      - **Resource Constraints**: Limited medical equipment and pharmaceutical supplies
-      - **Disease Burden**: High prevalence of both communicable and non-communicable diseases
-
-      ## Technological Solutions
-
-      Innovation is key to overcoming these challenges. Several technological solutions are making significant impact:
-
-      ### Telemedicine
-      Remote consultation services are revolutionizing healthcare delivery in remote areas. Through mobile technology and satellite internet, patients can now access specialist care without traveling hundreds of kilometers.
-
-      ### Mobile Health Applications
-      Smartphone apps are being used for:
-      - Health education and awareness campaigns
-      - Medication reminders and adherence tracking
-      - Data collection for public health initiatives
-      - Emergency response coordination
-
-      ### Diagnostic Technology
-      Portable diagnostic equipment is bringing laboratory services to remote locations, enabling early detection and treatment of diseases that previously went undiagnosed.
-
-      ## Bella International's Healthcare Initiatives
-
-      Our approach to healthcare development focuses on creating sustainable, community-centered solutions:
-
-      ### Infrastructure Development
-      We're building modern medical facilities that serve as hubs for regional healthcare delivery. These facilities are designed to be:
-      - Energy efficient with solar power backup systems
-      - Equipped with telemedicine capabilities
-      - Staffed by local healthcare workers we help train
-      - Connected to larger hospital networks for referrals
-
-      ### Community Health Programs
-      We support community health worker programs that bring basic healthcare services directly to villages and rural communities. These programs focus on:
-      - Preventive care and health education
-      - Maternal and child health services
-      - Chronic disease management
-      - Emergency response training
-
-      ### Public-Private Partnerships
-      We work closely with government health departments, international NGOs, and other private sector partners to maximize the impact of our healthcare investments.
-
-      ## Success Stories
-
-      Our healthcare initiatives have already shown significant impact:
-
-      - **Rural Clinic Network**: Established 15 rural clinics serving over 50,000 people
-      - **Telemedicine Program**: Connected remote areas to specialist care, reducing patient travel by 70%
-      - **Health Worker Training**: Trained over 200 community health workers
-      - **Maternal Health**: Reduced maternal mortality rates by 40% in served communities
-
-      ## Future Directions
-
-      Looking ahead, we see several key areas for continued innovation:
-
-      ### Artificial Intelligence
-      AI-powered diagnostic tools can help address the shortage of specialized medical professionals by providing decision support for healthcare workers.
-
-      ### Drone Technology
-      Drones are being tested for medical supply delivery to remote areas, potentially revolutionizing logistics for critical medications and blood products.
-
-      ### Electronic Health Records
-      Digital health record systems will improve continuity of care and enable better health system planning and management.
-
-      ## Sustainable Healthcare Development
-
-      Our vision extends beyond immediate healthcare delivery to building sustainable health systems that can continue to serve communities long-term. This includes:
-
-      - Training local medical professionals
-      - Building local pharmaceutical manufacturing capacity
-      - Establishing maintenance and repair capabilities for medical equipment
-      - Creating financial sustainability models for ongoing operations
-
-      The future of healthcare in the Horn of Africa is one of innovation, partnership, and hope. Through continued investment in technology and human capital, we can build health systems that truly serve the needs of all communities.`,
-      category: 'Healthcare',
-      author: 'Temesgen Wubayehu',
-      date: '2024-01-10',
-      readTime: '10 min read',
-      image: 'photo-1576091160399-112ba8d25d1f',
-      excerpt: 'How technological advancement is revolutionizing healthcare delivery across Eastern Africa.',
-      embeddedImages: [
-        {
-          position: 4,
-          image: 'photo-1581091226825-a6a2a5aee158',
-          caption: 'Healthcare workers using digital technology for patient care'
-        },
-        {
-          position: 9,
-          image: 'photo-1488590528505-98d2b5aba04b',
-          caption: 'Telemedicine consultation connecting rural patients with specialists'
-        },
-        {
-          position: 15,
-          image: 'photo-1518770660439-4636190af475',
-          caption: 'Advanced diagnostic equipment in modern healthcare facilities'
-        }
-      ]
-    }
-  };
-
-  const article = id ? articles[id] : undefined;
+  const article = allArticles.find(article => article.slug === slug);
 
   if (!article) {
     return (
@@ -303,21 +108,20 @@ const ArticleDetail = () => {
           </p>
         );
 
-        // Check if we should insert an embedded image after this paragraph
-        const embeddedImage = article.embeddedImages?.find(img => img.position === paragraphCount);
-        if (embeddedImage) {
+        // Add contextual imagery for certain sections
+        if (paragraphCount === 3 || paragraphCount === 7 || paragraphCount === 12) {
           elements.push(
             <div key={`img-${index}`} className="my-12 animate-fade-in">
               <div className="relative overflow-hidden rounded-lg shadow-lg group">
                 <img
-                  src={`https://images.unsplash.com/${embeddedImage.image}?auto=format&fit=crop&w=1200&q=80`}
-                  alt={embeddedImage.caption}
+                  src={`https://images.unsplash.com/${article.image}?auto=format&fit=crop&w=1200&q=80&sig=${paragraphCount}`}
+                  alt={`Illustration for ${article.category} content`}
                   className="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               <p className="text-center text-muted-foreground font-inter text-sm mt-4 italic">
-                {embeddedImage.caption}
+                {article.category} sector insights and analysis
               </p>
             </div>
           );
@@ -358,7 +162,7 @@ const ArticleDetail = () => {
               </div>
               <div className="flex items-center gap-1">
                 <User className="w-4 h-4" />
-                <span>{article.author}</span>
+                <span>{article.author.name}</span>
               </div>
               <div className="flex items-center gap-1">
                 <Clock className="w-4 h-4" />
@@ -411,6 +215,9 @@ const ArticleDetail = () => {
       <section className="bg-secondary py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <article className="bg-white p-12 rounded-lg shadow-sm animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            {article.executiveSummary && (
+              <ExecutiveSummary points={article.executiveSummary} />
+            )}
             <div className="prose prose-lg max-w-none">
               {renderArticleContent()}
             </div>
@@ -421,15 +228,18 @@ const ArticleDetail = () => {
             <div className="flex items-center gap-6">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
                 <span className="text-primary-foreground font-marcellus text-xl font-bold">
-                  {article.author.charAt(0)}
+                  {article.author.name.charAt(0)}
                 </span>
               </div>
               <div>
                 <h3 className="font-marcellus text-xl font-normal text-foreground mb-2">
-                  {article.author}
+                  {article.author.name}
                 </h3>
-                <p className="text-muted-foreground font-inter text-sm">
-                  Senior {article.category} Specialist at Bella International
+                <p className="text-muted-foreground font-inter text-sm mb-1">
+                  {article.author.title}
+                </p>
+                <p className="text-muted-foreground font-inter text-xs">
+                  {article.author.company}
                 </p>
               </div>
             </div>
