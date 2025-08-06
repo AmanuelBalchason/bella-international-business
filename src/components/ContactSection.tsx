@@ -10,10 +10,17 @@ const ContactSection = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
+  // Email validation function
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!email) {
+    // Input validation
+    if (!email.trim()) {
       toast({
         title: "Email required",
         description: "Please enter your email address.",
@@ -22,38 +29,61 @@ const ContactSection = () => {
       return;
     }
 
+    if (!validateEmail(email.trim())) {
+      toast({
+        title: "Invalid email",
+        description: "Please enter a valid email address.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Sanitize email
+    const sanitizedEmail = email.trim().toLowerCase();
+    
     setIsLoading(true);
 
     try {
       // Check if email already exists
-      const { data: existingSubscription } = await supabase
+      const { data: existingSubscription, error: checkError } = await supabase
         .from('newsletter_subscriptions')
-        .select('email')
-        .eq('email', email)
-        .single();
+        .select('email, is_active')
+        .eq('email', sanitizedEmail)
+        .maybeSingle();
+
+      if (checkError && checkError.code !== 'PGRST116') {
+        throw checkError;
+      }
 
       if (existingSubscription) {
-        toast({
-          title: "Already subscribed",
-          description: "This email is already subscribed to our newsletter.",
-        });
+        if (existingSubscription.is_active) {
+          toast({
+            title: "Already subscribed",
+            description: "This email is already subscribed to our newsletter.",
+          });
+        } else {
+          toast({
+            title: "Subscription reactivated",
+            description: "Your newsletter subscription has been reactivated.",
+          });
+        }
         setEmail('');
-        setIsLoading(false);
         return;
       }
 
       // Insert new subscription
-      const { error } = await supabase
+      const { error: insertError } = await supabase
         .from('newsletter_subscriptions')
         .insert([
           {
-            email: email,
-            source: 'website'
+            email: sanitizedEmail,
+            source: 'website',
+            is_active: true
           }
         ]);
 
-      if (error) {
-        throw error;
+      if (insertError) {
+        throw insertError;
       }
 
       toast({
@@ -62,13 +92,23 @@ const ContactSection = () => {
       });
 
       setEmail('');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Newsletter subscription error:', error);
-      toast({
-        title: "Subscription failed",
-        description: "There was an error subscribing to our newsletter. Please try again.",
-        variant: "destructive",
-      });
+      
+      // Handle specific error cases
+      if (error?.code === '23505') { // Unique violation
+        toast({
+          title: "Already subscribed",
+          description: "This email is already subscribed to our newsletter.",
+        });
+        setEmail('');
+      } else {
+        toast({
+          title: "Subscription failed",
+          description: "There was an error subscribing to our newsletter. Please try again.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setIsLoading(false);
     }
