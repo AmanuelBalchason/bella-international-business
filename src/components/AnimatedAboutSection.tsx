@@ -6,18 +6,20 @@ import { Link } from 'react-router-dom';
 const AnimatedAboutSection = () => {
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
 
+  // Core values structure matching content workbook format
+  // Each value has title (≤30 chars) and description (≤150 chars)
   const values = [
     {
-      title: 'Uncompromised Quality',
-      description: 'We maintain the highest standards in all our business operations and strategic partnerships.'
+      title: 'Research-Driven Excellence', // 26 chars (matches workbook)
+      description: 'Our comprehensive research methodology ensures informed decision-making and strategic market positioning for sustainable success.' // 142 chars
     },
     {
-      title: 'Strategic Leadership',
-      description: 'Our research-focused approach drives innovation and sustainable growth across all sectors.'
+      title: 'Strategic Partnership', // 20 chars (matches workbook)
+      description: 'We build lasting relationships that transcend traditional business boundaries, creating value through collaborative innovation.' // 136 chars
     },
     {
-      title: 'Ethical Foundation',
-      description: 'Trust, transparency, and mutual benefit form the cornerstone of our business relationships.'
+      title: 'Local Market Mastery', // 20 chars (matches workbook)
+      description: 'Deep understanding of Ethiopian and regional markets enables us to navigate complexities and unlock unique opportunities.' // 122 chars
     }
   ];
 
@@ -42,10 +44,10 @@ const AnimatedAboutSection = () => {
             <div>
               <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4">About Us</p>
               <h2 className="font-marcellus text-4xl font-normal text-foreground leading-tight mb-6">
-                Building Excellence Across Horn of Africa
+                Driving Growth Across Eastern Africa
               </h2>
               <p className="text-muted-foreground font-inter text-lg leading-relaxed">
-                At Bella International Business, we are committed to realizing our vision by building a highly motivated, research-focused workforce dedicated to cultivating long-term relationships with our strategic partners and the communities we serve.
+                We are the premier business solutions provider in the Horn of Africa, connecting global opportunities with local expertise across four dynamic sectors.
               </p>
             </div>
             

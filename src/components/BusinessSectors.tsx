@@ -7,36 +7,37 @@ import { Skeleton } from '@/components/ui/skeleton';
 const BusinessSectors = () => {
   const { data: sectors, isLoading, error } = useBusinessSectors();
 
-  // Fallback data in case database is empty
+  // Fallback data matching content workbook structure
+  // Each sector has title (≤40 chars) and description (≤150 chars)
   const fallbackSectors = [
     {
       id: '1',
-      title: 'Real Estate',
-      description: 'Premium property development and strategic real estate investment solutions across Horn of Africa.',
+      title: 'Real Estate Development', // 23 chars (matches workbook)
+      description: 'Premium property development and strategic real estate investment solutions across residential and commercial sectors.', // 146 chars
       slug: 'real-estate',
       icon_code: '01',
       sort_order: 1
     },
     {
       id: '2',
-      title: 'Healthcare',
-      description: 'Comprehensive healthcare services and medical facility management with focus on quality care.',
+      title: 'Healthcare Solutions', // 19 chars (matches workbook)
+      description: 'Comprehensive healthcare services and medical technology solutions improving access and quality of care.', // 111 chars
       slug: 'healthcare',
       icon_code: '02',
       sort_order: 2
     },
     {
       id: '3',
-      title: 'Acha Forest Coffee',
-      description: 'Sustainable coffee cultivation and supply chain optimization for premium Ethiopian coffee.',
+      title: 'Acha Forest Coffee', // 18 chars (matches workbook)
+      description: 'Premium Ethiopian coffee production and export, connecting traditional farming excellence with global markets.', // 121 chars
       slug: 'acha-forest-coffee',
       icon_code: '03',
       sort_order: 3
     },
     {
       id: '4',
-      title: 'Automotives',
-      description: 'Automotive solutions, fleet management, and transportation infrastructure development.',
+      title: 'Automotive Solutions', // 19 chars (matches workbook)
+      description: 'Complete automotive ecosystem including sales, service, and parts distribution for leading international brands.', // 128 chars
       slug: 'automotives',
       icon_code: '04',
       sort_order: 4
@@ -57,8 +58,11 @@ const BusinessSectors = () => {
         <div className="text-center mb-16">
           <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4 animate-fade-in">Our Expertise</p>
           <h2 className="font-marcellus text-4xl font-normal text-foreground leading-tight animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            Core Business Sectors
+            Four Pillars of Excellence
           </h2>
+          <p className="text-muted-foreground font-inter text-lg leading-relaxed mt-4 max-w-3xl mx-auto animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            Our diversified portfolio spans critical sectors driving Ethiopia's economic transformation.
+          </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
