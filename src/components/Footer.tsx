@@ -13,8 +13,12 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <Link to="/" className="flex items-center">
-              <div className="w-10 h-10 bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-marcellus text-lg font-bold">B</span>
+              <div className="w-10 h-10 flex items-center justify-center">
+                <img 
+                  src="/lovable-uploads/c24d2544-5172-490b-ac93-2e853c8ea806.png" 
+                  alt="Bella International Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div className="ml-3">
                 <h3 className="font-marcellus text-lg font-normal text-foreground">Bella International</h3>
