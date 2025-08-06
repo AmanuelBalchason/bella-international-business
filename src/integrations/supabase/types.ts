@@ -424,22 +424,31 @@ export type Database = {
           email: string
           id: string
           is_active: boolean
+          is_verified: boolean
           source: string | null
           subscribed_at: string
+          token_expires_at: string | null
+          verification_token: string | null
         }
         Insert: {
           email: string
           id?: string
           is_active?: boolean
+          is_verified?: boolean
           source?: string | null
           subscribed_at?: string
+          token_expires_at?: string | null
+          verification_token?: string | null
         }
         Update: {
           email?: string
           id?: string
           is_active?: boolean
+          is_verified?: boolean
           source?: string | null
           subscribed_at?: string
+          token_expires_at?: string | null
+          verification_token?: string | null
         }
         Relationships: []
       }
@@ -616,6 +625,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      clean_expired_verification_tokens: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
       create_first_admin: {
         Args: { admin_email: string; admin_name: string }
         Returns: undefined
