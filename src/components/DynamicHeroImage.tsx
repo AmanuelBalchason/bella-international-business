@@ -46,14 +46,6 @@ const DynamicHeroImage = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-primary/60 transition-opacity duration-1000" />
         
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center space-y-4 text-white transform transition-all duration-1000 group-hover:scale-110">
-            <div className="w-16 h-16 bg-white/20 backdrop-blur-sm mx-auto flex items-center justify-center rounded-full border border-white/30 transition-all duration-500 hover:bg-white/30">
-              <span className="text-white font-marcellus text-2xl">{currentImage.icon}</span>
-            </div>
-            <p className="text-white/90 font-inter text-sm font-medium tracking-wide">{currentImage.placeholder}</p>
-          </div>
-        </div>
 
         {/* Slideshow Indicators */}
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
