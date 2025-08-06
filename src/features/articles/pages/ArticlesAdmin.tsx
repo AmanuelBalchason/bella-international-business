@@ -45,7 +45,7 @@ const ArticlesAdmin: React.FC = () => {
       }
 
       if (statusFilter !== 'all') {
-        query = query.eq('status', statusFilter as 'draft' | 'in_review' | 'published' | 'archived');
+        query = query.eq('status', statusFilter as any);
       }
 
       const { data, error } = await query;
