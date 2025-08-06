@@ -5,10 +5,12 @@ import { Link } from 'react-router-dom';
 import AnimatedCounter from './AnimatedCounter';
 import DynamicHero from './DynamicHero';
 import DynamicHeroImage from './DynamicHeroImage';
+import InteractiveDotPattern from './InteractiveDotPattern';
 
 const HeroSection = () => {
   return (
     <section className="bg-white py-24 relative overflow-hidden">
+      <InteractiveDotPattern className="opacity-60" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left side - Dynamic Content */}
