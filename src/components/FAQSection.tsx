@@ -5,20 +5,26 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collap
 const FAQSection = () => {
   const [openItems, setOpenItems] = useState<number[]>([]);
 
-  // FAQ content matching workbook structure
-  // Each question (≤100 chars) and answer (≤300 chars)
   const faqs = [
     {
-      question: 'What makes Bella International unique in the Ethiopian market?', // 68 chars (matches workbook)
-      answer: 'Our 15+ years of local expertise combined with international standards creates unmatched value. We understand both global business requirements and Ethiopian market dynamics.' // 190 chars
+      question: 'What sectors does Bella International Business operate in?',
+      answer: 'We operate across four core sectors: Real Estate, Healthcare, Agri-Business, and Automotives, providing comprehensive solutions and strategic partnerships in each area.'
     },
     {
-      question: 'How do you ensure quality across diverse business sectors?', // 64 chars (matches workbook)
-      answer: 'We maintain rigorous quality standards through sector-specific expertise, continuous training, and strategic partnerships with international leaders in each field.' // 172 chars
+      question: 'How does Bella International approach strategic partnerships?',
+      answer: 'Our partnerships are built on trust, transparency, and mutual benefit. We focus on cultivating long-term relationships that create value for all stakeholders involved.'
     },
     {
-      question: 'What is your approach to market entry assistance?', // 51 chars (matches workbook)
-      answer: 'We provide comprehensive market intelligence, regulatory guidance, and strategic partnerships to ensure successful market entry and sustainable growth.' // 163 chars
+      question: 'What makes Bella International unique in Eastern Africa?',
+      answer: 'Our research-focused approach, commitment to uncompromised quality, and ethical foundation set us apart. We combine entrepreneurial expertise with personalized service.'
+    },
+    {
+      question: 'How can organizations partner with Bella International?',
+      answer: 'We welcome strategic partnerships that align with our core values and vision. Contact us to discuss how we can create mutual value and long-lasting business relationships.'
+    },
+    {
+      question: 'What is Bella International\'s approach to community engagement?',
+      answer: 'We are dedicated to serving the communities where we operate, focusing on sustainable development and creating positive impact through our business activities.'
     }
   ];
 

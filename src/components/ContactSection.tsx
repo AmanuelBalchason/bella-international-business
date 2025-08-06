@@ -80,10 +80,10 @@ const ContactSection = () => {
         <div className="text-center mb-16">
           <p className="text-primary-foreground/80 font-inter text-sm uppercase tracking-wider mb-4">Stay Connected</p>
           <h2 className="font-marcellus text-4xl font-normal text-primary-foreground leading-tight mb-8">
-            Stay Connected
+            Let Us Reach You
           </h2>
           <p className="text-primary-foreground/80 font-inter text-lg max-w-2xl mx-auto">
-            Get insights into Ethiopian market trends and exclusive updates on our latest projects and partnerships.
+            Subscribe to our newsletter for insights on business excellence, strategic partnerships, and industry developments across Eastern Africa.
           </p>
         </div>
         
@@ -102,7 +102,7 @@ const ContactSection = () => {
               disabled={isLoading}
               className="bg-foreground hover:bg-foreground/90 text-background font-inter font-medium px-8 rounded-none ml-0"
             >
-              {isLoading ? 'Subscribing...' : 'Subscribe Now'}
+              {isLoading ? 'Subscribing...' : 'Send'}
             </Button>
           </form>
         </div>

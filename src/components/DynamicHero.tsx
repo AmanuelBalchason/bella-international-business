@@ -2,25 +2,23 @@
 import React, { useState, useEffect } from 'react';
 
 const DynamicHero = () => {
-  // Hero content structure matching the content workbook format
-  // Each set has title (≤60 chars), subtitle (≤80 chars), description (≤200 chars)
   const headlines = [
     {
-      title: "Strategic Business Solutions", // 27 chars
-      subtitle: "Your premium gateway to Ethiopian market opportunities", // 56 chars
-      description: "Unlock Ethiopia's potential with our comprehensive business expertise across Real Estate, Healthcare, Acha Forest Coffee, and Automotives.", // 140 chars
+      title: "Strategic Business Solutions",
+      subtitle: "Your premium gateway to Ethiopian market opportunities",
+      description: "Unlock Ethiopia's potential with our comprehensive business expertise across Real Estate, Healthcare, Acha Forest Coffee, and Automotives.",
       imagePlaceholder: "Strategic Partnership"
     },
     {
-      title: "Market Entry Excellence", // 23 chars
-      subtitle: "Navigate Horn of Africa markets with confidence", // 47 chars
-      description: "We provide unparalleled market intelligence and strategic partnerships to establish your presence in Ethiopia's growing economy.", // 127 chars
+      title: "Market Entry Excellence",
+      subtitle: "Navigate Horn of Africa markets with confidence",
+      description: "We provide unparalleled market intelligence and strategic partnerships to establish your presence in Ethiopia's growing economy.",
       imagePlaceholder: "Market Leadership"
     },
     {
-      title: "Trusted Business Partner", // 25 chars
-      subtitle: "15+ years of proven success in Ethiopia", // 39 chars
-      description: "Join 100+ strategic partners who trust us to deliver exceptional results through our research-focused approach and local expertise.", // 131 chars
+      title: "Trusted Business Partner",
+      subtitle: "15+ years of proven success in Ethiopia",
+      description: "Join 100+ strategic partners who trust us to deliver exceptional results through our research-focused approach and local expertise.",
       imagePlaceholder: "Business Excellence"
     }
   ];
