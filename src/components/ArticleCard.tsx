@@ -3,10 +3,22 @@ import { Link } from 'react-router-dom';
 import { Card, CardContent } from './ui/card';
 import { Calendar, User, ArrowRight, Tag } from 'lucide-react';
 import { Badge } from './ui/badge';
-import type { Article } from '../data/articles';
+type CardAuthor = { name: string };
+export interface CardArticle {
+  id?: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  date: string;
+  author: CardAuthor;
+  readTime?: string;
+  tags: string[];
+  image?: string;
+}
 
 interface ArticleCardProps {
-  article: Article;
+  article: CardArticle;
   featured?: boolean;
   index?: number;
 }

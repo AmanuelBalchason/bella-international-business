@@ -64,3 +64,24 @@ export const useFeaturedArticles = () => {
     },
   });
 };
+
+export const useArticleBySlug = (slug: string) => {
+  return useQuery({
+    queryKey: ['article-by-slug', slug],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('articles')
+        .select(`
+          *,
+          author:leadership_profiles(name, position),
+          category:content_categories(name)
+        `)
+        .eq('slug', slug)
+        .eq('status', 'published')
+        .maybeSingle();
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!slug,
+  });
+};
