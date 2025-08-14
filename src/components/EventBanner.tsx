@@ -23,7 +23,7 @@ const EventBanner = () => {
             
             <div>
               <h2 className="font-marcellus text-4xl lg:text-5xl font-normal mb-4 leading-tight">
-                Business Excellence Summit 2024
+                Business Excellence Summit 2025
               </h2>
               <p className="text-primary-foreground/90 font-inter text-lg leading-relaxed">
                 Join industry leaders and visionaries for an exclusive gathering at Bella International Business headquarters. 
@@ -36,8 +36,8 @@ const EventBanner = () => {
               <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm p-4 rounded-lg">
                 <Calendar className="w-5 h-5 text-primary-foreground" />
                 <div>
-                  <p className="font-semibold">July 20, 2024</p>
-                  <p className="text-sm text-primary-foreground/80">Saturday</p>
+                  <p className="font-semibold">August 24, 2025</p>
+                  <p className="text-sm text-primary-foreground/80">Sunday</p>
                 </div>
               </div>
               
