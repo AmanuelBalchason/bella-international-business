@@ -1,11 +1,8 @@
-
 import React from 'react';
 import { Calendar, MapPin, Clock, Users } from 'lucide-react';
 import { Button } from './ui/button';
-
 const EventBanner = () => {
-  return (
-    <div className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-primary-foreground py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+  return <div className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-primary-foreground py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-32 h-32 bg-white rounded-full -translate-x-16 -translate-y-16"></div>
@@ -17,7 +14,7 @@ const EventBanner = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Event Content */}
           <div className="space-y-6">
-            <div className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+            <div className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-none">
               <span className="text-sm font-medium">EXCLUSIVE EVENT</span>
             </div>
             
@@ -68,17 +65,10 @@ const EventBanner = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                size="lg" 
-                className="bg-white text-primary hover:bg-white/90 font-inter font-semibold px-8 py-4 rounded-none hover:scale-105 transition-all duration-200"
-              >
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-inter font-semibold px-8 py-4 rounded-none hover:scale-105 transition-all duration-200">
                 Reserve Your Spot
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="border-white text-primary-foreground hover:bg-white/10 font-inter font-medium px-8 py-4 rounded-none backdrop-blur-sm"
-              >
+              <Button variant="outline" size="lg" className="border-white text-primary-foreground hover:bg-white/10 font-inter font-medium px-8 py-4 rounded-none backdrop-blur-sm">
                 Learn More
               </Button>
             </div>
@@ -148,8 +138,6 @@ const EventBanner = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default EventBanner;
