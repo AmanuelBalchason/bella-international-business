@@ -797,6 +797,23 @@ export type Database = {
         Args: { admin_email: string; admin_name: string }
         Returns: undefined
       }
+      get_public_leadership_profiles: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          bio: string
+          created_at: string
+          expertise: string[]
+          id: string
+          job_position: string
+          name: string
+          profile_image_id: string
+          quote: string
+          sort_order: number
+          status: Database["public"]["Enums"]["content_status"]
+          updated_at: string
+          years_experience: number
+        }[]
+      }
       is_admin: {
         Args: Record<PropertyKey, never>
         Returns: boolean
