@@ -7,10 +7,7 @@ export const useLeadershipProfiles = () => {
     queryKey: ['leadership-profiles'],
     queryFn: async () => {
       const { data, error } = await supabase
-        .from('leadership_profiles')
-        .select('*')
-        .eq('status', 'published')
-        .order('sort_order');
+        .rpc('get_public_leadership_profiles');
       
       if (error) throw error;
       return data;
