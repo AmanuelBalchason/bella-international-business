@@ -76,7 +76,7 @@ const EventBanner = () => {
 
           {/* Event Visual */}
           <div className="relative">
-            <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+            <div className="bg-white/10 backdrop-blur-sm p-8 border border-white/20 rounded-none">
               {/* Event Highlights */}
               <div className="space-y-6">
                 <h3 className="font-marcellus text-2xl font-normal mb-6">Event Highlights</h3>
