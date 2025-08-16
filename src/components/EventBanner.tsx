@@ -68,7 +68,7 @@ const EventBanner = () => {
               <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-inter font-semibold px-8 py-4 rounded-none hover:scale-105 transition-all duration-200">
                 Reserve Your Spot
               </Button>
-              <Button variant="outline" size="lg" className="border-white/40 text-white hover:bg-white/20 hover:border-white hover:text-white font-medium px-8 py-4 rounded-none backdrop-blur-sm transition-all duration-200">
+              <Button variant="outline" size="lg" className="border-white text-white hover:border-white/60 hover:text-white/80 font-medium px-8 py-4 rounded-none backdrop-blur-sm transition-all duration-200">
                 Learn More
               </Button>
             </div>
