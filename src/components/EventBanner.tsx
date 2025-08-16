@@ -120,15 +120,15 @@ const EventBanner = () => {
                   <p className="text-center text-sm text-primary-foreground/80 mb-2">Event starts in</p>
                   <div className="flex justify-center space-x-4">
                     <div className="text-center">
-                      <div className="text-2xl font-bold">45</div>
+                      <div className="text-2xl font-bold">8</div>
                       <div className="text-xs">Days</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold">12</div>
-                      <div className="text-xs">Hours</div>
+                      <div className="text-2xl font-bold">1</div>
+                      <div className="text-xs">Hour</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold">30</div>
+                      <div className="text-2xl font-bold">15</div>
                       <div className="text-xs">Minutes</div>
                     </div>
                   </div>
