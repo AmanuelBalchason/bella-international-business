@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar, MapPin, Clock, Users } from 'lucide-react';
 import { Button } from './ui/button';
+import EventReservationDialog from './EventReservationDialog';
 const EventBanner = () => {
   return <div className="bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-primary-foreground py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background Pattern */}
@@ -65,9 +66,11 @@ const EventBanner = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-inter font-semibold px-8 py-4 rounded-none hover:scale-105 transition-all duration-200">
-                Reserve Your Spot
-              </Button>
+              <EventReservationDialog>
+                <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-inter font-semibold px-8 py-4 rounded-none hover:scale-105 transition-all duration-200">
+                  Reserve Your Spot
+                </Button>
+              </EventReservationDialog>
               
             </div>
           </div>
