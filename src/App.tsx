@@ -20,6 +20,7 @@ import AdminLayout from "@/features/admin/components/AdminLayout";
 import AdminDashboard from "@/features/admin/pages/AdminDashboard";
 import ArticlesAdmin from "@/features/articles/pages/ArticlesAdmin";
 import ArticleEditor from "@/features/articles/pages/ArticleEditor";
+// Force cache refresh with explicit default import
 import ContactSubmissionsAdmin from "@/features/admin/pages/ContactSubmissionsAdmin";
 import EmailDiagnosticsAdmin from "@/features/admin/pages/EmailDiagnosticsAdmin";
 import { useEffect, useState } from "react";

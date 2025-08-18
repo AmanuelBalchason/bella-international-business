@@ -7,6 +7,7 @@ import { useContactSubmissions } from '@/hooks/useContactSubmissions';
 import { format } from 'date-fns';
 
 const ContactSubmissionsAdmin = () => {
+  console.log('ContactSubmissionsAdmin component loaded');
   const { data: submissions, isLoading } = useContactSubmissions();
 
   if (isLoading) {
