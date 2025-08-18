@@ -407,6 +407,54 @@ export type Database = {
           },
         ]
       }
+      event_reservations: {
+        Row: {
+          company: string
+          created_at: string
+          email: string
+          event_name: string | null
+          first_name: string
+          id: string
+          industry: string | null
+          last_name: string
+          message: string | null
+          phone: string | null
+          position: string | null
+          status: string | null
+          updated_at: string
+        }
+        Insert: {
+          company: string
+          created_at?: string
+          email: string
+          event_name?: string | null
+          first_name: string
+          id?: string
+          industry?: string | null
+          last_name: string
+          message?: string | null
+          phone?: string | null
+          position?: string | null
+          status?: string | null
+          updated_at?: string
+        }
+        Update: {
+          company?: string
+          created_at?: string
+          email?: string
+          event_name?: string | null
+          first_name?: string
+          id?: string
+          industry?: string | null
+          last_name?: string
+          message?: string | null
+          phone?: string | null
+          position?: string | null
+          status?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       faqs: {
         Row: {
           answer: string

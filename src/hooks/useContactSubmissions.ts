@@ -30,13 +30,12 @@ export const useCreateContactSubmission = () => {
       form_type?: string;
       metadata?: any;
     }) => {
-      const { data, error } = await supabase
-        .from('contact_submissions')
-        .insert([formData])
-        .select()
-        .single();
+      const { data, error } = await supabase.functions.invoke('contact-email', {
+        body: formData
+      });
       
       if (error) throw error;
+      if (!data?.success) throw new Error(data?.error || 'Unknown error occurred');
       return data;
     },
     onSuccess: () => {

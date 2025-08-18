@@ -6,6 +6,7 @@ import { Label } from './ui/label';
 import { Textarea } from './ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 interface EventReservationDialogProps {
   children: React.ReactNode;
@@ -47,29 +48,57 @@ const EventReservationDialog = ({ children }: EventReservationDialogProps) => {
     }
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      toast({
-        title: "Reservation Submitted!",
-        description: "We'll send you a confirmation email shortly with event details.",
+      const { data, error } = await supabase.functions.invoke('event-reservation', {
+        body: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          company: formData.company,
+          position: formData.position,
+          phone: formData.phone,
+          industry: formData.industry,
+          message: formData.message
+        }
       });
+
+      if (error) {
+        throw error;
+      }
+
+      if (data?.success) {
+        toast({
+          title: "Reservation Confirmed!",
+          description: data.message,
+        });
+        
+        setOpen(false);
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          company: '',
+          position: '',
+          phone: '',
+          industry: '',
+          message: ''
+        });
+      } else {
+        throw new Error(data?.error || 'Unknown error occurred');
+      }
+    } catch (error: any) {
+      console.error('Event reservation error:', error);
       
-      setOpen(false);
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        company: '',
-        position: '',
-        phone: '',
-        industry: '',
-        message: ''
-      });
-    } catch (error) {
+      let errorMessage = "There was an error submitting your reservation. Please try again.";
+      
+      if (error.message?.includes('Invalid email')) {
+        errorMessage = "Please enter a valid email address.";
+      } else if (error.message?.includes('Missing required fields')) {
+        errorMessage = "Please fill in all required fields.";
+      }
+      
       toast({
         title: "Submission Failed",
-        description: "Please try again later.",
+        description: errorMessage,
         variant: "destructive"
       });
     } finally {
