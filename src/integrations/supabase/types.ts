@@ -407,6 +407,36 @@ export type Database = {
           },
         ]
       }
+      email_logs: {
+        Row: {
+          attempted_at: string
+          created_at: string
+          email: string
+          email_type: string
+          error_message: string | null
+          id: string
+          status: string
+        }
+        Insert: {
+          attempted_at?: string
+          created_at?: string
+          email: string
+          email_type: string
+          error_message?: string | null
+          id?: string
+          status: string
+        }
+        Update: {
+          attempted_at?: string
+          created_at?: string
+          email?: string
+          email_type?: string
+          error_message?: string | null
+          id?: string
+          status?: string
+        }
+        Relationships: []
+      }
       event_reservations: {
         Row: {
           company: string

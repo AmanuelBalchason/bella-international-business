@@ -33,9 +33,10 @@ const adminMenuItems = [
   { title: 'Leadership', url: '/admin/leadership', icon: Users },
   { title: 'Testimonials', url: '/admin/testimonials', icon: MessageSquareQuote },
   { title: 'FAQs', url: '/admin/faqs', icon: HelpCircle },
+  { title: 'Contact Forms', url: '/admin/contact-submissions', icon: Mail },
+  { title: 'Email Diagnostics', url: '/admin/email-diagnostics', icon: Settings },
   { title: 'Newsletter', url: '/admin/newsletter', icon: Mail },
   { title: 'Media Library', url: '/admin/media', icon: Image },
-  { title: 'Settings', url: '/admin/settings', icon: Settings },
 ];
 
 function AdminSidebar() {

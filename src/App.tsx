@@ -20,6 +20,8 @@ import AdminLayout from "@/features/admin/components/AdminLayout";
 import AdminDashboard from "@/features/admin/pages/AdminDashboard";
 import ArticlesAdmin from "@/features/articles/pages/ArticlesAdmin";
 import ArticleEditor from "@/features/articles/pages/ArticleEditor";
+import ContactSubmissionsAdmin from "@/features/admin/pages/ContactSubmissionsAdmin";
+import EmailDiagnosticsAdmin from "@/features/admin/pages/EmailDiagnosticsAdmin";
 import { useEffect, useState } from "react";
 import AdminSetup from "@/components/AdminSetup";
 import { supabase } from "@/integrations/supabase/client";
@@ -62,6 +64,8 @@ const App = () => (
               <Route path="articles" element={<ArticlesAdmin />} />
               <Route path="articles/new" element={<ArticleEditor />} />
               <Route path="articles/:id/edit" element={<ArticleEditor />} />
+              <Route path="contact-submissions" element={<ContactSubmissionsAdmin />} />
+              <Route path="email-diagnostics" element={<EmailDiagnosticsAdmin />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
