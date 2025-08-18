@@ -90,7 +90,7 @@ const handler = async (req: Request): Promise<Response> => {
       if (resend) {
         try {
           await resend.emails.send({
-            from: "Bella International <no-reply@bellainternational.com>",
+            from: "Bella International <hello@bellainternational.app>",
             to: [email],
             subject: "Welcome to Bella International Newsletter!",
             html: `

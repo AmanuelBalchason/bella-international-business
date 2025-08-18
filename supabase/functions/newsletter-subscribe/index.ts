@@ -137,7 +137,7 @@ const handler = async (req: Request): Promise<Response> => {
         const unsubscribeUrl = `https://xprrwkjotipgqhbchbju.supabase.co/functions/v1/newsletter-verify?email=${encodeURIComponent(sanitizedEmail)}&token=${subscriptionData.verification_token}&action=unsubscribe`;
 
         await resend.emails.send({
-          from: "Bella International <no-reply@bellainternational.com>",
+          from: "Bella International <hello@bellainternational.app>",
           to: [sanitizedEmail],
           subject: "Please verify your subscription to Bella International Newsletter",
           html: `

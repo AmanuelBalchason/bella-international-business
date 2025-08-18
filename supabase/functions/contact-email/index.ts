@@ -14,6 +14,21 @@ const resendApiKey = Deno.env.get('RESEND_API_KEY');
 const supabase = createClient(supabaseUrl, supabaseKey);
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
+// Enhanced logging
+const logEmailAttempt = async (email: string, type: string, status: 'success' | 'failed', error?: string) => {
+  try {
+    await supabase.from('email_logs').insert({
+      email,
+      email_type: type,
+      status,
+      error_message: error,
+      attempted_at: new Date().toISOString()
+    });
+  } catch (logError) {
+    console.error('Failed to log email attempt:', logError);
+  }
+};
+
 interface ContactRequest {
   name: string;
   email: string;
@@ -57,7 +72,8 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log(`Processing contact submission from: ${contactData.email}`);
+    console.log(`[CONTACT-EMAIL] Processing submission from: ${contactData.email}`);
+    console.log(`[EMAIL-CONFIG] Resend API Key configured: ${!!resendApiKey}`);
 
     // Save contact submission to database
     const { data: submission, error: insertError } = await supabase
@@ -86,54 +102,88 @@ const handler = async (req: Request): Promise<Response> => {
     // Send confirmation email if Resend is configured
     if (resend) {
       try {
-        await resend.emails.send({
-          from: "Bella International <no-reply@bellainternational.com>",
+        console.log(`[EMAIL] Attempting to send confirmation email to: ${contactData.email}`);
+        
+        const emailResponse = await resend.emails.send({
+          from: "Bella International <hello@bellainternational.app>",
           to: [contactData.email],
           subject: "Thank you for contacting Bella International",
           html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-              <h1 style="color: #333; text-align: center;">Thank You for Reaching Out!</h1>
-              
-              <p>Dear ${contactData.name},</p>
-              
-              <p>Thank you for contacting <strong>Bella International</strong>. We have received your message and will get back to you within 24-48 hours.</p>
-              
-              <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                <h3 style="color: #333; margin-top: 0;">Your Message Details</h3>
-                <p><strong>Name:</strong> ${contactData.name}</p>
-                <p><strong>Email:</strong> ${contactData.email}</p>
-                ${contactData.company ? `<p><strong>Company:</strong> ${contactData.company}</p>` : ''}
-                ${contactData.phone ? `<p><strong>Phone:</strong> ${contactData.phone}</p>` : ''}
-                ${contactData.subject ? `<p><strong>Subject:</strong> ${contactData.subject}</p>` : ''}
-                <p><strong>Message:</strong></p>
-                <p style="background-color: #fff; padding: 10px; border-left: 3px solid #007bff;">${contactData.message}</p>
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
+              <div style="text-align: center; margin-bottom: 30px;">
+                <h1 style="color: #2563eb; margin: 0; font-size: 28px;">Bella International</h1>
+                <p style="color: #64748b; margin: 5px 0;">Leading Business Excellence Solutions</p>
               </div>
               
-              <p><strong>What happens next?</strong></p>
-              <ul>
-                <li>Our team will review your inquiry</li>
-                <li>You'll receive a personalized response within 24-48 hours</li>
-                <li>For urgent matters, you can also call us directly</li>
-              </ul>
+              <div style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 30px;">
+                <h2 style="margin: 0; font-size: 24px;">🙏 Thank You for Reaching Out!</h2>
+                <p style="margin: 10px 0 0 0; opacity: 0.9;">We've received your message and will respond soon</p>
+              </div>
               
-              <p>In the meantime, feel free to explore our services and learn more about how we can help your business excel.</p>
+              <p style="color: #374151; font-size: 16px; line-height: 1.6;">Dear ${contactData.name},</p>
               
-              <hr style="margin: 30px 0;">
+              <p style="color: #374151; font-size: 16px; line-height: 1.6;">Thank you for contacting <strong>Bella International</strong>. We have received your message and appreciate you taking the time to reach out to us.</p>
               
-              <p style="font-size: 12px; color: #666; text-align: center;">
-                <strong>Bella International</strong><br>
-                Leading Business Excellence Solutions<br>
-                This is an automated confirmation. Please do not reply to this email.
-              </p>
+              <div style="background-color: #f8fafc; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #2563eb;">
+                <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px;">📋 Your Message Details</h3>
+                <table style="width: 100%; color: #374151;">
+                  <tr><td style="padding: 8px 0; vertical-align: top; width: 100px;"><strong>Name:</strong></td><td style="padding: 8px 0;">${contactData.name}</td></tr>
+                  <tr><td style="padding: 8px 0; vertical-align: top;"><strong>Email:</strong></td><td style="padding: 8px 0;">${contactData.email}</td></tr>
+                  ${contactData.company ? `<tr><td style="padding: 8px 0; vertical-align: top;"><strong>Company:</strong></td><td style="padding: 8px 0;">${contactData.company}</td></tr>` : ''}
+                  ${contactData.phone ? `<tr><td style="padding: 8px 0; vertical-align: top;"><strong>Phone:</strong></td><td style="padding: 8px 0;">${contactData.phone}</td></tr>` : ''}
+                  ${contactData.subject ? `<tr><td style="padding: 8px 0; vertical-align: top;"><strong>Subject:</strong></td><td style="padding: 8px 0;">${contactData.subject}</td></tr>` : ''}
+                </table>
+                <div style="margin-top: 15px;">
+                  <strong style="color: #374151;">Message:</strong>
+                  <div style="background-color: #ffffff; padding: 15px; border-radius: 6px; margin-top: 8px; border-left: 3px solid #3b82f6; color: #374151; line-height: 1.6;">
+                    ${contactData.message}
+                  </div>
+                </div>
+              </div>
+              
+              <div style="background-color: #eff6ff; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #3b82f6;">
+                <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px;">⏰ What happens next?</h3>
+                <ul style="color: #374151; margin: 0; padding-left: 20px; line-height: 1.8;">
+                  <li>Our team will review your inquiry within the next few hours</li>
+                  <li>You'll receive a personalized response within 24-48 hours</li>
+                  <li>For urgent matters, you can also call us directly</li>
+                  <li>We'll provide detailed information about how we can help your business</li>
+                </ul>
+              </div>
+              
+              <div style="text-align: center; margin: 30px 0;">
+                <p style="color: #374151; font-size: 16px; line-height: 1.6;">In the meantime, feel free to explore our services and learn more about how we can help your business excel.</p>
+              </div>
+              
+              <hr style="margin: 40px 0; border: none; border-top: 1px solid #e5e7eb;">
+              
+              <div style="text-align: center;">
+                <p style="color: #2563eb; font-weight: bold; margin: 0; font-size: 18px;">Bella International</p>
+                <p style="color: #64748b; margin: 5px 0; font-size: 14px;">Leading Business Excellence Solutions</p>
+                <p style="color: #64748b; margin: 5px 0; font-size: 12px;">
+                  This is an automated confirmation. Our team will respond personally within 24-48 hours.<br>
+                  This email was sent to ${contactData.email}
+                </p>
+              </div>
             </div>
           `,
         });
 
-        console.log('Confirmation email sent successfully');
-      } catch (emailError) {
-        console.error('Email sending error:', emailError);
+        console.log(`[EMAIL] Email sent successfully. Response:`, emailResponse);
+        await logEmailAttempt(contactData.email, 'contact_form', 'success');
+      } catch (emailError: any) {
+        console.error(`[EMAIL] Email sending failed:`, emailError);
+        console.error(`[EMAIL] Error details:`, {
+          message: emailError.message,
+          status: emailError.status,
+          name: emailError.name
+        });
+        await logEmailAttempt(contactData.email, 'contact_form', 'failed', emailError.message);
         // Don't fail the submission if email fails
       }
+    } else {
+      console.log(`[EMAIL] Resend not configured - skipping email send`);
+      await logEmailAttempt(contactData.email, 'contact_form', 'failed', 'Resend API key not configured');
     }
 
     return new Response(
