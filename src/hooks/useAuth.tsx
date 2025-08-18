@@ -37,10 +37,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
+        console.log('Auth event:', event, session?.user?.email);
+        
         setUser(session?.user ?? null);
         
         if (session?.user) {
           await checkAdminStatus(session.user.id);
+          
+          // Show welcome message for email confirmation
+          if (event === 'SIGNED_IN' && session.user.email_confirmed_at) {
+            toast({
+              title: "Email Confirmed! 🎉",
+              description: "Your account is now verified and ready to use.",
+            });
+          }
         } else {
           setIsAdmin(false);
         }
