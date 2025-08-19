@@ -30,13 +30,30 @@ export const useCreateContactSubmission = () => {
       form_type?: string;
       metadata?: any;
     }) => {
-      const { data, error } = await supabase.functions.invoke('contact-email', {
-        body: formData
-      });
+      console.log('[CONTACT] Starting submission with data:', formData);
       
-      if (error) throw error;
-      if (!data?.success) throw new Error(data?.error || 'Unknown error occurred');
-      return data;
+      try {
+        const { data, error } = await supabase.functions.invoke('contact-email', {
+          body: formData
+        });
+        
+        console.log('[CONTACT] Edge function response:', { data, error });
+        
+        if (error) {
+          console.error('[CONTACT] Edge function error:', error);
+          throw error;
+        }
+        if (!data?.success) {
+          console.error('[CONTACT] Edge function returned failure:', data);
+          throw new Error(data?.error || 'Unknown error occurred');
+        }
+        
+        console.log('[CONTACT] Submission successful:', data);
+        return data;
+      } catch (err) {
+        console.error('[CONTACT] Mutation error:', err);
+        throw err;
+      }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['contact-submissions'] });
