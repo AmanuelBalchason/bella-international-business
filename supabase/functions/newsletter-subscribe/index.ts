@@ -73,10 +73,65 @@ const handler = async (req: Request): Promise<Response> => {
     
     if (existingSubscription) {
       if (existingSubscription.is_verified && existingSubscription.is_active) {
+        // Send confirmation email even for existing subscribers
+        if (resend) {
+          try {
+            await resend.emails.send({
+              from: "Bella International <hello@bellainternational.app>",
+              to: [sanitizedEmail],
+              subject: "Thank you for your continued interest in Bella International",
+              html: `
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
+                  <div style="text-align: center; margin-bottom: 30px;">
+                    <h1 style="color: #2563eb; margin: 0; font-size: 28px;">Bella International</h1>
+                    <p style="color: #64748b; margin: 5px 0;">Leading Business Excellence Solutions</p>
+                  </div>
+                  
+                  <div style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 30px;">
+                    <h2 style="margin: 0; font-size: 24px;">📧 Newsletter Confirmation</h2>
+                    <p style="margin: 10px 0 0 0; opacity: 0.9;">You're already part of our community!</p>
+                  </div>
+                  
+                  <p style="color: #374151; font-size: 16px; line-height: 1.6;">Thank you for your continued interest in <strong>Bella International</strong>!</p>
+                  
+                  <p style="color: #374151; font-size: 16px; line-height: 1.6;">We're delighted to confirm that you're already subscribed to our newsletter with this email address. You'll continue to receive our latest updates, insights, and business excellence content.</p>
+                  
+                  <div style="background-color: #eff6ff; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #3b82f6;">
+                    <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px;">📰 What to expect:</h3>
+                    <ul style="color: #374151; margin: 0; padding-left: 20px; line-height: 1.8;">
+                      <li>Weekly business insights and industry trends</li>
+                      <li>Exclusive event invitations and early access</li>
+                      <li>Success stories from across the Horn of Africa</li>
+                      <li>Strategic partnership opportunities</li>
+                    </ul>
+                  </div>
+                  
+                  <div style="text-align: center; margin: 30px 0;">
+                    <p style="color: #374151; font-size: 16px; line-height: 1.6;">Thank you for being part of our community. We're excited to continue this journey with you!</p>
+                  </div>
+                  
+                  <hr style="margin: 40px 0; border: none; border-top: 1px solid #e5e7eb;">
+                  
+                  <div style="text-align: center;">
+                    <p style="color: #2563eb; font-weight: bold; margin: 0; font-size: 18px;">Bella International</p>
+                    <p style="color: #64748b; margin: 5px 0; font-size: 14px;">Leading Business Excellence Solutions</p>
+                    <p style="color: #64748b; margin: 5px 0; font-size: 12px;">
+                      This email was sent to ${sanitizedEmail}
+                    </p>
+                  </div>
+                </div>
+              `,
+            });
+            console.log('Confirmation email sent to existing subscriber');
+          } catch (emailError) {
+            console.error('Failed to send confirmation email to existing subscriber:', emailError);
+          }
+        }
+        
         return new Response(
           JSON.stringify({ 
             success: true, 
-            message: 'Email is already subscribed to our newsletter.' 
+            message: 'Thank you! You\'re already subscribed. Check your email for confirmation.' 
           }),
           { headers: { 'Content-Type': 'application/json', ...corsHeaders } }
         );
