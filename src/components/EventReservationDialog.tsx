@@ -58,7 +58,12 @@ const EventReservationDialog = ({ children }: EventReservationDialogProps) => {
         company: formData.company
       });
 
-      const { data, error } = await supabase.functions.invoke('event-reservation', {
+      // Add timeout to prevent hanging
+      const timeoutPromise = new Promise<never>((_, reject) => 
+        setTimeout(() => reject(new Error('Request timeout - the server took too long to respond')), 30000)
+      );
+
+      const functionPromise = supabase.functions.invoke('event-reservation', {
         body: {
           firstName: formData.firstName,
           lastName: formData.lastName,
@@ -70,6 +75,9 @@ const EventReservationDialog = ({ children }: EventReservationDialogProps) => {
           message: formData.message
         }
       });
+
+      const result = await Promise.race([functionPromise, timeoutPromise]);
+      const { data, error } = result;
 
       console.log('[EVENT-RESERVATION] Edge function response:', { data, error });
 
