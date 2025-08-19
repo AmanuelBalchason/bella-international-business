@@ -105,7 +105,7 @@ const handler = async (req: Request): Promise<Response> => {
         console.log(`[EMAIL] Attempting to send confirmation email to: ${contactData.email}`);
         
         const emailResponse = await resend.emails.send({
-          from: "Bella International <hello@bellainter.com>",
+          from: "Bella International <info@bellainter.com>",
           to: [contactData.email],
           subject: "Thank you for contacting Bella International",
           html: `

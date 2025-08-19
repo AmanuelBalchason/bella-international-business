@@ -172,7 +172,7 @@ const handler = async (req: Request): Promise<Response> => {
       console.log(`[EMAIL] Attempting to send test email to: ${email}`);
       
       const emailResponse = await resend.emails.send({
-        from: "Bella International <hello@bellainter.com>",
+        from: "Bella International <info@bellainter.com>",
         to: [email],
         subject,
         html: emailContent,

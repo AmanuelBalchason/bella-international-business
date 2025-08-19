@@ -77,7 +77,7 @@ const handler = async (req: Request): Promise<Response> => {
         if (resend) {
           try {
             await resend.emails.send({
-              from: "Bella International <hello@bellainter.com>",
+              from: "Bella International <info@bellainter.com>",
               to: [sanitizedEmail],
               subject: "Thank you for your continued interest in Bella International",
               html: `
@@ -192,7 +192,7 @@ const handler = async (req: Request): Promise<Response> => {
         const unsubscribeUrl = `https://xprrwkjotipgqhbchbju.supabase.co/functions/v1/newsletter-verify?email=${encodeURIComponent(sanitizedEmail)}&token=${subscriptionData.verification_token}&action=unsubscribe`;
 
         await resend.emails.send({
-          from: "Bella International <hello@bellainter.com>",
+          from: "Bella International <info@bellainter.com>",
           to: [sanitizedEmail],
           subject: "Please verify your subscription to Bella International Newsletter",
           html: `
