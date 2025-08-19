@@ -25,7 +25,10 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    console.log('[NEWSLETTER] Starting subscription process...');
+    
     if (!email.trim()) {
+      console.log('[NEWSLETTER] Validation failed - empty email');
       toast({
         title: "Email required",
         description: "Please enter your email address.",
@@ -35,6 +38,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({
     }
 
     if (!validateEmail(email.trim())) {
+      console.log('[NEWSLETTER] Validation failed - invalid email format');
       toast({
         title: "Invalid email",
         description: "Please enter a valid email address.",
@@ -46,6 +50,8 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({
     setIsLoading(true);
 
     try {
+      console.log('[NEWSLETTER] Calling edge function with email:', email.trim().toLowerCase());
+      
       const { data, error } = await supabase.functions.invoke('newsletter-subscribe', {
         body: {
           email: email.trim().toLowerCase(),
@@ -53,26 +59,33 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({
         }
       });
 
+      console.log('[NEWSLETTER] Edge function response:', { data, error });
+
       if (error) {
+        console.error('[NEWSLETTER] Edge function error:', error);
         throw error;
       }
 
       if (data?.success) {
+        console.log('[NEWSLETTER] Success!');
         toast({
           title: "Success!",
           description: data.message,
         });
         setEmail('');
       } else {
+        console.error('[NEWSLETTER] Success flag false:', data);
         throw new Error(data?.error || 'Unknown error occurred');
       }
     } catch (error: any) {
-      console.error('Newsletter subscription error:', error);
+      console.error('[NEWSLETTER] Caught error:', error);
       
       let errorMessage = "There was an error subscribing to our newsletter. Please try again.";
       
       if (error.message?.includes('already subscribed')) {
         errorMessage = "This email is already subscribed to our newsletter.";
+      } else if (error.message?.includes('Failed to fetch')) {
+        errorMessage = "Network error. Please check your connection and try again.";
       }
       
       toast({
@@ -81,6 +94,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({
         variant: "destructive",
       });
     } finally {
+      console.log('[NEWSLETTER] Setting isLoading to false');
       setIsLoading(false);
     }
   };

@@ -36,8 +36,11 @@ const EventReservationDialog = ({ children }: EventReservationDialogProps) => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    console.log('[EVENT-RESERVATION] Starting form submission...');
+
     // Basic validation
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.company) {
+      console.log('[EVENT-RESERVATION] Validation failed - missing required fields');
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields.",
@@ -48,6 +51,13 @@ const EventReservationDialog = ({ children }: EventReservationDialogProps) => {
     }
 
     try {
+      console.log('[EVENT-RESERVATION] Calling edge function with data:', {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        company: formData.company
+      });
+
       const { data, error } = await supabase.functions.invoke('event-reservation', {
         body: {
           firstName: formData.firstName,
@@ -61,11 +71,15 @@ const EventReservationDialog = ({ children }: EventReservationDialogProps) => {
         }
       });
 
+      console.log('[EVENT-RESERVATION] Edge function response:', { data, error });
+
       if (error) {
+        console.error('[EVENT-RESERVATION] Edge function error:', error);
         throw error;
       }
 
       if (data?.success) {
+        console.log('[EVENT-RESERVATION] Success!');
         toast({
           title: "Reservation Confirmed!",
           description: data.message,
@@ -83,10 +97,11 @@ const EventReservationDialog = ({ children }: EventReservationDialogProps) => {
           message: ''
         });
       } else {
+        console.error('[EVENT-RESERVATION] Success flag false:', data);
         throw new Error(data?.error || 'Unknown error occurred');
       }
     } catch (error: any) {
-      console.error('Event reservation error:', error);
+      console.error('[EVENT-RESERVATION] Caught error:', error);
       
       let errorMessage = "There was an error submitting your reservation. Please try again.";
       
@@ -94,6 +109,8 @@ const EventReservationDialog = ({ children }: EventReservationDialogProps) => {
         errorMessage = "Please enter a valid email address.";
       } else if (error.message?.includes('Missing required fields')) {
         errorMessage = "Please fill in all required fields.";
+      } else if (error.message?.includes('Failed to fetch')) {
+        errorMessage = "Network error. Please check your connection and try again.";
       }
       
       toast({
@@ -102,6 +119,7 @@ const EventReservationDialog = ({ children }: EventReservationDialogProps) => {
         variant: "destructive"
       });
     } finally {
+      console.log('[EVENT-RESERVATION] Setting isSubmitting to false');
       setIsSubmitting(false);
     }
   };
