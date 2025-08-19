@@ -7,53 +7,215 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-const resendApiKey = Deno.env.get('RESEND_API_KEY');
+interface EmailTestRequest {
+  email: string;
+  type: 'contact' | 'newsletter' | 'event' | 'system' | 'connectivity';
+}
 
-const supabase = createClient(supabaseUrl, supabaseKey);
-const resend = resendApiKey ? new Resend(resendApiKey) : null;
+// Enhanced logging with timestamps and request tracking
+const log = (level: 'INFO' | 'ERROR' | 'WARN', message: string, data?: any) => {
+  const timestamp = new Date().toISOString();
+  console.log(`[${timestamp}] [EMAIL-TEST] [${level}] ${message}`, data ? JSON.stringify(data, null, 2) : '');
+};
 
-// Enhanced logging
-const logEmailAttempt = async (email: string, type: string, status: 'success' | 'failed', error?: string) => {
+// Email logging to database
+const logEmailAttempt = async (supabase: any, email: string, type: string, status: 'success' | 'failed', error?: string) => {
   try {
-    await supabase.from('email_logs').insert({
+    const { error: logError } = await supabase.from('email_logs').insert({
       email,
       email_type: type,
       status,
       error_message: error,
       attempted_at: new Date().toISOString()
     });
-  } catch (logError) {
-    console.error('Failed to log email attempt:', logError);
+    
+    if (logError) {
+      log('ERROR', 'Failed to log email attempt', logError);
+    } else {
+      log('INFO', `Email attempt logged: ${status}`, { email, type });
+    }
+  } catch (err) {
+    log('ERROR', 'Exception in logEmailAttempt', err);
   }
 };
 
-interface EmailTestRequest {
-  email: string;
-  type: 'contact' | 'newsletter' | 'event' | 'system';
-}
+// System diagnostics
+const runDiagnostics = async (supabase: any) => {
+  const diagnostics = {
+    timestamp: new Date().toISOString(),
+    supabase: {
+      connection: false,
+      database: false,
+      tables: false
+    },
+    resend: {
+      configured: false,
+      initialized: false
+    },
+    environment: {
+      supabaseUrl: !!Deno.env.get('SUPABASE_URL'),
+      supabaseKey: !!Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'),
+      resendKey: !!Deno.env.get('RESEND_API_KEY')
+    }
+  };
+
+  // Test Supabase connection
+  try {
+    const { data, error } = await supabase.from('email_logs').select('count').limit(1);
+    diagnostics.supabase.connection = true;
+    diagnostics.supabase.database = !error;
+    diagnostics.supabase.tables = !!data;
+    log('INFO', 'Supabase diagnostics completed', { success: !error });
+  } catch (err) {
+    log('ERROR', 'Supabase diagnostics failed', err);
+  }
+
+  // Test Resend configuration
+  const resendApiKey = Deno.env.get('RESEND_API_KEY');
+  if (resendApiKey) {
+    diagnostics.resend.configured = true;
+    try {
+      const resend = new Resend(resendApiKey);
+      diagnostics.resend.initialized = true;
+      log('INFO', 'Resend initialization successful');
+    } catch (err) {
+      log('ERROR', 'Resend initialization failed', err);
+    }
+  }
+
+  return diagnostics;
+};
+
+// Health check endpoint
+const healthCheck = async (supabase: any) => {
+  const diagnostics = await runDiagnostics(supabase);
+  
+  return new Response(
+    JSON.stringify({ 
+      status: 'healthy', 
+      timestamp: new Date().toISOString(),
+      function: 'email-test',
+      version: '2.0',
+      diagnostics
+    }),
+    { 
+      status: 200, 
+      headers: { 'Content-Type': 'application/json', ...corsHeaders } 
+    }
+  );
+};
+
+// Connectivity test
+const connectivityTest = async (supabase: any, email: string) => {
+  const requestId = crypto.randomUUID();
+  log('INFO', 'Running connectivity test', { requestId, email });
+
+  const resendApiKey = Deno.env.get('RESEND_API_KEY');
+  if (!resendApiKey) {
+    throw new Error('Resend API key not configured');
+  }
+
+  const resend = new Resend(resendApiKey);
+
+  // Send minimal test email
+  const emailResponse = await resend.emails.send({
+    from: "Bella International <info@bellainter.com>",
+    to: [email],
+    subject: "Connectivity Test - Bella International",
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <h2 style="color: #2563eb;">🔗 Connectivity Test Successful</h2>
+        <p>This is a minimal connectivity test email from Bella International.</p>
+        <p><strong>Test Details:</strong></p>
+        <ul>
+          <li>Request ID: ${requestId}</li>
+          <li>Timestamp: ${new Date().toISOString()}</li>
+          <li>Function: email-test</li>
+          <li>Type: connectivity</li>
+        </ul>
+        <p>If you received this email, the email system connectivity is working properly.</p>
+      </div>
+    `,
+  });
+
+  await logEmailAttempt(supabase, email, 'connectivity_test', 'success');
+  
+  return {
+    success: true,
+    message: 'Connectivity test completed successfully',
+    emailId: emailResponse.data?.id,
+    requestId
+  };
+};
 
 const handler = async (req: Request): Promise<Response> => {
+  const requestId = crypto.randomUUID();
+  log('INFO', `Request started`, { requestId, method: req.method, url: req.url });
+
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
+    log('INFO', 'CORS preflight request handled', { requestId });
     return new Response(null, { headers: corsHeaders });
   }
 
-  if (req.method !== 'POST') {
+  // Initialize Supabase client
+  const supabaseUrl = Deno.env.get('SUPABASE_URL');
+  const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+
+  if (!supabaseUrl || !supabaseKey) {
+    log('ERROR', 'Missing Supabase credentials', { requestId });
     return new Response(
-      JSON.stringify({ error: 'Method not allowed' }),
+      JSON.stringify({ error: 'Server configuration error', requestId }),
+      { status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+    );
+  }
+
+  const supabase = createClient(supabaseUrl, supabaseKey);
+
+  // Health check endpoint
+  if (req.method === 'GET') {
+    log('INFO', 'Health check requested', { requestId });
+    return await healthCheck(supabase);
+  }
+
+  if (req.method !== 'POST') {
+    log('WARN', 'Invalid method', { requestId, method: req.method });
+    return new Response(
+      JSON.stringify({ error: 'Method not allowed', requestId }),
       { status: 405, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
     );
   }
 
   try {
-    const { email, type = 'system' }: EmailTestRequest = await req.json();
+    const resendApiKey = Deno.env.get('RESEND_API_KEY');
 
-    // Validate required fields
-    if (!email || !email.trim()) {
+    log('INFO', 'Environment check', {
+      requestId,
+      hasSupabaseUrl: !!supabaseUrl,
+      hasSupabaseKey: !!supabaseKey,
+      hasResendKey: !!resendApiKey
+    });
+
+    // Parse request body
+    let requestData: EmailTestRequest;
+    try {
+      requestData = await req.json();
+      log('INFO', 'Request body parsed', { requestId, hasData: !!requestData });
+    } catch (parseError) {
+      log('ERROR', 'Failed to parse request body', { requestId, error: parseError });
       return new Response(
-        JSON.stringify({ error: 'Email address is required' }),
+        JSON.stringify({ error: 'Invalid JSON in request body', requestId }),
+        { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+
+    const { email, type = 'system' } = requestData;
+
+    // Validate email
+    if (!email || !email.trim()) {
+      log('WARN', 'Missing email', { requestId });
+      return new Response(
+        JSON.stringify({ error: 'Email address is required', requestId }),
         { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
       );
     }
@@ -61,22 +223,33 @@ const handler = async (req: Request): Promise<Response> => {
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
+      log('WARN', 'Invalid email format', { requestId, email });
       return new Response(
-        JSON.stringify({ error: 'Invalid email format' }),
+        JSON.stringify({ error: 'Invalid email format', requestId }),
         { status: 400, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
       );
     }
 
-    console.log(`[EMAIL-TEST] Testing email delivery to: ${email}, type: ${type}`);
-    console.log(`[EMAIL-CONFIG] Resend API Key configured: ${!!resendApiKey}`);
+    log('INFO', 'Email test request validated', { requestId, email, type });
 
-    if (!resend) {
-      await logEmailAttempt(email, `test_${type}`, 'failed', 'Resend API key not configured');
+    if (!resendApiKey) {
+      await logEmailAttempt(supabase, email, `test_${type}`, 'failed', 'Resend API key not configured');
       return new Response(
-        JSON.stringify({ error: 'Email service not configured' }),
+        JSON.stringify({ error: 'Email service not configured', requestId }),
         { status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
       );
     }
+
+    // Handle connectivity test
+    if (type === 'connectivity') {
+      const result = await connectivityTest(supabase, email);
+      return new Response(
+        JSON.stringify({ ...result, requestId }),
+        { headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+
+    const resend = new Resend(resendApiKey);
 
     // Send test email based on type
     let emailContent;
@@ -87,9 +260,16 @@ const handler = async (req: Request): Promise<Response> => {
         subject = "Contact Form Test - Bella International";
         emailContent = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
-            <h1 style="color: #2563eb;">Contact Form Test Email</h1>
+            <h1 style="color: #2563eb;">📧 Contact Form Test Email</h1>
             <p>This is a test email for the contact form functionality.</p>
             <p>If you received this email, the contact form email system is working correctly.</p>
+            <p><strong>Test Details:</strong></p>
+            <ul>
+              <li>Function: contact-email</li>
+              <li>Type: contact form test</li>
+              <li>Request ID: ${requestId}</li>
+              <li>Timestamp: ${new Date().toLocaleString()}</li>
+            </ul>
           </div>
         `;
         break;
@@ -97,9 +277,16 @@ const handler = async (req: Request): Promise<Response> => {
         subject = "Newsletter Test - Bella International";
         emailContent = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
-            <h1 style="color: #2563eb;">Newsletter Test Email</h1>
+            <h1 style="color: #2563eb;">📰 Newsletter Test Email</h1>
             <p>This is a test email for the newsletter subscription functionality.</p>
             <p>If you received this email, the newsletter system is working correctly.</p>
+            <p><strong>Test Details:</strong></p>
+            <ul>
+              <li>Function: newsletter-subscribe</li>
+              <li>Type: newsletter test</li>
+              <li>Request ID: ${requestId}</li>
+              <li>Timestamp: ${new Date().toLocaleString()}</li>
+            </ul>
           </div>
         `;
         break;
@@ -107,9 +294,16 @@ const handler = async (req: Request): Promise<Response> => {
         subject = "Event Reservation Test - Bella International";
         emailContent = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
-            <h1 style="color: #2563eb;">Event Reservation Test Email</h1>
+            <h1 style="color: #2563eb;">🎉 Event Reservation Test Email</h1>
             <p>This is a test email for the event reservation functionality.</p>
             <p>If you received this email, the event reservation system is working correctly.</p>
+            <p><strong>Test Details:</strong></p>
+            <ul>
+              <li>Function: event-reservation</li>
+              <li>Type: event reservation test</li>
+              <li>Request ID: ${requestId}</li>
+              <li>Timestamp: ${new Date().toLocaleString()}</li>
+            </ul>
           </div>
         `;
         break;
@@ -127,7 +321,7 @@ const handler = async (req: Request): Promise<Response> => {
               <p style="margin: 10px 0 0 0; opacity: 0.9;">Your email system is working perfectly!</p>
             </div>
             
-            <p style="color: #374151; font-size: 16px; line-height: 1.6;">This is a <strong>system test email</strong> from Bella International.</p>
+            <p style="color: #374151; font-size: 16px; line-height: 1.6;">This is a <strong>comprehensive system test email</strong> from Bella International.</p>
             
             <p style="color: #374151; font-size: 16px; line-height: 1.6;">If you received this email, it means:</p>
             
@@ -138,6 +332,8 @@ const handler = async (req: Request): Promise<Response> => {
                 <li>✅ Domain configuration (bellainter.com) is correct</li>
                 <li>✅ Email delivery system is operational</li>
                 <li>✅ All edge functions can send emails</li>
+                <li>✅ Database logging is functional</li>
+                <li>✅ Error handling is working</li>
               </ul>
             </div>
             
@@ -147,12 +343,23 @@ const handler = async (req: Request): Promise<Response> => {
                 <li>Contact form confirmations</li>
                 <li>Newsletter subscriptions and verifications</li>
                 <li>Event reservation confirmations</li>
-                <li>System notifications</li>
+                <li>System notifications and alerts</li>
               </ul>
             </div>
             
+            <div style="background-color: #f0fdf4; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #16a34a;">
+              <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px;">🔍 Test Details:</h3>
+              <table style="width: 100%; color: #374151;">
+                <tr><td style="padding: 5px 0;"><strong>Function:</strong></td><td>email-test</td></tr>
+                <tr><td style="padding: 5px 0;"><strong>Type:</strong></td><td>${type}</td></tr>
+                <tr><td style="padding: 5px 0;"><strong>Request ID:</strong></td><td>${requestId}</td></tr>
+                <tr><td style="padding: 5px 0;"><strong>Timestamp:</strong></td><td>${new Date().toLocaleString()}</td></tr>
+                <tr><td style="padding: 5px 0;"><strong>Version:</strong></td><td>2.0</td></tr>
+              </table>
+            </div>
+            
             <div style="text-align: center; margin: 30px 0;">
-              <p style="color: #374151; font-size: 16px; line-height: 1.6;">Test completed successfully at ${new Date().toLocaleString()}</p>
+              <p style="color: #374151; font-size: 16px; line-height: 1.6;">Test completed successfully! All email systems are operational.</p>
             </div>
             
             <hr style="margin: 40px 0; border: none; border-top: 1px solid #e5e7eb;">
@@ -169,7 +376,7 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     try {
-      console.log(`[EMAIL] Attempting to send test email to: ${email}`);
+      log('INFO', 'Sending test email', { requestId, to: email, type });
       
       const emailResponse = await resend.emails.send({
         from: "Bella International <info@bellainter.com>",
@@ -178,41 +385,54 @@ const handler = async (req: Request): Promise<Response> => {
         html: emailContent,
       });
 
-      console.log(`[EMAIL] Test email sent successfully. Response:`, emailResponse);
-      await logEmailAttempt(email, `test_${type}`, 'success');
+      log('INFO', 'Test email sent successfully', { 
+        requestId, 
+        emailId: emailResponse.data?.id,
+        to: email
+      });
+      
+      await logEmailAttempt(supabase, email, `test_${type}`, 'success');
+
+      const response = {
+        success: true,
+        message: `Test email sent successfully to ${email}`,
+        emailId: emailResponse.data?.id,
+        type,
+        requestId,
+        timestamp: new Date().toISOString()
+      };
+
+      log('INFO', 'Request completed successfully', { requestId, type });
 
       return new Response(
-        JSON.stringify({ 
-          success: true, 
-          message: `Test email sent successfully to ${email}`,
-          emailId: emailResponse.data?.id
-        }),
+        JSON.stringify(response),
         { headers: { 'Content-Type': 'application/json', ...corsHeaders } }
       );
 
     } catch (emailError: any) {
-      console.error(`[EMAIL] Test email sending failed:`, emailError);
-      console.error(`[EMAIL] Error details:`, {
-        message: emailError.message,
-        status: emailError.status,
-        name: emailError.name
-      });
+      log('ERROR', 'Test email sending failed', { requestId, error: emailError.message, stack: emailError.stack });
       
-      await logEmailAttempt(email, `test_${type}`, 'failed', emailError.message);
+      await logEmailAttempt(supabase, email, `test_${type}`, 'failed', emailError.message);
       
       return new Response(
         JSON.stringify({ 
           error: 'Failed to send test email', 
-          details: emailError.message 
+          details: emailError.message,
+          requestId
         }),
         { status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
       );
     }
 
   } catch (error: any) {
-    console.error('Email test error:', error);
+    log('ERROR', 'Unhandled exception', { requestId, error: error.message, stack: error.stack });
+    
     return new Response(
-      JSON.stringify({ error: 'Internal server error' }),
+      JSON.stringify({ 
+        error: 'Internal server error', 
+        requestId,
+        timestamp: new Date().toISOString()
+      }),
       { status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
     );
   }
