@@ -194,24 +194,26 @@ const handler = async (req: Request): Promise<Response> => {
           to: [contactData.email],
           subject: "Thank you for contacting Bella International",
           html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
+            <div style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
+              <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+              
               <div style="text-align: center; margin-bottom: 30px;">
-                <h1 style="color: #2563eb; margin: 0; font-size: 28px;">Bella International</h1>
-                <p style="color: #64748b; margin: 5px 0;">Leading Business Excellence Solutions</p>
+                <h1 style="color: #456653; margin: 0; font-size: 28px; font-family: 'Marcellus', serif;">Bella International</h1>
+                <p style="color: #64748b; margin: 5px 0; font-family: 'Inter', sans-serif;">Leading Business Excellence Solutions</p>
               </div>
               
-              <div style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 30px;">
-                <h2 style="margin: 0; font-size: 24px;">🙏 Thank You for Reaching Out!</h2>
-                <p style="margin: 10px 0 0 0; opacity: 0.9;">We've received your message and will respond soon</p>
+              <div style="background: linear-gradient(135deg, #456653 0%, #3d5a47 100%); color: white; padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 30px;">
+                <h2 style="margin: 0; font-size: 24px; font-family: 'Marcellus', serif;">🙏 Thank You for Reaching Out!</h2>
+                <p style="margin: 10px 0 0 0; opacity: 0.9; font-family: 'Inter', sans-serif;">We've received your message and will respond soon</p>
               </div>
               
-              <p style="color: #374151; font-size: 16px; line-height: 1.6;">Dear ${contactData.name},</p>
+              <p style="color: #374151; font-size: 16px; line-height: 1.6; font-family: 'Inter', sans-serif;">Dear ${contactData.name},</p>
               
-              <p style="color: #374151; font-size: 16px; line-height: 1.6;">Thank you for contacting <strong>Bella International</strong>. We have received your message and appreciate you taking the time to reach out to us.</p>
+              <p style="color: #374151; font-size: 16px; line-height: 1.6; font-family: 'Inter', sans-serif;">Thank you for contacting <strong>Bella International</strong>. We have received your message and appreciate you taking the time to reach out to us.</p>
               
-              <div style="background-color: #f8fafc; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #2563eb;">
-                <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px;">📋 Your Message Details</h3>
-                <table style="width: 100%; color: #374151;">
+              <div style="background-color: #f8fafc; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #456653;">
+                <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px; font-family: 'Marcellus', serif;">📋 Your Message Details</h3>
+                <table style="width: 100%; color: #374151; font-family: 'Inter', sans-serif;">
                   <tr><td style="padding: 8px 0; vertical-align: top; width: 100px;"><strong>Name:</strong></td><td style="padding: 8px 0;">${contactData.name}</td></tr>
                   <tr><td style="padding: 8px 0; vertical-align: top;"><strong>Email:</strong></td><td style="padding: 8px 0;">${contactData.email}</td></tr>
                   ${contactData.company ? `<tr><td style="padding: 8px 0; vertical-align: top;"><strong>Company:</strong></td><td style="padding: 8px 0;">${contactData.company}</td></tr>` : ''}
@@ -219,16 +221,16 @@ const handler = async (req: Request): Promise<Response> => {
                   ${contactData.subject ? `<tr><td style="padding: 8px 0; vertical-align: top;"><strong>Subject:</strong></td><td style="padding: 8px 0;">${contactData.subject}</td></tr>` : ''}
                 </table>
                 <div style="margin-top: 15px;">
-                  <strong style="color: #374151;">Message:</strong>
-                  <div style="background-color: #ffffff; padding: 15px; border-radius: 6px; margin-top: 8px; border-left: 3px solid #3b82f6; color: #374151; line-height: 1.6;">
+                  <strong style="color: #374151; font-family: 'Inter', sans-serif;">Message:</strong>
+                  <div style="background-color: #ffffff; padding: 15px; border-radius: 6px; margin-top: 8px; border-left: 3px solid #456653; color: #374151; line-height: 1.6; font-family: 'Inter', sans-serif;">
                     ${contactData.message}
                   </div>
                 </div>
               </div>
               
-              <div style="background-color: #eff6ff; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #3b82f6;">
-                <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px;">⏰ What happens next?</h3>
-                <ul style="color: #374151; margin: 0; padding-left: 20px; line-height: 1.8;">
+              <div style="background-color: #f0f7f4; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #456653;">
+                <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px; font-family: 'Marcellus', serif;">⏰ What happens next?</h3>
+                <ul style="color: #374151; margin: 0; padding-left: 20px; line-height: 1.8; font-family: 'Inter', sans-serif;">
                   <li>Our team will review your inquiry within the next few hours</li>
                   <li>You'll receive a personalized response within 24-48 hours</li>
                   <li>For urgent matters, you can also call us directly at +251 962 777777</li>
@@ -237,15 +239,15 @@ const handler = async (req: Request): Promise<Response> => {
               </div>
               
               <div style="text-align: center; margin: 30px 0;">
-                <p style="color: #374151; font-size: 16px; line-height: 1.6;">Thank you for considering Bella International as your business excellence partner.</p>
+                <p style="color: #374151; font-size: 16px; line-height: 1.6; font-family: 'Inter', sans-serif;">Thank you for considering Bella International as your business excellence partner.</p>
               </div>
               
               <hr style="margin: 40px 0; border: none; border-top: 1px solid #e5e7eb;">
               
               <div style="text-align: center;">
-                <p style="color: #2563eb; font-weight: bold; margin: 0; font-size: 18px;">Bella International</p>
-                <p style="color: #64748b; margin: 5px 0; font-size: 14px;">Leading Business Excellence Solutions</p>
-                <p style="color: #64748b; margin: 5px 0; font-size: 12px;">
+                <p style="color: #456653; font-weight: bold; margin: 0; font-size: 18px; font-family: 'Marcellus', serif;">Bella International</p>
+                <p style="color: #64748b; margin: 5px 0; font-size: 14px; font-family: 'Inter', sans-serif;">Leading Business Excellence Solutions</p>
+                <p style="color: #64748b; margin: 5px 0; font-size: 12px; font-family: 'Inter', sans-serif;">
                   Request ID: ${requestId}<br>
                   This email was sent to ${contactData.email}
                 </p>

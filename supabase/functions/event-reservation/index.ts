@@ -196,24 +196,26 @@ const handler = async (req: Request): Promise<Response> => {
           to: [reservationData.email],
           subject: "Your Business Excellence Summit 2025 Reservation Confirmed",
           html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
+            <div style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
+              <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+              
               <div style="text-align: center; margin-bottom: 30px;">
-                <h1 style="color: #2563eb; margin: 0; font-size: 28px;">Bella International</h1>
-                <p style="color: #64748b; margin: 5px 0;">Leading Business Excellence Solutions</p>
+                <h1 style="color: #456653; margin: 0; font-size: 28px; font-family: 'Marcellus', serif;">Bella International</h1>
+                <p style="color: #64748b; margin: 5px 0; font-family: 'Inter', sans-serif;">Leading Business Excellence Solutions</p>
               </div>
               
-              <div style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 30px;">
-                <h2 style="margin: 0; font-size: 24px;">🎉 Reservation Confirmed!</h2>
-                <p style="margin: 10px 0 0 0; opacity: 0.9;">Your spot at the Business Excellence Summit 2025 is secured</p>
+              <div style="background: linear-gradient(135deg, #456653 0%, #3d5a47 100%); color: white; padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 30px;">
+                <h2 style="margin: 0; font-size: 24px; font-family: 'Marcellus', serif;">🎉 Reservation Confirmed!</h2>
+                <p style="margin: 10px 0 0 0; opacity: 0.9; font-family: 'Inter', sans-serif;">Your spot at the Business Excellence Summit 2025 is secured</p>
               </div>
               
-              <p style="color: #374151; font-size: 16px; line-height: 1.6;">Dear ${reservationData.firstName} ${reservationData.lastName},</p>
+              <p style="color: #374151; font-size: 16px; line-height: 1.6; font-family: 'Inter', sans-serif;">Dear ${reservationData.firstName} ${reservationData.lastName},</p>
               
-              <p style="color: #374151; font-size: 16px; line-height: 1.6;">Thank you for reserving your spot at the <strong>Business Excellence Summit 2025</strong>! We're excited to have you join us for this transformative event focused on business excellence across the Horn of Africa.</p>
+              <p style="color: #374151; font-size: 16px; line-height: 1.6; font-family: 'Inter', sans-serif;">Thank you for reserving your spot at the <strong>Business Excellence Summit 2025</strong>! We're excited to have you join us for this transformative event focused on business excellence across the Horn of Africa.</p>
               
-              <div style="background-color: #f8fafc; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #2563eb;">
-                <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px;">📅 Event Details</h3>
-                <table style="width: 100%; color: #374151;">
+              <div style="background-color: #f8fafc; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #456653;">
+                <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px; font-family: 'Marcellus', serif;">📅 Event Details</h3>
+                <table style="width: 100%; color: #374151; font-family: 'Inter', sans-serif;">
                   <tr><td style="padding: 8px 0; width: 120px;"><strong>Event:</strong></td><td style="padding: 8px 0;">Business Excellence Summit 2025</td></tr>
                   <tr><td style="padding: 8px 0;"><strong>Date:</strong></td><td style="padding: 8px 0;">March 15-16, 2025</td></tr>
                   <tr><td style="padding: 8px 0;"><strong>Location:</strong></td><td style="padding: 8px 0;">Addis Ababa, Ethiopia</td></tr>
@@ -222,9 +224,9 @@ const handler = async (req: Request): Promise<Response> => {
                 </table>
               </div>
               
-              <div style="background-color: #eff6ff; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #3b82f6;">
-                <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px;">👤 Your Registration Details</h3>
-                <table style="width: 100%; color: #374151;">
+              <div style="background-color: #f0f7f4; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #456653;">
+                <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px; font-family: 'Marcellus', serif;">👤 Your Registration Details</h3>
+                <table style="width: 100%; color: #374151; font-family: 'Inter', sans-serif;">
                   <tr><td style="padding: 5px 0; width: 100px;"><strong>Name:</strong></td><td style="padding: 5px 0;">${reservationData.firstName} ${reservationData.lastName}</td></tr>
                   <tr><td style="padding: 5px 0;"><strong>Company:</strong></td><td style="padding: 5px 0;">${reservationData.company}</td></tr>
                   ${reservationData.position ? `<tr><td style="padding: 5px 0;"><strong>Position:</strong></td><td style="padding: 5px 0;">${reservationData.position}</td></tr>` : ''}
@@ -234,9 +236,9 @@ const handler = async (req: Request): Promise<Response> => {
                 </table>
               </div>
               
-              <div style="background-color: #fefce8; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #eab308;">
-                <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px;">✅ What's Next?</h3>
-                <ul style="color: #374151; margin: 0; padding-left: 20px; line-height: 1.8;">
+              <div style="background-color: #fdfaf0; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #456653;">
+                <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px; font-family: 'Marcellus', serif;">✅ What's Next?</h3>
+                <ul style="color: #374151; margin: 0; padding-left: 20px; line-height: 1.8; font-family: 'Inter', sans-serif;">
                   <li>You'll receive a detailed agenda and venue information 1 week before the event</li>
                   <li>Please bring a valid ID for registration at the event</li>
                   <li>Business casual attire is recommended</li>
@@ -246,9 +248,9 @@ const handler = async (req: Request): Promise<Response> => {
                 </ul>
               </div>
               
-              <div style="background-color: #f0fdf4; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #16a34a;">
-                <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px;">🎯 What to Expect</h3>
-                <ul style="color: #374151; margin: 0; padding-left: 20px; line-height: 1.8;">
+              <div style="background-color: #f0f7f4; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #456653;">
+                <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px; font-family: 'Marcellus', serif;">🎯 What to Expect</h3>
+                <ul style="color: #374151; margin: 0; padding-left: 20px; line-height: 1.8; font-family: 'Inter', sans-serif;">
                   <li>Keynote presentations from industry leaders</li>
                   <li>Interactive workshops on business excellence strategies</li>
                   <li>Panel discussions on Horn of Africa market opportunities</li>
@@ -258,18 +260,18 @@ const handler = async (req: Request): Promise<Response> => {
               </div>
               
               <div style="text-align: center; margin: 30px 0;">
-                <p style="color: #374151; font-size: 16px; line-height: 1.6;">We're excited to see you at the summit! If you have any questions or need to make changes to your reservation, please don't hesitate to contact us.</p>
+                <p style="color: #374151; font-size: 16px; line-height: 1.6; font-family: 'Inter', sans-serif;">We're excited to see you at the summit! If you have any questions or need to make changes to your reservation, please don't hesitate to contact us.</p>
               </div>
               
               <hr style="margin: 40px 0; border: none; border-top: 1px solid #e5e7eb;">
               
               <div style="text-align: center;">
-                <p style="color: #2563eb; font-weight: bold; margin: 0; font-size: 18px;">Bella International</p>
-                <p style="color: #64748b; margin: 5px 0; font-size: 14px;">Leading Business Excellence Solutions</p>
-                <p style="color: #64748b; margin: 5px 0; font-size: 14px;">
+                <p style="color: #456653; font-weight: bold; margin: 0; font-size: 18px; font-family: 'Marcellus', serif;">Bella International</p>
+                <p style="color: #64748b; margin: 5px 0; font-size: 14px; font-family: 'Inter', sans-serif;">Leading Business Excellence Solutions</p>
+                <p style="color: #64748b; margin: 5px 0; font-size: 14px; font-family: 'Inter', sans-serif;">
                   📧 info@bellainter.com | 📞 +251 962 777777
                 </p>
-                <p style="color: #64748b; margin: 5px 0; font-size: 12px;">
+                <p style="color: #64748b; margin: 5px 0; font-size: 12px; font-family: 'Inter', sans-serif;">
                   If you need to make changes to your reservation, please reply to this email.<br>
                   Reservation ID: ${reservation.id}<br>
                   Request ID: ${requestId}<br>
