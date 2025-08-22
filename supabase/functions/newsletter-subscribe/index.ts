@@ -175,14 +175,19 @@ const handler = async (req: Request): Promise<Response> => {
               to: [sanitizedEmail],
               subject: "Thank you for your continued interest in Bella International",
               html: `
-                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
+                <html>
+                <head>
+                  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+                </head>
+                <body>
+                <div style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff; background-image: radial-gradient(circle, #456653 1px, transparent 1px); background-size: 20px 20px;">
                   <div style="text-align: center; margin-bottom: 30px;">
-                    <h1 style="color: #2563eb; margin: 0; font-size: 28px;">Bella International</h1>
+                    <h1 style="font-family: 'Marcellus', serif; color: #456653; margin: 0; font-size: 28px;">Bella International</h1>
                     <p style="color: #64748b; margin: 5px 0;">Leading Business Excellence Solutions</p>
                   </div>
                   
-                  <div style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 30px;">
-                    <h2 style="margin: 0; font-size: 24px;">📧 Newsletter Confirmation</h2>
+                  <div style="background: linear-gradient(135deg, #456653 0%, #3d5a4a 100%); color: white; padding: 30px; text-align: center; margin-bottom: 30px;">
+                    <h2 style="font-family: 'Marcellus', serif; margin: 0; font-size: 24px;">📧 Newsletter Confirmation</h2>
                     <p style="margin: 10px 0 0 0; opacity: 0.9;">You're already part of our community!</p>
                   </div>
                   
@@ -190,8 +195,8 @@ const handler = async (req: Request): Promise<Response> => {
                   
                   <p style="color: #374151; font-size: 16px; line-height: 1.6;">We're delighted to confirm that you're already subscribed to our newsletter. You'll continue to receive our latest updates, insights, and business excellence content.</p>
                   
-                  <div style="background-color: #eff6ff; padding: 25px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #3b82f6;">
-                    <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 18px;">📰 What to expect:</h3>
+                  <div style="background-color: #f0f4f2; padding: 25px; margin: 25px 0; border-left: 4px solid #456653;">
+                    <h3 style="font-family: 'Marcellus', serif; color: #1e293b; margin: 0 0 15px 0; font-size: 18px;">📰 What to expect:</h3>
                     <ul style="color: #374151; margin: 0; padding-left: 20px; line-height: 1.8;">
                       <li>Weekly business insights and industry trends</li>
                       <li>Exclusive event invitations and early access</li>
@@ -203,7 +208,7 @@ const handler = async (req: Request): Promise<Response> => {
                   <hr style="margin: 40px 0; border: none; border-top: 1px solid #e5e7eb;">
                   
                   <div style="text-align: center;">
-                    <p style="color: #2563eb; font-weight: bold; margin: 0; font-size: 18px;">Bella International</p>
+                    <p style="font-family: 'Marcellus', serif; color: #456653; font-weight: bold; margin: 0; font-size: 18px;">Bella International</p>
                     <p style="color: #64748b; margin: 5px 0; font-size: 14px;">Leading Business Excellence Solutions</p>
                     <p style="color: #64748b; margin: 5px 0; font-size: 12px;">
                       Request ID: ${requestId}<br>
@@ -211,6 +216,8 @@ const handler = async (req: Request): Promise<Response> => {
                     </p>
                   </div>
                 </div>
+                </body>
+                </html>
               `,
             });
 
@@ -302,14 +309,19 @@ const handler = async (req: Request): Promise<Response> => {
           to: [sanitizedEmail],
           subject: "Please verify your subscription to Bella International Newsletter",
           html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
+            <html>
+            <head>
+              <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+            </head>
+            <body>
+            <div style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff; background-image: radial-gradient(circle, #456653 1px, transparent 1px); background-size: 20px 20px;">
               <div style="text-align: center; margin-bottom: 30px;">
-                <h1 style="color: #2563eb; margin: 0; font-size: 28px;">Bella International</h1>
+                <h1 style="font-family: 'Marcellus', serif; color: #456653; margin: 0; font-size: 28px;">Bella International</h1>
                 <p style="color: #64748b; margin: 5px 0;">Leading Business Excellence Solutions</p>
               </div>
               
-              <div style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 30px;">
-                <h2 style="margin: 0; font-size: 24px;">✉️ Verify Your Subscription</h2>
+              <div style="background: linear-gradient(135deg, #456653 0%, #3d5a4a 100%); color: white; padding: 30px; text-align: center; margin-bottom: 30px;">
+                <h2 style="font-family: 'Marcellus', serif; margin: 0; font-size: 24px;">✉️ Verify Your Subscription</h2>
                 <p style="margin: 10px 0 0 0; opacity: 0.9;">One more step to join our community</p>
               </div>
               
@@ -319,17 +331,64 @@ const handler = async (req: Request): Promise<Response> => {
               
               <div style="text-align: center; margin: 30px 0;">
                 <a href="${verificationUrl}" 
-                   style="background-color: #2563eb; color: white; padding: 15px 30px; 
-                          text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold;">
+                   style="background-color: #456653; color: white; padding: 15px 30px; 
+                          text-decoration: none; display: inline-block; font-weight: bold;">
                   Verify My Email Address
                 </a>
               </div>
               
-              <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 25px 0; border-left: 4px solid #2563eb;">
+              <div style="background-color: #f0f4f2; padding: 20px; margin: 25px 0; border-left: 4px solid #456653;">
                 <p style="color: #374151; margin: 0; font-size: 14px;">
                   If the button doesn't work, you can copy and paste this link into your browser:<br>
-                  <span style="word-break: break-all; color: #2563eb;">${verificationUrl}</span>
+                  <span style="word-break: break-all; color: #456653;">${verificationUrl}</span>
                 </p>
+              </div>
+              
+              <div style="background-color: #f9fafa; padding: 25px; margin: 30px 0;">
+                <h3 style="font-family: 'Marcellus', serif; color: #456653; margin: 0 0 20px 0; font-size: 18px;">⏰ What happens next?</h3>
+                
+                <!-- Flow diagram -->
+                <div style="position: relative; display: flex; justify-content: space-between; align-items: center; margin: 20px 0;">
+                  <!-- Progress line -->
+                  <div style="position: absolute; top: 20px; left: 50px; right: 50px; height: 2px; background-color: #e5e7eb; z-index: 1;"></div>
+                  
+                  <!-- Step 1: Sent -->
+                  <div style="display: flex; flex-direction: column; align-items: center; z-index: 2;">
+                    <div style="width: 40px; height: 40px; background-color: #456653; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+                      <span style="color: white; font-size: 18px;">✉️</span>
+                    </div>
+                    <span style="background-color: #d1d5db; color: #374151; padding: 4px 8px; font-size: 11px; font-weight: bold; text-transform: uppercase;">sent</span>
+                    <span style="font-size: 11px; color: #6b7280; margin-top: 4px;">Now</span>
+                  </div>
+                  
+                  <!-- Step 2: Delivered -->
+                  <div style="display: flex; flex-direction: column; align-items: center; z-index: 2;">
+                    <div style="width: 40px; height: 40px; background-color: #456653; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+                      <span style="color: white; font-size: 18px;">✓</span>
+                    </div>
+                    <span style="background-color: #bbf7d0; color: #15803d; padding: 4px 8px; font-size: 11px; font-weight: bold; text-transform: uppercase;">delivered</span>
+                    <span style="font-size: 11px; color: #6b7280; margin-top: 4px;">2 mins</span>
+                  </div>
+                  
+                  <!-- Step 3: Clicked -->
+                  <div style="display: flex; flex-direction: column; align-items: center; z-index: 2;">
+                    <div style="width: 40px; height: 40px; background-color: #f3f4f6; border: 2px solid #d1d5db; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;">
+                      <span style="color: #6b7280; font-size: 18px;">👆</span>
+                    </div>
+                    <span style="background-color: #f3f4f6; color: #6b7280; padding: 4px 8px; font-size: 11px; font-weight: bold; text-transform: uppercase;">verify</span>
+                    <span style="font-size: 11px; color: #6b7280; margin-top: 4px;">Your action</span>
+                  </div>
+                </div>
+                
+                <div style="margin-top: 25px;">
+                  <p style="color: #374151; margin: 0 0 10px 0; font-size: 14px;">Our team will process your verification instantly:</p>
+                  <ul style="color: #374151; margin: 0; padding-left: 20px; line-height: 1.6; font-size: 14px;">
+                    <li>You'll receive a welcome message within minutes</li>
+                    <li>Your subscription will be activated immediately</li>
+                    <li>You'll start receiving our newsletter within 24 hours</li>
+                    <li>For urgent matters, contact us at info@bellainter.com</li>
+                  </ul>
+                </div>
               </div>
               
               <p style="color: #64748b; font-size: 14px; line-height: 1.6;">
@@ -339,7 +398,7 @@ const handler = async (req: Request): Promise<Response> => {
               <hr style="margin: 40px 0; border: none; border-top: 1px solid #e5e7eb;">
               
               <div style="text-align: center;">
-                <p style="color: #2563eb; font-weight: bold; margin: 0; font-size: 18px;">Bella International</p>
+                <p style="font-family: 'Marcellus', serif; color: #456653; font-weight: bold; margin: 0; font-size: 18px;">Bella International</p>
                 <p style="color: #64748b; margin: 5px 0; font-size: 14px;">Leading Business Excellence Solutions</p>
                 <p style="color: #64748b; margin: 5px 0; font-size: 12px;">
                   If you didn't subscribe to this newsletter, you can safely ignore this email.<br>
@@ -348,6 +407,8 @@ const handler = async (req: Request): Promise<Response> => {
                 </p>
               </div>
             </div>
+            </body>
+            </html>
           `,
         });
 
