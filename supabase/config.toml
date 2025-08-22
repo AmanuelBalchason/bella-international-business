@@ -39,6 +39,9 @@ verify_jwt = false
 [functions.newsletter-subscribe]
 verify_jwt = false
 
+[functions.newsletter-campaign]
+verify_jwt = false
+
 [functions.contact-email]
 verify_jwt = false
 

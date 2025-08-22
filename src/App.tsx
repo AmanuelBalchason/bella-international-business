@@ -14,6 +14,7 @@ import SectorDetail from "./pages/SectorDetail";
 import Leadership from "./pages/Leadership";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import NewsletterTest from "./pages/NewsletterTest";
 import { useAuth } from "@/hooks/useAuth";
 import AdminAuth from "@/components/AdminAuth";
 import AdminLayout from "@/features/admin/components/AdminLayout";
@@ -60,6 +61,7 @@ const App = () => (
             <Route path="/sectors/:slug" element={<SectorDetail />} />
             <Route path="/leadership" element={<Leadership />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/newsletter-test" element={<NewsletterTest />} />
             <Route path="/admin" element={<RequireAdmin><AdminLayout /></RequireAdmin>}>
               <Route index element={<AdminDashboard />} />
               <Route path="articles" element={<ArticlesAdmin />} />
