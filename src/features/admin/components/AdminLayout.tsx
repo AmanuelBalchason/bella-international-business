@@ -10,8 +10,11 @@ import {
   Image,
   Settings,
   BarChart3,
-  Home
+  Home,
+  LogOut
 } from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
+import { Button } from '@/components/ui/button';
 import {
   Sidebar,
   SidebarContent,
@@ -80,18 +83,39 @@ function AdminSidebar() {
 }
 
 const AdminLayout: React.FC = () => {
+  const { signOut, user } = useAuth();
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      console.error('Sign out error:', error);
+    }
+  };
+
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-background">
         <AdminSidebar />
         <div className="flex-1 flex flex-col">
-          <header className="h-16 border-b border-border bg-card flex items-center px-6">
-            <SidebarTrigger className="mr-4" />
-            <h1 className="text-xl font-semibold text-card-foreground">
-              Bella International - Admin Panel
-            </h1>
+          <header className="h-16 border-b border-border bg-card flex items-center justify-between px-6">
+            <div className="flex items-center">
+              <SidebarTrigger className="mr-4" />
+              <h1 className="text-xl font-semibold text-card-foreground">
+                Bella International - Admin Panel
+              </h1>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-muted-foreground">
+                {user?.email}
+              </span>
+              <Button variant="outline" size="sm" onClick={handleSignOut}>
+                <LogOut className="h-4 w-4 mr-2" />
+                Sign Out
+              </Button>
+            </div>
           </header>
-          <main className="flex-1 p-6">
+          <main className="flex-1 p-6 overflow-auto">
             <Outlet />
           </main>
         </div>

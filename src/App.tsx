@@ -15,35 +15,15 @@ import Leadership from "./pages/Leadership";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import NewsletterTest from "./pages/NewsletterTest";
-import { useAuth } from "@/hooks/useAuth";
-import AdminAuth from "@/components/AdminAuth";
+import AdminAuthGuard from "@/features/admin/components/AdminAuthGuard";
 import AdminLayout from "@/features/admin/components/AdminLayout";
 import AdminDashboard from "@/features/admin/pages/AdminDashboard";
 import ArticlesAdmin from "@/features/articles/pages/ArticlesAdmin";
 import ArticleEditor from "@/features/articles/pages/ArticleEditor";
-// Force cache refresh with explicit default import
 import ContactSubmissionsAdmin from "@/features/admin/pages/ContactSubmissionsAdmin";
 import EmailDiagnosticsAdmin from "@/features/admin/pages/EmailDiagnosticsAdmin";
-import { useEffect, useState } from "react";
-import AdminSetup from "@/components/AdminSetup";
-import { supabase } from "@/integrations/supabase/client";
 
 const queryClient = new QueryClient();
-
-const RequireAdmin: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { user, isAdmin, loading } = useAuth();
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-      </div>
-    );
-  }
-  if (!user || !isAdmin) {
-    return <AdminAuth />;
-  }
-  return <>{children}</>;
-};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -62,7 +42,7 @@ const App = () => (
             <Route path="/leadership" element={<Leadership />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/newsletter-test" element={<NewsletterTest />} />
-            <Route path="/admin" element={<RequireAdmin><AdminLayout /></RequireAdmin>}>
+            <Route path="/admin" element={<AdminAuthGuard><AdminLayout /></AdminAuthGuard>}>
               <Route index element={<AdminDashboard />} />
               <Route path="articles" element={<ArticlesAdmin />} />
               <Route path="articles/new" element={<ArticleEditor />} />
