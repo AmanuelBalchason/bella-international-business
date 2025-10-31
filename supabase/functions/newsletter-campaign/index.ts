@@ -341,6 +341,45 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    // Verify admin authentication
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader) {
+      console.error("Missing authorization header");
+      return new Response(JSON.stringify({ error: "Unauthorized - Missing authorization" }), {
+        status: 401,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      });
+    }
+
+    const token = authHeader.replace('Bearer ', '');
+    const { data: { user }, error: userError } = await supabase.auth.getUser(token);
+    
+    if (userError || !user) {
+      console.error("Invalid or expired token:", userError);
+      return new Response(JSON.stringify({ error: "Unauthorized - Invalid token" }), {
+        status: 401,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      });
+    }
+
+    // Check if user is admin
+    const { data: adminUser, error: adminError } = await supabase
+      .from('admin_users')
+      .select('id, role')
+      .eq('user_id', user.id)
+      .eq('is_active', true)
+      .single();
+
+    if (adminError || !adminUser) {
+      console.error("User is not an admin:", adminError);
+      return new Response(JSON.stringify({ error: "Forbidden - Admin access required" }), {
+        status: 403,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      });
+    }
+
+    console.log(`Admin user ${user.email} (${adminUser.role}) authorized for newsletter campaign`);
+
     const { content }: { content: NewsletterContent } = await req.json();
 
     console.log("Starting newsletter campaign:", content.subject);

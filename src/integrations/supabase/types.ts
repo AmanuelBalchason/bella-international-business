@@ -867,16 +867,13 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      clean_expired_verification_tokens: {
-        Args: Record<PropertyKey, never>
-        Returns: undefined
-      }
+      clean_expired_verification_tokens: { Args: never; Returns: undefined }
       create_first_admin: {
         Args: { admin_email: string; admin_name: string }
         Returns: undefined
       }
       get_public_leadership_profiles: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           bio: string
           created_at: string
@@ -892,14 +889,8 @@ export type Database = {
           years_experience: number
         }[]
       }
-      is_admin: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
-      validate_admin_access: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
+      is_admin: { Args: never; Returns: boolean }
+      validate_admin_access: { Args: never; Returns: boolean }
     }
     Enums: {
       content_status: "draft" | "published" | "archived"

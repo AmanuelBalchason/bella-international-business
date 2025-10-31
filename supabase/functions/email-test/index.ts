@@ -187,6 +187,45 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    // Verify admin authentication
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader) {
+      log('ERROR', 'Missing authorization header', { requestId });
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized - Missing authorization', requestId }),
+        { status: 401, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+
+    const token = authHeader.replace('Bearer ', '');
+    const { data: { user }, error: userError } = await supabase.auth.getUser(token);
+    
+    if (userError || !user) {
+      log('ERROR', 'Invalid or expired token', { requestId, error: userError });
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized - Invalid token', requestId }),
+        { status: 401, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+
+    // Check if user is admin
+    const { data: adminUser, error: adminError } = await supabase
+      .from('admin_users')
+      .select('id, role')
+      .eq('user_id', user.id)
+      .eq('is_active', true)
+      .single();
+
+    if (adminError || !adminUser) {
+      log('ERROR', 'User is not an admin', { requestId, userId: user.id, error: adminError });
+      return new Response(
+        JSON.stringify({ error: 'Forbidden - Admin access required', requestId }),
+        { status: 403, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+
+    log('INFO', 'Admin user authorized', { requestId, email: user.email, role: adminUser.role });
+
     const resendApiKey = Deno.env.get('RESEND_API_KEY');
 
     log('INFO', 'Environment check', {
