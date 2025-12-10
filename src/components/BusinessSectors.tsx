@@ -44,7 +44,7 @@ const BusinessSectors = () => {
   ];
 
   const displaySectors = sectors && sectors.length > 0 ? sectors : fallbackSectors;
-  const hoverColors = ['hover:bg-blue-50', 'hover:bg-green-50', 'hover:bg-amber-50', 'hover:bg-slate-50'];
+  const hoverColors = ['hover:bg-green-50', 'hover:bg-green-50', 'hover:bg-green-50', 'hover:bg-green-50'];
   const imageIds = ['photo-1560518883-ce09059eeffa', 'photo-1576091160399-112ba8d25d1f', 'photo-1618160702438-9b02ab6515c9', 'photo-1449824913935-59a10b8d2000'];
 
   if (error) {
@@ -92,9 +92,6 @@ const BusinessSectors = () => {
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500">
                     <div 
                       className="w-full h-full bg-cover bg-center"
-                      style={{ 
-                        backgroundImage: `url(https://images.unsplash.com/${imageId}?auto=format&fit=crop&w=600&q=80)` 
-                      }}
                     />
                   </div>
                   

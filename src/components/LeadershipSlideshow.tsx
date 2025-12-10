@@ -90,7 +90,7 @@ const LeadershipSlideshow = () => {
                 style={{ 
                   backgroundImage: currentLeader.profile_image_id 
                     ? `url(/path/to/image/${currentLeader.profile_image_id})` 
-                    : `url(https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80)` 
+                    : `url(/leaders/abel.png)`  // Changed from Unsplash to Abel's photo
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, X, Expand } from 'lucide-react';
 import {
@@ -34,9 +33,10 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, className = "" 
   return (
     <>
       <div className={`relative w-full h-[400px] bg-gradient-to-br from-secondary to-muted border border-border overflow-hidden group ${className}`}>
-        <div 
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-          style={{ backgroundImage: `url(https://images.unsplash.com/${images[currentIndex].src}?auto=format&fit=crop&w=800&q=80)` }}
+        <img
+          src={images[currentIndex].src}
+          alt={images[currentIndex].title}
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
         
         {/* Overlay with info */}
@@ -83,7 +83,7 @@ const ImageSlideshow: React.FC<ImageSlideshowProps> = ({ images, className = "" 
         <DialogContent className="max-w-6xl h-[90vh] p-0">
           <div className="relative w-full h-full bg-black rounded-lg overflow-hidden">
             <img
-              src={`https://images.unsplash.com/${images[currentIndex].src}?auto=format&fit=crop&w=1200&q=80`}
+              src={images[currentIndex].src}
               alt={images[currentIndex].title}
               className="w-full h-full object-contain"
             />

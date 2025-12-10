@@ -38,9 +38,21 @@ const SectorDetail = () => {
       resources: ['Property Investment Guide', 'Market Analysis Report', 'Development Portfolio', 'Sustainability Whitepaper'],
       stats: { projects: '25+', value: '$50M+', locations: '5 Cities' },
       images: [
-        { src: 'photo-1560518883-ce09059eeffa', title: 'Modern Residential Complex', description: 'State-of-the-art residential development in Addis Ababa' },
-        { src: 'photo-1545324418-cc1a3fa10c00', title: 'Commercial Properties', description: 'Prime commercial real estate locations' },
-        { src: 'photo-1582407947304-fd86f028f716', title: 'Sustainable Development', description: 'Eco-friendly building practices and green spaces' }
+        { 
+          src: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80', 
+          title: 'Modern Residential Complex', 
+          description: 'State-of-the-art residential development in Addis Ababa' 
+        },
+        { 
+          src: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80', 
+          title: 'Commercial Properties', 
+          description: 'Prime commercial real estate locations' 
+        },
+        { 
+          src: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=800&q=80', 
+          title: 'Sustainable Development', 
+          description: 'Eco-friendly building practices and green spaces' 
+        }
       ],
       processSteps: [
         { step: 'Site Analysis', description: 'Comprehensive land assessment and feasibility studies', duration: '2-3 months' },
@@ -86,9 +98,21 @@ const SectorDetail = () => {
       resources: ['Healthcare Excellence Report', 'Medical Equipment Catalog', 'Quality Standards Guide', 'Community Health Impact'],
       stats: { facilities: '12', patients: '10K+', specialists: '50+' },
       images: [
-        { src: 'photo-1576091160399-112ba8d25d1f', title: 'Modern Medical Facilities', description: 'State-of-the-art healthcare facilities with advanced equipment' },
-        { src: 'photo-1559757148-5c350d0d3c56', title: 'Healthcare Professionals', description: 'Dedicated medical professionals providing quality care' },
-        { src: 'photo-1538108149393-fbbd81895907', title: 'Community Health Programs', description: 'Comprehensive community health initiatives' }
+        { 
+          src: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=800&q=80', 
+          title: 'Modern Medical Facilities', 
+          description: 'State-of-the-art healthcare facilities with advanced equipment' 
+        },
+        { 
+          src: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&q=80', 
+          title: 'Healthcare Professionals', 
+          description: 'Dedicated medical professionals providing quality care' 
+        },
+        { 
+          src: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=800&q=80', 
+          title: 'Community Health Programs', 
+          description: 'Comprehensive community health initiatives' 
+        }
       ],
       processSteps: [
         { step: 'Patient Registration', description: 'Comprehensive patient intake and medical history', duration: '15-30 min' },
@@ -134,9 +158,31 @@ const SectorDetail = () => {
       resources: ['Coffee Quality Report', 'Sustainability Practices', 'Export Documentation', 'Farmer Partnership Guide'],
       stats: { farms: '8', tons: '500+ Annually', export: '15 Countries' },
       images: [
-        { src: 'photo-1447933601403-0c6688de566e', title: 'Coffee Plantations', description: 'Lush coffee farms in the Ethiopian highlands' },
-        { src: 'photo-1498804103079-a6351b050096', title: 'Coffee Processing', description: 'Traditional and modern coffee processing methods' },
-        { src: 'photo-1509042239860-f550ce710b93', title: 'Quality Control', description: 'Rigorous quality testing and certification processes' }
+        { 
+          src: '/acha-images/acha-1.jpg', 
+          title: 'Coffee Plantations', 
+          description: 'Lush coffee farms in the Ethiopian highlands' 
+        },
+        { 
+          src: '/acha-images/acha-2.jpg', 
+          title: 'Coffee Processing', 
+          description: 'Traditional and modern coffee processing methods' 
+        },
+        { 
+          src: '/acha-images/acha-3.jpg', 
+          title: 'Quality Control', 
+          description: 'Rigorous quality testing and certification processes' 
+        },
+        { 
+          src: '/acha-images/acha-4.jpg', 
+          title: 'Quality Control', 
+          description: 'Rigorous quality testing and certification processes' 
+        },
+        { 
+          src: '/acha-images/acha-5.jpg', 
+          title: 'Quality Control', 
+          description: 'Rigorous quality testing and certification processes' 
+        }
       ],
       processSteps: [
         { step: 'Cultivation', description: 'Sustainable farming practices in forest conditions', duration: '9-12 months' },
@@ -181,9 +227,21 @@ const SectorDetail = () => {
       resources: ['Fleet Management Guide', 'Vehicle Specifications', 'Maintenance Protocols', 'Transportation Analysis'],
       stats: { vehicles: '200+', routes: '25', clients: '80+' },
       images: [
-        { src: 'photo-1449824913935-59a10b8d2000', title: 'Fleet Management', description: 'Comprehensive fleet management solutions' },
-        { src: 'photo-1550355291-bbee04a92027', title: 'Vehicle Maintenance', description: 'Professional automotive maintenance services' },
-        { src: 'photo-1486754735734-325b5831c3ad', title: 'Transportation Infrastructure', description: 'Supporting regional transportation development' }
+        { 
+          src: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80', 
+          title: 'Fleet Management', 
+          description: 'Comprehensive fleet management solutions' 
+        },
+        { 
+          src: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=800&q=80', 
+          title: 'Vehicle Maintenance', 
+          description: 'Professional automotive maintenance services' 
+        },
+        { 
+          src: 'https://images.unsplash.com/photo-1486754735734-325b5831c3ad?auto=format&fit=crop&w=800&q=80', 
+          title: 'Transportation Infrastructure', 
+          description: 'Supporting regional transportation development' 
+        }
       ],
       processSteps: [
         { step: 'Assessment', description: 'Client needs analysis and fleet evaluation', duration: '1-2 weeks' },
@@ -511,11 +569,15 @@ const SectorDetail = () => {
                   <div className="space-y-2 text-muted-foreground">
                     <div className="flex items-center gap-2">
                       <Mail className="w-4 h-4" />
-                      <span>{slug}@acha.com</span>
+                      <span>achaforestcoffee.com</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Phone className="w-4 h-4" />
-                      <span>+251 11 123 4567</span>
+                      <span>+251 913 328000</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Phone className="w-4 h-4" />
+                      <span>+251 911 827024</span>
                     </div>
                   </div>
                 </div>

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -14,69 +13,69 @@ import { Play, ChevronDown } from 'lucide-react';
 const OurStory = () => {
   const timeline = [
     {
-      year: '2008',
-      title: 'Foundation & Vision',
-      summary: 'Bella International was founded with a vision to become the foremost provider of strategic business solutions in the Horn of Africa.',
-      content: 'Our founders, Abel Yeshitila and Mulugeta Demissie, identified key opportunities in the emerging Ethiopian market and established the company with a focus on real estate development and strategic partnerships. Starting as a small consultancy, we laid the groundwork for what would become a diversified business conglomerate with a clear mission to serve the regional business community.',
+      year: '1956',
+      title: 'The Seed of a Vision',
+      summary: 'Yeshitla planted the first seeds of our legacy with a simple handful of corn and a profound question about lasting value.',
+      content: 'Yeshitla, then a businessman, found himself at a crossroads. He sought to build something meaningful, asking himself, "What is a business I can do that lasts? Something I can pass down to my children?" One night, guided by a simple, industrious spirit, he took a small handful of corn and sowed it. Months later, he returned to that very spot to find a flourishing, fruitful patch, bursting with life from just those few seeds. This was his sign. He decided farming was the path forward, and using what little money he had saved from his business days, he began his new journey.',
       images: [
-        { title: 'Foundation Ceremony', description: 'The historic founding of Bella International Business', content: 'On a pivotal day in 2008, our founders gathered to establish what would become the leading business conglomerate in the Horn of Africa.' },
-        { title: 'Vision Planning', description: 'Strategic planning sessions that shaped our future', content: 'Intensive planning sessions where our leadership team outlined the comprehensive vision for multi-sector expansion.' },
-        { title: 'First Office', description: 'Our humble beginnings in Addis Ababa', content: 'The modest office space that served as the launching pad for our ambitious business goals and regional expansion plans.' }
+        { title: 'The First Seeds', description: 'Yeshitla sowing the seeds of legacy', content: 'A symbolic beginning with a handful of corn that would grow into a multi-generational enterprise.' },
+        { title: 'Artisanal Beginning', description: 'Hands-on approach to farming', content: 'Yeshitla personally introducing diverse crops and learning the secrets of the land in Bildima.' },
+        { title: 'Community Bonds', description: 'Building relationships with local workers', content: 'Establishing the core values of kindness and community through exceptional generosity and respect.' }
       ]
     },
     {
-      year: '2012',
-      title: 'Healthcare Integration',
-      summary: 'Expanded into healthcare services, recognizing the critical need for quality medical facilities across the region.',
-      content: 'We established our first medical facility in Addis Ababa and began developing comprehensive healthcare management systems. This expansion allowed us to serve over 1,000 patients in our first year of healthcare operations, marking our commitment to improving community health outcomes through strategic partnerships with medical professionals and international healthcare organizations.',
+      year: '1966',
+      title: 'The Great Trial',
+      summary: 'Facing immense challenges during the Derg regime, our foundation was tested but never broken.',
+      content: 'A period of immense challenge arrived with the Derg regime. In 1966, Yeshitla lost a significant, heartbreaking portion of his beloved farm. This event tested the very foundations of his vision, his resilience, and his belief in his chosen path. In the years that followed, as the Derg introduced a new "mixed economy," Yeshitla had to navigate a complex and often difficult landscape. He operated alongside contemporary businessmen like Ras Masfin and Sileshi, but his focus remained unchanged: his work and his people.',
       images: [
-        { title: 'First Medical Facility', description: 'Opening of our flagship healthcare center', content: 'The grand opening of our first medical facility marked our entry into the healthcare sector with state-of-the-art equipment.' },
-        { title: 'Medical Team', description: 'Assembling our expert healthcare professionals', content: 'Recruitment of top medical professionals from across the region to deliver world-class healthcare services.' },
-        { title: 'Community Outreach', description: 'Healthcare programs reaching rural communities', content: 'Mobile healthcare units and community programs extending our medical services to underserved areas.' }
+        { title: 'Resilience Tested', description: 'Navigating challenging times', content: 'Yeshitla maintaining focus on his people and work despite significant land loss and economic changes.' },
+        { title: 'Community Respect', description: 'Earning admiration from neighbors', content: 'Solidifying reputation through unwavering hard work and profound kindness in adversity.' },
+        { title: 'Industrial Spirit', description: 'Perseverance in difficult landscape', content: 'Operating with integrity and character that earned respect from all neighboring farm owners.' }
+      ]
+    },
+    {
+      year: '1981',
+      title: 'The Reward of Resilience',
+      summary: 'Perseverance and integrity led to the successful reclamation of our ancestral land.',
+      content: 'Yeshitla\'s perseverance, integrity, and the deep respect he had earned from his community paid off exceptionally well. In 1981, he successfully reclaimed 10,000 hectares of his farm. This moment was more than a recovery; it was the ultimate proof that an ethos rooted in kindness and relentless hard work could endure even the greatest trials. It\'s a legacy that is still paying dividends to this day.',
+      images: [
+        { title: 'Land Reclaimed', description: 'Triumph of perseverance', content: 'The successful reclamation of 10,000 hectares, proving the power of kindness and hard work.' },
+        { title: 'Heritage Preserved', description: 'Restoring family legacy', content: 'Reclaiming the farm that would become the exclusive home of Acha Forest Coffee.' },
+        { title: 'Community Victory', description: 'Shared success with workers', content: 'A moment celebrated with the community that supported Yeshitla through difficult times.' }
+      ]
+    },
+    {
+      year: '2000',
+      title: 'Legacy Blooms: Acha Forest Coffee',
+      summary: 'Our reclaimed land becomes the exclusive home of world-class, single-source specialty coffee.',
+      content: 'That cherished, reclaimed 10,000-hectare farm is the heart of our heritage. Today, it is the exclusive home of Acha Forest Coffee, where we produce world-class, single-source specialty coffee. This land, located in the fertile Bildima region—widely celebrated as the very birthplace of coffee—is a living testament to Yeshitla\'s original artisanal vision. Our coffee division was built on principles of fair trade and environmental sustainability, connecting us directly to Ethiopia\'s legendary coffee origins.',
+      images: [
+        { title: 'Coffee Heritage', description: 'Birthplace of legendary coffee', content: 'Establishing operations in Bildima, the legendary birthplace of coffee, honoring rich Ethiopian coffee culture.' },
+        { title: 'Sustainable Farming', description: 'Eco-friendly cultivation methods', content: 'Working with local farmers to develop sustainable practices that protect the environment while producing premium coffee.' },
+        { title: 'Global Recognition', description: 'World-class specialty coffee', content: 'Producing single-source coffee that brings Ethiopian coffee heritage to discerning international markets.' }
       ]
     },
     {
       year: '2015',
-      title: 'Acha Forest Coffee Heritage',
-      summary: 'Launched Acha Forest Coffee operations, embracing Ethiopia\'s rich coffee heritage and establishing sustainable farming partnerships.',
-      content: 'Our coffee division was built on principles of fair trade and environmental sustainability. We began working with 8 partner farms and established direct trade relationships with international buyers, exporting to our first 5 countries. This venture connected us directly to Ethiopia\'s legendary coffee origins, where the story of Khaldi and the discovery of coffee beans continues to inspire our sustainable agricultural practices.',
+      title: 'Vision Flourishes: Bella International',
+      summary: 'The seed planted in 1956 grows into a modern multi-sector enterprise across Ethiopia.',
+      content: 'The story does not end there. That same seed of industriousness planted in 1956 has flourished into the modern Bella International. Guided by the foundational values of Yeshitla and the forward-looking stewardship of Abel Yeshitla, the enterprise has grown far beyond the farm. We now apply that same ethos of hard work, community, and kindness to diverse new sectors, including automotive, healthcare, and real estate across Ethiopia.',
       images: [
-        { title: 'Coffee Heritage', description: 'Connecting to Ethiopia\'s coffee legacy', content: 'Establishing our operations near the legendary birthplace of coffee, honoring the rich heritage of Ethiopian coffee culture.' },
-        { title: 'Sustainable Farming', description: 'Implementing eco-friendly cultivation methods', content: 'Working with local farmers to develop sustainable farming practices that protect the environment while producing premium coffee.' },
-        { title: 'Global Export', description: 'Reaching international coffee markets', content: 'Successfully establishing export relationships with buyers across 5 countries, bringing Ethiopian coffee to the world.' }
+        { title: 'Multi-Sector Growth', description: 'Expanding beyond agriculture', content: 'Applying Yeshitla\'s ethos to automotive, healthcare, and real estate sectors across Ethiopia.' },
+        { title: 'Modern Leadership', description: 'Stewardship of Abel Yeshitla', content: 'Forward-looking leadership that honors traditional values while embracing modern business practices.' },
+        { title: 'Ethos in Action', description: 'Values driving expansion', content: 'Hard work, community, and kindness as the foundation for diverse business ventures.' }
       ]
     },
     {
-      year: '2018',
-      title: 'Automotive Solutions',
-      summary: 'Entered the automotive sector with comprehensive fleet management and transportation infrastructure development services.',
-      content: 'We identified the growing need for reliable transportation solutions and established partnerships with major automotive brands. Our fleet management services began serving over 50 clients across various industries, supporting regional economic growth through improved mobility and logistics solutions. This expansion included vehicle import operations, maintenance services, and transportation infrastructure development projects.',
+      year: 'Present',
+      title: 'Guiding the Legacy',
+      summary: 'The founding ethos continues through dedicated leadership and community partnerships.',
+      content: 'Today, that same ethos is championed by his descendant, Abel Yeshitla, and the rest of the leadership team, which includes Mulugeta Demissie, Chirotaw Assefa, and Temesgen Wubayehu, guiding our expansion from humble, artisanal agricultural roots into a diverse, multi-sector enterprise touching lives across Ethiopia. We now operate in 5 major cities across the region, reaching 100+ strategic partners and creating employment opportunities for over 400 permanent and contract employees.',
       images: [
-        { title: 'Fleet Launch', description: 'Introduction of comprehensive fleet services', content: 'Launching our automotive division with a modern fleet of vehicles and comprehensive management solutions.' },
-        { title: 'Partnership Network', description: 'Building relationships with automotive brands', content: 'Establishing strategic partnerships with leading automotive manufacturers and service providers across the region.' },
-        { title: 'Infrastructure Projects', description: 'Supporting transportation development', content: 'Contributing to regional transportation infrastructure projects that enhance connectivity and economic development.' }
-      ]
-    },
-    {
-      year: '2020',
-      title: 'Digital Transformation',
-      summary: 'Embraced digital transformation across all sectors, implementing cutting-edge technology solutions.',
-      content: 'During the global pandemic, we accelerated our digital initiatives, implementing telemedicine services, digital coffee trading platforms, and IoT-enabled fleet management systems. This technological advancement enhanced our service delivery and operational efficiency across all business sectors, positioning us as an innovative leader in the regional market.',
-      images: [
-        { title: 'Digital Innovation', description: 'Implementing advanced technology solutions', content: 'Rolling out comprehensive digital transformation initiatives across all business sectors during the global pandemic.' },
-        { title: 'Telemedicine Launch', description: 'Revolutionizing healthcare delivery', content: 'Launching telemedicine services to maintain healthcare access during challenging times while embracing digital innovation.' },
-        { title: 'Smart Systems', description: 'IoT and smart technology integration', content: 'Implementing IoT-enabled systems for fleet management and digital platforms for coffee trading operations.' }
-      ]
-    },
-    {
-      year: '2023',
-      title: 'Regional Expansion',
-      summary: 'Achieved significant regional expansion, establishing strategic partnerships across the Horn of Africa.',
-      content: 'Our expansion strategy focused on building strong local partnerships while maintaining our core values of quality, integrity, and community development. We now operate in 5 major cities across the region, reaching 100+ strategic partners and creating employment opportunities for over 400 permanent and contract employees. This growth represents our commitment to becoming the foremost business partner in the Horn of Africa.',
-      images: [
-        { title: 'Regional Presence', description: 'Expanding across the Horn of Africa', content: 'Establishing operations in 5 major cities across the region, building a comprehensive network of business partnerships.' },
-        { title: 'Strategic Alliances', description: 'Building lasting business relationships', content: 'Developing over 100 strategic partnerships that drive mutual growth and regional economic development.' },
-        { title: 'Employment Growth', description: 'Creating opportunities for 400+ employees', content: 'Generating meaningful employment opportunities while contributing to regional economic development and community growth.' }
+        { title: 'Leadership Team', description: 'Continuing the legacy', content: 'Abel Yeshitla, Mulugeta Demissie, Chirotaw Assefa, and Temesgen Wubayehu guiding multi-sector growth.' },
+        { title: 'Regional Impact', description: 'Touching lives across Ethiopia', content: 'Expanding our reach to major cities while maintaining our core values and community focus.' },
+        { title: 'Future Vision', description: 'Building generational value', content: 'Creating lasting partnerships and opportunities that honor our heritage while embracing innovation.' }
       ]
     }
   ];
@@ -114,7 +113,12 @@ const OurStory = () => {
                 Our Story
               </h1>
               <p className="text-muted-foreground font-inter text-xl leading-relaxed mb-8">
-                From humble beginnings to regional leadership - discover the journey of Bella International Business across the Horn of Africa.
+               We celebrate a profound, multi-generational legacy that began not with grand titles,
+                but with the quiet industriousness of one man, <strong>Yeshitla</strong>. His foundational ethos a deep belief in persistent hard work,
+                 unwavering community values, and profound kindness is the seed from which Bella International Business has grown. Today,
+                  that same ethos is championed by his descendant, <strong>Abel Yeshitla</strong>, and the rest of the leadership team, which includes <strong>Mulugeta Demissie</strong>,
+                  <strong>Chirotaw Assefa</strong>, and <strong>Temesgen Wubayehu</strong>, guiding our expansion from humble, artisanal agricultural roots into a diverse, 
+                   multi-sector enterprise touching lives across Ethiopia in automotive, healthcare, and real estate.
               </p>
               <Button 
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium px-8 py-4 rounded-none inline-flex items-center gap-2"
@@ -145,7 +149,7 @@ const OurStory = () => {
               Our Journey Through Time
             </h2>
             <p className="text-muted-foreground font-inter text-lg">
-              Explore the key milestones that shaped Bella International into the company it is today.
+              Explore the pivotal moments that shaped our character, from a single handful of corn to a lasting multi-generational business.
             </p>
           </div>
 
@@ -231,7 +235,7 @@ const OurStory = () => {
             <div className="animate-fade-in">
               <h3 className="font-marcellus text-3xl font-normal text-foreground mb-6">Our Vision</h3>
               <p className="text-muted-foreground font-inter text-lg leading-relaxed mb-8">
-                To become the foremost provider of Real Estate, Healthcare, Acha Forest Coffee and Automotives in the Horn of Africa. We strive to be the employer of choice for professionals in the region.
+                To be Ethiopia's most trusted multi-sector business, forever honoring our artisanal roots in the Bildima community while demonstrating Yeshitla's values of integrity and industriousness in everything we do—from specialty coffee to healthcare and automotive solutions.
               </p>
               <div className="w-full h-64 bg-gradient-to-br from-secondary to-muted border border-border flex items-center justify-center hover:scale-105 transition-transform duration-300">
                 <div className="text-center">
@@ -246,7 +250,7 @@ const OurStory = () => {
             <div className="animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <h3 className="font-marcellus text-3xl font-normal text-foreground mb-6">Our Mission</h3>
               <p className="text-muted-foreground font-inter text-lg leading-relaxed mb-8">
-                We are committed to realizing our vision by building a highly motivated, research-focused workforce dedicated to cultivating long-term relationships with our strategic partners and the communities we serve.
+                We are committed to building upon Yeshitla's foundational ethos of hard work and kindness. We strive to create lasting, generational value, to partner authentically with our communities, and to deliver excellence and care across all Bella International businesses.
               </p>
               <div className="w-full h-64 bg-gradient-to-br from-secondary to-muted border border-border flex items-center justify-center hover:scale-105 transition-transform duration-300">
                 <div className="text-center">
