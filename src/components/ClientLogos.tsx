@@ -7,8 +7,6 @@ const partners = [
   { name: 'Dangote Industries', file: 'dangote-industries.png' },
   { name: 'Awash Bank', file: 'awash-bank.png' },
   { name: 'East Africa Holdings', file: 'east-africa-holdings.png' },
-  { name: 'Horn Petroleum', file: 'horn-petroleum.png' }, // if you have it
-  { name: 'Midroc Group', file: 'midroc-group.png' }      // if you have it
 ];
 
 export default function ClientLogos() {
