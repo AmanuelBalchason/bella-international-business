@@ -17,8 +17,8 @@ const Sectors = () => {
     {
       title: 'Healthcare',
       slug: 'healthcare',
-      description: 'Quality healthcare services and medical facility management with a focus on community wellness.',
-      details: 'Providing accessible, high-quality healthcare services through modern facilities and professional medical teams.',
+      description: 'Leading importer and distributor of essential pharmaceuticals and medical supplies in the Ethiopian market.',
+      details: 'We provide comprehensive pharmaceutical import and distribution solutions, including supply chain management, product sourcing, and logistics.',
       icon: 'HC'
     },
     {
@@ -31,8 +31,8 @@ const Sectors = () => {
     {
       title: 'Automotives',
       slug: 'automotives',
-      description: 'Fleet management and automotive solutions supporting regional transportation infrastructure.',
-      details: 'Comprehensive automotive services including fleet management, maintenance, and transportation solutions.',
+      description: 'Premier importer of vehicles and CKD parts, providing regional assembly and automotive solutions.',
+      details: 'We specialize in comprehensive automotive import and assembly solutions, including vehicle distribution, CKD part sourcing, and local assembly operations.',
       icon: 'AU'
     }
   ];
