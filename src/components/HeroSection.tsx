@@ -28,7 +28,7 @@ const HeroSection = () => {
             {/* Stats with counters */}
             <div className="grid grid-cols-3 gap-8 pt-12 border-t border-border">
               <div>
-                <div className="font-marcellus text-3xl text-primary mb-2">15+</div>
+                <div className="font-marcellus text-3xl text-primary mb-2">61+</div>
                 <p className="text-muted-foreground font-inter text-sm">Years of Excellence</p>
               </div>
               <div>

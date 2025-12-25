@@ -20,7 +20,7 @@ const BusinessSectors = () => {
     {
       id: '2',
       title: 'Healthcare',
-      description: 'Comprehensive healthcare services and medical facility management with focus on quality care.',
+      description: 'Leading importer and distributor of essential pharmaceuticals and medical supplies in the Ethiopian market',
       slug: 'healthcare',
       icon_code: '02',
       sort_order: 2
@@ -36,7 +36,7 @@ const BusinessSectors = () => {
     {
       id: '4',
       title: 'Automotives',
-      description: 'Automotive solutions, fleet management, and transportation infrastructure development.',
+      description: 'Premier importer of vehicles and CKD parts, providing regional assembly and automotive solutions.',
       slug: 'automotives',
       icon_code: '04',
       sort_order: 4

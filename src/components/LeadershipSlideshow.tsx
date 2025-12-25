@@ -96,10 +96,10 @@ const LeadershipSlideshow = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
               
               <div className="absolute bottom-6 left-6 text-white transform transition-all duration-500 group-hover:translate-y-[-4px]">
-                <div className="w-16 h-16 bg-white/20 backdrop-blur-sm flex items-center justify-center rounded-full border border-white/30 mb-3">
+                {/* <div className="w-16 h-16 bg-white/20 backdrop-blur-sm flex items-center justify-center rounded-full border border-white/30 mb-3">
                   <span className="text-white font-marcellus text-2xl">{initials}</span>
-                </div>
-                <p className="text-white/90 font-inter text-sm font-medium">Leadership Portrait</p>
+                </div> */}
+                <p className="text-white/90 font-inter text-sm font-medium">Abel Yeshitila</p>
               </div>
             </div>
           </div>

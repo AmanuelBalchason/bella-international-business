@@ -76,14 +76,14 @@ const TestimonialsSection = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Background Pattern */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500">
+              {/* <div className="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500">
                 <div 
                   className="w-full h-full bg-cover bg-center"
                   style={{ 
                     backgroundImage: `url(https://images.unsplash.com/${testimonial.image}?auto=format&fit=crop&w=800&q=80)` 
                   }}
                 />
-              </div>
+              </div> */}
               
               <div className="relative z-10">
                 <div className="text-primary text-4xl font-marcellus leading-none group-hover:scale-110 transition-transform duration-300">"</div>

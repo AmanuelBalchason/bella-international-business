@@ -78,10 +78,8 @@ const SectorDetail = () => {
       },
       locations: [
         { name: 'Addis Ababa', projects: 12, coords: [38.7469, 9.0320] },
-        { name: 'Dire Dawa', projects: 5, coords: [41.8661, 9.5928] },
-        { name: 'Hawassa', projects: 4, coords: [38.4762, 7.0469] },
-        { name: 'Bahir Dar', projects: 3, coords: [37.3957, 11.5942] },
-        { name: 'Mekelle', projects: 1, coords: [39.4753, 13.4967] }
+        { name: 'Sheger City', projects: 5, coords: [41.8661, 9.5928] },
+        { name: 'Butajira', projects: 4, coords: [38.4762, 7.0469] },
       ],
       videos: [
         { title: 'Project Showcase', thumbnail: 'photo-1560518883-ce09059eeffa', duration: '3:45' },
@@ -91,8 +89,8 @@ const SectorDetail = () => {
     },
     'healthcare': {
       title: 'Healthcare',
-      description: 'Comprehensive healthcare services and medical facility management with focus on quality care.',
-      content: 'We provide comprehensive healthcare solutions including medical facility management, healthcare service delivery, and medical equipment procurement. Our commitment to quality care drives everything we do, ensuring accessible and affordable healthcare for communities across the Horn of Africa.',
+      description: 'Leading importer and distributor of essential pharmaceuticals and medical supplies in the Ethipian market.',
+      content: 'We provide comprehensive pharmaceutical import and distribution solutions, including supply chain management, product sourcing, and logistics. Our commitment to quality and integrity drives everything we do, ensuring timely and reliable access to essential medicines for pharmacies and healthcare facilities across the Horn of Africa.',
       vision: 'Accessible Healthcare for All Communities',
       mission: 'To provide exceptional healthcare services through innovative solutions, qualified professionals, and state-of-the-art facilities that serve the diverse needs of our communities.',
       resources: ['Healthcare Excellence Report', 'Medical Equipment Catalog', 'Quality Standards Guide', 'Community Health Impact'],
@@ -185,7 +183,7 @@ const SectorDetail = () => {
         }
       ],
       processSteps: [
-        { step: 'Cultivation', description: 'Sustainable farming practices in forest conditions', duration: '9-12 months' },
+        { step: 'Pre Harvesting', description: 'Sustainable farming practices in forest conditions', duration: '9-12 months' },
         { step: 'Harvesting', description: 'Hand-picked selection of ripe cherries', duration: '3-4 months' },
         { step: 'Processing', description: 'Wet and dry processing methods', duration: '2-4 weeks' },
         { step: 'Export', description: 'Quality control and international shipping', duration: '1-2 weeks' }
@@ -220,8 +218,8 @@ const SectorDetail = () => {
     },
     'automotives': {
       title: 'Automotives',
-      description: 'Automotive solutions, fleet management, and transportation infrastructure development.',
-      content: 'We offer comprehensive automotive services including vehicle sales, fleet management solutions, maintenance services, and transportation infrastructure development to support regional mobility and economic growth across the Horn of Africa.',
+      description: 'Premier importer of vehicles and CKD parts, providing regional assembly and automotive solutions.',
+      content: 'We specialize in comprehensive automotive import and assembly solutions, including vehicle distribution, CKD part sourcing, and local assembly operations. Our commitment to quality, reliability, and local value addition drives everything we do, ensuring modern mobility and supporting automotive industry growth across the Horn of Africa.',
       vision: 'Driving Regional Mobility and Growth',
       mission: 'To provide comprehensive automotive solutions that enhance transportation efficiency, support economic development, and contribute to regional connectivity.',
       resources: ['Fleet Management Guide', 'Vehicle Specifications', 'Maintenance Protocols', 'Transportation Analysis'],
@@ -425,7 +423,7 @@ const SectorDetail = () => {
             </CardContent>
           </Card>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -455,13 +453,13 @@ const SectorDetail = () => {
 
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 ">
                   <Award className="w-5 h-5 text-primary" />
                   Quality Metrics
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-4 ">
                   {sector.dataMetrics.quality.map((metric, index) => (
                     <div key={index} className="flex items-center justify-between">
                       <span className="text-sm font-medium">{metric.metric}</span>
@@ -479,7 +477,7 @@ const SectorDetail = () => {
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </div> */}
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
             <Card>
@@ -636,7 +634,7 @@ const SectorDetail = () => {
               </CardContent>
             </Card>
 
-            <Card>
+            {/* <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Download className="w-5 h-5 text-primary" />
@@ -662,7 +660,7 @@ const SectorDetail = () => {
                   ))}
                 </div>
               </CardContent>
-            </Card>
+            </Card> */}
 
             {/* Locations Section - Moved outside tabs */}
             <Card>

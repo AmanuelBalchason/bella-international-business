@@ -48,7 +48,7 @@ const OurStory = () => {
     {
       year: '2000',
       title: 'Legacy Blooms: Acha Forest Coffee',
-      summary: 'Our reclaimed land becomes the exclusive home of world-class, single-source specialty coffee.',
+      summary: 'Our reclaimed land becomes the exclusive home of world-class, single-origion specialty coffee.',
       content: 'That cherished, reclaimed 10,000-hectare farm is the heart of our heritage. Today, it is the exclusive home of Acha Forest Coffee, where we produce world-class, single-source specialty coffee. This land, located in the fertile Bildima region—widely celebrated as the very birthplace of coffee—is a living testament to Yeshitla\'s original artisanal vision. Our coffee division was built on principles of fair trade and environmental sustainability, connecting us directly to Ethiopia\'s legendary coffee origins.',
       images: [
         { title: 'Coffee Heritage', description: 'Birthplace of legendary coffee', content: 'Establishing operations in Bildima, the legendary birthplace of coffee, honoring rich Ethiopian coffee culture.' },
