@@ -736,7 +736,7 @@ const SectorDetail = () => {
           <div className="relative w-full max-w-4xl bg-black rounded-lg overflow-hidden">
             <button
               onClick={() => setSelectedVideo(null)}
-              className="absolute top-4 right-4 z-10 text-white hover:text-gray-300 bg-black/50 rounded-full p-2"
+              className="absolute top-4 right-4 z-10 text-white hover:text-cape-cod-200 bg-black/50 rounded-full p-2"
             >
               <X className="w-6 h-6" />
             </button>
