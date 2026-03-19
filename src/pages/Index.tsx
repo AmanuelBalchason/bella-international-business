@@ -6,9 +6,6 @@ import EventBanner from '../components/EventBanner';
 import ClientLogos from '../components/ClientLogos';
 import AnimatedAboutSection from '../components/AnimatedAboutSection';
 import BusinessSectors from '../components/BusinessSectors';
-import LeadershipSlideshow from '../components/LeadershipSlideshow';
-import TestimonialsSection from '../components/TestimonialsSection';
-import FAQSection from '../components/FAQSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import { Toaster } from '../components/ui/toaster';
@@ -22,9 +19,6 @@ const Index = () => {
       <ClientLogos />
       <AnimatedAboutSection />
       <BusinessSectors />
-      <LeadershipSlideshow />
-      <TestimonialsSection />
-      <FAQSection />
       <ContactSection />
       <Footer />
       <Toaster />
