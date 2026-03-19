@@ -369,7 +369,7 @@ const SectorDetail = () => {
   const maxValue = Math.max(...sector.dataMetrics.production.map(d => d.value));
 
   return (
-    <div className="min-h-screen bg-grid-pattern">
+    <div className="min-h-screen bg-background">
       <Header />
       
       {/* Hero Section */}
