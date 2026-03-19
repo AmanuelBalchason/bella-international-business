@@ -628,7 +628,7 @@ const SectorDetail = () => {
                       className="group text-left w-full"
                     >
                       <div className="relative overflow-hidden rounded-lg mb-3">
-                        <div className="w-full h-48 relative overflow-hidden bg-gray-100">
+                        <div className="w-full h-48 relative overflow-hidden bg-muted">
                           {video.thumbnail ? (
                             <img
                               src={video.thumbnail}
