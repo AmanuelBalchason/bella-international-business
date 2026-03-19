@@ -381,29 +381,20 @@ const SectorDetail = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="animate-fade-in">
-              <h1 className="font-marcellus text-5xl font-normal text-foreground leading-tight mb-6">
-                {sector.title}
-              </h1>
-              <p className="text-muted-foreground font-inter text-xl leading-relaxed mb-8">
-                {sector.description}
-              </p>
-              
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-6">
-                {Object.entries(sector.stats).map(([key, value]) => (
-                  <div key={key} className="parallax-slow">
-                    <div className="font-marcellus text-2xl text-primary mb-1">{value}</div>
-                    <p className="text-muted-foreground font-inter text-sm capitalize">{key}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <ImageSlideshow images={sector.images} />
+          <div className="max-w-2xl animate-fade-in">
+            <h1 className="font-marcellus text-5xl font-normal text-white leading-tight mb-6">
+              {sector.title}
+            </h1>
+            <p className="text-white/80 font-inter text-xl leading-relaxed mb-8">
+              {sector.description}
+            </p>
+            <div className="grid grid-cols-3 gap-6">
+              {Object.entries(sector.stats).map(([key, value]) => (
+                <div key={key}>
+                  <div className="font-marcellus text-2xl text-white mb-1">{value}</div>
+                  <p className="text-white/60 font-inter text-sm capitalize">{key}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
