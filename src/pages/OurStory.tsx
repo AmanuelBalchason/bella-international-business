@@ -8,7 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '../components/ui/accordion';
-import { Play, ChevronDown } from 'lucide-react';
+import { Play } from 'lucide-react';
 
 const OurStory = () => {
   const timeline = [
@@ -101,42 +101,35 @@ const OurStory = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-grid-pattern">
+    <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section */}
-      <section className="bg-white py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="animate-fade-in">
-              <h1 className="font-marcellus text-5xl font-normal text-foreground leading-tight mb-6">
-                Our Story
-              </h1>
-              <p className="text-muted-foreground font-inter text-xl leading-relaxed mb-8">
-               We celebrate a profound, multi-generational legacy that began not with grand titles,
-                but with the quiet industriousness of one man, <strong>Yeshitila</strong>. His foundational ethos a deep belief in persistent hard work,
-                 unwavering community values, and profound kindness is the seed from which Bella International Business has grown. Today,
-                  that same ethos is championed by his descendant, <strong>Abel Yeshitila</strong>, and the rest of the leadership team, which includes <strong>Mulugeta Demissie</strong>,
-                  <strong>Chirotaw Assefa</strong>, and <strong>Temesgen Wubayehu</strong>, guiding our expansion from humble, artisanal agricultural roots into a diverse, 
-                   multi-sector enterprise touching lives across Ethiopia in automotive, healthcare, and real estate.
-              </p>
-              <Button 
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium px-8 py-4 rounded-none inline-flex items-center gap-2"
-                onClick={() => window.open('#company-profile-video', '_blank')}
-              >
-                <Play className="w-5 h-5" />
-                Learn More
-              </Button>
-            </div>
-            
-            <div className="w-full h-[500px] bg-gradient-to-br from-secondary to-muted border border-border flex items-center justify-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <div className="text-center">
-                <div className="w-20 h-20 bg-primary/10 mx-auto flex items-center justify-center mb-4">
-                  <span className="text-primary font-marcellus text-3xl">B</span>
-                </div>
-                <p className="text-muted-foreground font-inter text-sm">Bella International Journey</p>
-              </div>
-            </div>
+      {/* Hero Section with gradient overlay */}
+      <section className="relative min-h-[60vh] flex items-center">
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80" 
+            alt="Our Story" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <div className="max-w-2xl animate-fade-in">
+            <h1 className="font-marcellus text-5xl font-normal text-white leading-tight mb-6">
+              Our Story
+            </h1>
+            <p className="text-white/80 font-inter text-xl leading-relaxed mb-8">
+              We celebrate a profound, multi-generational legacy that began not with grand titles,
+              but with the quiet industriousness of one man, <strong>Yeshitila</strong>.
+            </p>
+            <Button 
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium px-8 py-4 rounded-none inline-flex items-center gap-2"
+              onClick={() => window.open('#company-profile-video', '_blank')}
+            >
+              <Play className="w-5 h-5" />
+              Learn More
+            </Button>
           </div>
         </div>
       </section>
@@ -166,9 +159,8 @@ const OurStory = () => {
                   </div>
                   
                   <div className="ml-8 flex-1">
-                    <div className="bg-white border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
-                      {/* Image Slideshow */}
-                      <div className="w-full h-64 bg-gradient-to-br from-secondary to-muted border-b border-border overflow-hidden relative">
+                    <div className="bg-card border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-lg">
+                      <div className="w-full h-64 bg-gradient-to-br from-cape-cod-100 to-cape-cod-200 border-b border-border overflow-hidden relative">
                         <div 
                           key={currentImageIndex[index]}
                           className="w-full h-full flex items-center justify-center animate-fade-in"
@@ -229,7 +221,7 @@ const OurStory = () => {
       </section>
 
       {/* Vision & Mission */}
-      <section className="bg-white py-24">
+      <section className="bg-card py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div className="animate-fade-in">
@@ -237,12 +229,11 @@ const OurStory = () => {
               <p className="text-muted-foreground font-inter text-lg leading-relaxed mb-8">
                 To be Ethiopia's most trusted multi-sector business, forever honoring our artisanal roots in the Bildima community while demonstrating Yeshitila's values of integrity and industriousness in everything we do—from specialty coffee to healthcare and automotive solutions.
               </p>
-              <div className="w-full h-64 bg-gradient-to-br from-secondary to-muted border border-border flex items-center justify-center hover:scale-105 transition-transform duration-300">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary/10 mx-auto flex items-center justify-center mb-4">
-                    <span className="text-primary font-marcellus text-2xl">V</span>
-                  </div>
-                  <p className="text-muted-foreground font-inter text-sm">Vision Statement</p>
+              <div className="w-full h-64 relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Vision" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-cape-cod-950/60 to-transparent" />
+                <div className="absolute bottom-4 left-4">
+                  <span className="text-white font-marcellus text-xl">Vision Statement</span>
                 </div>
               </div>
             </div>
@@ -252,16 +243,33 @@ const OurStory = () => {
               <p className="text-muted-foreground font-inter text-lg leading-relaxed mb-8">
                 We are committed to building upon Yeshitila's foundational ethos of hard work and kindness. We strive to create lasting, generational value, to partner authentically with our communities, and to deliver excellence and care across all Bella International businesses.
               </p>
-              <div className="w-full h-64 bg-gradient-to-br from-secondary to-muted border border-border flex items-center justify-center hover:scale-105 transition-transform duration-300">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-primary/10 mx-auto flex items-center justify-center mb-4">
-                    <span className="text-primary font-marcellus text-2xl">M</span>
-                  </div>
-                  <p className="text-muted-foreground font-inter text-sm">Mission Statement</p>
+              <div className="w-full h-64 relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80" alt="Mission" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-cape-cod-950/60 to-transparent" />
+                <div className="absolute bottom-4 left-4">
+                  <span className="text-white font-marcellus text-xl">Mission Statement</span>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-primary py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-marcellus text-4xl font-normal text-primary-foreground mb-6">
+            Join Our Journey
+          </h2>
+          <p className="text-primary-foreground/80 font-inter text-lg leading-relaxed mb-8">
+            Be part of a legacy that spans generations. Partner with us to create lasting value.
+          </p>
+          <a 
+            href="/contact"
+            className="inline-block bg-white hover:bg-cape-cod-50 text-primary font-inter font-medium px-8 py-4 transition-all duration-200 hover:scale-105"
+          >
+            Get In Touch
+          </a>
         </div>
       </section>
       

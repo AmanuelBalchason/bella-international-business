@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -35,7 +34,6 @@ const Contact = () => {
         description: "Thank you for your message. We'll get back to you soon at info@bellainter.com",
       });
       
-      // Reset form
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
       toast({
@@ -54,17 +52,25 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-grid-pattern">
+    <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section */}
-      <section className="bg-white py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 animate-fade-in">
-            <h1 className="font-marcellus text-5xl font-normal text-foreground leading-tight mb-6">
+      {/* Hero with gradient overlay */}
+      <section className="relative min-h-[50vh] flex items-center">
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80" 
+            alt="Contact Us" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
+        </div>
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <div className="text-center animate-fade-in">
+            <h1 className="font-marcellus text-5xl font-normal text-white leading-tight mb-6">
               Contact Us
             </h1>
-            <p className="text-muted-foreground font-inter text-xl leading-relaxed">
+            <p className="text-white/80 font-inter text-xl leading-relaxed">
               Get in touch with our team for strategic business partnerships and opportunities across the Horn of Africa.
             </p>
           </div>
@@ -76,7 +82,6 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             
-            {/* Contact Form */}
             <div className="animate-fade-in">
               <h2 className="font-marcellus text-3xl font-normal text-foreground mb-8">
                 Leave Us A Message
@@ -91,7 +96,7 @@ const Contact = () => {
                       placeholder="Name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="bg-white border-border font-inter rounded-none"
+                      className="bg-card border-border font-inter rounded-none"
                       required
                     />
                   </div>
@@ -102,7 +107,7 @@ const Contact = () => {
                       placeholder="Email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="bg-white border-border font-inter rounded-none"
+                      className="bg-card border-border font-inter rounded-none"
                       required
                     />
                   </div>
@@ -114,7 +119,7 @@ const Contact = () => {
                     placeholder="Message"
                     value={formData.message}
                     onChange={handleChange}
-                    className="bg-white border-border font-inter min-h-[150px] rounded-none resize-none"
+                    className="bg-card border-border font-inter min-h-[150px] rounded-none resize-none"
                     required
                   />
                 </div>
@@ -129,9 +134,8 @@ const Contact = () => {
               </form>
             </div>
             
-            {/* Contact Map & Info */}
             <div className="space-y-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <div className="w-full h-[400px] rounded-lg overflow-hidden border border-border">
+              <div className="w-full h-[400px] overflow-hidden border border-border">
                 <iframe 
                   src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3940.855468811491!2d38.767563976057204!3d8.985444091074173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e0!3m2!1sen!2set!4v1751109689891!5m2!1sen!2set" 
                   width="100%" 
@@ -143,7 +147,6 @@ const Contact = () => {
                 />
               </div>
               
-              {/* Contact Details */}
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-primary/10 flex items-center justify-center">
