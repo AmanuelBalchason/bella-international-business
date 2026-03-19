@@ -373,7 +373,14 @@ const SectorDetail = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="bg-white py-24">
+      <section className="relative min-h-[50vh] flex items-center">
+        <div className="absolute inset-0">
+          {sector.images[0] && (
+            <img src={sector.images[0].src} alt={sector.title} className="w-full h-full object-cover" />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="animate-fade-in">
