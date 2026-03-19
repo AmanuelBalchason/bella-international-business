@@ -637,7 +637,7 @@ const SectorDetail = () => {
                             />
                           ) : (
                             <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                              <Play className="w-12 h-12 text-gray-400" />
+                              <Play className="w-12 h-12 text-muted-foreground" />
                             </div>
                           )}
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
