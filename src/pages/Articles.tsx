@@ -1,9 +1,10 @@
 import React, { useMemo, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Search } from 'lucide-react';
+import { Calendar, User, ArrowRight, Search, Tag } from 'lucide-react';
 import { Input } from '../components/ui/input';
 import { Button } from '../components/ui/button';
+import { Link } from 'react-router-dom';
 import { ArticleCard } from '../components/ArticleCard';
 import { useArticles } from '@/hooks/useArticles';
 
@@ -50,26 +51,16 @@ const Articles = () => {
   });
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-grid-pattern">
       <Header />
-      
-      {/* Hero with gradient overlay */}
-      <section className="relative min-h-[50vh] flex items-center">
-        <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1920&q=80" 
-            alt="Articles & Insights" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
-        </div>
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
-          <div className="text-center mb-12 animate-fade-in">
-            <h1 className="font-marcellus text-5xl font-normal text-white leading-tight mb-6">
+      <section className="bg-white py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 animate-fade-in">
+            <h1 className="font-marcellus text-5xl font-normal text-foreground leading-tight mb-6">
               Articles & Insights
             </h1>
-            <p className="text-white/80 font-inter text-xl leading-relaxed">
-              Stay informed with our latest industry insights, strategic perspectives, and thought leadership.
+            <p className="text-muted-foreground font-inter text-xl leading-relaxed">
+              Stay informed with our latest industry insights, strategic perspectives, and thought leadership across our core business sectors.
             </p>
           </div>
           <div className="mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
@@ -80,7 +71,7 @@ const Articles = () => {
                 placeholder="Search articles and insights..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-12 pr-4 py-4 text-center bg-white/95 border-border font-inter rounded-none text-lg"
+                className="pl-12 pr-4 py-4 text-center bg-white border-border font-inter rounded-none text-lg"
               />
             </div>
           </div>
@@ -91,7 +82,7 @@ const Articles = () => {
                 onClick={() => setSelectedCategory(category)}
                 variant={selectedCategory === category ? 'default' : 'outline'}
                 className={`font-inter rounded-none transition-all duration-200 ${
-                  selectedCategory === category ? 'bg-primary text-primary-foreground' : 'bg-white/90 border-border hover:bg-secondary'
+                  selectedCategory === category ? 'bg-primary text-primary-foreground' : 'bg-white border-border hover:bg-secondary hover:border-primary/30'
                 }`}
               >
                 {category}
@@ -126,7 +117,7 @@ const Articles = () => {
             </section>
           )}
 
-          <section className="bg-card py-24">
+          <section className="bg-white py-24">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <h2 className="font-marcellus text-3xl font-normal text-foreground mb-12 text-center">Latest Insights</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -2,114 +2,149 @@
 import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from './ui/use-toast';
-import { TestimonialsGrid } from './TestimonialsSection';
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
+  const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  // Email validation function
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      toast({ title: "Required fields missing", description: "Please fill in name, email, and message.", variant: "destructive" });
+    
+    // Input validation
+    if (!email.trim()) {
+      toast({
+        title: "Email required",
+        description: "Please enter your email address.",
+        variant: "destructive",
+      });
       return;
     }
 
+    if (!validateEmail(email.trim())) {
+      toast({
+        title: "Invalid email",
+        description: "Please enter a valid email address.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Sanitize email
+    const sanitizedEmail = email.trim().toLowerCase();
+    
     setIsLoading(true);
+
     try {
-      const { error } = await supabase.from('contact_submissions').insert([{
-        name: formData.name.trim(),
-        email: formData.email.trim().toLowerCase(),
-        phone: formData.phone.trim() || null,
-        message: formData.message.trim(),
-        form_type: 'homepage_contact',
-        status: 'new',
-      }]);
-      if (error) throw error;
-      toast({ title: "Message sent!", description: "We'll get back to you shortly." });
-      setFormData({ name: '', email: '', phone: '', message: '' });
-    } catch (error) {
-      console.error('Contact form error:', error);
-      toast({ title: "Failed to send", description: "Please try again later.", variant: "destructive" });
+      // Check if email already exists
+      const { data: existingSubscription, error: checkError } = await supabase
+        .from('newsletter_subscriptions')
+        .select('email, is_active')
+        .eq('email', sanitizedEmail)
+        .maybeSingle();
+
+      if (checkError && checkError.code !== 'PGRST116') {
+        throw checkError;
+      }
+
+      if (existingSubscription) {
+        if (existingSubscription.is_active) {
+          toast({
+            title: "Already subscribed",
+            description: "This email is already subscribed to our newsletter.",
+          });
+        } else {
+          toast({
+            title: "Subscription reactivated",
+            description: "Your newsletter subscription has been reactivated.",
+          });
+        }
+        setEmail('');
+        return;
+      }
+
+      // Insert new subscription
+      const { error: insertError } = await supabase
+        .from('newsletter_subscriptions')
+        .insert([
+          {
+            email: sanitizedEmail,
+            source: 'website',
+            is_active: true
+          }
+        ]);
+
+      if (insertError) {
+        throw insertError;
+      }
+
+      toast({
+        title: "Successfully subscribed!",
+        description: "Thank you for subscribing to our newsletter. You'll receive updates on business excellence and industry insights.",
+      });
+
+      setEmail('');
+    } catch (error: any) {
+      console.error('Newsletter subscription error:', error);
+      
+      // Handle specific error cases
+      if (error?.code === '23505') { // Unique violation
+        toast({
+          title: "Already subscribed",
+          description: "This email is already subscribed to our newsletter.",
+        });
+        setEmail('');
+      } else {
+        toast({
+          title: "Subscription failed",
+          description: "There was an error subscribing to our newsletter. Please try again.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <section className="bg-secondary py-24">
+    <section className="bg-primary py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4">Success Stories</p>
-          <h2 className="font-marcellus text-4xl font-normal text-foreground leading-tight">
-            Client Testimonials
+          <p className="text-primary-foreground/80 font-inter text-sm uppercase tracking-wider mb-4">Stay Connected</p>
+          <h2 className="font-marcellus text-4xl font-normal text-primary-foreground leading-tight mb-8">
+            Let Us Reach You
           </h2>
+          <p className="text-primary-foreground/80 font-inter text-lg max-w-2xl mx-auto">
+            Subscribe to our newsletter for insights on business excellence, strategic partnerships, and industry developments across Eastern Africa.
+          </p>
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Testimonials - 2 columns */}
-          <div className="lg:col-span-2">
-            <TestimonialsGrid />
-          </div>
-
-          {/* Contact Form Card */}
-          <div className="bg-primary p-8 text-primary-foreground">
-            <h3 className="font-marcellus text-2xl mb-2">Get In Touch</h3>
-            <p className="font-inter text-sm text-primary-foreground/70 mb-6">
-              Send us a message and we'll respond promptly.
-            </p>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <Input
-                name="name"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={handleChange}
-                className="bg-white/10 border-white/20 text-primary-foreground placeholder:text-primary-foreground/50 font-inter rounded-none"
-                required
-              />
-              <Input
-                name="email"
-                type="email"
-                placeholder="Email Address"
-                value={formData.email}
-                onChange={handleChange}
-                className="bg-white/10 border-white/20 text-primary-foreground placeholder:text-primary-foreground/50 font-inter rounded-none"
-                required
-              />
-              <Input
-                name="phone"
-                type="tel"
-                placeholder="Phone Number"
-                value={formData.phone}
-                onChange={handleChange}
-                className="bg-white/10 border-white/20 text-primary-foreground placeholder:text-primary-foreground/50 font-inter rounded-none"
-              />
-              <Textarea
-                name="message"
-                placeholder="Your Message"
-                value={formData.message}
-                onChange={handleChange}
-                rows={4}
-                className="bg-white/10 border-white/20 text-primary-foreground placeholder:text-primary-foreground/50 font-inter rounded-none resize-none"
-                required
-              />
-              <Button
-                type="submit"
-                disabled={isLoading}
-                className="w-full bg-white text-primary hover:bg-white/90 font-inter font-medium rounded-none"
-              >
-                {isLoading ? 'Sending...' : 'Send Message'}
-              </Button>
-            </form>
-          </div>
+        
+        <div className="max-w-md mx-auto">
+          <form onSubmit={handleSubmit} className="flex">
+            <Input
+              type="email"
+              placeholder="Enter your email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="flex-1 bg-white border-white text-foreground placeholder:text-muted-foreground font-inter rounded-none"
+              required
+            />
+            <Button 
+              type="submit"
+              disabled={isLoading}
+              className="bg-foreground hover:bg-foreground/90 text-background font-inter font-medium px-8 rounded-none ml-0"
+            >
+              {isLoading ? 'Subscribing...' : 'Send'}
+            </Button>
+          </form>
         </div>
       </div>
     </section>

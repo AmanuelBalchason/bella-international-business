@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ImageSlideshow from '../components/ImageSlideshow';
 import LocationMapDialog from '../components/LocationMapDialog';
-import { Download, Play, MapPin, Calendar, TrendingUp, Award, Users, Leaf, Mail, Phone, Send, X } from 'lucide-react';
+import { Download, Play, MapPin, Calendar, TrendingUp, Award, Users, Leaf, Mail, Phone, Send } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -27,12 +27,10 @@ const SectorDetail = () => {
     coords: number[];
     projects: number;
   } | null>(null);
-  const [selectedVideo, setSelectedVideo] = useState<{src: string; title: string; thumbnail?: string} | null>(null);
 
   const sectorData = {
     'real-estate': {
       title: 'Real Estate',
-      locationName: 'Development Areas',
       description: 'Premium property development and strategic real estate investment solutions across Horn of Africa.',
       content: 'Our real estate division is committed to developing premium properties that meet international standards while addressing the unique needs of local markets. We focus on sustainable development practices and innovative architectural solutions that enhance community value.',
       vision: 'Shaping the Future of Urban Development',
@@ -84,30 +82,14 @@ const SectorDetail = () => {
         { name: 'Butajira', projects: 4, coords: [38.4762, 7.0469] },
       ],
       videos: [
-        { 
-          title: 'Project Showcase', 
-          src: '/realstate/video/realstate-1.mp4',
-          thumbnail: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80',
-          duration: '3:45'
-        },
-        { 
-          title: 'Construction Process', 
-          src: '/realstate/video/realstate-2.mp4',
-          thumbnail: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80',
-          duration: '2:30'
-        },
-        { 
-          title: 'Sustainable Development', 
-          src: '/realstate/video/realstate-1.mp4',
-          thumbnail: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=800&q=80',
-          duration: '4:15'
-        }
+        { title: 'Project Showcase', thumbnail: 'photo-1560518883-ce09059eeffa', duration: '3:45' },
+        { title: 'Construction Process', thumbnail: 'photo-1545324418-cc1a3fa10c00', duration: '2:30' },
+        { title: 'Client Testimonials', thumbnail: 'photo-1582407947304-fd86f028f716', duration: '4:15' }
       ]
     },
     'healthcare': {
       title: 'Healthcare',
-      locationName: 'Our Locations',
-      description: 'Leading importer and distributor of essential pharmaceuticals and medical supplies in the Ethiopian market.',
+      description: 'Leading importer and distributor of essential pharmaceuticals and medical supplies in the Ethipian market.',
       content: 'We provide comprehensive pharmaceutical import and distribution solutions, including supply chain management, product sourcing, and logistics. Our commitment to quality and integrity drives everything we do, ensuring timely and reliable access to essential medicines for pharmacies and healthcare facilities across the Horn of Africa.',
       vision: 'Accessible Healthcare for All Communities',
       mission: 'To provide exceptional healthcare services through innovative solutions, qualified professionals, and state-of-the-art facilities that serve the diverse needs of our communities.',
@@ -160,29 +142,13 @@ const SectorDetail = () => {
         { name: 'Mekelle', projects: 1, coords: [39.4753, 13.4967] }
       ],
       videos: [
-        { 
-          title: 'Facility Tour', 
-          src: 'https://example.com/healthcare-video-1.mp4',
-          thumbnail: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=800&q=80',
-          duration: '5:20'
-        },
-        { 
-          title: 'Medical Team', 
-          src: 'https://example.com/healthcare-video-2.mp4',
-          thumbnail: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&q=80',
-          duration: '3:15'
-        },
-        { 
-          title: 'Patient Stories', 
-          src: 'https://example.com/healthcare-video-3.mp4',
-          thumbnail: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=800&q=80',
-          duration: '4:45'
-        }
+        { title: 'Facility Tour', thumbnail: 'photo-1576091160399-112ba8d25d1f', duration: '5:20' },
+        { title: 'Medical Team', thumbnail: 'photo-1559757148-5c350d0d3c56', duration: '3:15' },
+        { title: 'Patient Stories', thumbnail: 'photo-1538108149393-fbbd81895907', duration: '4:45' }
       ]
     },
     'acha-forest-coffee': {
       title: 'Acha Forest Coffee',
-      locationName: 'Collection Areas',
       description: 'Sustainable coffee cultivation and supply chain optimization for premium Ethiopian coffee.',
       content: 'Our coffee operations focus on sustainable agricultural practices, innovative farming techniques, and supply chain optimization to deliver premium Ethiopian coffee to global markets. We work directly with local farmers to ensure fair trade practices and environmental sustainability.',
       vision: 'Premium Ethiopian Coffee for Global Markets',
@@ -191,22 +157,22 @@ const SectorDetail = () => {
       stats: { farms: '8', tons: '500+ Annually', export: '15 Countries' },
       images: [
         { 
-          src: '/acha-images/acha-farm-1.JPG', 
+          src: '/acha-images/acha-1.jpg', 
           title: 'Coffee Plantations', 
           description: 'Lush coffee farms in the Ethiopian highlands' 
         },
         { 
-          src: '/acha-images/acha-farm-2.jpg', 
+          src: '/acha-images/acha-2.jpg', 
           title: 'Coffee Processing', 
           description: 'Traditional and modern coffee processing methods' 
         },
         { 
-          src: '/acha-images/acha-farm-3.JPG', 
+          src: '/acha-images/acha-3.jpg', 
           title: 'Quality Control', 
           description: 'Rigorous quality testing and certification processes' 
         },
         { 
-          src: '/acha-images/acha-farm-4.JPG', 
+          src: '/acha-images/acha-4.jpg', 
           title: 'Quality Control', 
           description: 'Rigorous quality testing and certification processes' 
         },
@@ -245,29 +211,13 @@ const SectorDetail = () => {
         { name: 'Sidama Zone', projects: 1, coords: [38.4762, 6.8453] }
       ],
       videos: [
-        { 
-          title: 'Farm to Cup Journey', 
-          src: 'https://example.com/coffee-video-1.mp4',
-          thumbnail: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=800&q=80',
-          duration: '6:30'
-        },
-        { 
-          title: 'Farmer Testimonials', 
-          src: 'https://example.com/coffee-video-2.mp4',
-          thumbnail: 'https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=800&q=80',
-          duration: '4:20'
-        },
-        { 
-          title: 'Processing Methods', 
-          src: 'https://example.com/coffee-video-3.mp4',
-          thumbnail: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80',
-          duration: '3:45'
-        }
+        { title: 'Farm to Cup Journey', thumbnail: 'photo-1447933601403-0c6688de566e', duration: '6:30' },
+        { title: 'Farmer Testimonials', thumbnail: 'photo-1498804103079-a6351b050096', duration: '4:20' },
+        { title: 'Processing Methods', thumbnail: 'photo-1509042239860-f550ce710b93', duration: '3:45' }
       ]
     },
     'automotives': {
       title: 'Automotives',
-      locationName: 'Our Locations',
       description: 'Premier importer of vehicles and CKD parts, providing regional assembly and automotive solutions.',
       content: 'We specialize in comprehensive automotive import and assembly solutions, including vehicle distribution, CKD part sourcing, and local assembly operations. Our commitment to quality, reliability, and local value addition drives everything we do, ensuring modern mobility and supporting automotive industry growth across the Horn of Africa.',
       vision: 'Driving Regional Mobility and Growth',
@@ -321,24 +271,9 @@ const SectorDetail = () => {
         { name: 'Mekelle', projects: 4, coords: [39.4753, 13.4967] }
       ],
       videos: [
-        { 
-          title: 'Fleet Operations', 
-          src: 'https://example.com/automotive-video-1.mp4',
-          thumbnail: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80',
-          duration: '4:15'
-        },
-        { 
-          title: 'Maintenance Excellence', 
-          src: 'https://example.com/automotive-video-2.mp4',
-          thumbnail: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=800&q=80',
-          duration: '3:30'
-        },
-        { 
-          title: 'Client Success Stories', 
-          src: 'https://example.com/automotive-video-3.mp4',
-          thumbnail: 'https://images.unsplash.com/photo-1486754735734-325b5831c3ad?auto=format&fit=crop&w=800&q=80',
-          duration: '5:00'
-        }
+        { title: 'Fleet Operations', thumbnail: 'photo-1449824913935-59a10b8d2000', duration: '4:15' },
+        { title: 'Maintenance Excellence', thumbnail: 'photo-1550355291-bbee04a92027', duration: '3:30' },
+        { title: 'Client Success Stories', thumbnail: 'photo-1486754735734-325b5831c3ad', duration: '5:00' }
       ]
     }
   };
@@ -369,32 +304,34 @@ const SectorDetail = () => {
   const maxValue = Math.max(...sector.dataMetrics.production.map(d => d.value));
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-grid-pattern">
       <Header />
       
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center">
-        <div className="absolute inset-0">
-          {sector.images[0] && (
-            <img src={sector.images[0].src} alt={sector.title} className="w-full h-full object-cover" />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
-          <div className="max-w-2xl animate-fade-in">
-            <h1 className="font-marcellus text-5xl font-normal text-white leading-tight mb-6">
-              {sector.title}
-            </h1>
-            <p className="text-white/80 font-inter text-xl leading-relaxed mb-8">
-              {sector.description}
-            </p>
-            <div className="grid grid-cols-3 gap-6">
-              {Object.entries(sector.stats).map(([key, value]) => (
-                <div key={key}>
-                  <div className="font-marcellus text-2xl text-white mb-1">{value}</div>
-                  <p className="text-white/60 font-inter text-sm capitalize">{key}</p>
-                </div>
-              ))}
+      <section className="bg-white py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="animate-fade-in">
+              <h1 className="font-marcellus text-5xl font-normal text-foreground leading-tight mb-6">
+                {sector.title}
+              </h1>
+              <p className="text-muted-foreground font-inter text-xl leading-relaxed mb-8">
+                {sector.description}
+              </p>
+              
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-6">
+                {Object.entries(sector.stats).map(([key, value]) => (
+                  <div key={key} className="parallax-slow">
+                    <div className="font-marcellus text-2xl text-primary mb-1">{value}</div>
+                    <p className="text-muted-foreground font-inter text-sm capitalize">{key}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <ImageSlideshow images={sector.images} />
             </div>
           </div>
         </div>
@@ -485,6 +422,62 @@ const SectorDetail = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <TrendingUp className="w-5 h-5 text-primary" />
+                  Growth Over Time
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {sector.dataMetrics.production.map((data, index) => (
+                    <div key={index} className="flex items-center justify-between">
+                      <span className="text-sm font-medium">{data.year}</span>
+                      <div className="flex-1 mx-4">
+                        <div className="w-full bg-secondary rounded-full h-2">
+                          <div 
+                            className="bg-primary h-2 rounded-full transition-all duration-500"
+                            style={{ width: `${(data.value / maxValue) * 100}%` }}
+                          />
+                        </div>
+                      </div>
+                      <span className="text-sm font-semibold">{data.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 ">
+                  <Award className="w-5 h-5 text-primary" />
+                  Quality Metrics
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4 ">
+                  {sector.dataMetrics.quality.map((metric, index) => (
+                    <div key={index} className="flex items-center justify-between">
+                      <span className="text-sm font-medium">{metric.metric}</span>
+                      <div className="flex-1 mx-4">
+                        <div className="w-full bg-secondary rounded-full h-2">
+                          <div 
+                            className="bg-green-500 h-2 rounded-full transition-all duration-500"
+                            style={{ width: `${metric.score}%` }}
+                          />
+                        </div>
+                      </div>
+                      <span className="text-sm font-semibold">{metric.score}%</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div> */}
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
             <Card>
@@ -620,44 +613,27 @@ const SectorDetail = () => {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {sector.videos.map((video, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setSelectedVideo(video)}
-                      className="group text-left w-full"
-                    >
+                    <div key={index} className="group cursor-pointer">
                       <div className="relative overflow-hidden rounded-lg mb-3">
-                        <div className="w-full h-48 relative overflow-hidden bg-muted">
-                          {video.thumbnail ? (
-                            <img
-                              src={video.thumbnail}
-                              alt={video.title}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            />
-                          ) : (
-                            <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                              <Play className="w-12 h-12 text-muted-foreground" />
-                            </div>
-                          )}
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
-                            <div className="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                              <Play className="w-6 h-6 text-primary" fill="currentColor" />
-                            </div>
-                          </div>
-                          <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
-                            {video.duration}
-                          </div>
+                        <img
+                          src={`https://images.unsplash.com/${video.thumbnail}?auto=format&fit=crop&w=400&q=80`}
+                          alt={video.title}
+                          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <Play className="w-12 h-12 text-white" />
+                        </div>
+                        <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                          {video.duration}
                         </div>
                       </div>
-                      <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-200">
-                        {video.title}
-                      </h4>
-                    </button>
+                      <h4 className="font-semibold text-foreground">{video.title}</h4>
+                    </div>
                   ))}
                 </div>
               </CardContent>
             </Card>
 
-            {/* Resources Section - Commented out as requested */}
             {/* <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -686,12 +662,12 @@ const SectorDetail = () => {
               </CardContent>
             </Card> */}
 
-            {/* Locations Section - Updated to use dynamic locationName */}
+            {/* Locations Section - Moved outside tabs */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <MapPin className="w-5 h-5 text-primary" />
-                  {sector.locationName}
+                  Our Locations
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -726,34 +702,6 @@ const SectorDetail = () => {
           onClose={() => setSelectedLocation(null)}
           location={selectedLocation}
         />
-      )}
-
-      {/* Video Modal */}
-      {selectedVideo && (
-        <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
-          <div className="relative w-full max-w-4xl bg-black rounded-lg overflow-hidden">
-            <button
-              onClick={() => setSelectedVideo(null)}
-              className="absolute top-4 right-4 z-10 text-white hover:text-cape-cod-200 bg-black/50 rounded-full p-2"
-            >
-              <X className="w-6 h-6" />
-            </button>
-            <div className="aspect-video">
-              <video
-                controls
-                autoPlay
-                className="w-full h-full"
-                poster={selectedVideo.thumbnail}
-              >
-                <source src={selectedVideo.src} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-            <div className="p-4 bg-black">
-              <h3 className="text-white text-xl font-semibold">{selectedVideo.title}</h3>
-            </div>
-          </div>
-        </div>
       )}
     </div>
   );

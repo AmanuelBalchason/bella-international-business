@@ -2,64 +2,60 @@ import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Card, CardContent } from '../components/ui/card';
-import { Mail, Linkedin } from 'lucide-react';
+import { Mail, Phone, Linkedin } from 'lucide-react';
 
 const Leadership = () => {
   const leaders = [
     {
       name: 'Abel Yeshitila',
       position: 'CEO, Bella International Business',
-      bio: 'With over 15 years of experience in strategic business development, Abel has been instrumental in establishing Bella International as a leading business conglomerate in the Horn of Africa.',
+      bio: 'With over 15 years of experience in strategic business development, Abel has been instrumental in establishing Bella International as a leading business conglomerate in the Horn of Africa. His visionary leadership and commitment to excellence have driven the company\'s expansion across multiple sectors.',
       expertise: ['Strategic Planning', 'Business Development', 'Market Expansion', 'Partnership Development'],
       email: 'ceo@bellainter.com',
       image: '/leaders/abel.png',
+      hoverImage: '/leaders/abel.png' // Same image for hover
     },
     {
       name: 'Mulugeta Demissie',
       position: 'Senior Advisor to the CEO',
-      bio: 'Mulugeta brings exceptional operational expertise and has overseen the successful integration of our diverse business units.',
+      bio: 'Mulugeta brings exceptional operational expertise and has overseen the successful integration of our diverse business units. His focus on operational excellence and process optimization has been crucial to our sustained growth and market leadership.',
       expertise: ['Operations Management', 'Process Optimization', 'Quality Assurance', 'Team Leadership'],
       email: 'mulugeta@bellainter.com',
       image: '/leaders/mulugeta.png',
+      hoverImage: '/leaders/mulugeta.png' // Same image for hover
     },
     {
       name: 'Chirotaw Assefa',
       position: 'CFO and COO, Bella International',
-      bio: 'As our CFO and COO, Chirotaw has established robust financial frameworks that support our ambitious growth plans.',
+      bio: 'As our CFO and COO, Chirotaw has established robust financial frameworks that support our ambitious growth plans. His expertise in financial planning and risk management has been fundamental to our successful expansion across the Horn of Africa.',
       expertise: ['Financial Planning', 'Risk Management', 'Investment Strategy', 'Corporate Finance'],
       email: 'chirotaw@bellainter.com',
       image: '/leaders/chirotaw.png',
+      hoverImage: '/leaders/chirotaw.png' // Same image for hover
     },
     {
       name: 'Temesgen Wubayehu',
       position: 'Managing Director, Bella Healthcare',
-      bio: 'Temesgen leads our healthcare initiatives and manages all healthcare operations with an innovative approach.',
+      bio: 'Temesgen leads our healthcare initiatives and manages all healthcare operations. His innovative approach to healthcare delivery and deep understanding of regional healthcare needs have been key to establishing Bella International\'s strong healthcare presence.',
       expertise: ['Healthcare Management', 'Medical Operations', 'Healthcare Innovation', 'Strategic Healthcare Planning'],
       email: 'temesgen@bellainter.com',
       image: '/leaders/temesgen.png',
+      hoverImage: '/leaders/temesgen.png' // Same image for hover
     }
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-grid-pattern">
       <Header />
       
-      {/* Hero with gradient overlay */}
-      <section className="relative min-h-[50vh] flex items-center">
-        <div className="absolute inset-0">
-          <img 
-            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1920&q=80" 
-            alt="Leadership Team" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
-        </div>
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="text-center animate-fade-in">
-            <h1 className="font-marcellus text-5xl font-normal text-white leading-tight mb-6">
+      {/* Hero Section */}
+      <section className="bg-white py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 animate-fade-in">
+            <h1 className="font-marcellus text-5xl font-normal text-foreground leading-tight mb-6">
               Leadership Team
             </h1>
-            <p className="text-white/80 font-inter text-xl leading-relaxed">
+            <p className="text-muted-foreground font-inter text-xl leading-relaxed">
               Meet the visionary leaders driving Bella International's success across the Horn of Africa.
             </p>
           </div>
@@ -76,10 +72,10 @@ const Leadership = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto text-left">
               <div className="space-y-6 text-muted-foreground font-inter leading-relaxed">
                 <p>
-                  Bella International Business is a company with a clear vision, now operating under a new name. "Bella" comes from Latin and means beautiful, reflecting our focus on beauty within our diverse portfolio.
+                  Bella International Business is a company with a clear vision, now operating under a new name. "Bella" comes from Latin and means beautiful, reflecting our focus on beauty within our diverse portfolio. The Bella Group encompasses import-export, agro-industry, and real estate development.
                 </p>
                 <p>
-                  Our amazing journey started at a family-run historic coffee farm, nestled close to the place where the legendary Khaldi first discovered coffee beans.
+                  Our amazing journey started at a family-run historic coffee farm, nestled close to the place where the legendary Khaldi first discovered coffee beans. This inspired the birth of Bella International Business in 2013.
                 </p>
               </div>
               <div className="space-y-6 text-muted-foreground font-inter leading-relaxed">
@@ -87,14 +83,14 @@ const Leadership = () => {
                   With an initial capital of Birr 4,563,630, we delved into the world of car imports, real estate, and pharmaceutical business.
                 </p>
                 <p>
-                  Throughout the past 13 years, we've not only garnered valuable experience but also fostered strategic alliances across multiple sectors, resulting in the creation of job opportunities for over 400 permanent and contract employees.
+                  Throughout the past 13 years, we've not only garnered valuable experience but also fostered strategic alliances across multiple sectors, resulting in the creation of job opportunities for over 400 permanent and contract employees as we continue to expand our horizons. Our agro-industry not only holds economic significance but also emphasizes natural beauty, while our real estate projects prioritize both strength and beauty.
                 </p>
               </div>
             </div>
             <div className="mt-12">
               <a 
                 href="/our-story"
-                className="inline-block bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium px-8 py-3 rounded-none transition-colors duration-200"
+                className="inline-block bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium px-8 py-3 rounded-none transition-colors duration-200 hover-underline"
               >
                 Learn More About Our Story
               </a>
@@ -104,15 +100,21 @@ const Leadership = () => {
       </section>
 
       {/* Leadership Cards */}
-      <section className="bg-card py-24">
+      <section className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {leaders.map((leader, index) => (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-border bg-card animate-fade-in overflow-hidden" style={{ animationDelay: `${index * 0.2}s` }}>
+              <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-border bg-white animate-fade-in overflow-hidden" style={{ animationDelay: `${index * 0.2}s` }}>
                 <div className="relative h-80 overflow-hidden">
+                  {/* Default image - now using local image */}
                   <div 
-                    className="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                    className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-500 group-hover:opacity-0"
                     style={{ backgroundImage: `url(${leader.image})` }}
+                  />
+                  {/* Hover image - same as default */}
+                  <div 
+                    className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-500 opacity-0 group-hover:opacity-100"
+                    style={{ backgroundImage: `url(${leader.hoverImage})` }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   <div className="absolute bottom-6 left-6 text-white">
