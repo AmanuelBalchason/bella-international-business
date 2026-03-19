@@ -17,7 +17,7 @@ const ArticleDetail = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-grid-pattern">
+      <div className="min-h-screen bg-background">
         <Header />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="space-y-4">
@@ -33,7 +33,7 @@ const ArticleDetail = () => {
 
   if (!article) {
     return (
-      <div className="min-h-screen bg-grid-pattern">
+      <div className="min-h-screen bg-background">
         <Header />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="text-center relative">
@@ -94,7 +94,7 @@ const ArticleDetail = () => {
       } else if (paragraph.trim()) {
         return (
           <p key={`p-${index}`} className="text-muted-foreground leading-relaxed mb-8 text-lg font-inter">
-            <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(paragraph.replace(/\*\*(.*?)\*\*/g, '<strong class=\"text-foreground font-semibold\">$1</strong>')) }} />
+            <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(paragraph.replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>')) }} />
           </p>
         );
       }
@@ -103,9 +103,9 @@ const ArticleDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-grid-pattern">
+    <div className="min-h-screen bg-background">
       <Header />
-      <section className="bg-white py-24">
+      <section className="bg-card py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12 animate-fade-in">
             <Link to="/articles" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 font-inter">
@@ -147,7 +147,7 @@ const ArticleDetail = () => {
             </div>
           </div>
           <div className="mb-16 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <div className="relative overflow-hidden rounded-lg shadow-lg group">
+            <div className="relative overflow-hidden shadow-lg group">
               <img
                 src={`https://images.unsplash.com/${DEFAULT_UNSPLASH_ID}?auto=format&fit=crop&w=1200&q=80`}
                 alt={article.title}
@@ -160,7 +160,7 @@ const ArticleDetail = () => {
       </section>
       <section className="bg-secondary py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <article className="bg-white p-12 rounded-lg shadow-sm animate-fade-in" style={{ animationDelay: '0.3s' }}>
+          <article className="bg-card p-12 shadow-sm animate-fade-in" style={{ animationDelay: '0.3s' }}>
             {Array.isArray(article.tags) && article.tags.length > 0 && (
               <div className="mb-6 flex gap-2 flex-wrap">
                 {article.tags.map((t: string) => (

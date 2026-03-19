@@ -369,34 +369,32 @@ const SectorDetail = () => {
   const maxValue = Math.max(...sector.dataMetrics.production.map(d => d.value));
 
   return (
-    <div className="min-h-screen bg-grid-pattern">
+    <div className="min-h-screen bg-background">
       <Header />
       
       {/* Hero Section */}
-      <section className="bg-white py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="animate-fade-in">
-              <h1 className="font-marcellus text-5xl font-normal text-foreground leading-tight mb-6">
-                {sector.title}
-              </h1>
-              <p className="text-muted-foreground font-inter text-xl leading-relaxed mb-8">
-                {sector.description}
-              </p>
-              
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-6">
-                {Object.entries(sector.stats).map(([key, value]) => (
-                  <div key={key} className="parallax-slow">
-                    <div className="font-marcellus text-2xl text-primary mb-1">{value}</div>
-                    <p className="text-muted-foreground font-inter text-sm capitalize">{key}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <ImageSlideshow images={sector.images} />
+      <section className="relative min-h-[50vh] flex items-center">
+        <div className="absolute inset-0">
+          {sector.images[0] && (
+            <img src={sector.images[0].src} alt={sector.title} className="w-full h-full object-cover" />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 w-full">
+          <div className="max-w-2xl animate-fade-in">
+            <h1 className="font-marcellus text-5xl font-normal text-white leading-tight mb-6">
+              {sector.title}
+            </h1>
+            <p className="text-white/80 font-inter text-xl leading-relaxed mb-8">
+              {sector.description}
+            </p>
+            <div className="grid grid-cols-3 gap-6">
+              {Object.entries(sector.stats).map(([key, value]) => (
+                <div key={key}>
+                  <div className="font-marcellus text-2xl text-white mb-1">{value}</div>
+                  <p className="text-white/60 font-inter text-sm capitalize">{key}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -628,7 +626,7 @@ const SectorDetail = () => {
                       className="group text-left w-full"
                     >
                       <div className="relative overflow-hidden rounded-lg mb-3">
-                        <div className="w-full h-48 relative overflow-hidden bg-gray-100">
+                        <div className="w-full h-48 relative overflow-hidden bg-muted">
                           {video.thumbnail ? (
                             <img
                               src={video.thumbnail}
@@ -637,7 +635,7 @@ const SectorDetail = () => {
                             />
                           ) : (
                             <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
-                              <Play className="w-12 h-12 text-gray-400" />
+                              <Play className="w-12 h-12 text-muted-foreground" />
                             </div>
                           )}
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
@@ -736,7 +734,7 @@ const SectorDetail = () => {
           <div className="relative w-full max-w-4xl bg-black rounded-lg overflow-hidden">
             <button
               onClick={() => setSelectedVideo(null)}
-              className="absolute top-4 right-4 z-10 text-white hover:text-gray-300 bg-black/50 rounded-full p-2"
+              className="absolute top-4 right-4 z-10 text-white hover:text-cape-cod-200 bg-black/50 rounded-full p-2"
             >
               <X className="w-6 h-6" />
             </button>

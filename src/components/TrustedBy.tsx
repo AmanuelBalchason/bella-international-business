@@ -23,9 +23,9 @@ export default function TrustedBy(): JSX.Element {
   }));
 
   return (
-    <section className="py-12 bg-gray-50">
+    <section className="py-12 bg-secondary">
       <div className="max-w-6xl mx-auto px-4 text-center">
-        <p className="text-sm uppercase text-gray-500">Trusted By</p>
+        <p className="text-sm uppercase text-muted-foreground">Trusted By</p>
         <h3 className="font-marcellus text-3xl mt-2 mb-8">Our Strategic Partners</h3>
 
         <div className="overflow-hidden">
