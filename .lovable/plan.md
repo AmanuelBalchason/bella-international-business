@@ -1,70 +1,90 @@
 
 
-# Landing Page Refinement Plan
+# Site-Wide Design Consistency Plan
 
-Based on the screenshot reference, here are the key layout and visual changes needed.
+Apply the cape-cod color palette and the refined landing page design patterns (gradient overlays, dark sections, consistent typography) across every page and shared component.
 
-## Changes Overview
+## Color Palette Integration
 
-### 1. HeroSection - Full-width dark background with gradient overlay
-**Current**: White background, side-by-side text + image grid
-**Target**: Full-width hero image background with dark gradient overlay, text overlaid on top (left-aligned), stats below the CTA button. Remove the separate `DynamicHeroImage` component from the right column and instead use the hero images as full-width backgrounds.
-- Dark gradient overlay (from-black/70 to transparent or similar)
-- White text on dark background
-- Keep the rotating headlines from `DynamicHero`
-- Stats row below the CTA, white text
-- Full viewport width, roughly 70-80vh height
+Add the `cape-cod` palette to `tailwind.config.ts` and update CSS variables in `src/index.css` to map to cape-cod shades:
 
-### 2. ClientLogos - Simplify layout
-**Current**: Scrolling marquee with small bordered boxes
-**Target**: Static row of logos on light gray background, larger logo cards with white backgrounds and subtle shadows. Keep the marquee but make logos bigger with more padding, matching the screenshot style.
+| CSS Variable | Current HSL | New Cape-Cod Shade |
+|---|---|---|
+| `--primary` | `157 12% 27%` | cape-cod-700 (`#354949` → ~`180 15% 24%`) |
+| `--primary-foreground` | white | stays white |
+| `--secondary` | `0 0% 96%` | cape-cod-50 (`#f5f8f8` → ~`160 14% 97%`) |
+| `--muted` | `0 0% 96%` | cape-cod-100 (`#dfe8e7` → ~`174 12% 89%`) |
+| `--muted-foreground` | `0 0% 33%` | cape-cod-600 (`#435e5e` → ~`180 16% 31%`) |
+| `--foreground` | `0 0% 10%` | cape-cod-950 (`#151e1e` → ~`180 15% 10%`) |
+| `--border` | `0 0% 92%` | cape-cod-200 (`#bed1cf` → ~`174 18% 78%`) |
+| `--ring` | same as primary | cape-cod-500 |
+| Dark mode vars | update similarly | cape-cod-800/900/950 for backgrounds |
 
-### 3. AnimatedAboutSection - Image + text side by side
-**Current**: Text on left, numbered values list on right
-**Target**: Left side shows a photo with gradient overlay and name caption (like the leadership photo style). Right side has "About Us" label, heading, paragraph, and "Learn More About Us" button. Remove the numbered values list.
+Also add `cape-cod` as a named color in `tailwind.config.ts` so components can use `bg-cape-cod-500` etc. directly.
 
-### 4. BusinessSectors - Add images to sector cards
-**Current**: Text-only cards with numbers
-**Target**: Each card has a top image with gradient overlay, title overlaid at bottom of image, description below, and an arrow link. Cards should show sector-relevant images.
+## Files to Modify
 
-### 5. Remove LeadershipSlideshow from homepage
-The screenshot doesn't show a separate leadership section on the homepage (the about section already features a leader photo). Remove `LeadershipSlideshow` from the Index page.
+### 1. `tailwind.config.ts` — Add cape-cod palette
+Add the full cape-cod scale under `theme.extend.colors`.
 
-### 6. TestimonialsSection + ContactSection - Side by side layout
-**Current**: Testimonials full-width, then Contact full-width below
-**Target**: Combined into one section - testimonials grid (2x2) on the left, contact form on the right in a dark green (primary) card. The section title "Success Stories" spans full width above. Contact card has Name, Email, Phone, Message fields and a Send button.
+### 2. `src/index.css` — Update CSS variables
+Remap all `:root` and `.dark` CSS variables to cape-cod HSL values.
 
-### 7. Remove FAQSection from homepage
-The screenshot doesn't show FAQs on the homepage. Remove from Index page.
+### 3. `src/components/Header.tsx` — Apply cape-cod styling
+- Change `bg-white` to `bg-cape-cod-50`
+- Mobile menu: `bg-gray-50` → `bg-cape-cod-50`, hover states use cape-cod shades
+- Remove raw `text-gray-700`/`text-gray-800` → use semantic classes or cape-cod utilities
 
-### 8. Footer - Dark background
-**Current**: White background footer
-**Target**: Dark gray/charcoal background with white/light text. Keep the same 4-column structure (logo, quick links, contact, tagline + social icons).
+### 4. `src/pages/OurStory.tsx` — Consistent section styling
+- Hero: full-width background image with dark gradient overlay (matching landing page hero pattern)
+- Timeline: `bg-secondary` stays (now maps to cape-cod-50), timeline circles use `bg-primary` (cape-cod-700)
+- Vision/Mission: Add gradient overlays to placeholder images
+- CTA section: use `bg-primary` (cape-cod-700) with white text
 
-### 9. Fix build error
-The Deno/Resend import error in `contact-email/index.ts` needs the import mapped properly. Add a deno.json or fix the import to use `npm:resend`.
+### 5. `src/pages/Articles.tsx` — Apply cape-cod
+- Hero section: add dark gradient overlay background image
+- Replace `bg-white` sections with cape-cod-50 where needed
+- Search input and category buttons use cape-cod palette
 
-## Files to modify
+### 6. `src/pages/ArticleDetail.tsx` — Consistent styling
+- Header section: add subtle gradient background
+- Article card: ensure borders use cape-cod-200
 
-| File | Action |
-|------|--------|
-| `src/components/HeroSection.tsx` | Rewrite as full-width overlay hero |
-| `src/components/DynamicHero.tsx` | Minor adjustments for white text |
-| `src/components/DynamicHeroImage.tsx` | Repurpose as background provider or inline into HeroSection |
-| `src/components/ClientLogos.tsx` | Larger logo cards, updated styling |
-| `src/components/AnimatedAboutSection.tsx` | Rewrite to image+text layout per screenshot |
-| `src/components/BusinessSectors.tsx` | Add images to cards with gradient overlays |
-| `src/components/TestimonialsSection.tsx` | Restructure as left side of combined section |
-| `src/components/ContactSection.tsx` | Rewrite as a form card (name, email, phone, message) placed beside testimonials |
-| `src/pages/Index.tsx` | Remove FAQSection and LeadershipSlideshow, combine Testimonials+Contact |
-| `src/components/Footer.tsx` | Dark background with light text |
-| `supabase/functions/contact-email/index.ts` | Fix Resend import for Deno |
+### 7. `src/pages/Sectors.tsx` — Match landing page pattern
+- Hero: full-width background image with dark gradient overlay, white text
+- Sector cards: add images with gradient overlays (same pattern as homepage BusinessSectors)
+- CTA: already uses `bg-primary`, will inherit new cape-cod-700
 
-## Technical notes
+### 8. `src/pages/SectorDetail.tsx` — Apply cape-cod
+- Hero: background image with gradient overlay
+- Cards: use cape-cod borders and accent colors
+- Contact form: match homepage ContactSection styling (primary bg card)
 
-- All existing fonts (Marcellus, Inter), colors (primary HSL 157 12% 27%), and component patterns preserved
-- Gradient overlays use Tailwind classes like `bg-gradient-to-t from-black/60` or `bg-gradient-to-r from-primary/80`
-- Unsplash images used for sector cards (real-estate, healthcare, coffee, automotive themed)
-- Contact form fields: Name, Email (side by side), Phone, Message, Send button
-- The `DynamicHeroImage` images array will be reused as full-width hero backgrounds
+### 9. `src/pages/Leadership.tsx` — Consistent design
+- Hero: dark gradient overlay background
+- Story section: cape-cod-50 background
+- Leadership cards: gradient overlays on images already present, ensure cape-cod borders
+
+### 10. `src/pages/Contact.tsx` — Match homepage contact
+- Hero: dark gradient overlay background
+- Form section: cape-cod-50 background, form card with cape-cod styling
+- CTA: `bg-primary` (cape-cod-700)
+
+### 11. `src/pages/NotFound.tsx` — Brand consistency
+- Replace `bg-gray-100`, `text-gray-600`, `text-blue-500` with cape-cod themed classes
+- Add Header/Footer
+
+### 12. `src/components/ArticleCard.tsx` — Cape-cod accents
+- Ensure card borders, badges, and hover states use cape-cod palette instead of raw gray values
+
+### 13. `src/components/Footer.tsx` — Already dark, verify cape-cod
+- Use `bg-cape-cod-950` instead of `bg-foreground`
+- Ensure text colors use cape-cod-100/200 for contrast
+
+## Technical Details
+
+- The cape-cod palette will be added both as Tailwind named colors AND mapped to CSS variables, so all existing `bg-primary`, `text-muted-foreground` etc. automatically pick up the new palette
+- Every page hero section will get a full-width background image with `bg-gradient-to-r from-black/70 via-black/50 to-black/30` overlay pattern
+- All raw gray Tailwind classes (`bg-gray-50`, `text-gray-600`, etc.) will be replaced with cape-cod equivalents
+- No structural changes — only color/styling updates
 
