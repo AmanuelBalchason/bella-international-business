@@ -51,8 +51,8 @@ const LeadershipSlideshow = () => {
         <StaticDotPattern />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-pulse">
-            <div className="h-8 bg-gray-200 rounded w-64 mx-auto mb-4"></div>
-            <div className="h-32 bg-gray-200 rounded mx-auto"></div>
+            <div className="h-8 bg-muted rounded w-64 mx-auto mb-4"></div>
+            <div className="h-32 bg-muted rounded mx-auto"></div>
           </div>
         </div>
       </section>
