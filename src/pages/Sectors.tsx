@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Card, CardContent } from '../components/ui/card';
 import { Link } from 'react-router-dom';
+import bellaHealthcareLogo from '@/assets/bella-healthcare-logo.png.asset.json';
 
 const Sectors = () => {
   const sectors = [
@@ -19,7 +20,8 @@ const Sectors = () => {
       slug: 'healthcare',
       description: 'Leading importer and distributor of essential pharmaceuticals and medical supplies in the Ethiopian market.',
       details: 'We provide comprehensive pharmaceutical import and distribution solutions, including supply chain management, product sourcing, and logistics.',
-      icon: 'HC'
+      icon: 'HC',
+      logo: bellaHealthcareLogo.url
     },
     {
       title: 'Acha Forest Coffee',
@@ -80,8 +82,12 @@ const Sectors = () => {
               <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-border bg-white animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                 <CardContent className="p-8">
                   <div className="flex items-start justify-between mb-6">
-                    <div className="w-16 h-16 bg-primary/10 flex items-center justify-center">
-                      <span className="text-primary font-marcellus text-xl">{sector.icon}</span>
+                    <div className="w-16 h-16 bg-primary/10 flex items-center justify-center overflow-hidden">
+                      {sector.logo ? (
+                        <img src={sector.logo} alt={`${sector.title} logo`} className="w-full h-full object-contain p-2" />
+                      ) : (
+                        <span className="text-primary font-marcellus text-xl">{sector.icon}</span>
+                      )}
                     </div>
                   </div>
                   
