@@ -48,6 +48,7 @@ const stats = [
 const Leadership = () => {
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
 
   const scrollToIndex = useCallback((index: number) => {
     const track = trackRef.current;
@@ -80,6 +81,21 @@ const Leadership = () => {
     track.addEventListener('scroll', onScroll, { passive: true });
     return () => track.removeEventListener('scroll', onScroll);
   }, []);
+
+  // Auto-cycle through executives
+  useEffect(() => {
+    if (paused) return;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+    const id = window.setInterval(() => {
+      setActiveIndex((current) => {
+        const next = (current + 1) % leaders.length;
+        scrollToIndex(next);
+        return next;
+      });
+    }, 4000);
+    return () => window.clearInterval(id);
+  }, [paused, scrollToIndex]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -162,6 +178,12 @@ const Leadership = () => {
 
         <div
           ref={trackRef}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocusCapture={() => setPaused(true)}
+          onBlurCapture={() => setPaused(false)}
+          onPointerDown={() => setPaused(true)}
+          onPointerUp={() => setPaused(false)}
           className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 pt-2 px-6 max-w-7xl mx-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         >
           {leaders.map((leader) => (
