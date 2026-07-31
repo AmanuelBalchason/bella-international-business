@@ -161,7 +161,7 @@ const Leadership = () => {
 
         <div
           ref={trackRef}
-          className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 px-6 md:px-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          className="flex gap-6 md:gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 pt-2 px-6 max-w-7xl mx-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         >
           {leaders.map((leader) => (
             <article
@@ -173,7 +173,7 @@ const Leadership = () => {
                   src={leader.image}
                   alt={`Portrait of ${leader.name}, ${leader.position}`}
                   loading="lazy"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-center"
                 />
               </div>
               <div className="p-8 md:p-10">
