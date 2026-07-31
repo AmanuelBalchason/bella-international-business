@@ -53,9 +53,10 @@ const Leadership = () => {
     const track = trackRef.current;
     if (!track) return;
     const card = track.children[index] as HTMLElement | undefined;
-    if (card) {
-      track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: 'smooth' });
-    }
+    if (!card) return;
+    const delta = card.getBoundingClientRect().left - track.getBoundingClientRect().left;
+    track.scrollTo({ left: track.scrollLeft + delta, behavior: 'smooth' });
+    setActiveIndex(index);
   }, []);
 
   useEffect(() => {
@@ -63,12 +64,12 @@ const Leadership = () => {
     if (!track) return;
     const onScroll = () => {
       const children = Array.from(track.children) as HTMLElement[];
-      const center = track.scrollLeft + track.clientWidth / 2;
+      const trackLeft = track.getBoundingClientRect().left;
       let nearest = 0;
       let min = Infinity;
       children.forEach((child, i) => {
-        const childCenter = child.offsetLeft - track.offsetLeft + child.clientWidth / 2;
-        const dist = Math.abs(childCenter - center);
+        const childStart = child.getBoundingClientRect().left - trackLeft;
+        const dist = Math.abs(childStart);
         if (dist < min) {
           min = dist;
           nearest = i;
