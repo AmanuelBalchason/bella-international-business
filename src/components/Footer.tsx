@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LocationLink from './LocationLink';
 import StaticDotPattern from './StaticDotPattern';
+import { sectorNavLinks } from '@/data/sectors';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -34,11 +35,21 @@ const Footer = () => {
           
           {/* Quick Links */}
           <div>
-            <h4 className="font-inter font-semibold text-foreground mb-6">Quick Links</h4>
+            <h4 className="font-inter font-semibold text-foreground mb-6">Sectors</h4>
             <div className="space-y-3">
-              <Link to="/our-story" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">Our Story</Link>
-              <Link to="/articles" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">Articles</Link>
-              <Link to="/sectors" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">Sectors</Link>
+              {/* Temporarily hidden: Our Story and Articles pages
+              <Link to="/our-story" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Our Story</Link>
+              <Link to="/articles" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Articles</Link>
+              */}
+              {sectorNavLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300"
+                >
+                  {link.title}
+                </Link>
+              ))}
               <Link to="/leadership" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">Leadership</Link>
             </div>
           </div>
