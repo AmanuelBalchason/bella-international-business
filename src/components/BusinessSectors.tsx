@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useBusinessSectors } from '@/hooks/useBusinessSectors';
 import { Skeleton } from '@/components/ui/skeleton';
+import { sectorPathBySlug } from '@/data/sectors';
 
 const BusinessSectors = () => {
   const { data: sectors, isLoading, error } = useBusinessSectors();
@@ -84,7 +85,7 @@ const BusinessSectors = () => {
               return (
                 <Link 
                   key={sector.id}
-                  to={`/sectors/${sector.slug}`}
+                  to={sectorPathBySlug(sector.slug)}
                   className={`bg-white border border-border group hover:border-primary/30 hover:shadow-xl transition-all duration-500 block relative overflow-hidden transform hover:scale-105 animate-fade-in ${hoverColor}`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
