@@ -290,3 +290,9 @@ export const sectorList: Sector[] = [
 ];
 
 export const sectorPathBySlug = (slug: string): string => sectorData[slug]?.path ?? '/sectors';
+
+export const sectorNavLinks = sectorList.map((sector) => ({
+  path: sector.path,
+  title: sector.title,
+  tagline: sector.tagline,
+}));
