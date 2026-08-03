@@ -6,11 +6,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import Index from "./pages/Index";
-import OurStory from "./pages/OurStory";
-import Articles from "./pages/Articles";
-import ArticleDetail from "./pages/ArticleDetail";
+// Temporarily hidden pages (restore routes when reactivated):
+// import OurStory from "./pages/OurStory";
+// import Articles from "./pages/Articles";
+// import ArticleDetail from "./pages/ArticleDetail";
 import Sectors from "./pages/Sectors";
-import SectorDetail from "./pages/SectorDetail";
+import SectorPage from "./pages/SectorPage";
+import { sectorData } from "@/data/sectors";
+import { Navigate, useParams } from "react-router-dom";
 import Leadership from "./pages/Leadership";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -25,6 +28,12 @@ import EmailDiagnosticsAdmin from "@/features/admin/pages/EmailDiagnosticsAdmin"
 
 const queryClient = new QueryClient();
 
+const SectorSlugRedirect = () => {
+  const { slug } = useParams<{ slug: string }>();
+  const target = slug && sectorData[slug] ? sectorData[slug].path : "/";
+  return <Navigate to={target} replace />;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
@@ -34,11 +43,17 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            {/* Temporarily hidden:
             <Route path="/our-story" element={<OurStory />} />
             <Route path="/articles" element={<Articles />} />
             <Route path="/articles/:slug" element={<ArticleDetail />} />
+            */}
+            <Route path="/bella-real-estate" element={<SectorPage sector={sectorData['real-estate']} />} />
+            <Route path="/bella-healthcare" element={<SectorPage sector={sectorData['healthcare']} />} />
+            <Route path="/acha-forest-coffee" element={<SectorPage sector={sectorData['acha-forest-coffee']} />} />
+            <Route path="/bella-automotives" element={<SectorPage sector={sectorData['automotives']} />} />
             <Route path="/sectors" element={<Sectors />} />
-            <Route path="/sectors/:slug" element={<SectorDetail />} />
+            <Route path="/sectors/:slug" element={<SectorSlugRedirect />} />
             <Route path="/leadership" element={<Leadership />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/newsletter-test" element={<NewsletterTest />} />

@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import { Card, CardContent } from '../components/ui/card';
 import { Link } from 'react-router-dom';
 import bellaHealthcareLogo from '@/assets/bella-healthcare-logo.png.asset.json';
+import { sectorPathBySlug } from '@/data/sectors';
 
 const Sectors = () => {
   const sectors = [
@@ -104,7 +105,7 @@ const Sectors = () => {
                   </p>
                   
                   <Link 
-                    to={`/sectors/${sector.slug}`}
+                    to={sectorPathBySlug(sector.slug)}
                     className="inline-flex items-center text-primary font-inter font-medium hover:text-primary/80 transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300"
                   >
                     Learn More

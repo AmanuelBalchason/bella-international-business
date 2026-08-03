@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
+import { sectorNavLinks } from '@/data/sectors';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSectorsOpen, setIsSectorsOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // Temporarily hidden pages (restore in original positions when reactivated):
+  //   { to: "/our-story", label: "Our Story" },
+  //   { to: "/articles", label: "Articles" },
   const navigationLinks = [
-    { to: "/our-story", label: "Our Story" },
-    { to: "/articles", label: "Articles" },
-    { to: "/sectors", label: "Sectors" },
     { to: "/leadership", label: "Leadership" },
     { to: "/contact", label: "Contact" },
   ];
@@ -37,7 +39,42 @@ const Header = () => {
           </Link>
           
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-12">
+          <nav className="hidden md:flex items-center space-x-12">
+            <div
+              className="relative"
+              onMouseEnter={() => setIsSectorsOpen(true)}
+              onMouseLeave={() => setIsSectorsOpen(false)}
+            >
+              <button
+                onClick={() => setIsSectorsOpen((open) => !open)}
+                className="flex items-center gap-1 font-inter font-medium text-muted-foreground hover:text-primary transition-colors duration-200"
+                aria-expanded={isSectorsOpen}
+              >
+                Sectors
+                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isSectorsOpen ? 'rotate-180' : ''}`} />
+              </button>
+              <div
+                className={`absolute left-0 top-full pt-4 w-72 transition-all duration-200 ${
+                  isSectorsOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 -translate-y-1 invisible'
+                }`}
+              >
+                <div className="bg-white border border-border shadow-xl py-2">
+                  {sectorNavLinks.map((sector) => (
+                    <Link
+                      key={sector.path}
+                      to={sector.path}
+                      onClick={() => setIsSectorsOpen(false)}
+                      className="block px-5 py-3 hover:bg-secondary transition-colors duration-200 group"
+                    >
+                      <span className="block font-inter font-medium text-foreground group-hover:text-primary transition-colors duration-200">
+                        {sector.title}
+                      </span>
+                      <span className="block font-inter text-xs text-muted-foreground mt-1">{sector.tagline}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
             {navigationLinks.map((link) => (
               <Link 
                 key={link.to}
@@ -82,7 +119,19 @@ const Header = () => {
       >
         <div className="flex flex-col h-full pt-20 pb-8 px-6">
           {/* Mobile Menu Items with card-like styling */}
-          <div className="flex-1 space-y-2">
+          <div className="flex-1 space-y-2 overflow-y-auto">
+            <p className="px-4 pt-2 pb-1 text-xs uppercase tracking-wider text-muted-foreground font-inter">Sectors</p>
+            {sectorNavLinks.map((sector) => (
+              <Link
+                key={sector.path}
+                to={sector.path}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block py-3 text-base font-inter font-medium text-gray-800 hover:text-primary hover:bg-white px-4 rounded-lg transition-all duration-200 shadow-sm border border-gray-100"
+              >
+                {sector.title}
+              </Link>
+            ))}
+            <div className="h-2" />
             {navigationLinks.map((link) => (
               <Link
                 key={link.to}
