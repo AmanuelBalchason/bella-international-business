@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LocationLink from './LocationLink';
-import StaticDotPattern from './StaticDotPattern';
+import InteractiveDotPattern from './InteractiveDotPattern';
 import { sectorNavLinks } from '@/data/sectors';
 
 const Footer = () => {
@@ -10,7 +10,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-white py-16 relative overflow-hidden">
-      <StaticDotPattern />
+      <InteractiveDotPattern />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Company Info */}
@@ -71,15 +71,15 @@ const Footer = () => {
               Excellence in Every Partnership
             </h4>
             <div className="flex space-x-4">
-              <div className="w-8 h-8 bg-secondary border border-border flex items-center justify-center hover:border-primary/30 transition-colors duration-200 hover:scale-110">
+              <a
+                href="https://www.linkedin.com/company/bella-healthcare/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Bella International on LinkedIn"
+                className="w-8 h-8 bg-secondary border border-border flex items-center justify-center hover:border-primary/30 hover:text-primary transition-all duration-200 hover:scale-110"
+              >
                 <span className="text-muted-foreground text-xs">LI</span>
-              </div>
-              <div className="w-8 h-8 bg-secondary border border-border flex items-center justify-center hover:border-primary/30 transition-colors duration-200 hover:scale-110">
-                <span className="text-muted-foreground text-xs">TW</span>
-              </div>
-              <div className="w-8 h-8 bg-secondary border border-border flex items-center justify-center hover:border-primary/30 transition-colors duration-200 hover:scale-110">
-                <span className="text-muted-foreground text-xs">FB</span>
-              </div>
+              </a>
             </div>
           </div>
         </div>
