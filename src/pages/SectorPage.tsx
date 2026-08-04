@@ -28,14 +28,8 @@ const SectorPage = ({ sector }: SectorPageProps) => {
     message: '',
     inquiryType: '',
   });
-  const [selectedLocation, setSelectedLocation] = useState<{
-    name: string;
-    coords: number[];
-    projects: number;
-  } | null>(null);
   const [scrollY, setScrollY] = useState(0);
   const reduced = usePrefersReducedMotion();
-  const { ref: metricsRef, inView: metricsInView } = useInView<HTMLDivElement>(0.3);
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
@@ -323,14 +317,6 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       </section>
 
       <Footer />
-
-      {selectedLocation && (
-        <LocationMapDialog
-          isOpen={!!selectedLocation}
-          onClose={() => setSelectedLocation(null)}
-          location={selectedLocation}
-        />
-      )}
     </div>
   );
 };
