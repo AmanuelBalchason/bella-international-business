@@ -283,8 +283,8 @@ export const sectorData: Record<string, Sector> = {
 };
 
 export const sectorList: Sector[] = [
-  sectorData['real-estate'],
   sectorData['healthcare'],
+  sectorData['real-estate'],
   sectorData['acha-forest-coffee'],
   sectorData['automotives'],
 ];
