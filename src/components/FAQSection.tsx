@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
-import StaticDotPattern from './StaticDotPattern';
+import InteractiveDotPattern from './InteractiveDotPattern';
 
 const FAQSection = () => {
   const [openItems, setOpenItems] = useState<number[]>([]);
@@ -39,7 +39,7 @@ const FAQSection = () => {
 
   return (
     <section className="py-24 bg-white relative overflow-hidden">
-      <StaticDotPattern />
+      <InteractiveDotPattern />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4">Support</p>
