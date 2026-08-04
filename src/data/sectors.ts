@@ -106,7 +106,7 @@ export const sectorData: Record<string, Sector> = {
       'To provide exceptional healthcare services through innovative solutions, qualified professionals, and state-of-the-art facilities that serve the diverse needs of our communities.',
     resources: ['Healthcare Excellence Report', 'Medical Equipment Catalog', 'Quality Standards Guide', 'Community Health Impact'],
     stats: { facilities: '12', patients: '10K+', specialists: '50+' },
-    heroImage: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=1920&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1920&q=80',
     images: [
       {
         src: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=800&q=80',
@@ -283,8 +283,8 @@ export const sectorData: Record<string, Sector> = {
 };
 
 export const sectorList: Sector[] = [
-  sectorData['real-estate'],
   sectorData['healthcare'],
+  sectorData['real-estate'],
   sectorData['acha-forest-coffee'],
   sectorData['automotives'],
 ];

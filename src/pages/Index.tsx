@@ -20,10 +20,10 @@ const Index = () => {
       <HeroSection />
       <EventBanner />
       <ClientLogos />
-      <AnimatedAboutSection />
+      <TestimonialsSection />
       <BusinessSectors />
       <LeadershipSlideshow />
-      <TestimonialsSection />
+      <AnimatedAboutSection />
       <FAQSection />
       <ContactSection />
       <Footer />

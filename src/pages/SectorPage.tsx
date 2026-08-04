@@ -5,8 +5,8 @@ import Footer from '../components/Footer';
 import Reveal from '../components/Reveal';
 import CountUp from '../components/CountUp';
 import SectorCarousel from '../components/SectorCarousel';
-import LocationMapDialog from '../components/LocationMapDialog';
-import { MapPin, Calendar, Award, Users, Mail, Phone, Send, Play, ArrowDown } from 'lucide-react';
+import InteractiveDotPattern from '../components/InteractiveDotPattern';
+import { Calendar, Mail, Phone, Send, Play, ArrowDown } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -15,7 +15,7 @@ import { Textarea } from '../components/ui/textarea';
 import { Label } from '../components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { Sector } from '@/data/sectors';
-import { useInView, usePrefersReducedMotion } from '@/hooks/useInView';
+import { usePrefersReducedMotion } from '@/hooks/useInView';
 
 interface SectorPageProps {
   sector: Sector;
@@ -29,14 +29,8 @@ const SectorPage = ({ sector }: SectorPageProps) => {
     message: '',
     inquiryType: '',
   });
-  const [selectedLocation, setSelectedLocation] = useState<{
-    name: string;
-    coords: number[];
-    projects: number;
-  } | null>(null);
   const [scrollY, setScrollY] = useState(0);
   const reduced = usePrefersReducedMotion();
-  const { ref: metricsRef, inView: metricsInView } = useInView<HTMLDivElement>(0.3);
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
@@ -115,8 +109,9 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       </section>
 
       {/* Overview */}
-      <section id="sector-overview" className="py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-14">
+      <section id="sector-overview" className="py-28 relative overflow-hidden">
+        <InteractiveDotPattern />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-14">
           <Reveal className="lg:col-span-5">
             <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">Overview</p>
             <h2 className="font-marcellus text-4xl text-foreground leading-tight">{sector.description}</h2>
@@ -140,30 +135,6 @@ const SectorPage = ({ sector }: SectorPageProps) => {
         </div>
       </section>
 
-      {/* Vision & mission */}
-      <section className="py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-          {[
-            { icon: Award, title: 'Vision', body: sector.vision },
-            { icon: Users, title: 'Mission', body: sector.mission },
-          ].map((item, index) => (
-            <Reveal key={item.title} delay={index * 120}>
-              <Card className="h-full rounded-none border-border hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 font-marcellus text-2xl font-normal">
-                    <item.icon className="w-5 h-5 text-primary" />
-                    {item.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground font-inter leading-relaxed">{item.body}</p>
-                </CardContent>
-              </Card>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
       {/* Process timeline */}
       <section className="bg-secondary py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -182,87 +153,6 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                   <p className="text-muted-foreground font-inter text-sm leading-relaxed mb-5">{step.description}</p>
                   <Badge variant="secondary" className="rounded-none">{step.duration}</Badge>
                 </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Performance metrics */}
-      <section className="py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-14" ref={metricsRef}>
-          <Reveal>
-            <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">Performance</p>
-            <h2 className="font-marcellus text-4xl text-foreground mb-8">Quality Metrics</h2>
-            <div className="space-y-6">
-              {sector.dataMetrics.quality.map((metric, index) => (
-                <div key={metric.metric}>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-inter text-sm text-foreground">{metric.metric}</span>
-                    <span className="font-marcellus text-lg text-primary">{metric.score}%</span>
-                  </div>
-                  <div className="w-full h-1.5 bg-secondary">
-                    <div
-                      className="h-1.5 bg-primary transition-all duration-1000 ease-out"
-                      style={{
-                        width: metricsInView ? `${metric.score}%` : '0%',
-                        transitionDelay: `${index * 120}ms`,
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          <div className="space-y-8">
-            <Reveal delay={120}>
-              <h3 className="font-marcellus text-2xl text-foreground mb-4">Certifications</h3>
-              <div className="flex flex-wrap gap-2">
-                {sector.certifications.map((cert) => (
-                  <Badge key={cert} variant="secondary" className="rounded-none px-3 py-1">{cert}</Badge>
-                ))}
-              </div>
-            </Reveal>
-            <Reveal delay={220}>
-              <h3 className="font-marcellus text-2xl text-foreground mb-4">Key Partnerships</h3>
-              <div className="flex flex-wrap gap-2">
-                {sector.partnerships.map((partner) => (
-                  <Badge key={partner} variant="outline" className="rounded-none px-3 py-1">{partner}</Badge>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Locations */}
-      <section className="bg-secondary py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal className="mb-14">
-            <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4 flex items-center gap-2">
-              <MapPin className="w-4 h-4" /> Where We Operate
-            </p>
-            <h2 className="font-marcellus text-4xl text-foreground">Our Locations</h2>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sector.locations.map((location, index) => (
-              <Reveal key={location.name} delay={index * 100}>
-                <button
-                  onClick={() => setSelectedLocation(location)}
-                  className="w-full text-left bg-card border border-border p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
-                >
-                  <h3 className="font-inter font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-200">
-                    {location.name}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-3">{location.projects} active projects</p>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <MapPin className="w-3 h-3" />
-                    <span>
-                      {location.coords[1].toFixed(4)}, {location.coords[0].toFixed(4)}
-                    </span>
-                  </div>
-                </button>
               </Reveal>
             ))}
           </div>
@@ -429,14 +319,6 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       </section>
 
       <Footer />
-
-      {selectedLocation && (
-        <LocationMapDialog
-          isOpen={!!selectedLocation}
-          onClose={() => setSelectedLocation(null)}
-          location={selectedLocation}
-        />
-      )}
     </div>
   );
 };
