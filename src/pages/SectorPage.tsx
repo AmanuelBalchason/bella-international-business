@@ -5,7 +5,8 @@ import Footer from '../components/Footer';
 import Reveal from '../components/Reveal';
 import CountUp from '../components/CountUp';
 import SectorCarousel from '../components/SectorCarousel';
-import { MapPin, Calendar, Award, Users, Mail, Phone, Send, Play, ArrowDown } from 'lucide-react';
+import InteractiveDotPattern from '../components/InteractiveDotPattern';
+import { Calendar, Mail, Phone, Send, Play, ArrowDown } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -14,7 +15,7 @@ import { Textarea } from '../components/ui/textarea';
 import { Label } from '../components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { Sector } from '@/data/sectors';
-import { useInView, usePrefersReducedMotion } from '@/hooks/useInView';
+import { usePrefersReducedMotion } from '@/hooks/useInView';
 
 interface SectorPageProps {
   sector: Sector;
@@ -108,8 +109,9 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       </section>
 
       {/* Overview */}
-      <section id="sector-overview" className="py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-14">
+      <section id="sector-overview" className="py-28 relative overflow-hidden">
+        <InteractiveDotPattern />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-14">
           <Reveal className="lg:col-span-5">
             <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">Overview</p>
             <h2 className="font-marcellus text-4xl text-foreground leading-tight">{sector.description}</h2>
