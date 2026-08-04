@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 interface InteractiveDotPatternProps {
   className?: string;
@@ -10,15 +10,14 @@ interface InteractiveDotPatternProps {
 
 const InteractiveDotPattern: React.FC<InteractiveDotPatternProps> = ({
   className = "",
-  dotSize = 2,
-  spacing = 20,
-  color = "hsl(134, 20%, 40%)",
-  opacity = 0.15
+  dotSize = 1.4,
+  spacing = 26,
+  color = "hsl(var(--primary))",
+  opacity = 0.12
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [clicks, setClicks] = useState<Array<{ x: number, y: number, timestamp: number }>>([]);
+  const mouse = useRef({ x: -9999, y: -9999 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -28,108 +27,87 @@ const InteractiveDotPattern: React.FC<InteractiveDotPatternProps> = ({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let width = 0;
+    let height = 0;
+    let frame = 0;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const resolveColor = () => {
+      if (color.startsWith('hsl(var(')) {
+        const varName = color.slice(color.indexOf('--'), color.indexOf(')'));
+        const value = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+        return value ? `hsl(${value} / ` : 'hsla(134, 20%, 40%, ';
+      }
+      return null;
+    };
+
+    let colorPrefix = resolveColor();
+
     const resizeCanvas = () => {
       const rect = container.getBoundingClientRect();
-      canvas.width = rect.width;
-      canvas.height = rect.height;
+      width = rect.width;
+      height = rect.height;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect();
-      setMousePos({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top
-      });
+      mouse.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
     };
 
-    const handleClick = (e: MouseEvent) => {
-      const rect = container.getBoundingClientRect();
-      setClicks(prev => [...prev, {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-        timestamp: Date.now()
-      }]);
+    const handleMouseLeave = () => {
+      mouse.current = { x: -9999, y: -9999 };
     };
 
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Draw dots
-      const cols = Math.ceil(canvas.width / spacing);
-      const rows = Math.ceil(canvas.height / spacing);
-      
-      for (let i = 0; i <= cols; i++) {
-        for (let j = 0; j <= rows; j++) {
-          const x = i * spacing;
-          const y = j * spacing;
-          
-          // Calculate distance from mouse
-          const distanceFromMouse = Math.sqrt(
-            Math.pow(x - mousePos.x, 2) + Math.pow(y - mousePos.y, 2)
-          );
-          
-          // Calculate distance from recent clicks
-          let clickInfluence = 0;
-          const currentTime = Date.now();
-          clicks.forEach(click => {
-            const age = currentTime - click.timestamp;
-            if (age < 1000) { // Effect lasts 1 second
-              const distanceFromClick = Math.sqrt(
-                Math.pow(x - click.x, 2) + Math.pow(y - click.y, 2)
-              );
-              const influence = Math.max(0, 1 - (distanceFromClick / 100)) * (1 - age / 1000);
-              clickInfluence = Math.max(clickInfluence, influence);
-            }
-          });
-          
-          // Mouse proximity effect
-          const mouseInfluence = Math.max(0, 1 - (distanceFromMouse / 80));
-          
-          // Combine influences
-          const totalInfluence = Math.max(mouseInfluence, clickInfluence);
-          
-          // Calculate dot properties
-          const finalOpacity = opacity + (totalInfluence * 0.4);
-          const finalSize = dotSize + (totalInfluence * 2);
-          
-          // Draw dot
+    const fill = (alpha: number) =>
+      colorPrefix ? `${colorPrefix}${alpha})` : `hsla(134, 20%, 40%, ${alpha})`;
+
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+      const radius = 140;
+      const { x: mx, y: my } = mouse.current;
+
+      for (let x = spacing / 2; x < width; x += spacing) {
+        for (let y = spacing / 2; y < height; y += spacing) {
+          const dx = x - mx;
+          const dy = y - my;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const influence = reduced ? 0 : Math.max(0, 1 - dist / radius);
+          const eased = influence * influence;
+
           ctx.beginPath();
-          ctx.arc(x, y, finalSize, 0, Math.PI * 2);
-          ctx.fillStyle = color.includes('hsl') 
-            ? color.replace(')', `, ${finalOpacity})`)
-            : `${color}${Math.round(finalOpacity * 255).toString(16).padStart(2, '0')}`;
+          ctx.arc(x, y, dotSize + eased * 1.6, 0, Math.PI * 2);
+          ctx.fillStyle = fill(opacity + eased * 0.4);
           ctx.fill();
         }
       }
-      
-      requestAnimationFrame(animate);
-    };
 
-    // Clean up old clicks
-    const cleanupInterval = setInterval(() => {
-      const currentTime = Date.now();
-      setClicks(prev => prev.filter(click => currentTime - click.timestamp < 1000));
-    }, 100);
+      frame = requestAnimationFrame(draw);
+    };
 
     resizeCanvas();
+    colorPrefix = resolveColor();
     window.addEventListener('resize', resizeCanvas);
-    container.addEventListener('mousemove', handleMouseMove);
-    container.addEventListener('click', handleClick);
-    
-    animate();
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    container.addEventListener('mouseleave', handleMouseLeave);
+
+    draw();
 
     return () => {
+      cancelAnimationFrame(frame);
       window.removeEventListener('resize', resizeCanvas);
-      container.removeEventListener('mousemove', handleMouseMove);
-      container.removeEventListener('click', handleClick);
-      clearInterval(cleanupInterval);
+      window.removeEventListener('mousemove', handleMouseMove);
+      container.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [mousePos, clicks, dotSize, spacing, color, opacity]);
+  }, [dotSize, spacing, color, opacity]);
 
   return (
     <div 
       ref={containerRef}
-      className={`absolute inset-0 pointer-events-auto ${className}`}
+      className={`absolute inset-0 pointer-events-none ${className}`}
       style={{ zIndex: 1 }}
     >
       <canvas 
