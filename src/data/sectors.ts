@@ -1,3 +1,10 @@
+import bhVideo1 from '@/assets/bh-video-1.mp4.asset.json';
+import bhVideo2 from '@/assets/bh-video-2.mp4.asset.json';
+import bhVideo3 from '@/assets/bh-video-3.mp4.asset.json';
+import bhPoster1 from '@/assets/bh-poster-1.jpg.asset.json';
+import bhPoster2 from '@/assets/bh-poster-2.jpg.asset.json';
+import bhPoster3 from '@/assets/bh-poster-3.jpg.asset.json';
+
 export interface SectorImage {
   src: string;
   title: string;
@@ -26,6 +33,8 @@ export interface Sector {
   };
   locations: { name: string; projects: number; coords: number[] }[];
   videos: { title: string; thumbnail: string; duration: string }[];
+  videoFiles?: { title: string; src: string; poster: string }[];
+  solutions?: { title: string; description: string }[];
 }
 
 export const sectorData: Record<string, Sector> = {
@@ -97,7 +106,7 @@ export const sectorData: Record<string, Sector> = {
     slug: 'healthcare',
     path: '/bella-healthcare',
     title: 'Bella Healthcare',
-    tagline: 'Reliable access to essential medicines.',
+    tagline: 'Reliable medical devices and healthcare solutions, expertly curated for the Ethiopian market.',
     description: 'Leading importer and distributor of essential pharmaceuticals and medical supplies in the Ethiopian market.',
     content:
       'We provide comprehensive pharmaceutical import and distribution solutions, including supply chain management, product sourcing, and logistics. Our commitment to quality and integrity drives everything we do, ensuring timely and reliable access to essential medicines for pharmacies and healthcare facilities across the Horn of Africa.',
@@ -105,7 +114,11 @@ export const sectorData: Record<string, Sector> = {
     mission:
       'To provide exceptional healthcare services through innovative solutions, qualified professionals, and state-of-the-art facilities that serve the diverse needs of our communities.',
     resources: ['Healthcare Excellence Report', 'Medical Equipment Catalog', 'Quality Standards Guide', 'Community Health Impact'],
-    stats: { facilities: '12', patients: '10K+', specialists: '50+' },
+    stats: {
+      'Strategic Partnerships': '200+',
+      'Client Retention Rate': '90%',
+      'Distribution Network': 'Nationwide',
+    },
     heroImage: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1920&q=80',
     images: [
       {
@@ -153,10 +166,31 @@ export const sectorData: Record<string, Sector> = {
       { name: 'Bahir Dar', projects: 2, coords: [37.3957, 11.5942] },
       { name: 'Mekelle', projects: 1, coords: [39.4753, 13.4967] },
     ],
-    videos: [
-      { title: 'Facility Tour', thumbnail: 'photo-1576091160399-112ba8d25d1f', duration: '5:20' },
-      { title: 'Medical Team', thumbnail: 'photo-1559757148-5c350d0d3c56', duration: '3:15' },
-      { title: 'Patient Stories', thumbnail: 'photo-1538108149393-fbbd81895907', duration: '4:45' },
+    videos: [],
+    videoFiles: [
+      { title: 'Inside Bella Healthcare', src: bhVideo1.url, poster: bhPoster1.url },
+      { title: 'Medical Equipment in Action', src: bhVideo2.url, poster: bhPoster2.url },
+      { title: 'Serving Ethiopian Healthcare', src: bhVideo3.url, poster: bhPoster3.url },
+    ],
+    solutions: [
+      {
+        title: 'Pharmaceuticals',
+        description: 'Importation and distribution of essential medicines.',
+      },
+      {
+        title: 'Medical Devices & Equipment',
+        description: 'Sourcing advanced diagnostics, including Mindray ultrasound systems.',
+      },
+      {
+        title: 'Clinical Consumables',
+        description:
+          'High-volume essentials including syringes, SriTrang gloves, and Tedia blood collection tubes.',
+      },
+      {
+        title: 'Technical Services',
+        description:
+          'Expert installation, calibration, and preventive maintenance by licensed biomedical engineers.',
+      },
     ],
   },
   'acha-forest-coffee': {

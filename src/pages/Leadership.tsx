@@ -22,7 +22,7 @@ const leaders = [
   },
   {
     name: 'Chirotaw Assefa',
-    position: 'CFO and COO, Bella International',
+    position: 'COO',
     bio: 'Chirotaw has established robust financial frameworks that support our ambitious growth plans across the Horn of Africa.',
     email: 'chirotaw@bellainter.com',
     linkedin: '#',
@@ -35,6 +35,22 @@ const leaders = [
     email: 'temesgen@bellainter.com',
     linkedin: '#',
     image: '/leaders/temesgen.png',
+  },
+  {
+    name: 'Dr. Metasebia',
+    position: 'Senior Consultant',
+    bio: 'Dr. Metasebia advises on clinical strategy and quality standards, bringing deep medical expertise to our healthcare portfolio.',
+    email: 'info@bellainter.com',
+    linkedin: '#',
+    image: '/placeholder.svg',
+  },
+  {
+    name: 'Yonas Birhanu',
+    position: 'Director, Medical Equipment Division',
+    bio: 'Yonas leads the medical equipment division, overseeing sourcing, installation and technical service of advanced diagnostic systems.',
+    email: 'info@bellainter.com',
+    linkedin: 'https://www.linkedin.com/in/yonas-b-teferi/',
+    image: '/placeholder.svg',
   },
 ];
 
