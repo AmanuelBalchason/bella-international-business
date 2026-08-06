@@ -126,12 +126,32 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       <section className="bg-secondary py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal className="mb-12">
-            <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">In Focus</p>
-            <h2 className="font-marcellus text-4xl text-foreground">Inside {sector.title}</h2>
+            <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">
+              {sector.solutions ? 'What We Offer' : 'In Focus'}
+            </p>
+            <h2 className="font-marcellus text-4xl text-foreground">
+              {sector.solutions ? 'Comprehensive Healthcare Solutions' : `Inside ${sector.title}`}
+            </h2>
           </Reveal>
-          <Reveal delay={120}>
-            <SectorCarousel images={sector.images} />
-          </Reveal>
+          {sector.solutions ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {sector.solutions.map((solution, index) => (
+                <Reveal key={solution.title} delay={index * 100}>
+                  <div className="h-full bg-card border border-border p-8 md:p-10 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <span className="font-marcellus text-3xl text-primary/50">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="font-marcellus text-2xl text-foreground mt-5 mb-3">{solution.title}</h3>
+                    <p className="font-inter text-muted-foreground leading-relaxed">{solution.description}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          ) : (
+            <Reveal delay={120}>
+              <SectorCarousel images={sector.images} />
+            </Reveal>
+          )}
         </div>
       </section>
 
@@ -168,6 +188,27 @@ const SectorPage = ({ sector }: SectorPageProps) => {
             </p>
             <h2 className="font-marcellus text-4xl text-foreground">Video Content</h2>
           </Reveal>
+          {sector.videoFiles ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl">
+              {sector.videoFiles.map((video, index) => (
+                <Reveal key={video.title} delay={index * 120}>
+                  <div className="group">
+                    <div className="relative overflow-hidden aspect-[9/16] bg-secondary">
+                      <video
+                        src={video.src}
+                        poster={video.poster}
+                        controls
+                        playsInline
+                        preload="none"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h3 className="font-inter font-semibold text-foreground mt-4">{video.title}</h3>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {sector.videos.map((video, index) => (
               <Reveal key={video.title} delay={index * 120}>
@@ -191,6 +232,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
               </Reveal>
             ))}
           </div>
+          )}
         </div>
       </section>
 
