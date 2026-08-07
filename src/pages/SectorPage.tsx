@@ -188,6 +188,29 @@ const SectorPage = ({ sector }: SectorPageProps) => {
         </div>
       </section>
 
+      {/* Bella Advantage */}
+      {sector.advantages && (
+        <section className="py-28 relative overflow-hidden">
+          <InteractiveDotPattern />
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Reveal className="mb-14">
+              <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">Why Partner With Us</p>
+              <h2 className="font-marcellus text-4xl text-foreground">The Bella Advantage</h2>
+            </Reveal>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {sector.advantages.map((advantage, index) => (
+                <Reveal key={advantage.title} delay={index * 120}>
+                  <div className="h-full border-t-2 border-primary bg-card p-8 md:p-10 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <h3 className="font-marcellus text-2xl text-foreground mb-4">{advantage.title}</h3>
+                    <p className="font-inter text-muted-foreground leading-relaxed">{advantage.description}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Process timeline */}
       <section className="bg-secondary py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -197,6 +220,75 @@ const SectorPage = ({ sector }: SectorPageProps) => {
             </p>
             <h2 className="font-marcellus text-4xl text-foreground">How We Partner</h2>
           </Reveal>
+          {sector.processSteps.length > 4 ? (
+            <Reveal>
+              <div className="flex flex-wrap gap-2 mb-10">
+                {sector.processSteps.map((step, index) => (
+                  <button
+                    key={step.step}
+                    onClick={() => setStepIndex(index)}
+                    aria-label={`Step ${index + 1}: ${step.step}`}
+                    className={`font-inter text-xs tracking-wider px-4 py-2 border transition-colors duration-200 ${
+                      index === stepIndex
+                        ? 'bg-primary text-primary-foreground border-primary'
+                        : 'bg-card text-muted-foreground border-border hover:border-primary'
+                    }`}
+                  >
+                    {String(index + 1).padStart(2, '0')} {step.step}
+                  </button>
+                ))}
+              </div>
+
+              <div className="bg-card border border-border p-8 md:p-14">
+                <span className="font-marcellus text-5xl text-primary/40">
+                  {String(stepIndex + 1).padStart(2, '0')}
+                </span>
+                <h3 className="font-marcellus text-3xl md:text-4xl text-foreground mt-4">
+                  {sector.processSteps[stepIndex].step}
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                  <div>
+                    <p className="font-inter text-xs uppercase tracking-wider text-primary mb-2">Our Role</p>
+                    <p className="font-inter text-lg text-foreground leading-relaxed">
+                      {sector.processSteps[stepIndex].description}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-inter text-xs uppercase tracking-wider text-primary mb-2">Your Benefit</p>
+                    <p className="font-inter text-lg text-muted-foreground leading-relaxed">
+                      {sector.processSteps[stepIndex].benefit ?? sector.processSteps[stepIndex].duration}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 mt-10 pt-8 border-t border-border">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    aria-label="Previous step"
+                    className="rounded-none"
+                    onClick={() =>
+                      setStepIndex((i) => (i - 1 + sector.processSteps.length) % sector.processSteps.length)
+                    }
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    aria-label="Next step"
+                    className="rounded-none"
+                    onClick={() => setStepIndex((i) => (i + 1) % sector.processSteps.length)}
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </Button>
+                  <span className="font-inter text-sm text-muted-foreground ml-2">
+                    Step {stepIndex + 1} of {sector.processSteps.length}
+                  </span>
+                </div>
+              </div>
+            </Reveal>
+          ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {sector.processSteps.map((step, index) => (
               <Reveal key={step.step} delay={index * 120}>
@@ -209,6 +301,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
               </Reveal>
             ))}
           </div>
+          )}
         </div>
       </section>
 
