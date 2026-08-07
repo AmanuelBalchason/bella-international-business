@@ -17,6 +17,7 @@ export interface Sector {
   title: string;
   tagline: string;
   description: string;
+  overviewHeading?: string;
   content: string;
   vision: string;
   mission: string;
