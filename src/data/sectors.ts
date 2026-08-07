@@ -112,6 +112,7 @@ export const sectorData: Record<string, Sector> = {
     title: 'Bella Healthcare',
     tagline: 'Reliable medical devices and healthcare solutions, expertly curated for the Ethiopian market.',
     description: 'Leading importer and distributor of essential pharmaceuticals and medical supplies in the Ethiopian market.',
+    overviewHeading: 'Your End-to-End Clinical Technology & Pharmaceutical Partner.',
     content:
       "Backed by the 50+ year heritage of Bella International Business, we bridge the gap in Ethiopia's healthcare sector. We provide comprehensive import and distribution solutions, balancing essential pharmaceutical supply chains with advanced clinical technology. By combining trusted global partnerships, local clinical expertise, and flexible financing, we make world-class healthcare accessible across the Horn of Africa.",
     vision: 'Accessible Healthcare for All Communities',
