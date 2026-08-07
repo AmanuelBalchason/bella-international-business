@@ -206,6 +206,31 @@ export const sectorData: Record<string, Sector> = {
           'Expert installation, calibration, and preventive maintenance by licensed biomedical engineers.',
       },
     ],
+    advantages: [
+      {
+        title: 'Flexible Financing',
+        description:
+          'In partnership with Hibret Bank and Siinqee Lease, we structure financing and leasing options that reduce upfront investment risk for hospitals and clinics.',
+      },
+      {
+        title: 'Guaranteed FX & Supply',
+        description:
+          'Our parent group\u2019s export arm, Acha Forest Coffee, secures the foreign exchange behind every order \u2014 enabling reliable, uninterrupted imports.',
+      },
+      {
+        title: 'Unmatched After-Sales SLA',
+        description:
+          'Guaranteed 1-hour remote support and 48-hour on-site technical response, backed by locally stocked spare parts and certified biomedical engineers.',
+      },
+    ],
+    partnerStrip: [
+      { label: 'Technology Partners', names: ['Mindray', 'SriTrang', 'Tedia'] },
+      { label: 'Pharmaceutical Suppliers', names: ['Cipla', 'Hetero Healthcare', 'Julphar'] },
+      {
+        label: 'Institutions Served',
+        names: ['Lancet Health Services', 'MCM General Hospital', 'Hallelujah General Hospital', 'Kadisco General Hospital'],
+      },
+    ],
   },
   'acha-forest-coffee': {
     slug: 'acha-forest-coffee',
