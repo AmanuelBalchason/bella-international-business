@@ -140,6 +140,32 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       </section>
 
       {/* Overview */}
+      {sector.partnerStrip && (
+        <section className="border-b border-border py-12 overflow-hidden">
+          <p className="font-inter text-xs uppercase tracking-[0.25em] text-muted-foreground text-center mb-8">
+            Trusted Partners &amp; Institutions Served
+          </p>
+          <div className="marquee-mask">
+            <div className="flex w-max animate-marquee">
+              {[0, 1].map((copy) => (
+                <div key={copy} className="flex items-center" aria-hidden={copy === 1}>
+                  {sector.partnerStrip!.flatMap((group) =>
+                    group.names.map((name) => (
+                      <span
+                        key={`${copy}-${group.label}-${name}`}
+                        className="font-marcellus text-xl md:text-2xl text-muted-foreground/60 hover:text-primary transition-colors duration-300 whitespace-nowrap px-8 md:px-12"
+                      >
+                        {name}
+                      </span>
+                    )),
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section id="sector-overview" className="py-28 relative overflow-hidden">
         <InteractiveDotPattern />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-14">
