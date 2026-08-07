@@ -145,7 +145,9 @@ const SectorPage = ({ sector }: SectorPageProps) => {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-14">
           <Reveal className="lg:col-span-5">
             <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">Overview</p>
-            <h2 className="font-marcellus text-4xl text-foreground leading-tight">{sector.description}</h2>
+            <h2 className="font-marcellus text-4xl text-foreground leading-tight">
+              {sector.overviewHeading ?? sector.description}
+            </h2>
           </Reveal>
           <Reveal delay={140} className="lg:col-span-7">
             <p className="font-inter text-lg text-muted-foreground leading-relaxed">{sector.content}</p>
