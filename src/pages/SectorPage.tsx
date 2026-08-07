@@ -6,7 +6,7 @@ import Reveal from '../components/Reveal';
 import CountUp from '../components/CountUp';
 import SectorCarousel from '../components/SectorCarousel';
 import InteractiveDotPattern from '../components/InteractiveDotPattern';
-import { Calendar, Mail, Phone, Send, Play, ArrowDown } from 'lucide-react';
+import { Calendar, Mail, Phone, Send, Play, ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -30,11 +30,22 @@ const SectorPage = ({ sector }: SectorPageProps) => {
     inquiryType: '',
   });
   const [scrollY, setScrollY] = useState(0);
+  const [heroIndex, setHeroIndex] = useState(0);
+  const [stepIndex, setStepIndex] = useState(0);
   const reduced = usePrefersReducedMotion();
+  const heroImages = sector.heroImages ?? [sector.heroImage];
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
+    setHeroIndex(0);
+    setStepIndex(0);
   }, [sector.slug]);
+
+  useEffect(() => {
+    if (heroImages.length < 2) return;
+    const id = setInterval(() => setHeroIndex((i) => (i + 1) % heroImages.length), 6000);
+    return () => clearInterval(id);
+  }, [heroImages.length]);
 
   useEffect(() => {
     if (reduced) return;
@@ -54,13 +65,18 @@ const SectorPage = ({ sector }: SectorPageProps) => {
 
       {/* Hero */}
       <section className="relative h-[85vh] min-h-[560px] overflow-hidden">
-        <div
-          className="absolute inset-0 -top-24 bg-cover bg-center will-change-transform"
-          style={{
-            backgroundImage: `url(${sector.heroImage})`,
-            transform: reduced ? undefined : `translateY(${Math.min(scrollY * 0.25, 240)}px) scale(1.1)`,
-          }}
-        />
+        {heroImages.map((image, i) => (
+          <div
+            key={image}
+            className={`absolute inset-0 -top-24 bg-cover bg-center will-change-transform transition-opacity duration-1000 ${
+              i === heroIndex ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{
+              backgroundImage: `url(${image})`,
+              transform: reduced ? undefined : `translateY(${Math.min(scrollY * 0.25, 240)}px) scale(1.1)`,
+            }}
+          />
+        ))}
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/60 to-foreground/30" />
 
         <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-20">
@@ -93,6 +109,21 @@ const SectorPage = ({ sector }: SectorPageProps) => {
               </Button>
             </a>
           </div>
+
+          {heroImages.length > 1 && (
+            <div className="flex gap-2 mt-10">
+              {heroImages.map((image, i) => (
+                <button
+                  key={image}
+                  aria-label={`Show hero image ${i + 1}`}
+                  onClick={() => setHeroIndex(i)}
+                  className={`h-1 transition-all duration-300 ${
+                    i === heroIndex ? 'w-10 bg-background' : 'w-5 bg-background/40 hover:bg-background/70'
+                  }`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
