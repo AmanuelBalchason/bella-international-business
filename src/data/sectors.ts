@@ -17,14 +17,16 @@ export interface Sector {
   title: string;
   tagline: string;
   description: string;
+  overviewHeading?: string;
   content: string;
   vision: string;
   mission: string;
   resources: string[];
   stats: Record<string, string>;
   heroImage: string;
+  heroImages?: string[];
   images: SectorImage[];
-  processSteps: { step: string; description: string; duration: string }[];
+  processSteps: { step: string; description: string; duration: string; benefit?: string }[];
   certifications: string[];
   partnerships: string[];
   dataMetrics: {
@@ -35,6 +37,8 @@ export interface Sector {
   videos: { title: string; thumbnail: string; duration: string }[];
   videoFiles?: { title: string; src: string; poster: string }[];
   solutions?: { title: string; description: string }[];
+  advantages?: { title: string; description: string }[];
+  partnerStrip?: { label: string; names: string[] }[];
 }
 
 export const sectorData: Record<string, Sector> = {
@@ -108,8 +112,9 @@ export const sectorData: Record<string, Sector> = {
     title: 'Bella Healthcare',
     tagline: 'Reliable medical devices and healthcare solutions, expertly curated for the Ethiopian market.',
     description: 'Leading importer and distributor of essential pharmaceuticals and medical supplies in the Ethiopian market.',
+    overviewHeading: 'Your End-to-End Clinical Technology & Pharmaceutical Partner.',
     content:
-      'We provide comprehensive pharmaceutical import and distribution solutions, including supply chain management, product sourcing, and logistics. Our commitment to quality and integrity drives everything we do, ensuring timely and reliable access to essential medicines for pharmacies and healthcare facilities across the Horn of Africa.',
+      "Backed by the 50+ year heritage of Bella International Business, we bridge the gap in Ethiopia's healthcare sector. We provide comprehensive import and distribution solutions, balancing essential pharmaceutical supply chains with advanced clinical technology. By combining trusted global partnerships, local clinical expertise, and flexible financing, we make world-class healthcare accessible across the Horn of Africa.",
     vision: 'Accessible Healthcare for All Communities',
     mission:
       'To provide exceptional healthcare services through innovative solutions, qualified professionals, and state-of-the-art facilities that serve the diverse needs of our communities.',
@@ -120,6 +125,11 @@ export const sectorData: Record<string, Sector> = {
       'Distribution Network': 'Nationwide',
     },
     heroImage: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1920&q=80',
+    heroImages: [
+      'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1920&q=80',
+      'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1920&q=80',
+      'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1920&q=80',
+    ],
     images: [
       {
         src: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=800&q=80',
@@ -138,10 +148,14 @@ export const sectorData: Record<string, Sector> = {
       },
     ],
     processSteps: [
-      { step: 'Product Sourcing', description: 'Vetted global suppliers and regulatory compliance', duration: '2-4 weeks' },
-      { step: 'Import & Clearance', description: 'Customs handling and cold-chain logistics', duration: '2-3 weeks' },
-      { step: 'Quality Assurance', description: 'Batch testing and documentation checks', duration: '1 week' },
-      { step: 'Distribution', description: 'Delivery to pharmacies and health facilities', duration: 'Ongoing' },
+      { step: 'Consult', description: 'Assess your clinical and operational needs', duration: '', benefit: 'The right solution from the start' },
+      { step: 'Recommend', description: 'Design fit-for-purpose solutions', duration: '', benefit: 'Reduced investment risk' },
+      { step: 'Finance', description: 'Arrange flexible financing', duration: '', benefit: 'Affordable technology access' },
+      { step: 'Supply', description: 'Deliver quality clinical technology', duration: '', benefit: 'Reliable product availability' },
+      { step: 'Install', description: 'Install, commission, and validate', duration: '', benefit: 'Ready for clinical use' },
+      { step: 'Train', description: 'Train clinical and technical teams', duration: '', benefit: 'Confident equipment utilization' },
+      { step: 'Support', description: 'Maintain, support, and respond', duration: '', benefit: 'Maximum equipment uptime' },
+      { step: 'Grow', description: 'Upgrade and optimize solutions', duration: '', benefit: 'Future-ready healthcare facilities' },
     ],
     certifications: ['WHO Standards', 'ISO 15189', 'Joint Commission', 'Ministry of Health Accreditation'],
     partnerships: ['Medical Universities', 'International Health Organizations', 'Pharmaceutical Companies', 'Insurance Providers'],
@@ -190,6 +204,31 @@ export const sectorData: Record<string, Sector> = {
         title: 'Technical Services',
         description:
           'Expert installation, calibration, and preventive maintenance by licensed biomedical engineers.',
+      },
+    ],
+    advantages: [
+      {
+        title: 'Flexible Financing',
+        description:
+          'In partnership with Hibret Bank and Siinqee Lease, we structure financing and leasing options that reduce upfront investment risk for hospitals and clinics.',
+      },
+      {
+        title: 'Guaranteed FX & Supply',
+        description:
+          'Our parent group\u2019s export arm, Acha Forest Coffee, secures the foreign exchange behind every order \u2014 enabling reliable, uninterrupted imports.',
+      },
+      {
+        title: 'Unmatched After-Sales SLA',
+        description:
+          'Guaranteed 1-hour remote support and 48-hour on-site technical response, backed by locally stocked spare parts and certified biomedical engineers.',
+      },
+    ],
+    partnerStrip: [
+      { label: 'Technology Partners', names: ['Mindray', 'SriTrang', 'Tedia'] },
+      { label: 'Pharmaceutical Suppliers', names: ['Cipla', 'Hetero Healthcare', 'Julphar'] },
+      {
+        label: 'Institutions Served',
+        names: ['Lancet Health Services', 'MCM General Hospital', 'Hallelujah General Hospital', 'Kadisco General Hospital'],
       },
     ],
   },
