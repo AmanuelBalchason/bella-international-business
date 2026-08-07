@@ -160,9 +160,9 @@ const SectorPage = ({ sector }: SectorPageProps) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal className="mb-14">
             <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4 flex items-center gap-2">
-              <Calendar className="w-4 h-4" /> How We Work
+              <Calendar className="w-4 h-4" /> How We Partner
             </p>
-            <h2 className="font-marcellus text-4xl text-foreground">Process Timeline</h2>
+            <h2 className="font-marcellus text-4xl text-foreground">How We Partner</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {sector.processSteps.map((step, index) => (
