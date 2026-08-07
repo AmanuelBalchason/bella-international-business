@@ -23,8 +23,9 @@ export interface Sector {
   resources: string[];
   stats: Record<string, string>;
   heroImage: string;
+  heroImages?: string[];
   images: SectorImage[];
-  processSteps: { step: string; description: string; duration: string }[];
+  processSteps: { step: string; description: string; duration: string; benefit?: string }[];
   certifications: string[];
   partnerships: string[];
   dataMetrics: {
@@ -35,6 +36,8 @@ export interface Sector {
   videos: { title: string; thumbnail: string; duration: string }[];
   videoFiles?: { title: string; src: string; poster: string }[];
   solutions?: { title: string; description: string }[];
+  advantages?: { title: string; description: string }[];
+  partnerStrip?: { label: string; names: string[] }[];
 }
 
 export const sectorData: Record<string, Sector> = {
