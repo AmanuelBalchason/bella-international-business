@@ -6,6 +6,8 @@ import Reveal from '../components/Reveal';
 import CountUp from '../components/CountUp';
 import SectorCarousel from '../components/SectorCarousel';
 import InteractiveDotPattern from '../components/InteractiveDotPattern';
+import VideoShowcaseCarousel from '../components/VideoShowcaseCarousel';
+import ProcessCarousel from '../components/ProcessCarousel';
 import { Calendar, Mail, Phone, Send, Play, ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
@@ -33,7 +35,9 @@ const SectorPage = ({ sector }: SectorPageProps) => {
   const [heroIndex, setHeroIndex] = useState(0);
   const [stepIndex, setStepIndex] = useState(0);
   const reduced = usePrefersReducedMotion();
-  const heroImages = sector.heroImages ?? [sector.heroImage];
+  const heroSlides =
+    sector.heroSlides ??
+    (sector.heroImages ?? [sector.heroImage]).map((image) => ({ image, title: '', body: sector.tagline }));
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
@@ -42,10 +46,10 @@ const SectorPage = ({ sector }: SectorPageProps) => {
   }, [sector.slug]);
 
   useEffect(() => {
-    if (heroImages.length < 2) return;
-    const id = setInterval(() => setHeroIndex((i) => (i + 1) % heroImages.length), 6000);
+    if (heroSlides.length < 2) return;
+    const id = setInterval(() => setHeroIndex((i) => (i + 1) % heroSlides.length), 6000);
     return () => clearInterval(id);
-  }, [heroImages.length]);
+  }, [heroSlides.length]);
 
   useEffect(() => {
     if (reduced) return;
@@ -64,37 +68,46 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       <Header />
 
       {/* Hero */}
-      <section className="relative h-[85vh] min-h-[560px] overflow-hidden">
-        {heroImages.map((image, i) => (
+      <section className="relative min-h-[620px] h-[85vh] overflow-hidden">
+        {heroSlides.map((slide, i) => (
           <div
-            key={image}
+            key={slide.image}
             className={`absolute inset-0 -top-24 bg-cover bg-center will-change-transform transition-opacity duration-1000 ${
               i === heroIndex ? 'opacity-100' : 'opacity-0'
             }`}
             style={{
-              backgroundImage: `url(${image})`,
+              backgroundImage: `url(${slide.image})`,
               transform: reduced ? undefined : `translateY(${Math.min(scrollY * 0.25, 240)}px) scale(1.1)`,
             }}
           />
         ))}
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/60 to-foreground/30" />
 
-        <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-20">
-          <p className="font-inter text-sm uppercase tracking-[0.25em] text-background/80 mb-5 animate-fade-in">
-            Bella International Sector
+        <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-16 md:pb-20">
+          <p className="font-inter text-xs sm:text-sm uppercase tracking-[0.25em] text-background/80 mb-4 sm:mb-5 animate-fade-in">
+            Bella International Business
           </p>
-          <h1 className="font-marcellus text-5xl md:text-7xl text-background leading-[1.05] max-w-4xl animate-fade-in">
+          <h1 className="font-marcellus text-4xl sm:text-5xl md:text-7xl text-background leading-[1.05] max-w-4xl animate-fade-in">
             {sector.title}
           </h1>
+          {heroSlides[heroIndex]?.title && (
+            <p
+              key={`ht-${heroIndex}`}
+              className="font-inter text-xs sm:text-sm uppercase tracking-[0.22em] text-background/70 mt-5 animate-fade-in"
+            >
+              {heroSlides[heroIndex].title}
+            </p>
+          )}
           <p
-            className="font-inter text-lg md:text-2xl text-background/85 max-w-2xl mt-6 animate-fade-in"
+            key={`hb-${heroIndex}`}
+            className="font-inter text-base sm:text-lg md:text-2xl text-background/85 max-w-2xl mt-3 sm:mt-4 animate-fade-in"
             style={{ animationDelay: '0.15s' }}
           >
-            {sector.tagline}
+            {heroSlides[heroIndex]?.body ?? sector.tagline}
           </p>
-          <div className="flex flex-wrap gap-4 mt-10 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+          <div className="flex flex-wrap gap-3 sm:gap-4 mt-8 sm:mt-10 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <a href="#sector-contact">
-              <Button size="lg" className="rounded-none px-8 hover:scale-105 transition-transform duration-200">
+              <Button size="lg" className="rounded-none px-6 sm:px-8 hover:scale-105 transition-transform duration-200">
                 Start a Conversation
               </Button>
             </a>
@@ -102,7 +115,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
               <Button
                 size="lg"
                 variant="outline"
-                className="rounded-none px-8 bg-transparent text-background border-background/60 hover:bg-background hover:text-foreground"
+                className="rounded-none px-6 sm:px-8 bg-transparent text-background border-background/60 hover:bg-background hover:text-foreground"
               >
                 Explore the Sector
                 <ArrowDown className="w-4 h-4 ml-2" />
@@ -110,12 +123,12 @@ const SectorPage = ({ sector }: SectorPageProps) => {
             </a>
           </div>
 
-          {heroImages.length > 1 && (
-            <div className="flex gap-2 mt-10">
-              {heroImages.map((image, i) => (
+          {heroSlides.length > 1 && (
+            <div className="flex gap-2 mt-8 sm:mt-10">
+              {heroSlides.map((slide, i) => (
                 <button
-                  key={image}
-                  aria-label={`Show hero image ${i + 1}`}
+                  key={slide.image}
+                  aria-label={`Show hero slide ${i + 1}`}
                   onClick={() => setHeroIndex(i)}
                   className={`h-1 transition-all duration-300 ${
                     i === heroIndex ? 'w-10 bg-background' : 'w-5 bg-background/40 hover:bg-background/70'
@@ -166,29 +179,40 @@ const SectorPage = ({ sector }: SectorPageProps) => {
         </section>
       )}
 
-      <section id="sector-overview" className="py-28 relative overflow-hidden">
+      <section id="sector-overview" className="py-20 sm:py-24 md:py-32 relative overflow-hidden">
         <InteractiveDotPattern />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-14">
-          <Reveal className="lg:col-span-5">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center">
+          <Reveal className={sector.videoFiles ? 'lg:col-span-5' : 'lg:col-span-5'}>
             <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">Overview</p>
-            <h2 className="font-marcellus text-4xl text-foreground leading-tight">
+            <h2 className="font-marcellus text-3xl sm:text-4xl text-foreground leading-tight">
               {sector.overviewHeading ?? sector.description}
             </h2>
+            {sector.videoFiles && (
+              <p className="font-inter text-base sm:text-lg text-muted-foreground leading-relaxed mt-6">
+                {sector.content}
+              </p>
+            )}
           </Reveal>
-          <Reveal delay={140} className="lg:col-span-7">
-            <p className="font-inter text-lg text-muted-foreground leading-relaxed">{sector.content}</p>
-          </Reveal>
+          {sector.videoFiles ? (
+            <Reveal delay={140} className="lg:col-span-7">
+              <VideoShowcaseCarousel videos={sector.videoFiles} />
+            </Reveal>
+          ) : (
+            <Reveal delay={140} className="lg:col-span-7">
+              <p className="font-inter text-lg text-muted-foreground leading-relaxed">{sector.content}</p>
+            </Reveal>
+          )}
         </div>
       </section>
 
       {/* Gallery carousel */}
-      <section className="bg-secondary py-28">
+      <section className="bg-secondary py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal className="mb-12">
             <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">
               {sector.solutions ? 'What We Offer' : 'In Focus'}
             </p>
-            <h2 className="font-marcellus text-4xl text-foreground">
+            <h2 className="font-marcellus text-3xl sm:text-4xl text-foreground">
               {sector.solutions ? 'Comprehensive Healthcare Solutions' : `Inside ${sector.title}`}
             </h2>
           </Reveal>
@@ -216,12 +240,12 @@ const SectorPage = ({ sector }: SectorPageProps) => {
 
       {/* Bella Advantage */}
       {sector.advantages && (
-        <section className="py-28 relative overflow-hidden">
+        <section className="py-20 sm:py-28 relative overflow-hidden">
           <InteractiveDotPattern />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Reveal className="mb-14">
+            <Reveal className="mb-12 sm:mb-14">
               <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">Why Partner With Us</p>
-              <h2 className="font-marcellus text-4xl text-foreground">The Bella Advantage</h2>
+              <h2 className="font-marcellus text-3xl sm:text-4xl text-foreground">The Bella Advantage</h2>
             </Reveal>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {sector.advantages.map((advantage, index) => (
@@ -238,81 +262,17 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       )}
 
       {/* Process timeline */}
-      <section className="bg-secondary py-28">
+      <section className="bg-secondary py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal className="mb-14">
+          <Reveal className="mb-12 sm:mb-14">
             <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4 flex items-center gap-2">
               <Calendar className="w-4 h-4" /> How We Partner
             </p>
-            <h2 className="font-marcellus text-4xl text-foreground">How We Partner</h2>
+            <h2 className="font-marcellus text-3xl sm:text-4xl text-foreground">How We Partner</h2>
           </Reveal>
           {sector.processSteps.length > 4 ? (
             <Reveal>
-              <div className="flex flex-wrap gap-2 mb-10">
-                {sector.processSteps.map((step, index) => (
-                  <button
-                    key={step.step}
-                    onClick={() => setStepIndex(index)}
-                    aria-label={`Step ${index + 1}: ${step.step}`}
-                    className={`font-inter text-xs tracking-wider px-4 py-2 border transition-colors duration-200 ${
-                      index === stepIndex
-                        ? 'bg-primary text-primary-foreground border-primary'
-                        : 'bg-card text-muted-foreground border-border hover:border-primary'
-                    }`}
-                  >
-                    {String(index + 1).padStart(2, '0')} {step.step}
-                  </button>
-                ))}
-              </div>
-
-              <div className="bg-card border border-border p-8 md:p-14">
-                <span className="font-marcellus text-5xl text-primary/40">
-                  {String(stepIndex + 1).padStart(2, '0')}
-                </span>
-                <h3 className="font-marcellus text-3xl md:text-4xl text-foreground mt-4">
-                  {sector.processSteps[stepIndex].step}
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                  <div>
-                    <p className="font-inter text-xs uppercase tracking-wider text-primary mb-2">Our Role</p>
-                    <p className="font-inter text-lg text-foreground leading-relaxed">
-                      {sector.processSteps[stepIndex].description}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="font-inter text-xs uppercase tracking-wider text-primary mb-2">Your Benefit</p>
-                    <p className="font-inter text-lg text-muted-foreground leading-relaxed">
-                      {sector.processSteps[stepIndex].benefit ?? sector.processSteps[stepIndex].duration}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 mt-10 pt-8 border-t border-border">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    aria-label="Previous step"
-                    className="rounded-none"
-                    onClick={() =>
-                      setStepIndex((i) => (i - 1 + sector.processSteps.length) % sector.processSteps.length)
-                    }
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    aria-label="Next step"
-                    className="rounded-none"
-                    onClick={() => setStepIndex((i) => (i + 1) % sector.processSteps.length)}
-                  >
-                    <ChevronRight className="w-4 h-4" />
-                  </Button>
-                  <span className="font-inter text-sm text-muted-foreground ml-2">
-                    Step {stepIndex + 1} of {sector.processSteps.length}
-                  </span>
-                </div>
-              </div>
+              <ProcessCarousel steps={sector.processSteps} />
             </Reveal>
           ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -332,35 +292,15 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       </section>
 
       {/* Media */}
-      <section className="py-28">
+      {!sector.videoFiles && sector.videos.length > 0 && (
+      <section className="py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal className="mb-14">
+          <Reveal className="mb-12 sm:mb-14">
             <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4 flex items-center gap-2">
               <Play className="w-4 h-4" /> Media
             </p>
-            <h2 className="font-marcellus text-4xl text-foreground">Video Content</h2>
+            <h2 className="font-marcellus text-3xl sm:text-4xl text-foreground">Video Content</h2>
           </Reveal>
-          {sector.videoFiles ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl">
-              {sector.videoFiles.map((video, index) => (
-                <Reveal key={video.title} delay={index * 120}>
-                  <div className="group">
-                    <div className="relative overflow-hidden aspect-[9/16] bg-secondary">
-                      <video
-                        src={video.src}
-                        poster={video.poster}
-                        controls
-                        playsInline
-                        preload="none"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <h3 className="font-inter font-semibold text-foreground mt-4">{video.title}</h3>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {sector.videos.map((video, index) => (
               <Reveal key={video.title} delay={index * 120}>
@@ -384,12 +324,12 @@ const SectorPage = ({ sector }: SectorPageProps) => {
               </Reveal>
             ))}
           </div>
-          )}
         </div>
       </section>
+      )}
 
       {/* Contact */}
-      <section id="sector-contact" className="bg-secondary py-28">
+      <section id="sector-contact" className="bg-secondary py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10">
           <Reveal>
             <Card className="rounded-none border-border h-full">
