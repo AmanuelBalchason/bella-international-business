@@ -6,6 +6,8 @@ import Reveal from '../components/Reveal';
 import CountUp from '../components/CountUp';
 import SectorCarousel from '../components/SectorCarousel';
 import InteractiveDotPattern from '../components/InteractiveDotPattern';
+import VideoShowcaseCarousel from '../components/VideoShowcaseCarousel';
+import ProcessCarousel from '../components/ProcessCarousel';
 import { Calendar, Mail, Phone, Send, Play, ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
@@ -33,7 +35,9 @@ const SectorPage = ({ sector }: SectorPageProps) => {
   const [heroIndex, setHeroIndex] = useState(0);
   const [stepIndex, setStepIndex] = useState(0);
   const reduced = usePrefersReducedMotion();
-  const heroImages = sector.heroImages ?? [sector.heroImage];
+  const heroSlides =
+    sector.heroSlides ??
+    (sector.heroImages ?? [sector.heroImage]).map((image) => ({ image, title: '', body: sector.tagline }));
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
@@ -42,10 +46,10 @@ const SectorPage = ({ sector }: SectorPageProps) => {
   }, [sector.slug]);
 
   useEffect(() => {
-    if (heroImages.length < 2) return;
-    const id = setInterval(() => setHeroIndex((i) => (i + 1) % heroImages.length), 6000);
+    if (heroSlides.length < 2) return;
+    const id = setInterval(() => setHeroIndex((i) => (i + 1) % heroSlides.length), 6000);
     return () => clearInterval(id);
-  }, [heroImages.length]);
+  }, [heroSlides.length]);
 
   useEffect(() => {
     if (reduced) return;
@@ -64,37 +68,46 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       <Header />
 
       {/* Hero */}
-      <section className="relative h-[85vh] min-h-[560px] overflow-hidden">
-        {heroImages.map((image, i) => (
+      <section className="relative min-h-[620px] h-[85vh] overflow-hidden">
+        {heroSlides.map((slide, i) => (
           <div
-            key={image}
+            key={slide.image}
             className={`absolute inset-0 -top-24 bg-cover bg-center will-change-transform transition-opacity duration-1000 ${
               i === heroIndex ? 'opacity-100' : 'opacity-0'
             }`}
             style={{
-              backgroundImage: `url(${image})`,
+              backgroundImage: `url(${slide.image})`,
               transform: reduced ? undefined : `translateY(${Math.min(scrollY * 0.25, 240)}px) scale(1.1)`,
             }}
           />
         ))}
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/60 to-foreground/30" />
 
-        <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-20">
-          <p className="font-inter text-sm uppercase tracking-[0.25em] text-background/80 mb-5 animate-fade-in">
-            Bella International Sector
+        <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-16 md:pb-20">
+          <p className="font-inter text-xs sm:text-sm uppercase tracking-[0.25em] text-background/80 mb-4 sm:mb-5 animate-fade-in">
+            Bella International Business
           </p>
-          <h1 className="font-marcellus text-5xl md:text-7xl text-background leading-[1.05] max-w-4xl animate-fade-in">
+          <h1 className="font-marcellus text-4xl sm:text-5xl md:text-7xl text-background leading-[1.05] max-w-4xl animate-fade-in">
             {sector.title}
           </h1>
+          {heroSlides[heroIndex]?.title && (
+            <p
+              key={`ht-${heroIndex}`}
+              className="font-inter text-xs sm:text-sm uppercase tracking-[0.22em] text-background/70 mt-5 animate-fade-in"
+            >
+              {heroSlides[heroIndex].title}
+            </p>
+          )}
           <p
-            className="font-inter text-lg md:text-2xl text-background/85 max-w-2xl mt-6 animate-fade-in"
+            key={`hb-${heroIndex}`}
+            className="font-inter text-base sm:text-lg md:text-2xl text-background/85 max-w-2xl mt-3 sm:mt-4 animate-fade-in"
             style={{ animationDelay: '0.15s' }}
           >
-            {sector.tagline}
+            {heroSlides[heroIndex]?.body ?? sector.tagline}
           </p>
-          <div className="flex flex-wrap gap-4 mt-10 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+          <div className="flex flex-wrap gap-3 sm:gap-4 mt-8 sm:mt-10 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <a href="#sector-contact">
-              <Button size="lg" className="rounded-none px-8 hover:scale-105 transition-transform duration-200">
+              <Button size="lg" className="rounded-none px-6 sm:px-8 hover:scale-105 transition-transform duration-200">
                 Start a Conversation
               </Button>
             </a>
@@ -102,7 +115,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
               <Button
                 size="lg"
                 variant="outline"
-                className="rounded-none px-8 bg-transparent text-background border-background/60 hover:bg-background hover:text-foreground"
+                className="rounded-none px-6 sm:px-8 bg-transparent text-background border-background/60 hover:bg-background hover:text-foreground"
               >
                 Explore the Sector
                 <ArrowDown className="w-4 h-4 ml-2" />
@@ -110,12 +123,12 @@ const SectorPage = ({ sector }: SectorPageProps) => {
             </a>
           </div>
 
-          {heroImages.length > 1 && (
-            <div className="flex gap-2 mt-10">
-              {heroImages.map((image, i) => (
+          {heroSlides.length > 1 && (
+            <div className="flex gap-2 mt-8 sm:mt-10">
+              {heroSlides.map((slide, i) => (
                 <button
-                  key={image}
-                  aria-label={`Show hero image ${i + 1}`}
+                  key={slide.image}
+                  aria-label={`Show hero slide ${i + 1}`}
                   onClick={() => setHeroIndex(i)}
                   className={`h-1 transition-all duration-300 ${
                     i === heroIndex ? 'w-10 bg-background' : 'w-5 bg-background/40 hover:bg-background/70'
