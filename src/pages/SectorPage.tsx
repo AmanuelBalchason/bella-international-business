@@ -182,18 +182,24 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       <section id="sector-overview" className="py-20 sm:py-24 md:py-32 relative overflow-hidden">
         <InteractiveDotPattern />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center">
-          <Reveal className="lg:col-span-5">
+          <Reveal className={sector.videoFiles ? 'lg:col-span-5' : 'lg:col-span-5'}>
             <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">Overview</p>
             <h2 className="font-marcellus text-3xl sm:text-4xl text-foreground leading-tight">
               {sector.overviewHeading ?? sector.description}
             </h2>
-            <p className="font-inter text-base sm:text-lg text-muted-foreground leading-relaxed mt-6">
-              {sector.content}
-            </p>
+            {sector.videoFiles && (
+              <p className="font-inter text-base sm:text-lg text-muted-foreground leading-relaxed mt-6">
+                {sector.content}
+              </p>
+            )}
           </Reveal>
-          {sector.videoFiles && (
+          {sector.videoFiles ? (
             <Reveal delay={140} className="lg:col-span-7">
               <VideoShowcaseCarousel videos={sector.videoFiles} />
+            </Reveal>
+          ) : (
+            <Reveal delay={140} className="lg:col-span-7">
+              <p className="font-inter text-lg text-muted-foreground leading-relaxed">{sector.content}</p>
             </Reveal>
           )}
         </div>
