@@ -191,13 +191,11 @@ const SectorPage = ({ sector }: SectorPageProps) => {
               {sector.content}
             </p>
           </Reveal>
-          <Reveal delay={140} className="lg:col-span-7">
-            {sector.videoFiles ? (
+          {sector.videoFiles && (
+            <Reveal delay={140} className="lg:col-span-7">
               <VideoShowcaseCarousel videos={sector.videoFiles} />
-            ) : (
-              <SectorCarousel images={sector.images} />
-            )}
-          </Reveal>
+            </Reveal>
+          )}
         </div>
       </section>
 
