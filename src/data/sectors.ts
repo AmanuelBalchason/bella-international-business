@@ -131,6 +131,28 @@ export const sectorData: Record<string, Sector> = {
       'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1920&q=80',
       'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1920&q=80',
     ],
+    heroSlides: [
+      {
+        image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1920&q=80',
+        title: 'Pharmaceuticals',
+        body: 'Importation and distribution of essential medicines, delivered through a compliant, nationwide supply chain.',
+      },
+      {
+        image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1920&q=80',
+        title: 'Medical Devices & Equipment',
+        body: 'Sourcing advanced diagnostics, including Mindray ultrasound systems, for hospitals and clinics across Ethiopia.',
+      },
+      {
+        image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1920&q=80',
+        title: 'Clinical Consumables',
+        body: 'High-volume essentials including syringes, SriTrang gloves, and Tedia blood collection tubes, always in stock.',
+      },
+      {
+        image: 'https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&w=1920&q=80',
+        title: 'Technical Services',
+        body: 'Expert installation, calibration, and preventive maintenance by licensed biomedical engineers.',
+      },
+    ],
     images: [
       {
         src: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=800&q=80',
@@ -149,14 +171,14 @@ export const sectorData: Record<string, Sector> = {
       },
     ],
     processSteps: [
-      { step: 'Consult', description: 'Assess your clinical and operational needs', duration: '', benefit: 'The right solution from the start' },
-      { step: 'Recommend', description: 'Design fit-for-purpose solutions', duration: '', benefit: 'Reduced investment risk' },
-      { step: 'Finance', description: 'Arrange flexible financing', duration: '', benefit: 'Affordable technology access' },
-      { step: 'Supply', description: 'Deliver quality clinical technology', duration: '', benefit: 'Reliable product availability' },
-      { step: 'Install', description: 'Install, commission, and validate', duration: '', benefit: 'Ready for clinical use' },
-      { step: 'Train', description: 'Train clinical and technical teams', duration: '', benefit: 'Confident equipment utilization' },
-      { step: 'Support', description: 'Maintain, support, and respond', duration: '', benefit: 'Maximum equipment uptime' },
-      { step: 'Grow', description: 'Upgrade and optimize solutions', duration: '', benefit: 'Future-ready healthcare facilities' },
+      { step: 'Consult', description: 'Assess your clinical and operational needs', duration: '', benefit: 'The right solution from the start', image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80' },
+      { step: 'Recommend', description: 'Design fit-for-purpose solutions', duration: '', benefit: 'Reduced investment risk', image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
+      { step: 'Finance', description: 'Arrange flexible financing', duration: '', benefit: 'Affordable technology access', image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80' },
+      { step: 'Supply', description: 'Deliver quality clinical technology', duration: '', benefit: 'Reliable product availability', image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80' },
+      { step: 'Install', description: 'Install, commission, and validate', duration: '', benefit: 'Ready for clinical use', image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=800&q=80' },
+      { step: 'Train', description: 'Train clinical and technical teams', duration: '', benefit: 'Confident equipment utilization', image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80' },
+      { step: 'Support', description: 'Maintain, support, and respond', duration: '', benefit: 'Maximum equipment uptime', image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80' },
+      { step: 'Grow', description: 'Upgrade and optimize solutions', duration: '', benefit: 'Future-ready healthcare facilities', image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=80' },
     ],
     certifications: ['WHO Standards', 'ISO 15189', 'Joint Commission', 'Ministry of Health Accreditation'],
     partnerships: ['Medical Universities', 'International Health Organizations', 'Pharmaceutical Companies', 'Insurance Providers'],
@@ -183,9 +205,9 @@ export const sectorData: Record<string, Sector> = {
     ],
     videos: [],
     videoFiles: [
-      { title: 'Inside Bella Healthcare', src: bhVideo1.url, poster: bhPoster1.url },
-      { title: 'Medical Equipment in Action', src: bhVideo2.url, poster: bhPoster2.url },
-      { title: 'Serving Ethiopian Healthcare', src: bhVideo3.url, poster: bhPoster3.url },
+      { title: 'Inside Bella Healthcare', src: bhVideo1.url, poster: bhPoster1.url, category: 'Our Company' },
+      { title: 'Medical Equipment in Action', src: bhVideo2.url, poster: bhPoster2.url, category: 'Clinical Technology' },
+      { title: 'Serving Ethiopian Healthcare', src: bhVideo3.url, poster: bhPoster3.url, category: 'Partnerships' },
     ],
     solutions: [
       {
