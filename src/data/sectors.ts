@@ -25,8 +25,9 @@ export interface Sector {
   stats: Record<string, string>;
   heroImage: string;
   heroImages?: string[];
+  heroSlides?: { image: string; title: string; body: string }[];
   images: SectorImage[];
-  processSteps: { step: string; description: string; duration: string; benefit?: string }[];
+  processSteps: { step: string; description: string; duration: string; benefit?: string; image?: string }[];
   certifications: string[];
   partnerships: string[];
   dataMetrics: {
@@ -35,7 +36,7 @@ export interface Sector {
   };
   locations: { name: string; projects: number; coords: number[] }[];
   videos: { title: string; thumbnail: string; duration: string }[];
-  videoFiles?: { title: string; src: string; poster: string }[];
+  videoFiles?: { title: string; src: string; poster: string; category?: string }[];
   solutions?: { title: string; description: string }[];
   advantages?: { title: string; description: string }[];
   partnerStrip?: { label: string; names: string[] }[];
