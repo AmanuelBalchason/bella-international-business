@@ -88,7 +88,7 @@ const VideoShowcaseCarousel = ({ videos }: { videos: ShowcaseVideo[] }) => {
               <div
                 key={video.title}
                 ref={i === 0 ? cardRef : undefined}
-                className={`relative shrink-0 w-[68vw] xs:w-[62vw] sm:w-[260px] md:w-[300px] lg:w-[320px] aspect-[9/16] overflow-hidden bg-secondary transition-all duration-700 ease-in-out ${
+                className={`relative shrink-0 w-[66vw] sm:w-[260px] md:w-[300px] lg:w-[320px] aspect-[9/16] overflow-hidden bg-secondary transition-all duration-700 ease-in-out ${
                   active
                     ? 'opacity-100 scale-100 shadow-[0_24px_60px_-24px_hsl(var(--foreground)/0.45)]'
                     : 'opacity-60 saturate-50 scale-[0.92] shadow-none'
