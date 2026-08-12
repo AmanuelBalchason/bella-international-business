@@ -2,6 +2,11 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Mail, Linkedin, ArrowLeft, ArrowRight } from 'lucide-react';
+import abelImg from '@/assets/leader-abel.webp.asset.json';
+import mulugetaImg from '@/assets/leader-mulugeta.webp.asset.json';
+import chirotawImg from '@/assets/leader-chirotaw.webp.asset.json';
+import temesgenImg from '@/assets/leader-temesgen.webp.asset.json';
+import yonasImg from '@/assets/leader-yonas.webp.asset.json';
 
 const leaders = [
   {
@@ -10,7 +15,7 @@ const leaders = [
     bio: 'With over 15 years in strategic business development, Abel has been instrumental in establishing Bella International as a leading conglomerate in the Horn of Africa.',
     email: 'ceo@bellainter.com',
     linkedin: '#',
-    image: '/leaders/abel.png',
+    image: abelImg.url,
   },
   {
     name: 'Mulugeta Demissie',
@@ -18,7 +23,7 @@ const leaders = [
     bio: 'Mulugeta brings exceptional operational expertise, overseeing the successful integration of our diverse business units and driving operational excellence.',
     email: 'mulugeta@bellainter.com',
     linkedin: '#',
-    image: '/leaders/mulugeta.png',
+    image: mulugetaImg.url,
   },
   {
     name: 'Chirotaw Assefa',
@@ -26,7 +31,7 @@ const leaders = [
     bio: 'Chirotaw has established robust financial frameworks that support our ambitious growth plans across the Horn of Africa.',
     email: 'chirotaw@bellainter.com',
     linkedin: '#',
-    image: '/leaders/chirotaw.png',
+    image: chirotawImg.url,
   },
   {
     name: 'Temesgen Wubayehu',
@@ -34,15 +39,7 @@ const leaders = [
     bio: 'Temesgen leads our healthcare initiatives with an innovative approach to healthcare delivery and a deep understanding of regional needs.',
     email: 'temesgen@bellainter.com',
     linkedin: '#',
-    image: '/leaders/temesgen.png',
-  },
-  {
-    name: 'Dr. Metasebia',
-    position: 'Senior Consultant',
-    bio: 'Dr. Metasebia advises on clinical strategy and quality standards, bringing deep medical expertise to our healthcare portfolio.',
-    email: 'info@bellainter.com',
-    linkedin: '#',
-    image: '/placeholder.svg',
+    image: temesgenImg.url,
   },
   {
     name: 'Yonas Birhanu',
@@ -50,7 +47,7 @@ const leaders = [
     bio: 'Yonas leads the medical equipment division, overseeing sourcing, installation and technical service of advanced diagnostic systems.',
     email: 'info@bellainter.com',
     linkedin: 'https://www.linkedin.com/in/yonas-b-teferi/',
-    image: '/placeholder.svg',
+    image: yonasImg.url,
   },
 ];
 
