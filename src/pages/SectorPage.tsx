@@ -381,10 +381,21 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                         <SelectValue placeholder="Select inquiry type" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="pharmaceuticals">Pharmaceuticals</SelectItem>
-                        <SelectItem value="medical-devices">Medical Devices &amp; Equipment</SelectItem>
-                        <SelectItem value="clinical-consumables">Clinical Consumables</SelectItem>
-                        <SelectItem value="technical-services">Technical Services</SelectItem>
+                        {sector.slug === 'healthcare' ? (
+                          <>
+                            <SelectItem value="pharmaceuticals">Pharmaceuticals</SelectItem>
+                            <SelectItem value="medical-devices">Medical Devices &amp; Equipment</SelectItem>
+                            <SelectItem value="clinical-consumables">Clinical Consumables</SelectItem>
+                            <SelectItem value="technical-services">Technical Services</SelectItem>
+                          </>
+                        ) : (
+                          <>
+                            <SelectItem value="partnership">Partnership Opportunity</SelectItem>
+                            <SelectItem value="investment">Investment Inquiry</SelectItem>
+                            <SelectItem value="consultation">Consultation Request</SelectItem>
+                            <SelectItem value="general">General Information</SelectItem>
+                          </>
+                        )}
                       </SelectContent>
                     </Select>
                   </div>
@@ -420,15 +431,15 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                   <div className="space-y-2 text-muted-foreground">
                     <div className="flex items-center gap-2">
                       <Mail className="w-4 h-4" />
-                      <span>info@bella-healthcare.com</span>
+                      <span>{sector.slug === 'healthcare' ? 'info@bella-healthcare.com' : 'info@bellainter.com'}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Phone className="w-4 h-4" />
-                      <span>+251—933—38—1818</span>
+                      <span>{sector.slug === 'healthcare' ? '+251—933—38—1818' : '+251 913 328000'}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Phone className="w-4 h-4" />
-                      <span>+251—913—94—1530</span>
+                      <span>{sector.slug === 'healthcare' ? '+251—913—94—1530' : '+251 911 827024'}</span>
                     </div>
                   </div>
                 </div>
@@ -442,12 +453,20 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">General Enquiries</h4>
-                  <Link
-                    to="/bella-healthcare"
-                    className="inline-flex items-center justify-center bg-[#145C9E] hover:bg-[#145C9E]/90 text-white font-inter font-medium px-6 py-3 transition-colors"
-                  >
-                    Learn More about Bella Healthcare
-                  </Link>
+                  {sector.slug === 'healthcare' ? (
+                    <a
+                      href="https://www.bella-healthcare.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center bg-[#145C9E] hover:bg-[#145C9E]/90 text-white font-inter font-medium px-6 py-3 transition-colors"
+                    >
+                      Learn More about Bella Healthcare
+                    </a>
+                  ) : (
+                    <Link to="/contact" className="text-primary font-inter font-medium story-link">
+                      Visit our contact page
+                    </Link>
+                  )}
                 </div>
               </CardContent>
             </Card>
