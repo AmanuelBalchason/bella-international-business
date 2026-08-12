@@ -19,7 +19,7 @@ const VideoShowcaseCarousel = ({ videos }: { videos: ShowcaseVideo[] }) => {
   const [progress, setProgress] = useState(0);
   const [metrics, setMetrics] = useState({ card: 0, pad: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLAnchorElement>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const measure = useCallback(() => {
@@ -97,7 +97,7 @@ const VideoShowcaseCarousel = ({ videos }: { videos: ShowcaseVideo[] }) => {
             return (
               <a
                 key={video.title}
-                ref={i === 0 ? (cardRef as unknown as React.RefObject<HTMLAnchorElement>) : undefined}
+                ref={i === 0 ? cardRef : undefined}
                 href={TIKTOK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
