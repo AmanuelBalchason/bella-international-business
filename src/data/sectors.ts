@@ -1,9 +1,9 @@
-import bhVideo1 from '@/assets/bh-video-1.mp4.asset.json';
-import bhVideo2 from '@/assets/bh-video-2.mp4.asset.json';
-import bhVideo3 from '@/assets/bh-video-3.mp4.asset.json';
-import bhPoster1 from '@/assets/bh-poster-1.jpg.asset.json';
-import bhPoster2 from '@/assets/bh-poster-2.jpg.asset.json';
-import bhPoster3 from '@/assets/bh-poster-3.jpg.asset.json';
+import bhVideo1 from '@/assets/bh-video-1-opt.mp4.asset.json';
+import bhVideo2 from '@/assets/bh-video-2-opt.mp4.asset.json';
+import bhVideo3 from '@/assets/bh-video-3-opt.mp4.asset.json';
+import bhPoster1 from '@/assets/bh-poster-1-opt.webp.asset.json';
+import bhPoster2 from '@/assets/bh-poster-2-opt.webp.asset.json';
+import bhPoster3 from '@/assets/bh-poster-3-opt.webp.asset.json';
 
 export interface SectorImage {
   src: string;
@@ -133,11 +133,6 @@ export const sectorData: Record<string, Sector> = {
     ],
     heroSlides: [
       {
-        image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1920&q=80',
-        title: 'Pharmaceuticals',
-        body: 'Importation and distribution of essential medicines, delivered through a compliant, nationwide supply chain.',
-      },
-      {
         image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1920&q=80',
         title: 'Medical Devices & Equipment',
         body: 'Sourcing advanced diagnostics, including Mindray ultrasound systems, for hospitals and clinics across Ethiopia.',
@@ -148,9 +143,14 @@ export const sectorData: Record<string, Sector> = {
         body: 'High-volume essentials including syringes, SriTrang gloves, and Tedia blood collection tubes, always in stock.',
       },
       {
+        image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1920&q=80',
+        title: 'Pharmaceuticals',
+        body: 'Importation and distribution of essential medicines, delivered through a compliant, nationwide supply chain.',
+      },
+      {
         image: 'https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&w=1920&q=80',
         title: 'Technical Services',
-        body: 'Expert installation, calibration, and preventive maintenance by licensed biomedical engineers.',
+        body: 'Expert installation, calibration, training and preventive maintenance by licensed biomedical engineers.',
       },
     ],
     images: [
@@ -226,7 +226,7 @@ export const sectorData: Record<string, Sector> = {
       {
         title: 'Technical Services',
         description:
-          'Expert installation, calibration, and preventive maintenance by licensed biomedical engineers.',
+          'Expert installation, calibration, training and preventive maintenance by licensed biomedical engineers.',
       },
     ],
     advantages: [

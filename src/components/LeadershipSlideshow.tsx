@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import StaticDotPattern from './StaticDotPattern';
 import { useLeadershipProfiles } from '@/hooks/useLeadership';
+import abelImg from '@/assets/leader-abel.webp.asset.json';
 
 const LeadershipSlideshow = () => {
   const { data: leaders, isLoading, error } = useLeadershipProfiles();
@@ -90,7 +91,7 @@ const LeadershipSlideshow = () => {
                 style={{ 
                   backgroundImage: currentLeader.profile_image_id 
                     ? `url(/path/to/image/${currentLeader.profile_image_id})` 
-                    : `url(/leaders/abel.png)`  // Changed from Unsplash to Abel's photo
+                    : `url(${abelImg.url})`
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />

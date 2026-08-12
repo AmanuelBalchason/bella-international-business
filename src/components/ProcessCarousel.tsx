@@ -92,17 +92,10 @@ const ProcessCarousel = ({ steps }: { steps: ProcessStep[] }) => {
             </p>
             <h3 className="font-marcellus text-2xl sm:text-3xl md:text-4xl text-foreground">{step.step}</h3>
 
-            <div className="mt-7 space-y-7">
-              <div>
-                <p className="font-inter text-xs uppercase tracking-wider text-primary mb-2">Our Role</p>
-                <p className="font-inter text-base sm:text-lg text-foreground leading-relaxed">{step.description}</p>
-              </div>
-              <div className="pt-6 border-t border-border">
-                <p className="font-inter text-xs uppercase tracking-wider text-primary mb-2">Your Benefit</p>
-                <p className="font-inter text-base sm:text-lg text-muted-foreground leading-relaxed">
-                  {step.benefit ?? step.duration}
-                </p>
-              </div>
+            <div className="mt-7">
+              <p className="font-inter text-base sm:text-lg text-foreground leading-relaxed">
+                {step.benefit ? `${step.description} — so you get ${step.benefit.toLowerCase()}.` : `${step.description}.`}
+              </p>
             </div>
 
             <div className="flex items-center gap-3 mt-9 pt-7 border-t border-border">

@@ -11,6 +11,7 @@ export interface ShowcaseVideo {
 
 const DURATION = 10000;
 const GAP = 24;
+const TIKTOK_URL = 'https://www.tiktok.com/@bella_healthcare_et';
 
 const VideoShowcaseCarousel = ({ videos }: { videos: ShowcaseVideo[] }) => {
   const reduced = usePrefersReducedMotion();
@@ -18,7 +19,7 @@ const VideoShowcaseCarousel = ({ videos }: { videos: ShowcaseVideo[] }) => {
   const [progress, setProgress] = useState(0);
   const [metrics, setMetrics] = useState({ card: 0, pad: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLAnchorElement>(null);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const measure = useCallback(() => {
@@ -40,9 +41,18 @@ const VideoShowcaseCarousel = ({ videos }: { videos: ShowcaseVideo[] }) => {
     videoRefs.current.forEach((video, i) => {
       if (!video) return;
       if (i === index) {
-        video.currentTime = 0;
-        const attempt = video.play();
-        if (attempt) attempt.catch(() => undefined);
+        video.muted = true;
+        video.defaultMuted = true;
+        const start = () => {
+          const attempt = video.play();
+          if (attempt) attempt.catch(() => undefined);
+        };
+        if (video.readyState >= 2) {
+          start();
+        } else {
+          video.load();
+          video.addEventListener('loadeddata', start, { once: true });
+        }
       } else {
         video.pause();
       }
@@ -85,10 +95,14 @@ const VideoShowcaseCarousel = ({ videos }: { videos: ShowcaseVideo[] }) => {
           {videos.map((video, i) => {
             const active = i === index;
             return (
-              <div
+              <a
                 key={video.title}
                 ref={i === 0 ? cardRef : undefined}
-                className={`relative shrink-0 w-[66vw] sm:w-[260px] md:w-[300px] lg:w-[320px] aspect-[9/16] overflow-hidden bg-secondary transition-all duration-700 ease-in-out ${
+                href={TIKTOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${video.title} — watch on our TikTok page`}
+                className={`block relative shrink-0 w-[66vw] sm:w-[260px] md:w-[300px] lg:w-[320px] aspect-[9/16] overflow-hidden bg-secondary transition-all duration-700 ease-in-out ${
                   active
                     ? 'opacity-100 scale-100 shadow-[0_24px_60px_-24px_hsl(var(--foreground)/0.45)]'
                     : 'opacity-60 saturate-50 scale-[0.92] shadow-none'
@@ -101,7 +115,8 @@ const VideoShowcaseCarousel = ({ videos }: { videos: ShowcaseVideo[] }) => {
                   muted
                   loop
                   playsInline
-                  preload="metadata"
+                  autoPlay={i === 0}
+                  preload={i === 0 ? 'auto' : 'metadata'}
                   className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent" />
@@ -125,7 +140,7 @@ const VideoShowcaseCarousel = ({ videos }: { videos: ShowcaseVideo[] }) => {
                     />
                   </div>
                 )}
-              </div>
+              </a>
             );
           })}
         </div>
