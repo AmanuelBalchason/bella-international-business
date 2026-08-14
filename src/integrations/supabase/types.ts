@@ -744,6 +744,7 @@ export type Database = {
           created_by: string | null
           description: string | null
           id: string
+          is_public: boolean
           setting_key: string
           setting_value: Json
           updated_at: string
@@ -753,6 +754,7 @@ export type Database = {
           created_by?: string | null
           description?: string | null
           id?: string
+          is_public?: boolean
           setting_key: string
           setting_value: Json
           updated_at?: string
@@ -762,6 +764,7 @@ export type Database = {
           created_by?: string | null
           description?: string | null
           id?: string
+          is_public?: boolean
           setting_key?: string
           setting_value?: Json
           updated_at?: string
@@ -890,6 +893,7 @@ export type Database = {
         }[]
       }
       is_admin: { Args: never; Returns: boolean }
+      is_super_admin: { Args: never; Returns: boolean }
       validate_admin_access: { Args: never; Returns: boolean }
     }
     Enums: {
