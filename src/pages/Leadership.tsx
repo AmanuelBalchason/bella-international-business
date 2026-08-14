@@ -3,8 +3,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Mail, Linkedin, ArrowLeft, ArrowRight } from 'lucide-react';
 import abelImg from '@/assets/leader-abel.webp.asset.json';
-import mulugetaImg from '@/assets/leader-mulugeta.webp.asset.json';
-import chirotawImg from '@/assets/leader-chirotaw.webp.asset.json';
+import mulugetaImg from '@/assets/leader-mulugeta-v2.webp.asset.json';
+import chirotawImg from '@/assets/leader-chirotaw-v2.webp.asset.json';
 import temesgenImg from '@/assets/leader-temesgen.webp.asset.json';
 import yonasImg from '@/assets/leader-yonas.webp.asset.json';
 

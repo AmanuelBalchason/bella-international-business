@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/__l5e/:path*",
+      "destination": "https://bella-international-business.lovable.app/__l5e/:path*"
+    },
+    {
       "source": "/((?!__l5e|api|_next|static|favicon.ico).*)",
       "destination": "/"
     }
