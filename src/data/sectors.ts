@@ -1,6 +1,3 @@
-import bhVideo1 from '@/assets/bh-video-1-opt.mp4.asset.json';
-import bhVideo2 from '@/assets/bh-video-2-opt.mp4.asset.json';
-import bhVideo3 from '@/assets/bh-video-3-opt.mp4.asset.json';
 import bhPoster1 from '@/assets/bh-poster-1-opt.webp.asset.json';
 import bhPoster2 from '@/assets/bh-poster-2-opt.webp.asset.json';
 import bhPoster3 from '@/assets/bh-poster-3-opt.webp.asset.json';
@@ -115,7 +112,7 @@ export const sectorData: Record<string, Sector> = {
     description: 'Leading importer and distributor of essential pharmaceuticals and medical supplies in the Ethiopian market.',
     overviewHeading: 'Your End-to-End Clinical Technology & Pharmaceutical Partner.',
     content:
-      "Backed by the 50+ year heritage of Bella International Business, we bridge the gap in Ethiopia's healthcare sector. We provide comprehensive import and distribution solutions, balancing essential pharmaceutical supply chains with advanced clinical technology. By combining trusted global partnerships, local clinical expertise, and flexible financing, we make world-class healthcare accessible across the Horn of Africa.",
+      "Backed by the 50+ year heritage of Bella International Business, we bridge the gap in Ethiopia's healthcare sector. We provide comprehensive import and distribution solutions, balancing es[...]",
     vision: 'Accessible Healthcare for All Communities',
     mission:
       'To provide exceptional healthcare services through innovative solutions, qualified professionals, and state-of-the-art facilities that serve the diverse needs of our communities.',
@@ -171,14 +168,14 @@ export const sectorData: Record<string, Sector> = {
       },
     ],
     processSteps: [
-      { step: 'Consult', description: 'Assess your clinical and operational needs', duration: '', benefit: 'The right solution from the start', image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80' },
-      { step: 'Recommend', description: 'Design fit-for-purpose solutions', duration: '', benefit: 'Reduced investment risk', image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
-      { step: 'Finance', description: 'Arrange flexible financing', duration: '', benefit: 'Affordable technology access', image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80' },
-      { step: 'Supply', description: 'Deliver quality clinical technology', duration: '', benefit: 'Reliable product availability', image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80' },
-      { step: 'Install', description: 'Install, commission, and validate', duration: '', benefit: 'Ready for clinical use', image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=800&q=80' },
-      { step: 'Train', description: 'Train clinical and technical teams', duration: '', benefit: 'Confident equipment utilization', image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80' },
-      { step: 'Support', description: 'Maintain, support, and respond', duration: '', benefit: 'Maximum equipment uptime', image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80' },
-      { step: 'Grow', description: 'Upgrade and optimize solutions', duration: '', benefit: 'Future-ready healthcare facilities', image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=80' },
+      { step: 'Consult', description: 'Assess your clinical and operational needs', duration: '', benefit: 'The right solution from the start', image: 'https://images.unsplash.com/photo-157609116[...]' },
+      { step: 'Recommend', description: 'Design fit-for-purpose solutions', duration: '', benefit: 'Reduced investment risk', image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?[...]' },
+      { step: 'Finance', description: 'Arrange flexible financing', duration: '', benefit: 'Affordable technology access', image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=f[...]' },
+      { step: 'Supply', description: 'Deliver quality clinical technology', duration: '', benefit: 'Reliable product availability', image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c[...]' },
+      { step: 'Install', description: 'Install, commission, and validate', duration: '', benefit: 'Ready for clinical use', image: 'https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?au[...]' },
+      { step: 'Train', description: 'Train clinical and technical teams', duration: '', benefit: 'Confident equipment utilization', image: 'https://images.unsplash.com/photo-1522071820081-009f012[...]' },
+      { step: 'Support', description: 'Maintain, support, and respond', duration: '', benefit: 'Maximum equipment uptime', image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?aut[...]' },
+      { step: 'Grow', description: 'Upgrade and optimize solutions', duration: '', benefit: 'Future-ready healthcare facilities', image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d[...]' },
     ],
     certifications: ['WHO Standards', 'ISO 15189', 'Joint Commission', 'Ministry of Health Accreditation'],
     partnerships: ['Medical Universities', 'International Health Organizations', 'Pharmaceutical Companies', 'Insurance Providers'],
@@ -205,9 +202,9 @@ export const sectorData: Record<string, Sector> = {
     ],
     videos: [],
     videoFiles: [
-      { title: 'Inside Bella Healthcare', src: bhVideo1.url, poster: bhPoster1.url, category: 'Our Company' },
-      { title: 'Medical Equipment in Action', src: bhVideo2.url, poster: bhPoster2.url, category: 'Clinical Technology' },
-      { title: 'Serving Ethiopian Healthcare', src: bhVideo3.url, poster: bhPoster3.url, category: 'Partnerships' },
+      { title: 'Inside Bella Healthcare', src: '/assets/videos/bh-video-1-opt.mp4', poster: bhPoster1.url, category: 'Our Company' },
+      { title: 'Medical Equipment in Action', src: '/assets/videos/bh-video-2-opt.mp4', poster: bhPoster2.url, category: 'Clinical Technology' },
+      { title: 'Serving Ethiopian Healthcare', src: '/assets/videos/bh-video-3-opt.mp4', poster: bhPoster3.url, category: 'Partnerships' },
     ],
     solutions: [
       {
@@ -262,7 +259,7 @@ export const sectorData: Record<string, Sector> = {
     tagline: 'Forest-grown Ethiopian coffee, from origin to the world.',
     description: 'Sustainable coffee cultivation and supply chain optimization for premium Ethiopian coffee.',
     content:
-      'Our coffee operations focus on sustainable agricultural practices, innovative farming techniques, and supply chain optimization to deliver premium Ethiopian coffee to global markets. We work directly with local farmers to ensure fair trade practices and environmental sustainability.',
+      'Our coffee operations focus on sustainable agricultural practices, innovative farming techniques, and supply chain optimization to deliver premium Ethiopian coffee to global markets. We wo[...]',
     vision: 'Premium Ethiopian Coffee for Global Markets',
     mission:
       'To cultivate and deliver the finest Ethiopian coffee while supporting local communities through sustainable farming practices and fair trade partnerships.',
@@ -304,10 +301,33 @@ export const sectorData: Record<string, Sector> = {
       { name: 'Illubabor Zone', projects: 2, coords: [35.9342, 8.5569] },
       { name: 'Sidama Zone', projects: 1, coords: [38.4762, 6.8453] },
     ],
-    videos: [
-      { title: 'Farm to Cup Journey', thumbnail: 'photo-1447933601403-0c6688de566e', duration: '6:30' },
-      { title: 'Farmer Testimonials', thumbnail: 'photo-1498804103079-a6351b050096', duration: '4:20' },
-      { title: 'Processing Methods', thumbnail: 'photo-1509042239860-f550ce710b93', duration: '3:45' },
+    processSteps: [
+      { step: 'Pre Harvesting', description: 'Sustainable farming practices in forest conditions', duration: '9-12 months' },
+      { step: 'Harvesting', description: 'Hand-picked selection of ripe cherries', duration: '3-4 months' },
+      { step: 'Processing', description: 'Wet and dry processing methods', duration: '2-4 weeks' },
+      { step: 'Export', description: 'Quality control and international shipping', duration: '1-2 weeks' },
+    ],
+    certifications: ['Organic Certified', 'Fair Trade', 'Rainforest Alliance', 'UTZ Certified'],
+    partnerships: ['Local Farmers', 'Export Cooperatives', 'International Buyers', 'Certification Bodies'],
+    dataMetrics: {
+      production: [
+        { year: '2020', value: 320 },
+        { year: '2021', value: 380 },
+        { year: '2022', value: 450 },
+        { year: '2023', value: 500 },
+      ],
+      quality: [
+        { metric: 'Bean Quality Score', score: 94 },
+        { metric: 'Farmer Satisfaction', score: 91 },
+        { metric: 'Export Success Rate', score: 98 },
+        { metric: 'Sustainability Rating', score: 96 },
+      ],
+    },
+    locations: [
+      { name: 'Kaffa Zone', projects: 3, coords: [36.2399, 7.2672] },
+      { name: 'Jimma Zone', projects: 2, coords: [36.8344, 7.6773] },
+      { name: 'Illubabor Zone', projects: 2, coords: [35.9342, 8.5569] },
+      { name: 'Sidama Zone', projects: 1, coords: [38.4762, 6.8453] },
     ],
   },
   automotives: {
@@ -317,7 +337,7 @@ export const sectorData: Record<string, Sector> = {
     tagline: 'Vehicles, CKD parts and regional assembly.',
     description: 'Premier importer of vehicles and CKD parts, providing regional assembly and automotive solutions.',
     content:
-      'We specialize in comprehensive automotive import and assembly solutions, including vehicle distribution, CKD part sourcing, and local assembly operations. Our commitment to quality, reliability, and local value addition drives everything we do, ensuring modern mobility and supporting automotive industry growth across the Horn of Africa.',
+      'We specialize in comprehensive automotive import and assembly solutions, including vehicle distribution, CKD part sourcing, and local assembly operations. Our commitment to quality, reliability, and local capacity building drives our operations.',
     vision: 'Driving Regional Mobility and Growth',
     mission:
       'To provide comprehensive automotive solutions that enhance transportation efficiency, support economic development, and contribute to regional connectivity.',
