@@ -6,6 +6,7 @@ import { Card, CardContent } from '../components/ui/card';
 import { Link } from 'react-router-dom';
 import bellaHealthcareLogo from '@/assets/bella-healthcare-logo.png.asset.json';
 import { sectorPathBySlug } from '@/data/sectors';
+import Seo from '@/components/Seo';
 
 const Sectors = () => {
   const sectors = [
@@ -42,6 +43,11 @@ const Sectors = () => {
 
   return (
     <div className="min-h-screen bg-grid-pattern">
+      <Seo
+        title="Our Sectors | Bella International Business"
+        description="Explore Bella International Business sectors: healthcare distribution, real estate development, Acha Forest Coffee and automotive import and assembly in Ethiopia."
+        path="/sectors"
+      />
       <Header />
       
       {/* Hero Section */}
@@ -92,9 +98,9 @@ const Sectors = () => {
                     </div>
                   </div>
                   
-                  <h3 className="font-marcellus text-2xl font-normal text-foreground mb-4">
+                  <h2 className="font-marcellus text-2xl font-normal text-foreground mb-4">
                     {sector.title}
-                  </h3>
+                  </h2>
                   
                   <p className="text-muted-foreground font-inter leading-relaxed mb-4">
                     {sector.description}
@@ -108,7 +114,7 @@ const Sectors = () => {
                     to={sectorPathBySlug(sector.slug)}
                     className="inline-flex items-center text-primary font-inter font-medium hover:text-primary/80 transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300"
                   >
-                    Learn More
+                    Explore {sector.title}
                   </Link>
                 </CardContent>
               </Card>

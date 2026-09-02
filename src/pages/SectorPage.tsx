@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Seo from '../components/Seo';
 import Reveal from '../components/Reveal';
 import CountUp from '../components/CountUp';
 import SectorCarousel from '../components/SectorCarousel';
@@ -65,6 +66,11 @@ const SectorPage = ({ sector }: SectorPageProps) => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={`${sector.title} | Bella International Business`}
+        description={sector.tagline}
+        path={sector.path}
+      />
       <Header />
 
       {/* Hero */}

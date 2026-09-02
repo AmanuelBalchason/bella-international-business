@@ -2,10 +2,16 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Seo from '../components/Seo';
 
 const About = () => {
   return (
     <div className="min-h-screen">
+      <Seo
+        title="About Bella International Business"
+        description="Bella International Business drives excellence across Eastern Africa through strategic business solutions, partnerships and market expertise."
+        path="/about"
+      />
       <Header />
       
       <section className="bg-white py-24">
