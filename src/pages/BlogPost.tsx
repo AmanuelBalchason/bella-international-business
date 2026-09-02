@@ -8,6 +8,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { supabase } from '@/integrations/supabase/client';
 import { ExecutiveSummary } from '@/components/ExecutiveSummary';
 import NewsletterForm from '@/features/newsletter/components/NewsletterForm';
+import Seo from '@/components/Seo';
 
 interface Article {
   id: string;
@@ -167,6 +168,22 @@ const BlogPost: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={article.seo_title || `${article.title} | Bella International Business`}
+        description={article.seo_description || article.excerpt}
+        path={`/blog/${article.slug}`}
+        type="article"
+        jsonLd={{
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: article.title,
+          description: article.excerpt,
+          datePublished: article.published_at,
+          author: { '@type': author ? 'Person' : 'Organization', name: author?.name || 'Bella International Business' },
+          publisher: { '@type': 'Organization', name: 'Bella International Business' },
+          mainEntityOfPage: `https://bella-international-business.lovable.app/blog/${article.slug}`,
+        }}
+      />
       {/* Header */}
       <div className="bg-muted/30 border-b border-border">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
