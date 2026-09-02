@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Seo from '../components/Seo';
 import { Mail, Linkedin, ArrowLeft, ArrowRight } from 'lucide-react';
 import abelImg from '@/assets/leader-abel.webp.asset.json';
 import mulugetaImg from '@/assets/leader-mulugeta-v2.webp.asset.json';
@@ -112,6 +113,11 @@ const Leadership = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="Leadership Team | Bella International Business"
+        description="Meet the executives leading Bella International Business across healthcare, real estate, coffee and automotive operations in Ethiopia."
+        path="/leadership"
+      />
       <Header />
 
       {/* Hero */}

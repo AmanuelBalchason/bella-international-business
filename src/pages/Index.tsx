@@ -11,11 +11,17 @@ import TestimonialsSection from '../components/TestimonialsSection';
 import FAQSection from '../components/FAQSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
+import Seo from '../components/Seo';
 import { Toaster } from '../components/ui/toaster';
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <Seo
+        title="Bella International Business | Ethiopian Investment Group"
+        description="Bella International Business builds value across healthcare, real estate, Acha Forest Coffee and automotives in Ethiopia and the Horn of Africa."
+        path="/"
+      />
       <Header />
       <HeroSection />
       <EventBanner />

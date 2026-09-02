@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Seo from '../components/Seo';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
@@ -55,6 +56,11 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-grid-pattern">
+      <Seo
+        title="Contact Bella International Business | Addis Ababa"
+        description="Get in touch with Bella International Business in Addis Ababa for partnerships, distribution and investment enquiries across our four sectors."
+        path="/contact"
+      />
       <Header />
       
       {/* Hero Section */}
