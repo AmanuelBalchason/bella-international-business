@@ -6,8 +6,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from './ui/dialog';
+import { useT } from '@/i18n/LanguageProvider';
 
 const LocationLink = ({ className = "" }: { className?: string }) => {
+  const t = useT();
   const [isMapOpen, setIsMapOpen] = useState(false);
 
   return (
@@ -16,13 +18,13 @@ const LocationLink = ({ className = "" }: { className?: string }) => {
         onClick={() => setIsMapOpen(true)}
         className={`text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 underline ${className}`}
       >
-        Ethio-China Street, Addis Ababa, Ethiopia
+        {t('Ethio-China Street, Addis Ababa, Ethiopia')}
       </button>
 
       <Dialog open={isMapOpen} onOpenChange={setIsMapOpen}>
         <DialogContent className="max-w-4xl">
           <DialogHeader>
-            <DialogTitle className="font-marcellus text-2xl">Our Location</DialogTitle>
+            <DialogTitle className="font-marcellus text-2xl">{t('Our Location')}</DialogTitle>
           </DialogHeader>
           <div className="w-full">
             <iframe 

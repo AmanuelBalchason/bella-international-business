@@ -1,4 +1,5 @@
 import React from 'react';
+import { useT } from '@/i18n/LanguageProvider';
 
 const partners = [
   { name: 'Ethio Telecom', file: 'ethio-telecom.png' },
@@ -10,14 +11,15 @@ const partners = [
 ];
 
 export default function ClientLogos() {
+  const t = useT();
   const basePath = 'partner-logos';
 
   return (
     <section className="bg-secondary py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4 animate-fade-in">Trusted By</p>
-          <h2 className="font-marcellus text-3xl font-normal text-foreground animate-fade-in" style={{ animationDelay: '0.2s' }}>Our Strategic Partners</h2>
+          <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4 animate-fade-in">{t('Trusted By')}</p>
+          <h2 className="font-marcellus text-3xl font-normal text-foreground animate-fade-in" style={{ animationDelay: '0.2s' }}>{t('Our Strategic Partners')}</h2>
         </div>
 
         <div className="relative">

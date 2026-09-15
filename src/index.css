@@ -98,6 +98,17 @@ All colors MUST be HSL.
     @apply bg-background text-foreground font-inter;
   }
 
+  button, a, [role='button'] {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    button:active, a:active, [role='button']:active {
+      transform: scale(0.97);
+      filter: brightness(0.9);
+    }
+  }
+
   .font-marcellus {
     font-family: 'Marcellus', serif;
   }

@@ -2,7 +2,8 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Seo from '../components/Seo';
-import { Mail, Linkedin, ArrowLeft, ArrowRight } from 'lucide-react';
+import { Mail, Linkedin, Phone, ArrowLeft, ArrowRight } from 'lucide-react';
+import { useT } from '@/i18n/LanguageProvider';
 import abelImg from '@/assets/leader-abel.webp.asset.json';
 import mulugetaImg from '@/assets/leader-mulugeta-v2.webp.asset.json';
 import chirotawImg from '@/assets/leader-chirotaw-v2.webp.asset.json';
@@ -14,7 +15,7 @@ const leaders = [
     name: 'Abel Yeshitila',
     position: 'CEO, Bella International Business',
     bio: 'With over 15 years in strategic business development, Abel has been instrumental in establishing Bella International as a leading conglomerate in the Horn of Africa.',
-    email: 'ceo@bellainter.com',
+    email: 'abel@bellainter.com',
     linkedin: '#',
     image: abelImg.url,
   },
@@ -41,14 +42,16 @@ const leaders = [
     email: 'temesgen@bellainter.com',
     linkedin: '#',
     image: temesgenImg.url,
+    phone: '+251933381818',
   },
   {
     name: 'Yonas Birhanu',
     position: 'Director, Medical Equipment Division',
     bio: 'Yonas leads the medical equipment division, overseeing sourcing, installation and technical service of advanced diagnostic systems.',
-    email: 'info@bellainter.com',
+    email: 'yonas@bellainter.com',
     linkedin: 'https://www.linkedin.com/in/yonas-b-teferi/',
     image: yonasImg.url,
+    phone: '+251913941530',
   },
 ];
 
@@ -60,6 +63,7 @@ const stats = [
 ];
 
 const Leadership = () => {
+  const t = useT();
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -123,12 +127,12 @@ const Leadership = () => {
       {/* Hero */}
       <section className="bg-white pt-28 pb-20">
         <div className="max-w-4xl mx-auto px-6 text-center animate-fade-in">
-          <p className="font-inter text-xs tracking-[0.3em] uppercase text-primary mb-6">Bella International</p>
+          <p className="font-inter text-xs tracking-[0.3em] uppercase text-primary mb-6">{t('Bella International')}</p>
           <h1 className="font-marcellus text-5xl md:text-6xl font-normal text-foreground leading-tight mb-6">
-            Leadership Team
+            {t('Leadership Team')}
           </h1>
           <p className="text-muted-foreground font-inter text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
-            Meet the visionary leaders driving Bella International's success across the Horn of Africa.
+            {t("Meet the visionary leaders driving Bella International's success across the Horn of Africa.")}
           </p>
         </div>
       </section>
@@ -138,11 +142,10 @@ const Leadership = () => {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="font-marcellus text-3xl md:text-4xl font-normal text-foreground mb-4">
-              Our Team's Combined Experience
+              {t("Our Team's Combined Experience")}
             </h2>
             <p className="text-muted-foreground font-inter max-w-2xl mx-auto">
-              From a family-run historic coffee farm to a diversified group spanning import-export,
-              agro-industry and real estate development.
+              {t('From a family-run historic coffee farm to a diversified group spanning import-export, agro-industry and real estate development.')}
             </p>
           </div>
 
@@ -151,7 +154,7 @@ const Leadership = () => {
               <div key={stat.label} className="border-b border-r border-border p-8 md:p-10 text-center">
                 <div className="font-marcellus text-4xl md:text-5xl text-primary mb-3">{stat.figure}</div>
                 <div className="font-inter text-xs md:text-sm uppercase tracking-widest text-muted-foreground">
-                  {stat.label}
+                  {t(stat.label)}
                 </div>
               </div>
             ))}
@@ -162,7 +165,7 @@ const Leadership = () => {
               href="/our-story"
               className="inline-block bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium text-base md:text-lg px-12 py-5 transition-colors duration-200"
             >
-              Learn More About Our Story
+              {t('Learn More About Our Story')}
             </a>
           </div>
         </div>
@@ -172,21 +175,21 @@ const Leadership = () => {
       <section className="bg-white py-24 md:py-32 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 flex flex-wrap items-end justify-between gap-6 mb-12">
           <div>
-            <p className="font-inter text-xs tracking-[0.3em] uppercase text-primary mb-4">The People</p>
+            <p className="font-inter text-xs tracking-[0.3em] uppercase text-primary mb-4">{t('The People')}</p>
             <h2 className="font-marcellus text-3xl md:text-4xl font-normal text-foreground">
-              Meet the Leadership
+              {t('Meet the Leadership')}
             </h2>
           </div>
           <div className="hidden md:flex items-center gap-3">
             <button
-              aria-label="Previous team member"
+              aria-label={t('Previous team member')}
               onClick={() => scrollToIndex(Math.max(0, activeIndex - 1))}
               className="w-12 h-12 border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
             <button
-              aria-label="Next team member"
+              aria-label={t('Next team member')}
               onClick={() => scrollToIndex(Math.min(leaders.length - 1, activeIndex + 1))}
               className="w-12 h-12 border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
             >
@@ -220,8 +223,8 @@ const Leadership = () => {
               </div>
               <div className="p-8 md:p-10">
                 <h3 className="font-marcellus text-2xl text-foreground mb-2">{leader.name}</h3>
-                <p className="font-inter text-sm text-primary mb-5">{leader.position}</p>
-                <p className="font-inter text-muted-foreground leading-relaxed mb-8">{leader.bio}</p>
+                <p className="font-inter text-sm text-primary mb-5">{t(leader.position)}</p>
+                <p className="font-inter text-muted-foreground leading-relaxed mb-8">{t(leader.bio)}</p>
                 <div className="flex items-center gap-3 pt-6 border-t border-border">
                   <a
                     href={`mailto:${leader.email}`}
@@ -230,13 +233,16 @@ const Leadership = () => {
                   >
                     <Mail className="w-5 h-5" />
                   </a>
-                  <a
-                    href={leader.linkedin}
-                    aria-label={`${leader.name} on LinkedIn`}
-                    className="w-11 h-11 border border-border flex items-center justify-center text-muted-foreground hover:text-primary-foreground hover:bg-primary hover:border-primary transition-colors"
-                  >
-                    <Linkedin className="w-5 h-5" />
-                  </a>
+                  {leader.linkedin !== '#' && (
+                    <a href={leader.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${leader.name} on LinkedIn`} className="w-11 h-11 border border-border flex items-center justify-center text-muted-foreground hover:text-primary-foreground hover:bg-primary hover:border-primary transition-colors">
+                      <Linkedin className="w-5 h-5" />
+                    </a>
+                  )}
+                  {'phone' in leader && leader.phone && (
+                    <a href={`tel:${leader.phone}`} aria-label={`${t('Call')} ${leader.name}`} className="w-11 h-11 border border-border flex items-center justify-center text-muted-foreground hover:text-primary-foreground hover:bg-primary hover:border-primary transition-colors">
+                      <Phone className="w-5 h-5" />
+                    </a>
+                  )}
                 </div>
               </div>
             </article>
