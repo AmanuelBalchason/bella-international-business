@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { usePrefersReducedMotion } from '@/hooks/useInView';
+import { useT } from '@/i18n/LanguageProvider';
 
 export interface ProcessStep {
   step: string;
@@ -14,6 +15,7 @@ const DURATION = 7000;
 
 const ProcessCarousel = ({ steps }: { steps: ProcessStep[] }) => {
   const reduced = usePrefersReducedMotion();
+  const t = useT();
   const [index, setIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -52,14 +54,14 @@ const ProcessCarousel = ({ steps }: { steps: ProcessStep[] }) => {
             key={item.step}
             type="button"
             onClick={() => setIndex(i)}
-            aria-label={`Step ${i + 1}: ${item.step}`}
+            aria-label={`${t('Step')} ${i + 1}: ${t(item.step)}`}
             className={`font-inter text-[11px] sm:text-xs tracking-wider px-3 sm:px-4 py-2 border transition-colors duration-200 ${
               i === index
                 ? 'bg-primary text-primary-foreground border-primary'
                 : 'bg-card text-muted-foreground border-border hover:border-primary'
             }`}
           >
-            {String(i + 1).padStart(2, '0')} {item.step}
+            {String(i + 1).padStart(2, '0')} {t(item.step)}
           </button>
         ))}
       </div>
@@ -75,7 +77,7 @@ const ProcessCarousel = ({ steps }: { steps: ProcessStep[] }) => {
               <img
                 key={step.image}
                 src={step.image}
-                alt={`${step.step} — Bella Healthcare partnership step`}
+                alt={`${t(step.step)} — ${t('Bella Healthcare partnership step')}`}
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover animate-fade-in"
               />
@@ -88,20 +90,20 @@ const ProcessCarousel = ({ steps }: { steps: ProcessStep[] }) => {
 
           <div key={index} className="md:col-span-2 p-7 sm:p-10 md:p-14 animate-fade-in">
             <p className="font-inter text-[11px] uppercase tracking-[0.22em] text-primary mb-3">
-              Step {index + 1} of {steps.length}
+              {t('Step')} {index + 1} {t('of')} {steps.length}
             </p>
-            <h3 className="font-marcellus text-2xl sm:text-3xl md:text-4xl text-foreground">{step.step}</h3>
+            <h3 className="font-marcellus text-2xl sm:text-3xl md:text-4xl text-foreground">{t(step.step)}</h3>
 
             <div className="mt-7">
               <p className="font-inter text-base sm:text-lg text-foreground leading-relaxed">
-                {step.benefit ? `${step.description} — so you get ${step.benefit.toLowerCase()}.` : `${step.description}.`}
+                {step.benefit ? `${t(step.description)} — ${t('so you get')} ${t(step.benefit)}.` : `${t(step.description)}.`}
               </p>
             </div>
 
             <div className="flex items-center gap-3 mt-9 pt-7 border-t border-border">
               <button
                 type="button"
-                aria-label="Previous step"
+                aria-label={t('Previous step')}
                 onClick={() => go(index - 1)}
                 className="w-11 h-11 border border-border hover:border-primary hover:bg-primary/5 flex items-center justify-center transition-colors"
               >
@@ -109,7 +111,7 @@ const ProcessCarousel = ({ steps }: { steps: ProcessStep[] }) => {
               </button>
               <button
                 type="button"
-                aria-label="Next step"
+                aria-label={t('Next step')}
                 onClick={() => go(index + 1)}
                 className="w-11 h-11 border border-border hover:border-primary hover:bg-primary/5 flex items-center justify-center transition-colors"
               >

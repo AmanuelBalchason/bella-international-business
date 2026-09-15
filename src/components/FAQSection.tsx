@@ -2,8 +2,10 @@
 import React, { useState } from 'react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 import InteractiveDotPattern from './InteractiveDotPattern';
+import { useT } from '@/i18n/LanguageProvider';
 
 const FAQSection = () => {
+  const t = useT();
   const [openItems, setOpenItems] = useState<number[]>([]);
 
   const faqs = [
@@ -42,9 +44,9 @@ const FAQSection = () => {
       <InteractiveDotPattern />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4">Support</p>
+          <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4">{t('Support')}</p>
           <h2 className="font-marcellus text-4xl font-normal text-foreground leading-tight">
-            Frequently Asked Questions
+            {t('Frequently Asked Questions')}
           </h2>
         </div>
         
@@ -53,7 +55,7 @@ const FAQSection = () => {
             <Collapsible key={index} open={openItems.includes(index)} onOpenChange={() => toggleItem(index)}>
               <div className="border border-border">
                 <CollapsibleTrigger className="w-full p-6 text-left flex justify-between items-center hover:bg-secondary/50 transition-colors duration-200">
-                  <h3 className="font-inter font-medium text-foreground text-lg pr-8">{faq.question}</h3>
+                  <h3 className="font-inter font-medium text-foreground text-lg pr-8">{t(faq.question)}</h3>
                   <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
                     <span className="text-primary font-inter text-xl">
                       {openItems.includes(index) ? '−' : '+'}
@@ -62,7 +64,7 @@ const FAQSection = () => {
                 </CollapsibleTrigger>
                 <CollapsibleContent className="px-6 pb-6">
                   <p className="text-muted-foreground font-inter leading-relaxed">
-                    {faq.answer}
+                    {t(faq.answer)}
                   </p>
                 </CollapsibleContent>
               </div>

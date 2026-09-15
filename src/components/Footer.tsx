@@ -4,9 +4,12 @@ import { Link } from 'react-router-dom';
 import LocationLink from './LocationLink';
 import InteractiveDotPattern from './InteractiveDotPattern';
 import { sectorNavLinks } from '@/data/sectors';
+import LanguageToggle from './LanguageToggle';
+import { useT } from '@/i18n/LanguageProvider';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const t = useT();
 
   return (
     <footer className="bg-white py-16 relative overflow-hidden">
@@ -31,11 +34,12 @@ const Footer = () => {
             <div className="space-y-2">
               <LocationLink />
             </div>
+            <LanguageToggle />
           </div>
           
           {/* Quick Links */}
           <div>
-            <h4 className="font-inter font-semibold text-foreground mb-6">Sectors</h4>
+            <h4 className="font-inter font-semibold text-foreground mb-6">{t('Sectors')}</h4>
             <div className="space-y-3">
               {/* Temporarily hidden: Our Story and Articles pages
               <Link to="/our-story" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200">Our Story</Link>
@@ -47,16 +51,16 @@ const Footer = () => {
                   to={link.path}
                   className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300"
                 >
-                  {link.title}
+                  {t(link.title)}
                 </Link>
               ))}
-              <Link to="/leadership" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">Leadership</Link>
+              <Link to="/leadership" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">{t('Leadership')}</Link>
             </div>
           </div>
           
           {/* Contact Info */}
           <div>
-            <h4 className="font-inter font-semibold text-foreground mb-6">Contact</h4>
+            <h4 className="font-inter font-semibold text-foreground mb-6">{t('Contact')}</h4>
             <div className="space-y-3">
               <a href="tel:+251962777777" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">+251 962 777777</a>
               <a href="tel:+251913328000" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">+251 913 328000</a>
@@ -68,7 +72,7 @@ const Footer = () => {
           {/* Company Vision */}
           <div>
             <h4 className="font-marcellus text-lg font-normal text-foreground mb-6">
-              Excellence in Every Partnership
+              {t('Excellence in Every Partnership')}
             </h4>
             <div className="flex space-x-4">
               <a
@@ -80,13 +84,22 @@ const Footer = () => {
               >
                 <span className="text-muted-foreground text-xs">LI</span>
               </a>
+              <a
+                href="https://www.tiktok.com/@bella_healthcare_et"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={t('Bella Healthcare on TikTok')}
+                className="w-8 h-8 bg-secondary border border-border flex items-center justify-center hover:border-primary/30 hover:text-primary transition-all duration-200 hover:scale-110"
+              >
+                <span className="text-muted-foreground text-xs">TT</span>
+              </a>
             </div>
           </div>
         </div>
         
         <div className="border-t border-border mt-12 pt-8 text-center">
           <p className="text-muted-foreground font-inter text-sm">
-            © {currentYear} Bella International Business. All rights reserved. | Privacy Policy | Terms of Service
+            © {currentYear} Bella International Business. {t('All rights reserved.')} | {t('Privacy Policy')} | {t('Terms of Service')}
           </p>
         </div>
       </div>

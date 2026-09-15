@@ -10,10 +10,10 @@ interface InteractiveDotPatternProps {
 
 const InteractiveDotPattern: React.FC<InteractiveDotPatternProps> = ({
   className = "",
-  dotSize = 1.4,
-  spacing = 26,
+  dotSize = 0.8,
+  spacing = 28,
   color = "hsl(var(--primary))",
-  opacity = 0.12
+  opacity = 0.065
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -67,7 +67,7 @@ const InteractiveDotPattern: React.FC<InteractiveDotPatternProps> = ({
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
-      const radius = 140;
+      const radius = 120;
       const { x: mx, y: my } = mouse.current;
 
       for (let x = spacing / 2; x < width; x += spacing) {
@@ -79,8 +79,8 @@ const InteractiveDotPattern: React.FC<InteractiveDotPatternProps> = ({
           const eased = influence * influence;
 
           ctx.beginPath();
-          ctx.arc(x, y, dotSize + eased * 1.6, 0, Math.PI * 2);
-          ctx.fillStyle = fill(opacity + eased * 0.4);
+          ctx.arc(x, y, dotSize + eased * 0.65, 0, Math.PI * 2);
+          ctx.fillStyle = fill(opacity + eased * 0.13);
           ctx.fill();
         }
       }

@@ -7,7 +7,7 @@ interface StaticDotPatternProps {
 
 const StaticDotPattern: React.FC<StaticDotPatternProps> = ({ 
   className = "", 
-  opacity = 0.1 
+  opacity = 0.055 
 }) => {
   return (
     <div className={`absolute inset-0 pointer-events-none ${className}`} style={{ zIndex: 1 }}>
@@ -15,7 +15,7 @@ const StaticDotPattern: React.FC<StaticDotPatternProps> = ({
         className="absolute inset-0"
         style={{
           backgroundImage: `radial-gradient(circle, hsl(var(--primary)) ${opacity}, transparent ${opacity})`,
-          backgroundSize: '20px 20px',
+          backgroundSize: '26px 26px',
           maskImage: 'radial-gradient(ellipse at center, transparent 20%, black 40%, black 60%, transparent 80%)',
           WebkitMaskImage: 'radial-gradient(ellipse at center, transparent 20%, black 40%, black 60%, transparent 80%)'
         }}

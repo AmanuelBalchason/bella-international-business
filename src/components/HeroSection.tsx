@@ -4,6 +4,7 @@ import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
 import { ArrowDown } from 'lucide-react';
 import { usePrefersReducedMotion } from '@/hooks/useInView';
+import { useT } from '@/i18n/LanguageProvider';
 
 const slides = [
   {
@@ -30,6 +31,7 @@ const stats = [
 ];
 
 const HeroSection = () => {
+  const t = useT();
   const [index, setIndex] = useState(0);
   const [scrollY, setScrollY] = useState(0);
   const reduced = usePrefersReducedMotion();
@@ -64,44 +66,44 @@ const HeroSection = () => {
 
       <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-16">
         <p className="font-inter text-sm uppercase tracking-[0.25em] text-background/80 mb-5">
-          Bella International Business
+          {t('Bella International Business')}
         </p>
         <h1
           key={`t-${index}`}
           className="font-marcellus text-5xl md:text-7xl text-background leading-[1.05] max-w-4xl animate-fade-in"
         >
-          {slides[index].title}
+          {t(slides[index].title)}
         </h1>
         <p
           key={`s-${index}`}
           className="font-inter text-lg md:text-2xl text-background/85 max-w-2xl mt-6 animate-fade-in"
         >
-          {slides[index].subtitle}
+          {t(slides[index].subtitle)}
         </p>
 
         <div className="flex flex-wrap gap-4 mt-10">
           <Link to="/bella-healthcare">
             <Button size="lg" className="rounded-none px-8 hover:scale-105 transition-transform duration-200">
-              Explore Our Impact
+              {t('Explore Our Impact')}
             </Button>
           </Link>
-          <a href="#about">
+          <Link to="/contact">
             <Button
               size="lg"
               variant="outline"
               className="rounded-none px-8 bg-transparent text-background border-background/60 hover:bg-background hover:text-foreground"
             >
-              Who We Are
+              {t('Get In Touch')}
               <ArrowDown className="w-4 h-4 ml-2" />
             </Button>
-          </a>
+          </Link>
         </div>
 
         <div className="grid grid-cols-3 gap-8 mt-12 pt-8 border-t border-background/20 max-w-3xl">
           {stats.map((stat) => (
             <div key={stat.label}>
               <div className="font-marcellus text-3xl text-background mb-1">{stat.value}</div>
-              <p className="text-background/70 font-inter text-xs sm:text-sm">{stat.label}</p>
+              <p className="text-background/70 font-inter text-xs sm:text-sm">{t(stat.label)}</p>
             </div>
           ))}
         </div>

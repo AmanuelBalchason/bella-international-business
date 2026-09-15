@@ -3,8 +3,11 @@ import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { sectorNavLinks } from '@/data/sectors';
+import LanguageToggle from './LanguageToggle';
+import { useT } from '@/i18n/LanguageProvider';
 
 const Header = () => {
+  const t = useT();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSectorsOpen, setIsSectorsOpen] = useState(false);
 
@@ -21,7 +24,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-border backdrop-blur-sm">
+    <header className="sticky top-0 z-50 bg-background border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-6">
           {/* Logo */}
@@ -50,7 +53,7 @@ const Header = () => {
                 className="flex items-center gap-1 font-inter font-medium text-muted-foreground hover:text-primary transition-colors duration-200"
                 aria-expanded={isSectorsOpen}
               >
-                Sectors
+                {t('Sectors')}
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isSectorsOpen ? 'rotate-180' : ''}`} />
               </button>
               <div
@@ -67,9 +70,9 @@ const Header = () => {
                       className="block px-5 py-3 hover:bg-secondary transition-colors duration-200 group"
                     >
                       <span className="block font-inter font-medium text-foreground group-hover:text-primary transition-colors duration-200">
-                        {sector.title}
+                        {t(sector.title)}
                       </span>
-                      <span className="block font-inter text-xs text-muted-foreground mt-1">{sector.tagline}</span>
+                      <span className="block font-inter text-xs text-muted-foreground mt-1">{t(sector.tagline)}</span>
                     </Link>
                   ))}
                 </div>
@@ -81,16 +84,17 @@ const Header = () => {
                 to={link.to} 
                 className="font-inter font-medium text-muted-foreground hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300"
               >
-                {link.label}
+                {t(link.label)}
               </Link>
             ))}
           </nav>
+          <LanguageToggle className="hidden md:inline-flex" />
           
           {/* Mobile Menu Button */}
           <button 
             onClick={toggleMobileMenu}
             className="md:hidden p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 transition-colors duration-200"
-            aria-label="Toggle menu"
+            aria-label={t('Toggle menu')}
           >
             {isMobileMenuOpen ? (
               <X className="h-6 w-6" />
@@ -120,7 +124,8 @@ const Header = () => {
         <div className="flex flex-col h-full pt-20 pb-8 px-6">
           {/* Mobile Menu Items with card-like styling */}
           <div className="flex-1 space-y-2 overflow-y-auto">
-            <p className="px-4 pt-2 pb-1 text-xs uppercase tracking-wider text-muted-foreground font-inter">Sectors</p>
+            <div className="px-4 pb-4"><LanguageToggle /></div>
+            <p className="px-4 pt-2 pb-1 text-xs uppercase tracking-wider text-muted-foreground font-inter">{t('Sectors')}</p>
             {sectorNavLinks.map((sector) => (
               <Link
                 key={sector.path}
@@ -128,7 +133,7 @@ const Header = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block py-3 text-base font-inter font-medium text-gray-800 hover:text-primary hover:bg-white px-4 rounded-lg transition-all duration-200 shadow-sm border border-gray-100"
               >
-                {sector.title}
+                {t(sector.title)}
               </Link>
             ))}
             <div className="h-2" />
@@ -139,7 +144,7 @@ const Header = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block py-4 text-lg font-inter font-medium text-gray-800 hover:text-primary hover:bg-white px-4 rounded-lg transition-all duration-200 shadow-sm border border-gray-100 hover:shadow-md hover:border-gray-200"
               >
-                {link.label}
+                {t(link.label)}
               </Link>
             ))}
           </div>
@@ -151,7 +156,7 @@ const Header = () => {
               className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium py-3 rounded-lg hover:scale-105 transition-all duration-200 relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:transition-all before:duration-500 hover:before:left-[100%] shadow-md"
             >
               <Link to="/contact" className="w-full h-full flex items-center justify-center">
-                Get In Touch
+                {t('Get In Touch')}
               </Link>
             </Button>
           </div>
