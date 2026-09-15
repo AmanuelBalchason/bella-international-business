@@ -4,25 +4,27 @@ import { Link } from 'react-router-dom';
 import { useBusinessSectors } from '@/hooks/useBusinessSectors';
 import { Skeleton } from '@/components/ui/skeleton';
 import { sectorPathBySlug } from '@/data/sectors';
+import { useT } from '@/i18n/LanguageProvider';
 
 const BusinessSectors = () => {
+  const t = useT();
   const { data: sectors, isLoading, error } = useBusinessSectors();
 
   // Fallback data in case database is empty
   const fallbackSectors = [
     {
       id: '1',
-      title: 'Real Estate',
-      description: 'Premium property development and strategic real estate investment solutions across Horn of Africa.',
-      slug: 'real-estate',
+      title: 'Healthcare',
+      description: 'Leading importer and distributor of essential pharmaceuticals and medical supplies in the Ethiopian market',
+      slug: 'healthcare',
       icon_code: '01',
       sort_order: 1
     },
     {
       id: '2',
-      title: 'Healthcare',
-      description: 'Leading importer and distributor of essential pharmaceuticals and medical supplies in the Ethiopian market',
-      slug: 'healthcare',
+      title: 'Real Estate',
+      description: 'Premium property development and strategic real estate investment solutions across Horn of Africa.',
+      slug: 'real-estate',
       icon_code: '02',
       sort_order: 2
     },
@@ -44,7 +46,11 @@ const BusinessSectors = () => {
     }
   ];
 
-  const displaySectors = sectors && sectors.length > 0 ? sectors : fallbackSectors;
+  const displaySectors = [...(sectors && sectors.length > 0 ? sectors : fallbackSectors)].sort((a, b) => {
+    if (a.slug === 'healthcare') return -1;
+    if (b.slug === 'healthcare') return 1;
+    return (a.sort_order ?? 0) - (b.sort_order ?? 0);
+  });
   const hoverColors = ['hover:bg-green-50', 'hover:bg-green-50', 'hover:bg-green-50', 'hover:bg-green-50'];
   const imageIds = ['photo-1560518883-ce09059eeffa', 'photo-1576091160399-112ba8d25d1f', 'photo-1618160702438-9b02ab6515c9', 'photo-1449824913935-59a10b8d2000'];
 
@@ -56,9 +62,9 @@ const BusinessSectors = () => {
     <section className="bg-secondary py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
-          <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4 animate-fade-in">Our Expertise</p>
+          <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4 animate-fade-in">{t('Our Expertise')}</p>
           <h2 className="font-marcellus text-4xl font-normal text-foreground leading-tight animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            Core Business Sectors
+            {t('Core Business Sectors')}
           </h2>
         </div>
         
@@ -104,11 +110,11 @@ const BusinessSectors = () => {
                     </div>
                     
                     <h3 className="font-inter text-xl font-semibold text-foreground mb-4 group-hover:text-primary transition-colors duration-300 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right group-hover:after:scale-x-100 group-hover:after:origin-left after:transition-transform after:duration-300">
-                      {sector.title}
+                      {t(sector.title)}
                     </h3>
                     
                     <p className="text-muted-foreground font-inter text-sm leading-relaxed mb-6 group-hover:text-foreground/80 transition-colors duration-300">
-                      {sector.description}
+                      {t(sector.description)}
                     </p>
                   </div>
                 </Link>

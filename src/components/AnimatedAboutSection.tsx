@@ -3,8 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
 import InteractiveDotPattern from './InteractiveDotPattern';
+import { useT } from '@/i18n/LanguageProvider';
 
 const AnimatedAboutSection = () => {
+  const t = useT();
   const [visibleItems, setVisibleItems] = useState<number[]>([]);
 
   const values = [
@@ -42,22 +44,22 @@ const AnimatedAboutSection = () => {
           {/* Left side - Content */}
           <div className="space-y-8">
             <div>
-              <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4">About Us</p>
+              <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4">{t('About Us')}</p>
               <h2 className="font-marcellus text-4xl font-normal text-foreground leading-tight mb-6">
-                Building Excellence Across Horn of Africa
+                {t('Building Excellence Across Horn of Africa')}
               </h2>
               <p className="text-muted-foreground font-inter text-lg leading-relaxed">
-                At Bella International Business, we are committed to realizing our vision by building a highly motivated, research-focused workforce dedicated to cultivating long-term relationships with our strategic partners and the communities we serve.
+                {t('At Bella International Business, we are committed to realizing our vision by building a highly motivated, research-focused workforce dedicated to cultivating long-term relationships with our strategic partners and the communities we serve.')}
               </p>
             </div>
             
             <div>
-              <Link to="/our-story">
+              <Link to="/contact">
                 <Button 
                   variant="outline" 
                   className="border-foreground text-foreground hover:bg-foreground hover:text-background font-inter font-medium px-8 py-3 rounded-none"
                 >
-                  Learn More About Us
+                  {t('Get In Touch')}
                 </Button>
               </Link>
             </div>
@@ -78,8 +80,8 @@ const AnimatedAboutSection = () => {
                   <span className="text-primary font-marcellus text-lg">{index + 1}</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-inter font-semibold text-foreground text-lg mb-2">{value.title}</h3>
-                  <p className="text-muted-foreground font-inter leading-relaxed">{value.description}</p>
+                    <h3 className="font-inter font-semibold text-foreground text-lg mb-2">{t(value.title)}</h3>
+                    <p className="text-muted-foreground font-inter leading-relaxed">{t(value.description)}</p>
                 </div>
               </div>
             ))}
