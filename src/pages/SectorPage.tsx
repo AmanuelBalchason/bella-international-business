@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Seo from '../components/Seo';
@@ -17,14 +17,17 @@ import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { Label } from '../components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
-import { Sector } from '@/data/sectors';
+import { Sector, sectorList } from '@/data/sectors';
 import { usePrefersReducedMotion } from '@/hooks/useInView';
+import { useT } from '@/i18n/LanguageProvider';
 
 interface SectorPageProps {
   sector: Sector;
 }
 
 const SectorPage = ({ sector }: SectorPageProps) => {
+  const t = useT();
+  const navigate = useNavigate();
   const [contactForm, setContactForm] = useState({
     name: '',
     email: '',
@@ -35,6 +38,8 @@ const SectorPage = ({ sector }: SectorPageProps) => {
   const [scrollY, setScrollY] = useState(0);
   const [heroIndex, setHeroIndex] = useState(0);
   const [stepIndex, setStepIndex] = useState(0);
+  const [nextProgress, setNextProgress] = useState(0);
+  const touchStartY = useRef<number | null>(null);
   const reduced = usePrefersReducedMotion();
   const heroSlides =
     sector.heroSlides ??
@@ -53,11 +58,40 @@ const SectorPage = ({ sector }: SectorPageProps) => {
   }, [heroSlides.length]);
 
   useEffect(() => {
-    if (reduced) return;
-    const onScroll = () => setScrollY(window.scrollY);
+    const onScroll = () => {
+      setScrollY(window.scrollY);
+      const remaining = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
+      setNextProgress(Math.max(0, Math.min(1, (700 - remaining) / 700)));
+    };
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, [reduced]);
+  }, []);
+
+  const sectorIndex = sectorList.findIndex((item) => item.slug === sector.slug);
+  const nextSector = sectorIndex >= 0 ? sectorList[sectorIndex + 1] : undefined;
+
+  useEffect(() => {
+    if (!nextSector) return;
+    const onTouchStart = (event: TouchEvent) => {
+      touchStartY.current = event.touches[0]?.clientY ?? null;
+    };
+    const onTouchEnd = (event: TouchEvent) => {
+      const start = touchStartY.current;
+      const end = event.changedTouches[0]?.clientY;
+      touchStartY.current = null;
+      const remaining = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
+      if (start !== null && end !== undefined && start - end > 90 && remaining < 8 && window.matchMedia('(max-width: 767px)').matches) {
+        navigate(nextSector.path);
+      }
+    };
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchend', onTouchEnd, { passive: true });
+    return () => {
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchend', onTouchEnd);
+    };
+  }, [navigate, nextSector]);
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -91,17 +125,17 @@ const SectorPage = ({ sector }: SectorPageProps) => {
 
         <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-16 md:pb-20">
           <p className="font-inter text-xs sm:text-sm uppercase tracking-[0.25em] text-background/80 mb-4 sm:mb-5 animate-fade-in">
-            Bella International Business
+            {t('Bella International Business')}
           </p>
           <h1 className="font-marcellus text-4xl sm:text-5xl md:text-7xl text-background leading-[1.05] max-w-4xl animate-fade-in">
-            {sector.title}
+             {t(sector.title)}
           </h1>
           {heroSlides[heroIndex]?.title && (
             <p
               key={`ht-${heroIndex}`}
               className="font-inter text-xs sm:text-sm uppercase tracking-[0.22em] text-background/70 mt-5 animate-fade-in"
             >
-              {heroSlides[heroIndex].title}
+               {t(heroSlides[heroIndex].title)}
             </p>
           )}
           <p
@@ -109,12 +143,12 @@ const SectorPage = ({ sector }: SectorPageProps) => {
             className="font-inter text-base sm:text-lg md:text-2xl text-background/85 max-w-2xl mt-3 sm:mt-4 animate-fade-in"
             style={{ animationDelay: '0.15s' }}
           >
-            {heroSlides[heroIndex]?.body ?? sector.tagline}
+             {t(heroSlides[heroIndex]?.body ?? sector.tagline)}
           </p>
           <div className="flex flex-wrap gap-3 sm:gap-4 mt-8 sm:mt-10 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <a href="#sector-contact">
               <Button size="lg" className="rounded-none px-6 sm:px-8 hover:scale-105 transition-transform duration-200">
-                Start a Conversation
+                 {t('Start a Conversation')}
               </Button>
             </a>
             <a href="#sector-overview">
@@ -123,7 +157,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                 variant="outline"
                 className="rounded-none px-6 sm:px-8 bg-transparent text-background border-background/60 hover:bg-background hover:text-foreground"
               >
-                Explore the Sector
+                 {t('Explore the Sector')}
                 <ArrowDown className="w-4 h-4 ml-2" />
               </Button>
             </a>
@@ -152,7 +186,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
           {Object.entries(sector.stats).map(([key, value], index) => (
             <Reveal key={key} delay={index * 120} className="text-center sm:text-left">
               <CountUp value={value} className="font-marcellus text-4xl md:text-5xl block mb-2" />
-              <p className="font-inter text-sm uppercase tracking-wider text-primary-foreground/70 capitalize">{key}</p>
+               <p className="font-inter text-sm uppercase tracking-wider text-primary-foreground/70 capitalize">{t(key)}</p>
             </Reveal>
           ))}
         </div>
@@ -162,7 +196,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       {sector.partnerStrip && (
         <section className="border-b border-border py-12 overflow-hidden">
           <p className="font-inter text-xs uppercase tracking-[0.25em] text-muted-foreground text-center mb-8">
-            Trusted Partners &amp; Institutions Served
+             {t('Trusted Partners & Institutions Served')}
           </p>
           <div className="marquee-mask">
             <div className="flex w-max animate-marquee">
@@ -189,13 +223,13 @@ const SectorPage = ({ sector }: SectorPageProps) => {
         <InteractiveDotPattern />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center">
           <Reveal className={sector.videoFiles ? 'lg:col-span-5' : 'lg:col-span-5'}>
-            <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">Overview</p>
+             <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">{t('Overview')}</p>
             <h2 className="font-marcellus text-3xl sm:text-4xl text-foreground leading-tight">
-              {sector.overviewHeading ?? sector.description}
+               {t(sector.overviewHeading ?? sector.description)}
             </h2>
             {sector.videoFiles && (
               <p className="font-inter text-base sm:text-lg text-muted-foreground leading-relaxed mt-6">
-                {sector.content}
+                 {t(sector.content)}
               </p>
             )}
           </Reveal>
@@ -205,7 +239,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
             </Reveal>
           ) : (
             <Reveal delay={140} className="lg:col-span-7">
-              <p className="font-inter text-lg text-muted-foreground leading-relaxed">{sector.content}</p>
+               <p className="font-inter text-lg text-muted-foreground leading-relaxed">{t(sector.content)}</p>
             </Reveal>
           )}
         </div>
@@ -216,10 +250,10 @@ const SectorPage = ({ sector }: SectorPageProps) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal className="mb-12">
             <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">
-              {sector.solutions ? 'What We Offer' : 'In Focus'}
+               {t(sector.solutions ? 'What We Offer' : 'In Focus')}
             </p>
             <h2 className="font-marcellus text-3xl sm:text-4xl text-foreground">
-              {sector.solutions ? 'Comprehensive Healthcare Solutions' : `Inside ${sector.title}`}
+               {sector.solutions ? t('Comprehensive Healthcare Solutions') : `${t('Inside')} ${t(sector.title)}`}
             </h2>
           </Reveal>
           {sector.solutions ? (
@@ -230,8 +264,8 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                     <span className="font-marcellus text-3xl text-primary/50">
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    <h3 className="font-marcellus text-2xl text-foreground mt-5 mb-3">{solution.title}</h3>
-                    <p className="font-inter text-muted-foreground leading-relaxed">{solution.description}</p>
+                     <h3 className="font-marcellus text-2xl text-foreground mt-5 mb-3">{t(solution.title)}</h3>
+                     <p className="font-inter text-muted-foreground leading-relaxed">{t(solution.description)}</p>
                   </div>
                 </Reveal>
               ))}
@@ -250,15 +284,15 @@ const SectorPage = ({ sector }: SectorPageProps) => {
           <InteractiveDotPattern />
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Reveal className="mb-12 sm:mb-14">
-              <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">Why Partner With Us</p>
-              <h2 className="font-marcellus text-3xl sm:text-4xl text-foreground">The Bella Advantage</h2>
+               <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">{t('Why Partner With Us')}</p>
+               <h2 className="font-marcellus text-3xl sm:text-4xl text-foreground">{t('The Bella Advantage')}</h2>
             </Reveal>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {sector.advantages.map((advantage, index) => (
                 <Reveal key={advantage.title} delay={index * 120}>
                   <div className="h-full border-t-2 border-primary bg-card p-8 md:p-10 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                    <h3 className="font-marcellus text-2xl text-foreground mb-4">{advantage.title}</h3>
-                    <p className="font-inter text-muted-foreground leading-relaxed">{advantage.description}</p>
+                     <h3 className="font-marcellus text-2xl text-foreground mb-4">{t(advantage.title)}</h3>
+                     <p className="font-inter text-muted-foreground leading-relaxed">{t(advantage.description)}</p>
                   </div>
                 </Reveal>
               ))}
@@ -272,9 +306,9 @@ const SectorPage = ({ sector }: SectorPageProps) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal className="mb-12 sm:mb-14">
             <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4 flex items-center gap-2">
-              <Calendar className="w-4 h-4" /> How We Partner
+               <Calendar className="w-4 h-4" /> {t('How We Partner')}
             </p>
-            <h2 className="font-marcellus text-3xl sm:text-4xl text-foreground">How We Partner</h2>
+             <h2 className="font-marcellus text-3xl sm:text-4xl text-foreground">{t('How We Partner')}</h2>
           </Reveal>
           {sector.processSteps.length > 4 ? (
             <Reveal>
@@ -286,8 +320,8 @@ const SectorPage = ({ sector }: SectorPageProps) => {
               <Reveal key={step.step} delay={index * 120}>
                 <div className="h-full bg-card border border-border p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                   <span className="font-marcellus text-3xl text-primary/50">{String(index + 1).padStart(2, '0')}</span>
-                  <h3 className="font-inter text-lg font-semibold text-foreground mt-6 mb-3">{step.step}</h3>
-                  <p className="text-muted-foreground font-inter text-sm leading-relaxed mb-5">{step.description}</p>
+                   <h3 className="font-inter text-lg font-semibold text-foreground mt-6 mb-3">{t(step.step)}</h3>
+                   <p className="text-muted-foreground font-inter text-sm leading-relaxed mb-5">{t(step.description)}</p>
                   <Badge variant="secondary" className="rounded-none">{step.duration}</Badge>
                 </div>
               </Reveal>
@@ -342,14 +376,14 @@ const SectorPage = ({ sector }: SectorPageProps) => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 font-marcellus text-2xl font-normal">
                   <Mail className="w-5 h-5 text-primary" />
-                  Get In Touch
+                   {t('Get In Touch')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleContactSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="name">Name</Label>
+                       <Label htmlFor="name">{t('Name')}</Label>
                       <Input
                         id="name"
                         value={contactForm.name}
@@ -358,7 +392,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="email">Email</Label>
+                       <Label htmlFor="email">{t('Email')}</Label>
                       <Input
                         id="email"
                         type="email"
@@ -369,7 +403,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                     </div>
                   </div>
                   <div>
-                    <Label htmlFor="company">Company</Label>
+                     <Label htmlFor="company">{t('Company')}</Label>
                     <Input
                       id="company"
                       value={contactForm.company}
@@ -378,21 +412,21 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="inquiryType">Inquiry Type (optional)</Label>
+                     <Label htmlFor="inquiryType">{t('Inquiry Type (optional)')}</Label>
                     <Select
                       value={contactForm.inquiryType}
                       onValueChange={(value) => setContactForm({ ...contactForm, inquiryType: value })}
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Select inquiry type" />
+                         <SelectValue placeholder={t('Select inquiry type')} />
                       </SelectTrigger>
                       <SelectContent>
                         {sector.slug === 'healthcare' ? (
                           <>
-                            <SelectItem value="pharmaceuticals">Pharmaceuticals</SelectItem>
-                            <SelectItem value="medical-devices">Medical Devices &amp; Equipment</SelectItem>
-                            <SelectItem value="clinical-consumables">Clinical Consumables</SelectItem>
-                            <SelectItem value="technical-services">Technical Services</SelectItem>
+                             <SelectItem value="pharmaceuticals">{t('Pharmaceuticals')}</SelectItem>
+                             <SelectItem value="medical-devices">{t('Medical Devices & Equipment')}</SelectItem>
+                             <SelectItem value="clinical-consumables">{t('Clinical Consumables')}</SelectItem>
+                             <SelectItem value="technical-services">{t('Technical Services & Training')}</SelectItem>
                           </>
                         ) : (
                           <>
@@ -406,7 +440,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                     </Select>
                   </div>
                   <div>
-                    <Label htmlFor="message">Message (optional)</Label>
+                     <Label htmlFor="message">{t('Message (optional)')}</Label>
                     <Textarea
                       id="message"
                       rows={4}
@@ -416,7 +450,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                   </div>
                   <Button type="submit" className="w-full rounded-none">
                     <Send className="w-4 h-4 mr-2" />
-                    Send Message
+                     {t('Send Message')}
                   </Button>
                 </form>
               </CardContent>
@@ -428,12 +462,12 @@ const SectorPage = ({ sector }: SectorPageProps) => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 font-marcellus text-2xl font-normal">
                   <Phone className="w-5 h-5 text-primary" />
-                  Contact Information
+                   {t('Contact Information')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
-                  <h4 className="font-semibold text-foreground mb-2">Direct Contact</h4>
+                   <h4 className="font-semibold text-foreground mb-2">{t('Direct Contact')}</h4>
                   <div className="space-y-2 text-muted-foreground">
                     <div className="flex items-center gap-2">
                       <Mail className="w-4 h-4" />
@@ -450,15 +484,15 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-2">Office Hours</h4>
+                   <h4 className="font-semibold text-foreground mb-2">{t('Office Hours')}</h4>
                   <div className="text-muted-foreground text-sm space-y-1">
-                    <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
-                    <p>Saturday: 9:00 AM - 2:00 PM</p>
-                    <p>Sunday: Closed</p>
+                     <p>{t('Monday - Friday: 8:00 AM - 6:00 PM')}</p>
+                     <p>{t('Saturday: 9:00 AM - 2:00 PM')}</p>
+                     <p>{t('Sunday: Closed')}</p>
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-2">General Enquiries</h4>
+                   <h4 className="font-semibold text-foreground mb-2">{t('General Enquiries')}</h4>
                   {sector.slug === 'healthcare' ? (
                     <a
                       href="https://www.bella-healthcare.com"
@@ -466,11 +500,11 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center bg-[#145C9E] hover:bg-[#145C9E]/90 text-white font-inter font-medium px-6 py-3 transition-colors"
                     >
-                      Learn More about Bella Healthcare
+                       {t('Learn More about Bella Healthcare')}
                     </a>
                   ) : (
                     <Link to="/contact" className="text-primary font-inter font-medium story-link">
-                      Visit our contact page
+                       {t('Visit our contact page')}
                     </Link>
                   )}
                 </div>
@@ -479,6 +513,26 @@ const SectorPage = ({ sector }: SectorPageProps) => {
           </Reveal>
         </div>
       </section>
+
+      {nextSector && (
+        <section className="relative min-h-[34vh] bg-primary text-primary-foreground overflow-hidden">
+          <Link
+            to={nextSector.path}
+            aria-label={`${t('Continue to')} ${t(nextSector.title)}`}
+            className="group min-h-[34vh] flex flex-col items-center justify-center px-6 text-center touch-manipulation"
+          >
+            <span className="font-inter text-xs uppercase tracking-[0.24em] opacity-70">{t('Next Sector')}</span>
+            <span className="font-marcellus text-3xl sm:text-5xl mt-4">{t(nextSector.title)}</span>
+            <span
+              className="mt-7 w-14 h-14 border border-primary-foreground/50 flex items-center justify-center transition-transform duration-150 group-hover:translate-y-1"
+              style={{ transform: `scale(${0.78 + nextProgress * 0.42})` }}
+            >
+              <ArrowDown className="w-6 h-6" />
+            </span>
+            <span className="md:hidden mt-5 font-inter text-xs uppercase tracking-wider opacity-60">{t('Keep scrolling')}</span>
+          </Link>
+        </section>
+      )}
 
       <Footer />
     </div>
