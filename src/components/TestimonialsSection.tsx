@@ -6,8 +6,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from './ui/dialog';
+import { useT } from '@/i18n/LanguageProvider';
 
 const TestimonialsSection = () => {
+  const t = useT();
   const [selectedTestimonial, setSelectedTestimonial] = useState<number | null>(null);
 
   const testimonials = [
@@ -61,9 +63,9 @@ const TestimonialsSection = () => {
     <section className="bg-secondary py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4 animate-fade-in">Success Stories</p>
+          <p className="text-muted-foreground font-inter text-sm uppercase tracking-wider mb-4 animate-fade-in">{t('Success Stories')}</p>
           <h2 className="font-marcellus text-4xl font-normal text-foreground leading-tight animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            Client Testimonials
+            {t('Client Testimonials')}
           </h2>
         </div>
         
@@ -89,7 +91,7 @@ const TestimonialsSection = () => {
                 <div className="text-primary text-4xl font-marcellus leading-none group-hover:scale-110 transition-transform duration-300">"</div>
                 
                 <blockquote className="text-muted-foreground font-inter leading-relaxed text-base group-hover:text-foreground/90 transition-colors duration-300">
-                  {testimonial.quote}
+                  {t(testimonial.quote)}
                 </blockquote>
                 
                 <div className="flex items-center justify-between pt-4 border-t border-border">
@@ -103,12 +105,12 @@ const TestimonialsSection = () => {
                       />
                     </div>
                     <div>
-                      <div className="font-inter font-semibold text-foreground group-hover:text-primary transition-colors duration-300">{testimonial.client}</div>
-                      <div className="text-muted-foreground font-inter text-sm">{testimonial.company}</div>
+                       <div className="font-inter font-semibold text-foreground group-hover:text-primary transition-colors duration-300">{t(testimonial.client)}</div>
+                       <div className="text-muted-foreground font-inter text-sm">{t(testimonial.company)}</div>
                     </div>
                   </div>
                   <div className="text-muted-foreground font-inter text-xs group-hover:text-primary transition-colors duration-300 transform group-hover:translate-x-1">
-                    Click to read more →
+                    {t('Click to read more')} →
                   </div>
                 </div>
               </div>
@@ -123,7 +125,7 @@ const TestimonialsSection = () => {
               <>
                 <DialogHeader>
                   <DialogTitle className="font-marcellus text-2xl text-foreground">
-                    Client Success Story
+                     {t('Client Success Story')}
                   </DialogTitle>
                 </DialogHeader>
                 
@@ -131,20 +133,20 @@ const TestimonialsSection = () => {
                   <div className="text-primary text-4xl font-marcellus leading-none">"</div>
                   
                   <blockquote className="text-muted-foreground font-inter leading-relaxed text-lg">
-                    {testimonials[selectedTestimonial].fullTestimonial}
+                     {t(testimonials[selectedTestimonial].fullTestimonial)}
                   </blockquote>
                   
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6 border-t border-border">
                     <div>
-                      <div className="font-inter font-semibold text-foreground text-sm">Project Value</div>
+                       <div className="font-inter font-semibold text-foreground text-sm">{t('Project Value')}</div>
                       <div className="text-primary font-inter">{testimonials[selectedTestimonial].projectValue}</div>
                     </div>
                     <div>
-                      <div className="font-inter font-semibold text-foreground text-sm">Duration</div>
+                       <div className="font-inter font-semibold text-foreground text-sm">{t('Duration')}</div>
                       <div className="text-primary font-inter">{testimonials[selectedTestimonial].duration}</div>
                     </div>
                     <div>
-                      <div className="font-inter font-semibold text-foreground text-sm">Industry</div>
+                       <div className="font-inter font-semibold text-foreground text-sm">{t('Industry')}</div>
                       <div className="text-primary font-inter">{testimonials[selectedTestimonial].industry}</div>
                     </div>
                   </div>

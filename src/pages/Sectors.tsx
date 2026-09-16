@@ -7,16 +7,11 @@ import { Link } from 'react-router-dom';
 import bellaHealthcareLogo from '@/assets/bella-healthcare-logo.png.asset.json';
 import { sectorPathBySlug } from '@/data/sectors';
 import Seo from '@/components/Seo';
+import { useT } from '@/i18n/LanguageProvider';
 
 const Sectors = () => {
+  const t = useT();
   const sectors = [
-    {
-      title: 'Real Estate',
-      slug: 'real-estate',
-      description: 'Comprehensive real estate development and property management solutions across the Horn of Africa.',
-      details: 'From residential complexes to commercial developments, we create spaces that combine functionality with aesthetic appeal.',
-      icon: 'RE'
-    },
     {
       title: 'Healthcare',
       slug: 'healthcare',
@@ -24,6 +19,13 @@ const Sectors = () => {
       details: 'We provide comprehensive pharmaceutical import and distribution solutions, including supply chain management, product sourcing, and logistics.',
       icon: 'HC',
       logo: bellaHealthcareLogo.url
+    },
+    {
+      title: 'Real Estate',
+      slug: 'real-estate',
+      description: 'Comprehensive real estate development and property management solutions across the Horn of Africa.',
+      details: 'From residential complexes to commercial developments, we create spaces that combine functionality with aesthetic appeal.',
+      icon: 'RE'
     },
     {
       title: 'Acha Forest Coffee',
@@ -55,11 +57,10 @@ const Sectors = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h1 className="font-marcellus text-5xl font-normal text-foreground leading-tight mb-6">
-              Our Sectors
+               {t('Our Sectors')}
             </h1>
             <p className="text-muted-foreground font-inter text-xl leading-relaxed max-w-3xl mx-auto">
-              Discover how Bella International creates value across four key business sectors, 
-              driving growth and innovation throughout the Horn of Africa.
+               {t('Discover how Bella International creates value across four key business sectors, driving growth and innovation throughout the Horn of Africa.')}
             </p>
           </div>
           
@@ -67,15 +68,15 @@ const Sectors = () => {
           <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
             <div className="text-center">
               <div className="font-marcellus text-3xl text-primary mb-2">15+</div>
-              <p className="text-muted-foreground font-inter text-sm">Years of Growth</p>
+               <p className="text-muted-foreground font-inter text-sm">{t('Years of Growth')}</p>
             </div>
             <div className="text-center">
               <div className="font-marcellus text-3xl text-primary mb-2">4</div>
-              <p className="text-muted-foreground font-inter text-sm">Business Sectors</p>
+               <p className="text-muted-foreground font-inter text-sm">{t('Business Sectors')}</p>
             </div>
             <div className="text-center">
               <div className="font-marcellus text-3xl text-primary mb-2">100+</div>
-              <p className="text-muted-foreground font-inter text-sm">Strategic Partners</p>
+               <p className="text-muted-foreground font-inter text-sm">{t('Strategic Partners')}</p>
             </div>
           </div>
         </div>
@@ -99,22 +100,22 @@ const Sectors = () => {
                   </div>
                   
                   <h2 className="font-marcellus text-2xl font-normal text-foreground mb-4">
-                    {sector.title}
+                     {t(sector.title)}
                   </h2>
                   
                   <p className="text-muted-foreground font-inter leading-relaxed mb-4">
-                    {sector.description}
+                     {t(sector.description)}
                   </p>
                   
                   <p className="text-muted-foreground font-inter text-sm leading-relaxed mb-6">
-                    {sector.details}
+                     {t(sector.details)}
                   </p>
                   
                   <Link 
                     to={sectorPathBySlug(sector.slug)}
                     className="inline-flex items-center text-primary font-inter font-medium hover:text-primary/80 transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300"
                   >
-                    Explore {sector.title}
+                     {t('Explore')} {t(sector.title)}
                   </Link>
                 </CardContent>
               </Card>
@@ -127,16 +128,16 @@ const Sectors = () => {
       <section className="bg-primary py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-marcellus text-4xl font-normal text-primary-foreground mb-6">
-            Ready to Partner With Us?
+             {t('Ready to Partner With Us?')}
           </h2>
           <p className="text-primary-foreground/80 font-inter text-lg leading-relaxed mb-8">
-            Join our network of strategic partners and discover opportunities across our diverse business sectors.
+             {t('Join our network of strategic partners and discover opportunities across our diverse business sectors.')}
           </p>
           <Link 
             to="/contact"
             className="inline-block bg-white hover:bg-white/90 text-primary font-inter font-medium px-8 py-4 transition-all duration-200 relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-primary/10 before:to-transparent before:transition-all before:duration-500 hover:before:left-[100%] hover:scale-105"
           >
-            Get In Touch
+             {t('Get In Touch')}
           </Link>
         </div>
       </section>
