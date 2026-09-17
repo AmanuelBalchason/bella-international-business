@@ -16,6 +16,11 @@ export const zh: Record<string, string> = {
   'Switch to Simplified Chinese': '切换为简体中文',
   'Switch to English': 'Switch to English',
   'Call': '致电',
+  'Client Testimonials': '客户评价',
+  Healthcare: '医疗健康',
+  'Real Estate': '房地产',
+  Automotives: '汽车',
+  'Agri-Business': '农业',
 
   // ---------- Home hero ----------
   'Strategic Business Solutions': '战略商业解决方案',
