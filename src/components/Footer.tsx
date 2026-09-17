@@ -80,20 +80,23 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Bella International on LinkedIn"
-                className="w-8 h-8 bg-secondary border border-border flex items-center justify-center hover:border-primary/30 hover:text-primary transition-all duration-200 hover:scale-110"
+                className="w-9 h-9 bg-secondary border border-border flex items-center justify-center text-muted-foreground hover:border-primary/30 hover:text-primary transition-all duration-200 hover:scale-110 active:scale-95 touch-manipulation"
               >
-                <span className="text-muted-foreground text-xs">LI</span>
+                <Linkedin className="h-4 w-4" />
               </a>
               <a
                 href="https://www.tiktok.com/@bella_healthcare_et"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={t('Bella Healthcare on TikTok')}
-                className="w-8 h-8 bg-secondary border border-border flex items-center justify-center hover:border-primary/30 hover:text-primary transition-all duration-200 hover:scale-110"
+                className="w-9 h-9 bg-secondary border border-border flex items-center justify-center text-muted-foreground hover:border-primary/30 hover:text-primary transition-all duration-200 hover:scale-110 active:scale-95 touch-manipulation"
               >
-                <span className="text-muted-foreground text-xs">TT</span>
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true">
+                  <path d="M16.5 3c.4 2.2 1.7 3.6 3.9 3.8v2.5c-1.4.1-2.7-.3-3.9-1v5.9c0 4.1-3.6 7-7.3 5.7-2.4-.8-3.9-3-3.9-5.4.1-3.4 3.2-6 6.6-5.4v2.7c-.5-.1-1-.2-1.5-.1-1.4.2-2.4 1.4-2.3 2.8.1 1.4 1.3 2.5 2.7 2.4 1.4 0 2.6-1.2 2.6-2.7V3h3.1z" />
+                </svg>
               </a>
             </div>
+
           </div>
         </div>
         
