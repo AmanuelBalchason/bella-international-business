@@ -228,7 +228,7 @@ export const zh: Record<string, string> = {
   'We specialize in comprehensive automotive import and assembly solutions, including vehicle distribution, CKD part sourcing, and local assembly operations.': '我们专注于完整的汽车进口与组装解决方案，包括整车分销、CKD 散件采购及本地组装。',
 
   // ---------- Home support ----------
-  'Support': '帮助中心',
+  
   'Frequently Asked Questions': '常见问题',
   'What sectors does Bella International Business operate in?': 'Bella International Business 涵盖哪些业务板块？',
   'We operate across four core sectors: Real Estate, Healthcare, Agri-Business, and Automotives, providing comprehensive solutions and strategic partnerships in each area.': '我们深耕房地产、医疗健康、农业及汽车四大核心板块，为各领域提供全面解决方案与战略合作。',
