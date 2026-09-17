@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Linkedin } from 'lucide-react';
 import LocationLink from './LocationLink';
 import InteractiveDotPattern from './InteractiveDotPattern';
 import { sectorNavLinks } from '@/data/sectors';
