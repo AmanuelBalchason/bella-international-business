@@ -235,9 +235,11 @@ const handler = async (req: Request): Promise<Response> => {
         log('INFO', 'Sending confirmation email', { requestId, to: contactData.email });
         
         const emailResponse = await resend.emails.send({
-          from: "Bella International <info@bellainter.com>",
+          from: fromAddress,
           to: [contactData.email],
-          subject: "Thank you for contacting Bella International",
+          subject: isHealthcare
+            ? "Thank you for contacting Bella Healthcare"
+            : "Thank you for contacting Bella International",
           html: `
             <div style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #ffffff;">
               <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
