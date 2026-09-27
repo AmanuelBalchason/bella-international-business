@@ -127,7 +127,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
         name,
         email,
         company: contactForm.company.trim(),
-        subject: inquiryLabel ? `${sector.title}: ${inquiryLabel}` : `${sector.title} enquiry`,
+        subject: inquiryLabel ? `${t(sector.title)}: ${t(inquiryLabel)}` : `${t(sector.title)} ${language === 'zh' ? '咨询' : 'enquiry'}`,
         message: contactForm.message.trim() || '(No message provided)',
         form_type: `sector_${sector.slug}`,
         metadata: { sector: sector.slug, inquiry_type: contactForm.inquiryType || null, language },

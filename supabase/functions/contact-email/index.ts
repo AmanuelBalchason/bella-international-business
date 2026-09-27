@@ -201,7 +201,7 @@ const handler = async (req: Request): Promise<Response> => {
       : 'Bella International <info@bellainter.com>';
     if (resend) {
       try {
-        await resend.emails.send({
+        const teamResponse = await resend.emails.send({
           from: fromAddress,
           to: [teamInbox],
           reply_to: rawEmail,
@@ -219,6 +219,7 @@ const handler = async (req: Request): Promise<Response> => {
             <p style="font-size:12px;color:#64748b;margin-top:20px">Reply directly to this email to respond to the sender. Ref: ${submission.id}</p>
           </div>`,
         });
+        if (teamResponse.error) throw new Error(teamResponse.error.message);
         await logEmailAttempt(supabase, teamInbox, 'contact_notification', 'success');
       } catch (err: any) {
         log('ERROR', 'Team notification failed', { requestId, error: err.message });
@@ -289,6 +290,7 @@ const handler = async (req: Request): Promise<Response> => {
           html: confirmationHtml,
         });
 
+        if (emailResponse.error) throw new Error(emailResponse.error.message);
         log('INFO', 'Email sent successfully', { 
           requestId, 
           emailId: emailResponse.data?.id,
