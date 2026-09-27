@@ -20,6 +20,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Sector, sectorList } from '@/data/sectors';
 import { usePrefersReducedMotion } from '@/hooks/useInView';
 import { useT } from '@/i18n/LanguageProvider';
+import { useCreateContactSubmission } from '@/hooks/useContactSubmissions';
+import { useToast } from '@/hooks/use-toast';
 
 interface SectorPageProps {
   sector: Sector;
@@ -93,9 +95,48 @@ const SectorPage = ({ sector }: SectorPageProps) => {
     };
   }, [navigate, nextSector]);
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const isHealthcare = sector.slug === 'healthcare';
+  const contactEmail = isHealthcare ? 'info@bella-healthcare.com' : 'info@bellainter.com';
+  const inquiryOptions = isHealthcare
+    ? [
+        { value: 'pharmaceuticals', label: 'Pharmaceuticals' },
+        { value: 'medical-devices', label: 'Medical Devices & Equipment' },
+        { value: 'clinical-consumables', label: 'Clinical Consumables' },
+        { value: 'technical-services', label: 'Technical Services & Training' },
+      ]
+    : [
+        { value: 'partnership', label: 'Partnership Opportunity' },
+        { value: 'investment', label: 'Investment Inquiry' },
+        { value: 'consultation', label: 'Consultation Request' },
+        { value: 'general', label: 'General Information' },
+      ];
+  const createSubmission = useCreateContactSubmission();
+  const { toast } = useToast();
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setContactForm({ name: '', email: '', company: '', message: '', inquiryType: '' });
+    const name = contactForm.name.trim();
+    const email = contactForm.email.trim();
+    if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      toast({ title: t('Please check your name and email'), variant: 'destructive' });
+      return;
+    }
+    const inquiryLabel = inquiryOptions.find((o) => o.value === contactForm.inquiryType)?.label;
+    try {
+      await createSubmission.mutateAsync({
+        name,
+        email,
+        company: contactForm.company.trim(),
+        subject: inquiryLabel ? `${sector.title}: ${inquiryLabel}` : `${sector.title} enquiry`,
+        message: contactForm.message.trim() || '(No message provided)',
+        form_type: `sector_${sector.slug}`,
+        metadata: { sector: sector.slug, inquiry_type: contactForm.inquiryType || null },
+      });
+      toast({ title: t('Message sent successfully!'), description: t("We've emailed you a confirmation and will be in touch soon.") });
+      setContactForm({ name: '', email: '', company: '', message: '', inquiryType: '' });
+    } catch {
+      toast({ title: t('Failed to send message'), description: `${t('Please try again or email us at')} ${contactEmail}`, variant: 'destructive' });
+    }
   };
 
   return (
@@ -370,143 +411,85 @@ const SectorPage = ({ sector }: SectorPageProps) => {
 
       {/* Contact */}
       <section id="sector-contact" className="bg-secondary py-20 sm:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <Card className="rounded-none border-border h-full">
+            <Card className="rounded-none border-border">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 font-marcellus text-2xl font-normal">
                   <Mail className="w-5 h-5 text-primary" />
-                   {t('Get In Touch')}
+                  {t('Get In Touch')}
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-10">
                 <form onSubmit={handleContactSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                       <Label htmlFor="name">{t('Name')}</Label>
-                      <Input
-                        id="name"
-                        value={contactForm.name}
-                        onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
-                        required
-                      />
+                      <Label htmlFor="name">{t('Name')}</Label>
+                      <Input id="name" maxLength={100} value={contactForm.name}
+                        onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })} required />
                     </div>
                     <div>
-                       <Label htmlFor="email">{t('Email')}</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={contactForm.email}
-                        onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
-                        required
-                      />
+                      <Label htmlFor="email">{t('Email')}</Label>
+                      <Input id="email" type="email" maxLength={255} value={contactForm.email}
+                        onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })} required />
                     </div>
                   </div>
                   <div>
-                     <Label htmlFor="company">{t('Company')}</Label>
-                    <Input
-                      id="company"
-                      value={contactForm.company}
-                      onChange={(e) => setContactForm({ ...contactForm, company: e.target.value })}
-                      required
-                    />
+                    <Label htmlFor="company">{t('Company')}</Label>
+                    <Input id="company" maxLength={150} value={contactForm.company}
+                      onChange={(e) => setContactForm({ ...contactForm, company: e.target.value })} required />
                   </div>
                   <div>
-                     <Label htmlFor="inquiryType">{t('Inquiry Type (optional)')}</Label>
-                    <Select
-                      value={contactForm.inquiryType}
-                      onValueChange={(value) => setContactForm({ ...contactForm, inquiryType: value })}
-                    >
+                    <Label htmlFor="inquiryType">{t('Inquiry Type (optional)')}</Label>
+                    <Select value={contactForm.inquiryType}
+                      onValueChange={(value) => setContactForm({ ...contactForm, inquiryType: value })}>
                       <SelectTrigger>
-                         <SelectValue placeholder={t('Select inquiry type')} />
+                        <SelectValue placeholder={t('Select inquiry type')} />
                       </SelectTrigger>
                       <SelectContent>
-                        {sector.slug === 'healthcare' ? (
-                          <>
-                             <SelectItem value="pharmaceuticals">{t('Pharmaceuticals')}</SelectItem>
-                             <SelectItem value="medical-devices">{t('Medical Devices & Equipment')}</SelectItem>
-                             <SelectItem value="clinical-consumables">{t('Clinical Consumables')}</SelectItem>
-                             <SelectItem value="technical-services">{t('Technical Services & Training')}</SelectItem>
-                          </>
-                        ) : (
-                          <>
-                            <SelectItem value="partnership">Partnership Opportunity</SelectItem>
-                            <SelectItem value="investment">Investment Inquiry</SelectItem>
-                            <SelectItem value="consultation">Consultation Request</SelectItem>
-                            <SelectItem value="general">General Information</SelectItem>
-                          </>
-                        )}
+                        {inquiryOptions.map((o) => (
+                          <SelectItem key={o.value} value={o.value}>{t(o.label)}</SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </div>
                   <div>
-                     <Label htmlFor="message">{t('Message (optional)')}</Label>
-                    <Textarea
-                      id="message"
-                      rows={4}
-                      value={contactForm.message}
-                      onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
-                    />
+                    <Label htmlFor="message">{t('Message (optional)')}</Label>
+                    <Textarea id="message" rows={4} maxLength={2000} value={contactForm.message}
+                      onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })} />
                   </div>
-                  <Button type="submit" className="w-full rounded-none">
+                  <Button type="submit" disabled={createSubmission.isPending} className="w-full rounded-none">
                     <Send className="w-4 h-4 mr-2" />
-                     {t('Send Message')}
+                    {createSubmission.isPending ? t('Sending...') : t('Send Message')}
                   </Button>
                 </form>
-              </CardContent>
-            </Card>
-          </Reveal>
 
-          <Reveal delay={140}>
-            <Card className="rounded-none border-border h-full">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 font-marcellus text-2xl font-normal">
-                  <Phone className="w-5 h-5 text-primary" />
-                   {t('Contact Information')}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div>
-                   <h4 className="font-semibold text-foreground mb-2">{t('Direct Contact')}</h4>
-                  <div className="space-y-2 text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <Mail className="w-4 h-4" />
-                      <span>{sector.slug === 'healthcare' ? 'info@bella-healthcare.com' : 'info@bellainter.com'}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Phone className="w-4 h-4" />
-                      <span>{sector.slug === 'healthcare' ? '+251—933—38—1818' : '+251 913 328000'}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Phone className="w-4 h-4" />
-                      <span>{sector.slug === 'healthcare' ? '+251—913—94—1530' : '+251 911 827024'}</span>
+                <div className="space-y-6 lg:border-l lg:border-border lg:pl-10 border-t border-border pt-8 lg:border-t-0 lg:pt-0">
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-2">{t('Direct Contact')}</h4>
+                    <div className="space-y-2 text-muted-foreground">
+                      <a href={`mailto:${contactEmail}`} className="flex items-center gap-2 hover:text-primary">
+                        <Mail className="w-4 h-4" />
+                        <span>{contactEmail}</span>
+                      </a>
+                      <a href={`tel:${isHealthcare ? '+251933381818' : '+251913328000'}`} className="flex items-center gap-2 hover:text-primary">
+                        <Phone className="w-4 h-4" />
+                        <span>{isHealthcare ? '+251—933—38—1818' : '+251 913 328000'}</span>
+                      </a>
+                      <a href={`tel:${isHealthcare ? '+251913941530' : '+251911827024'}`} className="flex items-center gap-2 hover:text-primary">
+                        <Phone className="w-4 h-4" />
+                        <span>{isHealthcare ? '+251—913—94—1530' : '+251 911 827024'}</span>
+                      </a>
                     </div>
                   </div>
-                </div>
-                <div>
-                   <h4 className="font-semibold text-foreground mb-2">{t('Office Hours')}</h4>
-                  <div className="text-muted-foreground text-sm space-y-1">
-                     <p>{t('Monday - Friday: 8:00 AM - 6:00 PM')}</p>
-                     <p>{t('Saturday: 9:00 AM - 2:00 PM')}</p>
-                     <p>{t('Sunday: Closed')}</p>
+                  <div>
+                    <h4 className="font-semibold text-foreground mb-2">{t('Office Hours')}</h4>
+                    <div className="text-muted-foreground text-sm space-y-1">
+                      <p>{t('Monday - Friday: 8:00 AM - 6:00 PM')}</p>
+                      <p>{t('Saturday: 9:00 AM - 2:00 PM')}</p>
+                      <p>{t('Sunday: Closed')}</p>
+                    </div>
                   </div>
-                </div>
-                <div>
-                   <h4 className="font-semibold text-foreground mb-2">{t('General Enquiries')}</h4>
-                  {sector.slug === 'healthcare' ? (
-                    <a
-                      href="https://www.bella-healthcare.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center bg-[#145C9E] hover:bg-[#145C9E]/90 text-white font-inter font-medium px-6 py-3 transition-colors"
-                    >
-                       {t('Learn More about Bella Healthcare')}
-                    </a>
-                  ) : (
-                    <Link to="/contact" className="text-primary font-inter font-medium story-link">
-                       {t('Visit our contact page')}
-                    </Link>
-                  )}
                 </div>
               </CardContent>
             </Card>
