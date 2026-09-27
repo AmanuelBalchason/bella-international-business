@@ -200,24 +200,54 @@ const handler = async (req: Request): Promise<Response> => {
       ? 'Bella Healthcare <info@bella-healthcare.com>'
       : 'Bella International <info@bellainter.com>';
     if (resend) {
+      const teamHtml = `<!doctype html>
+      <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@400;500;600&display=swap">
+      </head>
+      <body style="margin:0;padding:0;background-color:#f5f5f5;color:#1a1a1a;font-family:Inter,Arial,sans-serif;">
+        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;background-color:#f5f5f5;"><tr><td align="center" style="padding:32px 16px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;max-width:600px;background-color:#ffffff;border:1px solid #ebebeb;">
+            <tr><td style="padding:32px 32px 28px;border-top:4px solid #3d4d47;">
+              <p style="margin:0 0 10px;font-family:Marcellus,Georgia,serif;font-size:26px;line-height:1.3;color:#3d4d47;">${brand}</p>
+              <p style="margin:0;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#545454;">NEW WEBSITE ENQUIRY</p>
+            </td></tr>
+            <tr><td style="background-color:#3d4d47;padding:28px 32px;color:#ffffff;">
+              <h1 style="margin:0 0 8px;font-family:Marcellus,Georgia,serif;font-size:25px;font-weight:400;line-height:1.4;color:#ffffff;">New enquiry from the website</h1>
+              <p style="margin:0;font-size:15px;line-height:1.6;color:#ffffff;">A visitor has submitted the contact form on ${brand === 'Bella Healthcare' ? 'bella-healthcare.com' : 'bellainter.com'}.</p>
+            </td></tr>
+            <tr><td style="padding:30px 32px 30px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;background-color:#f5f5f5;border-left:3px solid #3d4d47;">
+                <tr><td style="padding:22px;">
+                  <h2 style="margin:0 0 12px;font-family:Marcellus,Georgia,serif;font-size:20px;font-weight:400;color:#1a1a1a;">Enquiry details</h2>
+                  <p style="margin:0 0 8px;font-size:14px;line-height:1.6;"><strong>Name:</strong> ${contactData.name}</p>
+                  <p style="margin:0 0 8px;font-size:14px;line-height:1.6;"><strong>Email:</strong> ${esc(rawEmail)}</p>
+                  ${contactData.company ? `<p style="margin:0 0 8px;font-size:14px;line-height:1.6;"><strong>Company:</strong> ${contactData.company}</p>` : ''}
+                  ${contactData.phone ? `<p style="margin:0 0 8px;font-size:14px;line-height:1.6;"><strong>Phone:</strong> ${contactData.phone}</p>` : ''}
+                  ${contactData.subject ? `<p style="margin:0 0 8px;font-size:14px;line-height:1.6;"><strong>Subject:</strong> ${contactData.subject}</p>` : ''}
+                  <p style="margin:0 0 8px;font-size:14px;line-height:1.6;"><strong>Form:</strong> ${esc(contactData.form_type || 'general')}</p>
+                  ${submission.message && submission.message !== '(No message provided)' ? `<p style="margin:16px 0 0;font-size:14px;line-height:1.7;overflow-wrap:anywhere;"><strong>Message:</strong><br>${contactData.message}</p>` : ''}
+                </td></tr>
+              </table>
+              <p style="margin:22px 0 0;font-size:13px;line-height:1.6;color:#545454;">Reply directly to this email to respond to the sender. Reference: ${submission.id}</p>
+            </td></tr>
+            <tr><td style="border-top:1px solid #ebebeb;padding:22px 32px 30px;">
+              <p style="margin:0 0 6px;font-family:Marcellus,Georgia,serif;font-size:18px;color:#3d4d47;">${brand}</p>
+              <p style="margin:0;font-size:13px;line-height:1.6;color:#545454;">This notification was sent automatically by the ${brand} website contact form.</p>
+            </td></tr>
+          </table>
+        </td></tr></table>
+      </body></html>`;
+
       try {
         const teamResponse = await resend.emails.send({
           from: fromAddress,
           to: [teamInbox],
           reply_to: rawEmail,
           subject: `New website enquiry: ${contactData.subject || contactData.name}`,
-          html: `<div style="font-family:Inter,Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;color:#374151">
-            <h2 style="font-family:Marcellus,serif;color:#456653;margin:0 0 16px">New enquiry from the website</h2>
-            <table style="width:100%;border-collapse:collapse">
-              <tr><td style="padding:6px 0;width:120px"><strong>Name</strong></td><td>${contactData.name}</td></tr>
-              <tr><td style="padding:6px 0"><strong>Email</strong></td><td>${esc(rawEmail)}</td></tr>
-              ${contactData.company ? `<tr><td style="padding:6px 0"><strong>Company</strong></td><td>${contactData.company}</td></tr>` : ''}
-              ${contactData.subject ? `<tr><td style="padding:6px 0"><strong>Topic</strong></td><td>${contactData.subject}</td></tr>` : ''}
-              <tr><td style="padding:6px 0"><strong>Page</strong></td><td>${esc(contactData.form_type)}</td></tr>
-            </table>
-            <div style="margin-top:16px;padding:16px;background:#f8fafc;border-left:3px solid #456653">${contactData.message}</div>
-            <p style="font-size:12px;color:#64748b;margin-top:20px">Reply directly to this email to respond to the sender. Ref: ${submission.id}</p>
-          </div>`,
+          html: teamHtml,
         });
         if (teamResponse.error) throw new Error(teamResponse.error.message);
         await logEmailAttempt(supabase, teamInbox, 'contact_notification', 'success');
