@@ -181,6 +181,48 @@ const handler = async (req: Request): Promise<Response> => {
 
     log('INFO', 'Database save successful', { requestId, submissionId: submission.id });
 
+    // Escape all user-provided values before placing them in HTML
+    const esc = (v?: string) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+    contactData = {
+      ...contactData,
+      name: esc(contactData.name).slice(0, 100),
+      company: contactData.company ? esc(contactData.company).slice(0, 150) : undefined,
+      phone: contactData.phone ? esc(contactData.phone).slice(0, 40) : undefined,
+      subject: contactData.subject ? esc(contactData.subject).slice(0, 200) : undefined,
+      message: esc(contactData.message).slice(0, 2000).replace(/\n/g, '<br>'),
+    };
+    const rawEmail = submission.email as string;
+
+    // Notify the team inbox
+    const isHealthcare = (contactData.form_type || '').includes('healthcare');
+    const teamInbox = isHealthcare ? 'info@bella-healthcare.com' : 'info@bellainter.com';
+    if (resend) {
+      try {
+        await resend.emails.send({
+          from: "Bella International Website <info@bellainter.com>",
+          to: [teamInbox],
+          reply_to: rawEmail,
+          subject: `New website enquiry: ${contactData.subject || contactData.name}`,
+          html: `<div style="font-family:Inter,Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;color:#374151">
+            <h2 style="font-family:Marcellus,serif;color:#456653;margin:0 0 16px">New enquiry from the website</h2>
+            <table style="width:100%;border-collapse:collapse">
+              <tr><td style="padding:6px 0;width:120px"><strong>Name</strong></td><td>${contactData.name}</td></tr>
+              <tr><td style="padding:6px 0"><strong>Email</strong></td><td>${esc(rawEmail)}</td></tr>
+              ${contactData.company ? `<tr><td style="padding:6px 0"><strong>Company</strong></td><td>${contactData.company}</td></tr>` : ''}
+              ${contactData.subject ? `<tr><td style="padding:6px 0"><strong>Topic</strong></td><td>${contactData.subject}</td></tr>` : ''}
+              <tr><td style="padding:6px 0"><strong>Page</strong></td><td>${esc(contactData.form_type)}</td></tr>
+            </table>
+            <div style="margin-top:16px;padding:16px;background:#f8fafc;border-left:3px solid #456653">${contactData.message}</div>
+            <p style="font-size:12px;color:#64748b;margin-top:20px">Reply directly to this email to respond to the sender. Ref: ${submission.id}</p>
+          </div>`,
+        });
+        await logEmailAttempt(supabase, teamInbox, 'contact_notification', 'success');
+      } catch (err: any) {
+        log('ERROR', 'Team notification failed', { requestId, error: err.message });
+        await logEmailAttempt(supabase, teamInbox, 'contact_notification', 'failed', err.message);
+      }
+    }
+
     // Send confirmation email
     let emailSent = false;
     let emailError = null;
