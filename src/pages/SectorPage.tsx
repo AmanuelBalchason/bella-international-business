@@ -19,7 +19,7 @@ import { Label } from '../components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { Sector, sectorList } from '@/data/sectors';
 import { usePrefersReducedMotion } from '@/hooks/useInView';
-import { useT } from '@/i18n/LanguageProvider';
+import { useLanguage } from '@/i18n/LanguageProvider';
 import { useCreateContactSubmission } from '@/hooks/useContactSubmissions';
 import { useToast } from '@/hooks/use-toast';
 
@@ -28,7 +28,7 @@ interface SectorPageProps {
 }
 
 const SectorPage = ({ sector }: SectorPageProps) => {
-  const t = useT();
+  const { t, language } = useLanguage();
   const navigate = useNavigate();
   const [contactForm, setContactForm] = useState({
     name: '',
@@ -127,10 +127,10 @@ const SectorPage = ({ sector }: SectorPageProps) => {
         name,
         email,
         company: contactForm.company.trim(),
-        subject: inquiryLabel ? `${sector.title}: ${inquiryLabel}` : `${sector.title} enquiry`,
+        subject: inquiryLabel ? `${t(sector.title)}: ${t(inquiryLabel)}` : `${t(sector.title)} ${language === 'zh' ? '咨询' : 'enquiry'}`,
         message: contactForm.message.trim() || '(No message provided)',
         form_type: `sector_${sector.slug}`,
-        metadata: { sector: sector.slug, inquiry_type: contactForm.inquiryType || null },
+        metadata: { sector: sector.slug, inquiry_type: contactForm.inquiryType || null, language },
       });
       toast({ title: t('Message sent successfully!'), description: t("We've emailed you a confirmation and will be in touch soon.") });
       setContactForm({ name: '', email: '', company: '', message: '', inquiryType: '' });
