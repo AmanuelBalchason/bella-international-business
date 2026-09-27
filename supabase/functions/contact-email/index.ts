@@ -196,10 +196,13 @@ const handler = async (req: Request): Promise<Response> => {
     // Notify the team inbox
     const isHealthcare = (contactData.form_type || '').includes('healthcare');
     const teamInbox = isHealthcare ? 'info@bella-healthcare.com' : 'info@bellainter.com';
+    const fromAddress = isHealthcare
+      ? 'Bella Healthcare <info@bella-healthcare.com>'
+      : 'Bella International <info@bellainter.com>';
     if (resend) {
       try {
         await resend.emails.send({
-          from: "Bella International Website <info@bellainter.com>",
+          from: fromAddress,
           to: [teamInbox],
           reply_to: rawEmail,
           subject: `New website enquiry: ${contactData.subject || contactData.name}`,
