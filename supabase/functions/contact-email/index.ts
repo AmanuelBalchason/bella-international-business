@@ -195,6 +195,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Notify the team inbox
     const isHealthcare = (contactData.form_type || '').includes('healthcare');
+    const brand = isHealthcare ? 'Bella Healthcare' : 'Bella International';
     const teamInbox = isHealthcare ? 'info@bella-healthcare.com' : 'info@bellainter.com';
     const fromAddress = isHealthcare
       ? 'Bella Healthcare <info@bella-healthcare.com>'
@@ -259,7 +260,6 @@ const handler = async (req: Request): Promise<Response> => {
 
     // A submission carries the active page language. Treat any other value as English.
     const isChinese = contactData.metadata?.language === 'zh';
-    const brand = isHealthcare ? 'Bella Healthcare' : 'Bella International';
     const confirmationSubject = isChinese
       ? `感谢联系 ${brand}`
       : `Thank you for contacting ${brand}`;
