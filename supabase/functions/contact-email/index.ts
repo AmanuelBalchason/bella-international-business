@@ -286,6 +286,8 @@ const handler = async (req: Request): Promise<Response> => {
         
         const emailResponse = await resend.emails.send({
           from: fromAddress,
+          to: [rawEmail],
+          reply_to: teamInbox,
           subject: confirmationSubject,
           html: confirmationHtml,
         });
