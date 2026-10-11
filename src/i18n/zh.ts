@@ -268,4 +268,12 @@ export const zh: Record<string, string> = {
   'Terms of Service': '服务条款',
   'Bella International on LinkedIn': 'Bella International 领英主页',
   'Bella Healthcare on TikTok': 'Bella Healthcare 抖音国际版主页',
+  'Contact Us': '联系我们',
+  'Get in touch with our team for strategic business partnerships and opportunities across the Horn of Africa.': '欢迎与我们的团队联系，共同探讨非洲之角的战略合作与商业机遇。',
+  'Leave Us A Message': '给我们留言',
+  Message: '留言',
+  Phone: '电话',
+  Address: '地址',
+  'Join our network of strategic partners and unlock opportunities across the Horn of Africa.': '加入我们的战略合作伙伴网络，开拓非洲之角的发展机遇。',
+  'Bella International Logo': 'Bella International 标志',
 };

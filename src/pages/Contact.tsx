@@ -10,6 +10,7 @@ import { Phone, Mail, MapPin } from 'lucide-react';
 import LocationLink from '../components/LocationLink';
 import { useCreateContactSubmission } from '../hooks/useContactSubmissions';
 import { useToast } from '../hooks/use-toast';
+import { useLanguage } from '@/i18n/LanguageProvider';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -20,6 +21,7 @@ const Contact = () => {
   
   const createSubmission = useCreateContactSubmission();
   const { toast } = useToast();
+  const { language, t } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,20 +30,21 @@ const Contact = () => {
         name: formData.name,
         email: formData.email,
         message: formData.message,
-        form_type: 'contact_page'
+        form_type: 'contact_page',
+        metadata: { language }
       });
       
       toast({
-        title: "Message sent successfully!",
-        description: "Thank you for your message. We'll get back to you soon at info@bellainter.com",
+        title: t("Message sent successfully!"),
+        description: t("We've emailed you a confirmation and will be in touch soon."),
       });
       
       // Reset form
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
       toast({
-        title: "Failed to send message",
-        description: "Please try again or contact us directly at info@bellainter.com",
+        title: t("Failed to send message"),
+        description: `${t("Please try again or email us at")} info@bellainter.com`,
         variant: "destructive",
       });
     }
@@ -68,10 +71,10 @@ const Contact = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 animate-fade-in">
             <h1 className="font-marcellus text-5xl font-normal text-foreground leading-tight mb-6">
-              Contact Us
+              {t('Contact Us')}
             </h1>
             <p className="text-muted-foreground font-inter text-xl leading-relaxed">
-              Get in touch with our team for strategic business partnerships and opportunities across the Horn of Africa.
+              {t('Get in touch with our team for strategic business partnerships and opportunities across the Horn of Africa.')}
             </p>
           </div>
         </div>
@@ -85,7 +88,7 @@ const Contact = () => {
             {/* Contact Form */}
             <div className="animate-fade-in">
               <h2 className="font-marcellus text-3xl font-normal text-foreground mb-8">
-                Leave Us A Message
+                {t('Leave Us A Message')}
               </h2>
               
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -94,7 +97,7 @@ const Contact = () => {
                     <Input
                       type="text"
                       name="name"
-                      placeholder="Name"
+                      placeholder={t('Name')}
                       value={formData.name}
                       onChange={handleChange}
                       className="bg-white border-border font-inter rounded-none"
@@ -105,7 +108,7 @@ const Contact = () => {
                     <Input
                       type="email"
                       name="email"
-                      placeholder="Email"
+                      placeholder={t('Email')}
                       value={formData.email}
                       onChange={handleChange}
                       className="bg-white border-border font-inter rounded-none"
@@ -117,7 +120,7 @@ const Contact = () => {
                 <div>
                   <Textarea
                     name="message"
-                    placeholder="Message"
+                    placeholder={t('Message')}
                     value={formData.message}
                     onChange={handleChange}
                     className="bg-white border-border font-inter min-h-[150px] rounded-none resize-none"
@@ -130,7 +133,7 @@ const Contact = () => {
                   disabled={createSubmission.isPending}
                   className="bg-primary hover:bg-primary/90 text-primary-foreground font-inter font-medium px-12 py-4 rounded-none w-full"
                 >
-                  {createSubmission.isPending ? 'Sending...' : 'Send'}
+                  {createSubmission.isPending ? t('Sending...') : t('Send')}
                 </Button>
               </form>
             </div>
@@ -156,7 +159,7 @@ const Contact = () => {
                     <Phone className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-inter font-medium text-foreground">Phone</p>
+                    <p className="font-inter font-medium text-foreground">{t('Phone')}</p>
                     <p className="text-muted-foreground font-inter text-sm">+251 962 777777</p>
                   </div>
                 </div>
@@ -166,7 +169,7 @@ const Contact = () => {
                     <Mail className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-inter font-medium text-foreground">Email</p>
+                    <p className="font-inter font-medium text-foreground">{t('Email')}</p>
                     <p className="text-muted-foreground font-inter text-sm">info@bellainter.com</p>
                   </div>
                 </div>
@@ -176,7 +179,7 @@ const Contact = () => {
                     <MapPin className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-inter font-medium text-foreground">Address</p>
+                    <p className="font-inter font-medium text-foreground">{t('Address')}</p>
                     <LocationLink />
                   </div>
                 </div>
@@ -190,10 +193,10 @@ const Contact = () => {
       <section className="bg-primary py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h3 className="font-marcellus text-3xl font-normal text-primary-foreground mb-4">
-            Ready to Partner With Us?
+            {t('Ready to Partner With Us?')}
           </h3>
           <p className="text-primary-foreground/80 font-inter text-lg">
-            Join our network of strategic partners and unlock opportunities across the Horn of Africa.
+            {t('Join our network of strategic partners and unlock opportunities across the Horn of Africa.')}
           </p>
         </div>
       </section>
