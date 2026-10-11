@@ -23,12 +23,12 @@ const Footer = () => {
               <div className="w-10 h-10 flex items-center justify-center">
                 <img 
                   src="/lovable-uploads/c24d2544-5172-490b-ac93-2e853c8ea806.png" 
-                  alt="Bella International Logo"
+                  alt={t('Bella International Logo')}
                   className="w-full h-full object-contain"
                 />
               </div>
               <div className="ml-3">
-                <h3 className="font-marcellus text-lg font-normal text-foreground">Bella International</h3>
+                <h3 className="font-marcellus text-lg font-normal text-foreground">{t('Bella International')}</h3>
               </div>
             </Link>
             
@@ -63,10 +63,10 @@ const Footer = () => {
           <div>
             <h4 className="font-inter font-semibold text-foreground mb-6">{t('Contact')}</h4>
             <div className="space-y-3">
-              <a href="tel:+251962777777" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">+251 962 777777</a>
-              <a href="tel:+251913328000" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">+251 913 328000</a>
-              <a href="tel:+251911827024" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">+251 911 827024</a>
-              <a href="mailto:info@bellainter.com" className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">info@bellainter.com</a>
+              <a href="tel:+251962777777" aria-label={`${t('Call')} +251 962 777777`} className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">+251 962 777777</a>
+              <a href="tel:+251913328000" aria-label={`${t('Call')} +251 913 328000`} className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">+251 913 328000</a>
+              <a href="tel:+251911827024" aria-label={`${t('Call')} +251 911 827024`} className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">+251 911 827024</a>
+              <a href="mailto:info@bellainter.com" aria-label={`${t('Email')} info@bellainter.com`} className="block text-muted-foreground font-inter text-sm hover:text-primary transition-colors duration-200 relative after:content-[''] after:absolute after:w-full after:h-0.5 after:bottom-[-4px] after:left-0 after:bg-primary after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-left after:transition-transform after:duration-300">info@bellainter.com</a>
             </div>
           </div>
           
@@ -80,7 +80,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/company/bella-healthcare/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Bella International on LinkedIn"
+                aria-label={t('Bella International on LinkedIn')}
                 className="w-9 h-9 bg-secondary border border-border flex items-center justify-center text-muted-foreground hover:border-primary/30 hover:text-primary transition-all duration-200 hover:scale-110 active:scale-95 touch-manipulation"
               >
                 <Linkedin className="h-4 w-4" />
@@ -103,7 +103,7 @@ const Footer = () => {
         
         <div className="border-t border-border mt-12 pt-8 text-center">
           <p className="text-muted-foreground font-inter text-sm">
-            © {currentYear} Bella International Business. {t('All rights reserved.')} | {t('Privacy Policy')} | {t('Terms of Service')}
+            © {currentYear} {t('Bella International Business')}. {t('All rights reserved.')} | {t('Privacy Policy')} | {t('Terms of Service')}
           </p>
         </div>
       </div>
