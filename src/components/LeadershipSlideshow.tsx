@@ -1,6 +1,6 @@
 import React from 'react';
 import StaticDotPattern from './StaticDotPattern';
-import abelImg from '@/assets/leader-abel.webp.asset.json';
+import abelImg from '@/assets/leader-abel-v2.webp.asset.json';
 import { useT } from '@/i18n/LanguageProvider';
 
 const LeadershipSlideshow = () => {

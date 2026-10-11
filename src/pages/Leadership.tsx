@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import Seo from '../components/Seo';
 import { Mail, Linkedin, Phone, ArrowLeft, ArrowRight } from 'lucide-react';
 import { useT } from '@/i18n/LanguageProvider';
-import abelImg from '@/assets/leader-abel.webp.asset.json';
+import abelImg from '@/assets/leader-abel-v2.webp.asset.json';
 import mulugetaImg from '@/assets/leader-mulugeta-v2.webp.asset.json';
 import chirotawImg from '@/assets/leader-chirotaw-v2.webp.asset.json';
 import temesgenImg from '@/assets/leader-temesgen.webp.asset.json';
