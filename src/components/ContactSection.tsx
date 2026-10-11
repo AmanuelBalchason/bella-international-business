@@ -42,75 +42,49 @@ const ContactSection = () => {
 
     // Sanitize email
     const sanitizedEmail = email.trim().toLowerCase();
-    
+
     setIsLoading(true);
 
     try {
-      // Check if email already exists
-      const { data: existingSubscription, error: checkError } = await supabase
-        .from('newsletter_subscriptions')
-        .select('email, is_active')
-        .eq('email', sanitizedEmail)
-        .maybeSingle();
-
-      if (checkError && checkError.code !== 'PGRST116') {
-        throw checkError;
-      }
-
-      if (existingSubscription) {
-        if (existingSubscription.is_active) {
-          toast({
-            title: "Already subscribed",
-            description: "This email is already subscribed to our newsletter.",
-          });
-        } else {
-          toast({
-            title: "Subscription reactivated",
-            description: "Your newsletter subscription has been reactivated.",
-          });
+      // The edge function handles new subscriptions, reactivations of
+      // previously unsubscribed emails, and duplicate checks server-side.
+      const { data, error } = await supabase.functions.invoke('newsletter-subscribe', {
+        body: {
+          email: sanitizedEmail,
+          source: 'website'
         }
-        setEmail('');
-        return;
-      }
-
-      // Insert new subscription
-      const { error: insertError } = await supabase
-        .from('newsletter_subscriptions')
-        .insert([
-          {
-            email: sanitizedEmail,
-            source: 'website',
-            is_active: true
-          }
-        ]);
-
-      if (insertError) {
-        throw insertError;
-      }
-
-      toast({
-        title: "Successfully subscribed!",
-        description: "Thank you for subscribing to our newsletter. You'll receive updates on business excellence and industry insights.",
       });
+
+      if (error) {
+        throw error;
+      }
+
+      if (data?.success) {
+        toast({
+          title: "Successfully subscribed!",
+          description: data.message,
+        });
+      } else {
+        throw new Error(data?.error || 'Unknown error occurred');
+      }
 
       setEmail('');
     } catch (error: any) {
       console.error('Newsletter subscription error:', error);
-      
-      // Handle specific error cases
-      if (error?.code === '23505') { // Unique violation
-        toast({
-          title: "Already subscribed",
-          description: "This email is already subscribed to our newsletter.",
-        });
-        setEmail('');
-      } else {
-        toast({
-          title: "Subscription failed",
-          description: "There was an error subscribing to our newsletter. Please try again.",
-          variant: "destructive",
-        });
+
+      let errorMessage = "There was an error subscribing to our newsletter. Please try again.";
+
+      if (error.message?.includes('already subscribed')) {
+        errorMessage = "This email is already subscribed to our newsletter.";
+      } else if (error.message?.includes('Failed to fetch')) {
+        errorMessage = "Network error. Please check your connection and try again.";
       }
+
+      toast({
+        title: "Subscription failed",
+        description: errorMessage,
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
