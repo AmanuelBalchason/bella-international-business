@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://bella-international-business.lovable.app/sitemap.xml
+Sitemap: https://bellainter.com/sitemap.xml

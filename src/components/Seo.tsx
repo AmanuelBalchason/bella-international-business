@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-const SITE_URL = 'https://bella-international-business.lovable.app';
+const SITE_URL = 'https://bellainter.com';
 
 interface SeoProps {
   title: string;
