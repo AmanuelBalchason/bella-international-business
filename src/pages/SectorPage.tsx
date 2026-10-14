@@ -346,7 +346,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       )}
 
       {/* Process timeline */}
-      <section className="bg-secondary py-20 sm:py-28">
+      {!isRealEstate && <section className="bg-secondary py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal className="mb-12 sm:mb-14">
             <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4 flex items-center gap-2">
@@ -373,7 +373,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
           </div>
           )}
         </div>
-      </section>
+      </section>}
 
       {/* Media */}
       {!sector.videoFiles && sector.videos.length > 0 && (

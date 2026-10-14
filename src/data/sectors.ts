@@ -1,3 +1,4 @@
+import bellaRiversideHero from '@/assets/bella-riverside-hero.webp.asset.json';
 import bhVideo1 from '@/assets/bh-video-1-opt.mp4.asset.json';
 import bhVideo2 from '@/assets/bh-video-2-opt.mp4.asset.json';
 import bhVideo3 from '@/assets/bh-video-3-opt.mp4.asset.json';
@@ -57,7 +58,7 @@ export const sectorData: Record<string, Sector> = {
       'To create sustainable, innovative, and community-focused real estate solutions that enhance quality of life while delivering exceptional returns to our partners.',
     resources: ['Property Investment Guide', 'Market Analysis Report', 'Development Portfolio', 'Sustainability Whitepaper'],
     stats: {},
-    heroImage: '',
+    heroImage: bellaRiversideHero.url,
     images: [],
     processSteps: [
       { step: 'Meet Your Sales Contact', description: 'Contact Lidet or Rahel to discuss Bella Riverside Apartment and your requirements.', duration: '' },
