@@ -318,5 +318,35 @@ export const zh: Record<string, string> = {
   'River Side': '河景面',
   Extras: '附加',
   '5 m² storage room included': '含 5 平方米储藏室',
-  'Sold Out': '已售罄',
+'Sold Out': '已售罄',
+  // ---------- Real Estate welcome section ----------
+  'Sunlit apartment living at Bella Riverside': 'Bella Riverside 公寓中阳光洒满的居家生活',
+  'Welcome to Bella Real Estate': '欢迎来到 Bella Real Estate',
+  'An exclusive address in Addis Ababa’s most prestigious neighborhood': '亚的斯亚贝巴最尊贵地段的专属府邸',
+  'Situated in one of Addis Ababa’s most highly demanded and prestigious neighborhoods — Bole, Wollo Sefer, just behind the Best Western Hotel.':
+    '项目坐落于亚的斯亚贝巴最抢手、最尊贵的地段之一——Bole 区 Wollo Sefer，紧邻 Best Western 酒店后方。',
+  'Designed for those who value privacy, luxury and high-yield investment, this single-block complex offers an unparalleled living experience with only two apartments per floor. Whether you are looking for a forever home or a lucrative asset with high dollar-rental potential, Bella Real Estate delivers on all fronts.':
+    '为重视私密、奢华与高收益投资的人士打造，这座独栋楼盘每层仅设两套公寓，带来无可比拟的居住体验。无论您寻找的是安家之所，还是具有高额美元租金潜力的优质资产，Bella Real Estate 都能全面满足。',
+  'Ultimate privacy: only 2 units per floor': '极致私密：每层仅 2 套单元',
+  'Stunning views: City Side (C-Side) or River Side (R-Side) overlooking Eden Park': '绝美景观：城景面（C-Side）或俯瞰 Eden 公园的河景面（R-Side）',
+  'Premium facilities: 4 levels of basement parking, reliable water supply and a standby backup generator':
+    '高端配套：4 层地下停车场、稳定供水及备用发电机',
+  'Bonus space: a dedicated 5 m² private storage room for every homeowner': '额外空间：每位业主均配备 5 平方米专属储藏室',
+  'Legal security: Digital Title Deeds (ካርታ) already prepared and ready for handover': '法律保障：电子产权证（ካርታ）已备妥，随时可交割',
+  'Unit Specifications': '单元规格',
+  'Per-area cost & total pricing': '单价与总价明细',
+  'A limited number of units, carefully tailored to your lifestyle with flexible finishing options. Investors can take advantage of a special discounted rate of 130,000–140,000 ETB per square meter for semi-finished units.':
+    '单元数量有限，提供灵活的装修选择，贴合您的生活方式。投资者可享特别优惠价：简装单元每平方米 130,000–140,000 ETB。',
+  'Per-Area Cost (Semi-Finished)': '单价（简装）',
+  'Total Price (Semi-Finished)': '总价（简装）',
+  'Total Price (Fully-Finished)': '总价（精装）',
+  'Handover & Payment': '交房与付款',
+  'One of the most efficient delivery timelines in the city — the project is in its final stages, with complete handover guaranteed in just 6 months, so your capital isn’t tied up for years.':
+    '全市最高效的交付周期之一——项目已进入收尾阶段，保证 6 个月内全面交房，资金不会被占用多年。',
+  'Down payment — secures your preferred unit and floor': '首付——锁定您心仪的单元与楼层',
+  'Final payment — at handover, 6 months later': '尾款——6 个月后交房时付清',
+  'The Investment Opportunity': '投资机遇',
+  'A top-tier investment in the heart of Wollo Sefer': 'Wollo Sefer 核心地段的顶级投资',
+  'Near major hotels, embassies and corporate hubs, properties in this area have a proven track record of securing high-value rental income paid in USD — a powerful hedge against inflation and a brilliant addition to any real estate portfolio.':
+    '毗邻主要酒店、使馆与企业总部，该区域房产长期稳定获得以美元计价的高价值租金收入——是抵御通胀的强力屏障，也是任何房产组合的明智之选。',
 };
