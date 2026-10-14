@@ -15,7 +15,7 @@ export default function RealEstateSalesTeam() {
     <section id="sales-team" aria-labelledby="sales-team-heading" className="scroll-mt-28 bg-background py-20 sm:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">Bella Riverside Apartment</p>
-        <div className="grid gap-6 lg:grid-cols-2 items-end mb-12">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-8 items-end mb-12">
           <h2 id="sales-team-heading" className="font-marcellus text-3xl sm:text-4xl text-foreground">{t('Our Sales Team')}</h2>
           <p className="font-inter text-muted-foreground leading-relaxed">{t('Speak with Lidet or Rahel to arrange a tour of Bella Riverside Apartment in Downtown Bole, Wollo Sefer.')}</p>
         </div>
