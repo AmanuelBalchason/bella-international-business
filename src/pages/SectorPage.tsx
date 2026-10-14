@@ -11,6 +11,7 @@ import VideoShowcaseCarousel from '../components/VideoShowcaseCarousel';
 import ProcessCarousel from '../components/ProcessCarousel';
 import RealEstateSalesTeam from '../components/RealEstateSalesTeam';
 import RealEstateInventory from '../components/RealEstateInventory';
+import RealEstateWelcome from '../components/RealEstateWelcome';
 import { Calendar, Mail, Phone, Send, Play, ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
@@ -413,6 +414,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       )}
 
       {isRealEstate && <RealEstateInventory />}
+      {isRealEstate && <RealEstateWelcome />}
       {isRealEstate && <RealEstateSalesTeam />}
 
       {/* Contact */}
