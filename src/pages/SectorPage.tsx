@@ -414,6 +414,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       )}
 
       {isRealEstate && <RealEstateInventory />}
+      {isRealEstate && <RealEstateWelcome />}
       {isRealEstate && <RealEstateSalesTeam />}
 
       {/* Contact */}
