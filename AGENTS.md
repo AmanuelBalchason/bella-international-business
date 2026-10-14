@@ -1,2 +1,3 @@
 Confirmation emails use the sector form's submitted language in metadata, with English fallback, because the server must not guess a visitor's language from their email address.
 Confirmation email HTML uses inline CSS and table layout with font fallbacks, because email clients vary in external font and modern CSS support.
+Sector-specific sales profiles are isolated in a dedicated presentation component and mounted only on the matching sector page, so other sectors keep their existing contacts and layout.

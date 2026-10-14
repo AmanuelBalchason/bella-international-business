@@ -9,6 +9,7 @@ import SectorCarousel from '../components/SectorCarousel';
 import InteractiveDotPattern from '../components/InteractiveDotPattern';
 import VideoShowcaseCarousel from '../components/VideoShowcaseCarousel';
 import ProcessCarousel from '../components/ProcessCarousel';
+import RealEstateSalesTeam from '../components/RealEstateSalesTeam';
 import { Calendar, Mail, Phone, Send, Play, ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
@@ -96,7 +97,8 @@ const SectorPage = ({ sector }: SectorPageProps) => {
   }, [navigate, nextSector]);
 
   const isHealthcare = sector.slug === 'healthcare';
-  const contactEmail = isHealthcare ? 'info@bella-healthcare.com' : 'info@bellainter.com';
+  const isRealEstate = sector.slug === 'real-estate';
+  const contactEmail = isHealthcare ? 'info@bella-healthcare.com' : isRealEstate ? 'realestate@bellainter.com' : 'info@bellainter.com';
   const inquiryOptions = isHealthcare
     ? [
         { value: 'pharmaceuticals', label: 'Pharmaceuticals' },
@@ -149,8 +151,8 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       <Header />
 
       {/* Hero */}
-      <section className="relative min-h-[620px] h-[85vh] overflow-hidden">
-        {heroSlides.map((slide, i) => (
+      <section className={`relative min-h-[620px] h-[85vh] overflow-hidden ${isRealEstate ? 'bg-primary' : ''}`}>
+        {heroSlides.filter((slide) => slide.image).map((slide, i) => (
           <div
             key={slide.image}
             className={`absolute inset-0 -top-24 bg-cover bg-center will-change-transform transition-opacity duration-1000 ${
@@ -169,7 +171,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
             {t('Bella International Business')}
           </p>
           <h1 className="font-marcellus text-4xl sm:text-5xl md:text-7xl text-background leading-[1.05] max-w-4xl animate-fade-in">
-             {t(sector.title)}
+             {isRealEstate ? 'Bella Riverside Apartment' : t(sector.title)}
           </h1>
           {heroSlides[heroIndex]?.title && (
             <p
@@ -192,13 +194,13 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                  {t('Start a Conversation')}
               </Button>
             </a>
-            <a href="#sector-overview">
+            <a href={isRealEstate ? '#sales-team' : '#sector-overview'}>
               <Button
                 size="lg"
                 variant="outline"
                 className="rounded-none px-6 sm:px-8 bg-transparent text-background border-background/60 hover:bg-background hover:text-foreground"
               >
-                 {t('Explore the Sector')}
+                 {t(isRealEstate ? 'Book a Tour' : 'Explore the Sector')}
                 <ArrowDown className="w-4 h-4 ml-2" />
               </Button>
             </a>
@@ -222,7 +224,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       </section>
 
       {/* Stats band */}
-      <section className="bg-primary text-primary-foreground">
+      {Object.keys(sector.stats).length > 0 && <section className="bg-primary text-primary-foreground">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 sm:grid-cols-3 gap-10">
           {Object.entries(sector.stats).map(([key, value], index) => (
             <Reveal key={key} delay={index * 120} className="text-center sm:text-left">
@@ -231,7 +233,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
             </Reveal>
           ))}
         </div>
-      </section>
+      </section>}
 
       {/* Overview */}
       {sector.partnerStrip && (
@@ -287,7 +289,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       </section>
 
       {/* Gallery carousel */}
-      <section className="bg-secondary py-20 sm:py-28">
+      {(sector.solutions || sector.images.length > 0) && <section className="bg-secondary py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal className="mb-12">
             <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">
@@ -317,7 +319,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
             </Reveal>
           )}
         </div>
-      </section>
+      </section>}
 
       {/* Bella Advantage */}
       {sector.advantages && (
@@ -363,7 +365,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                   <span className="font-marcellus text-3xl text-primary/50">{String(index + 1).padStart(2, '0')}</span>
                    <h3 className="font-inter text-lg font-semibold text-foreground mt-6 mb-3">{t(step.step)}</h3>
                    <p className="text-muted-foreground font-inter text-sm leading-relaxed mb-5">{t(step.description)}</p>
-                  <Badge variant="secondary" className="rounded-none">{step.duration}</Badge>
+                  {step.duration && <Badge variant="secondary" className="rounded-none">{step.duration}</Badge>}
                 </div>
               </Reveal>
             ))}
@@ -408,6 +410,8 @@ const SectorPage = ({ sector }: SectorPageProps) => {
         </div>
       </section>
       )}
+
+      {isRealEstate && <RealEstateSalesTeam />}
 
       {/* Contact */}
       <section id="sector-contact" className="bg-secondary py-20 sm:py-28">
@@ -472,13 +476,13 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                         <Mail className="w-4 h-4" />
                         <span>{contactEmail}</span>
                       </a>
-                      <a href={`tel:${isHealthcare ? '+251933381818' : '+251913328000'}`} className="flex items-center gap-2 hover:text-primary">
+                      <a href={`tel:${isHealthcare ? '+251933381818' : isRealEstate ? '+251933443562' : '+251913328000'}`} className="flex items-center gap-2 hover:text-primary">
                         <Phone className="w-4 h-4" />
-                        <span>{isHealthcare ? '+251—933—38—1818' : '+251 913 328000'}</span>
+                        <span>{isHealthcare ? '+251—933—38—1818' : isRealEstate ? '+251 93 344 3562' : '+251 913 328000'}</span>
                       </a>
-                      <a href={`tel:${isHealthcare ? '+251913941530' : '+251911827024'}`} className="flex items-center gap-2 hover:text-primary">
+                      <a href={`tel:${isHealthcare ? '+251913941530' : isRealEstate ? '+251947925678' : '+251911827024'}`} className="flex items-center gap-2 hover:text-primary">
                         <Phone className="w-4 h-4" />
-                        <span>{isHealthcare ? '+251—913—94—1530' : '+251 911 827024'}</span>
+                        <span>{isHealthcare ? '+251—913—94—1530' : isRealEstate ? '+251 94 792 5678' : '+251 911 827024'}</span>
                       </a>
                     </div>
                   </div>

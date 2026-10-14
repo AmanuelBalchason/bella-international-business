@@ -4,6 +4,22 @@
 // Latin script on purpose — that is how they are used commercially in China.
 
 export const zh: Record<string, string> = {
+  'Our Sales Team': '我们的销售团队',
+  'Sales Team': '销售团队',
+  'Book a Tour': '预约看房',
+  'Bella Riverside Apartment in the prime location of Downtown Bole, Wollo Sefer.': 'Bella Riverside Apartment 坐落于 Bole 中心区 Wollo Sefer 的优越地段。',
+  'Discover Bella Riverside Apartment in Downtown Bole, Wollo Sefer, Addis Ababa.': '了解位于亚的斯亚贝巴 Bole 中心区 Wollo Sefer 的 Bella Riverside Apartment。',
+  'One address. Bella Riverside Apartment.': '专注一处居所：Bella Riverside Apartment。',
+  'Our focus is Bella Riverside Apartment, located in Downtown Bole, Wollo Sefer. Connect directly with Lidet Bella or Rahel Tsegaye to discuss the property, ask about current availability, and arrange a tour. Our sales team is your point of contact throughout your enquiry.': '我们专注于位于 Bole 中心区 Wollo Sefer 的 Bella Riverside Apartment。欢迎直接联系 Lidet Bella 或 Rahel Tsegaye，了解项目详情、咨询现有房源并预约看房。我们的销售团队将全程协助您。',
+  'Speak with Lidet or Rahel to arrange a tour of Bella Riverside Apartment in Downtown Bole, Wollo Sefer.': '联系 Lidet 或 Rahel，预约参观位于 Bole 中心区 Wollo Sefer 的 Bella Riverside Apartment。',
+  'Meet Your Sales Contact': '联系销售顾问',
+  'Contact Lidet or Rahel to discuss Bella Riverside Apartment and your requirements.': '联系 Lidet 或 Rahel，了解 Bella Riverside Apartment 并沟通您的需求。',
+  'Arrange a Tour': '预约看房',
+  'Agree on a convenient viewing time directly with our sales team.': '直接与销售团队商定适合您的看房时间。',
+  'Explore the Details': '了解详情',
+  'Discuss current availability, apartment details, and purchase terms with your sales contact.': '与销售顾问沟通现有房源、公寓详情及购房条款。',
+  'Discuss Next Steps': '沟通后续安排',
+  'Ask our sales team about the documentation and next steps for your enquiry.': '向销售团队咨询所需文件及后续流程。',
   // ---------- Navigation / global ----------
   'Bella International': 'Bella International 贝拉国际',
   'Bella International Business': 'Bella International 贝拉国际商业集团',
