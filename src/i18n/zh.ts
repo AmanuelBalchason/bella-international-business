@@ -5,6 +5,7 @@
 
 export const zh: Record<string, string> = {
   'Our Sales Team': '我们的销售团队',
+  'Downtown Bole, Wollo Sefer, Addis Ababa': '亚的斯亚贝巴，Bole 中心区，Wollo Sefer',
   'Sales Team': '销售团队',
   'Book a Tour': '预约看房',
   'Bella Riverside Apartment in the prime location of Downtown Bole, Wollo Sefer.': 'Bella Riverside Apartment 坐落于 Bole 中心区 Wollo Sefer 的优越地段。',

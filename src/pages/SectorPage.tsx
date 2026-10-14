@@ -487,11 +487,13 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                     </div>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-foreground mb-2">{t('Office Hours')}</h4>
+                    <h4 className="font-semibold text-foreground mb-2">{t(isRealEstate ? 'Address' : 'Office Hours')}</h4>
                     <div className="text-muted-foreground text-sm space-y-1">
+                      {isRealEstate ? <><p>Bella Riverside Apartment</p><p>{t('Downtown Bole, Wollo Sefer, Addis Ababa')}</p></> : <>
                       <p>{t('Monday - Friday: 8:00 AM - 6:00 PM')}</p>
                       <p>{t('Saturday: 9:00 AM - 2:00 PM')}</p>
                       <p>{t('Sunday: Closed')}</p>
+                      </>}
                     </div>
                   </div>
                 </div>
@@ -521,7 +523,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
         </section>
       )}
 
-      <Footer />
+      <Footer realEstate={isRealEstate} />
     </div>
   );
 };
