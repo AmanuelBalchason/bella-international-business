@@ -30,7 +30,7 @@ export default function RealEstateInventory() {
   return (
     <section id="inventory" className="scroll-mt-28 bg-secondary py-20 sm:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">Bella Riverside Apartment</p>
+        <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">{t('Bella Riverside Apartment')}</p>
         <h2 className="font-marcellus text-3xl sm:text-4xl text-foreground mb-8">{t('Find Your Residence')}</h2>
         <ul className="flex flex-wrap gap-3 mb-10">
           {highlights.map((h) => (
