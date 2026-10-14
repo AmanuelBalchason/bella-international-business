@@ -374,7 +374,6 @@ const SectorPage = ({ sector }: SectorPageProps) => {
           )}
         </div>
       </section>}
-      </section>
 
       {/* Media */}
       {!sector.videoFiles && sector.videos.length > 0 && (
