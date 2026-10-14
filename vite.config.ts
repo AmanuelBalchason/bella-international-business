@@ -7,6 +7,12 @@ export default defineConfig({
   server: {
     host: "::",
     port: 8080,
+    proxy: {
+      '/__l5e/assets-v1': {
+        target: 'https://bella-international-business.lovable.app',
+        changeOrigin: true,
+      },
+    },
   },
   plugins: [
     react(),
