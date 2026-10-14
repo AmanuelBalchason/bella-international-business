@@ -181,7 +181,7 @@ const BlogPost: React.FC = () => {
           datePublished: article.published_at,
           author: { '@type': author ? 'Person' : 'Organization', name: author?.name || 'Bella International Business' },
           publisher: { '@type': 'Organization', name: 'Bella International Business' },
-          mainEntityOfPage: `https://bella-international-business.lovable.app/blog/${article.slug}`,
+          mainEntityOfPage: `https://bellainter.com/blog/${article.slug}`,
         }}
       />
       {/* Header */}
