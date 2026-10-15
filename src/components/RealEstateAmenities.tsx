@@ -52,7 +52,7 @@ export default function RealEstateAmenities() {
       onMouseEnter={() => setInteracting(true)} onMouseLeave={() => setInteracting(false)}
       onFocusCapture={() => setInteracting(true)}
       onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setInteracting(false); }}>
-      <div className="flex items-center justify-between gap-4 mb-5">
+      <div className="flex flex-col items-start sm:flex-row sm:items-center sm:justify-between gap-4 mb-5">
         <h3 className="font-marcellus text-2xl text-foreground">{t('Amenities')}</h3>
         <div className="flex gap-1 sm:gap-2">
           {amenities.map((item, i) => {
