@@ -1,4 +1,5 @@
 # Real Estate page
+- [x] Replace the six amenity labels with a bilingual timed illustration slideshow; verify automatic and manual navigation.
 - [x] Remove the Real Estate Overview and bring Find Your Residence below the hero.
 - [x] Add the supplied Google map with branded City Side / River Side details and bilingual copy; verify the page.
 - [x] Focus the page on Bella Riverside Apartment and remove unrelated properties, images, and claims.
