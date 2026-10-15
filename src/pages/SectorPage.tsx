@@ -12,6 +12,7 @@ import ProcessCarousel from '../components/ProcessCarousel';
 import RealEstateSalesTeam from '../components/RealEstateSalesTeam';
 import RealEstateInventory from '../components/RealEstateInventory';
 import RealEstateWelcome from '../components/RealEstateWelcome';
+import RealEstateLocation from '../components/RealEstateLocation';
 import { Calendar, Mail, Phone, Send, Play, ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
@@ -225,6 +226,8 @@ const SectorPage = ({ sector }: SectorPageProps) => {
         </div>
       </section>
 
+      {isRealEstate && <RealEstateInventory />}
+
       {/* Stats band */}
       {Object.keys(sector.stats).length > 0 && <section className="bg-primary text-primary-foreground">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 sm:grid-cols-3 gap-10">
@@ -264,7 +267,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
         </section>
       )}
 
-      <section id="sector-overview" className="py-20 sm:py-24 md:py-32 relative overflow-hidden">
+      {!isRealEstate && <section id="sector-overview" className="py-20 sm:py-24 md:py-32 relative overflow-hidden">
         <InteractiveDotPattern />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 items-center">
           <Reveal className={sector.videoFiles ? 'lg:col-span-5' : 'lg:col-span-5'}>
@@ -289,6 +292,8 @@ const SectorPage = ({ sector }: SectorPageProps) => {
           )}
         </div>
       </section>
+
+      }
 
       {/* Gallery carousel */}
       {(sector.solutions || sector.images.length > 0) && <section className="bg-secondary py-20 sm:py-28">
@@ -413,8 +418,8 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       </section>
       )}
 
-      {isRealEstate && <RealEstateInventory />}
       {isRealEstate && <RealEstateWelcome />}
+      {isRealEstate && <RealEstateLocation />}
       {isRealEstate && <RealEstateSalesTeam />}
 
       {/* Contact */}

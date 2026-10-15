@@ -5,6 +5,11 @@
 
 export const zh: Record<string, string> = {
   'Our Sales Team': '我们的销售团队',
+  'City living. Riverside views.': '都市生活，河畔美景。',
+  'Open in Google Maps': '在 Google 地图中打开',
+  'Bella Real Estate location on Google Maps': 'Google 地图上的 Bella Real Estate 位置',
+  'City-facing apartments in the heart of Wollo Sefer.': '位于 Wollo Sefer 核心地段的城景公寓。',
+  'River-facing apartments overlooking Eden Park.': '俯瞰 Eden 公园的河景公寓。',
   'Bella Riverside Apartment': 'Bella Riverside 公寓',
   'Downtown Bole, Wollo Sefer, Addis Ababa': '亚的斯亚贝巴，Bole 中心区，Wollo Sefer',
   'Sales Team': '销售团队',

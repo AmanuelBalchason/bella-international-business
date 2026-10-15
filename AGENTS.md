@@ -2,3 +2,4 @@ Confirmation emails use the sector form's submitted language in metadata, with E
 Confirmation email HTML uses inline CSS and table layout with font fallbacks, because email clients vary in external font and modern CSS support.
 Sector-specific sales profiles are isolated in a dedicated presentation component and mounted only on the matching sector page, so other sectors keep their existing contacts and layout.
 The Vite development server proxies Lovable asset paths to the published asset service, matching the production rewrite so CDN media can also be checked locally.
+Real Estate location presentation lives in a dedicated sector-only component; keep Google Maps unaltered and show apartment-side details beside it because the embed does not support reliable custom geographic overlays.
