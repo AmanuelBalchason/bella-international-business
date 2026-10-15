@@ -17,7 +17,7 @@ export default function RealEstateLocation() {
             <p className="font-inter text-muted-foreground">{t('Downtown Bole, Wollo Sefer, Addis Ababa')}</p>
           </div>
           <Button asChild variant="outline" className="rounded-none self-start sm:shrink-0">
-            <a href="https://www.google.com/maps?cid=15389795155864764837" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.google.com/maps?cid=15389795083346395557" target="_blank" rel="noopener noreferrer">
               <MapPin className="w-4 h-4 mr-2" />{t('Open in Google Maps')}<ExternalLink className="w-3 h-3 ml-2" />
             </a>
           </Button>
