@@ -52,7 +52,7 @@ export const sectorData: Record<string, Sector> = {
     description: 'Discover Bella Riverside Apartment in Downtown Bole, Wollo Sefer, Addis Ababa.',
     overviewHeading: 'One address. Bella Riverside Apartment.',
     content:
-      'Our focus is Bella Riverside Apartment, located in Downtown Bole, Wollo Sefer. Connect directly with Lidet Bella or Rahel Tsegaye to discuss the property, ask about current availability, and arrange a tour. Our sales team is your point of contact throughout your enquiry.',
+      'Our focus is Bella Riverside Apartment, located in Downtown Bole, Wollo Sefer. Connect directly with Rahel Tsegaye to discuss the property, ask about current availability, and arrange a tour. Our sales team is your point of contact throughout your enquiry.',
     vision: 'Shaping the Future of Urban Development',
     mission:
       'To create sustainable, innovative, and community-focused real estate solutions that enhance quality of life while delivering exceptional returns to our partners.',
@@ -61,7 +61,7 @@ export const sectorData: Record<string, Sector> = {
     heroImage: bellaRiversideHero.url,
     images: [],
     processSteps: [
-      { step: 'Meet Your Sales Contact', description: 'Contact Lidet or Rahel to discuss Bella Riverside Apartment and your requirements.', duration: '' },
+      { step: 'Meet Your Sales Contact', description: 'Contact Rahel to discuss Bella Riverside Apartment and your requirements.', duration: '' },
       { step: 'Arrange a Tour', description: 'Agree on a convenient viewing time directly with our sales team.', duration: '' },
       { step: 'Explore the Details', description: 'Discuss current availability, apartment details, and purchase terms with your sales contact.', duration: '' },
       { step: 'Discuss Next Steps', description: 'Ask our sales team about the documentation and next steps for your enquiry.', duration: '' },

@@ -485,14 +485,16 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                         <Mail className="w-4 h-4" />
                         <span>{contactEmail}</span>
                       </a>
-                      <a href={`tel:${isHealthcare ? '+251933381818' : isRealEstate ? '+251933443562' : '+251913328000'}`} className="flex items-center gap-2 hover:text-primary">
+                      <a href={`tel:${isHealthcare ? '+251933381818' : isRealEstate ? '+251947925678' : '+251913328000'}`} className="flex items-center gap-2 hover:text-primary">
                         <Phone className="w-4 h-4" />
-                        <span>{isHealthcare ? '+251—933—38—1818' : isRealEstate ? '+251 93 344 3562' : '+251 913 328000'}</span>
+                        <span>{isHealthcare ? '+251—933—38—1818' : isRealEstate ? '+251 94 792 5678' : '+251 913 328000'}</span>
                       </a>
-                      <a href={`tel:${isHealthcare ? '+251913941530' : isRealEstate ? '+251947925678' : '+251911827024'}`} className="flex items-center gap-2 hover:text-primary">
-                        <Phone className="w-4 h-4" />
-                        <span>{isHealthcare ? '+251—913—94—1530' : isRealEstate ? '+251 94 792 5678' : '+251 911 827024'}</span>
-                      </a>
+                      {!isRealEstate && (
+                        <a href={`tel:${isHealthcare ? '+251913941530' : '+251911827024'}`} className="flex items-center gap-2 hover:text-primary">
+                          <Phone className="w-4 h-4" />
+                          <span>{isHealthcare ? '+251—913—94—1530' : '+251 911 827024'}</span>
+                        </a>
+                      )}
                     </div>
                   </div>
                   <div>
