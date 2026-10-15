@@ -1,11 +1,9 @@
 import { Mail, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useT } from '@/i18n/LanguageProvider';
-import lidet from '@/assets/sales-lidet-bella.webp.asset.json';
 import rahel from '@/assets/sales-rahel-tsegaye.webp.asset.json';
 
 const salesTeam = [
-  { name: 'Lidet Bella', image: lidet.url, phone: '+251 93 344 3562', tel: '+251933443562' },
   { name: 'Rahel Tsegaye', image: rahel.url, phone: '+251 94 792 5678', tel: '+251947925678' },
 ];
 
@@ -20,9 +18,9 @@ export default function RealEstateSalesTeam() {
             <h2 id="sales-team-heading" className="font-marcellus text-3xl sm:text-4xl text-foreground">{t('Our Sales Team')}</h2>
           </div>
 
-          <p className="font-inter text-muted-foreground leading-relaxed">{t('Speak with Lidet or Rahel to arrange a tour of Bella Riverside Apartment in Downtown Bole, Wollo Sefer.')}</p>
+          <p className="font-inter text-muted-foreground leading-relaxed">{t('Speak with Rahel to arrange a tour of Bella Riverside Apartment in Downtown Bole, Wollo Sefer.')}</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="max-w-sm mx-auto">
           {salesTeam.map((person) => (
             <article key={person.name} className="min-w-0 bg-card border border-border">
               <div className="aspect-[3/4] overflow-hidden bg-secondary">
