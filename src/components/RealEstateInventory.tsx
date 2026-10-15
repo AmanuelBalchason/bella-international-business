@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useT } from '@/i18n/LanguageProvider';
+import RealEstateAmenities from '@/components/RealEstateAmenities';
 
 type Status = 'Available' | 'Sold';
 type UnitType = '3 Bedroom' | '2 Bedroom';
@@ -17,7 +18,6 @@ const units = Object.entries(availability)
     { floor: Number(floor), type: '2 Bedroom' as UnitType, view: 'River Side', status: r },
   ]);
 const prices = { '3 Bedroom': { semi: '23.9', full: '31.2', area: '184' }, '2 Bedroom': { semi: '17.9', full: '23.0', area: '128' } };
-const highlights = ['Behind Best Western Hotel', 'Only 2 apartments per floor', 'Handover in 6 months', 'Digital title deed ready', 'Standby generator & water', '4 basement parking'];
 
 export default function RealEstateInventory() {
   const t = useT();
@@ -32,11 +32,7 @@ export default function RealEstateInventory() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <p className="font-inter text-sm uppercase tracking-wider text-primary mb-4">{t('Bella Riverside Apartment')}</p>
         <h2 className="font-marcellus text-3xl sm:text-4xl text-foreground mb-8">{t('Find Your Residence')}</h2>
-        <ul className="flex flex-wrap gap-3 mb-10">
-          {highlights.map((h) => (
-            <li key={h} className="border border-border bg-background px-4 py-2 font-inter text-sm text-foreground">{t(h)}</li>
-          ))}
-        </ul>
+        <RealEstateAmenities />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border mb-10">
           {[
