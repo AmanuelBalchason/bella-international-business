@@ -5,6 +5,29 @@ import bhVideo3 from '@/assets/bh-video-3-opt.mp4.asset.json';
 import bhPoster1 from '@/assets/bh-poster-1-opt.webp.asset.json';
 import bhPoster2 from '@/assets/bh-poster-2-opt.webp.asset.json';
 import bhPoster3 from '@/assets/bh-poster-3-opt.webp.asset.json';
+import achaHeroHighlands from '@/assets/acha-hero-highlands.webp.asset.json';
+import achaCherriesBranch from '@/assets/acha-cherries-branch.webp.asset.json';
+import achaPicking from '@/assets/acha-picking.webp.asset.json';
+import achaForestWalk from '@/assets/acha-forest-walk.webp.asset.json';
+import achaSorting from '@/assets/acha-sorting.webp.asset.json';
+import achaDryingAerial from '@/assets/acha-drying-aerial.webp.asset.json';
+import achaDryingDiscussion from '@/assets/acha-drying-discussion.webp.asset.json';
+import achaBasket from '@/assets/acha-basket.webp.asset.json';
+import achaPickerSmile from '@/assets/acha-picker-smile.webp.asset.json';
+import achaPickerPortrait from '@/assets/acha-picker-portrait.webp.asset.json';
+
+export const achaMedia = {
+  heroHighlands: achaHeroHighlands.url,
+  cherriesBranch: achaCherriesBranch.url,
+  picking: achaPicking.url,
+  forestWalk: achaForestWalk.url,
+  sorting: achaSorting.url,
+  dryingAerial: achaDryingAerial.url,
+  dryingDiscussion: achaDryingDiscussion.url,
+  basket: achaBasket.url,
+  pickerSmile: achaPickerSmile.url,
+  pickerPortrait: achaPickerPortrait.url,
+};
 
 export interface SectorImage {
   src: string;
@@ -246,19 +269,36 @@ export const sectorData: Record<string, Sector> = {
       'To cultivate and deliver the finest Ethiopian coffee while supporting local communities through sustainable farming practices and fair trade partnerships.',
     resources: ['Coffee Quality Report', 'Sustainability Practices', 'Export Documentation', 'Farmer Partnership Guide'],
     stats: { farms: '8', tons: '500+ Annually', export: '15 Countries' },
-    heroImage: '/acha-images/acha-1.jpg',
+    heroImage: achaMedia.heroHighlands,
+    heroSlides: [
+      {
+        image: achaMedia.heroHighlands,
+        title: 'Forest-Grown Origin',
+        body: 'Coffee cultivated under the natural canopy of Ethiopia\u2019s highland forests.',
+      },
+      {
+        image: achaMedia.picking,
+        title: 'Hand-Picked Harvest',
+        body: 'Ripe cherries selected by hand, one branch at a time, by our partner farmers.',
+      },
+      {
+        image: achaMedia.sorting,
+        title: 'Processed with Care',
+        body: 'Sun-dried on raised beds and meticulously sorted before export.',
+      },
+    ],
     images: [
-      { src: '/acha-images/acha-1.jpg', title: 'Coffee Plantations', description: 'Lush coffee farms in the Ethiopian highlands' },
-      { src: '/acha-images/acha-2.jpg', title: 'Coffee Processing', description: 'Traditional and modern coffee processing methods' },
-      { src: '/acha-images/acha-3.jpg', title: 'Quality Control', description: 'Rigorous quality testing and certification processes' },
-      { src: '/acha-images/acha-4.jpg', title: 'Sorting & Grading', description: 'Careful sorting and grading of every batch' },
-      { src: '/acha-images/acha-5.jpg', title: 'Export Ready', description: 'Packed and prepared for international shipment' },
+      { src: achaMedia.forestWalk, title: 'Forest Plantations', description: 'Coffee growing wild under the highland forest canopy' },
+      { src: achaMedia.dryingAerial, title: 'Raised Drying Beds', description: 'Cherries sun-drying on raised beds at the washing station' },
+      { src: achaMedia.dryingDiscussion, title: 'Quality Control', description: 'Our team reviewing parchment coffee with partner farmers' },
+      { src: achaMedia.pickerSmile, title: 'Harvest Season', description: 'A partner farmer with her hand-picked cherries' },
+      { src: achaMedia.basket, title: 'Export Ready', description: 'Ripe cherries gathered and prepared for processing' },
     ],
     processSteps: [
-      { step: 'Pre Harvesting', description: 'Sustainable farming practices in forest conditions', duration: '9-12 months' },
-      { step: 'Harvesting', description: 'Hand-picked selection of ripe cherries', duration: '3-4 months' },
-      { step: 'Processing', description: 'Wet and dry processing methods', duration: '2-4 weeks' },
-      { step: 'Export', description: 'Quality control and international shipping', duration: '1-2 weeks' },
+      { step: 'Pre Harvesting', description: 'Sustainable farming practices in forest conditions', duration: '9-12 months', image: achaMedia.cherriesBranch },
+      { step: 'Harvesting', description: 'Hand-picked selection of ripe cherries', duration: '3-4 months', image: achaMedia.picking },
+      { step: 'Processing', description: 'Wet and dry processing methods', duration: '2-4 weeks', image: achaMedia.sorting },
+      { step: 'Export', description: 'Quality control and international shipping', duration: '1-2 weeks', image: achaMedia.basket },
     ],
     certifications: ['Organic Certified', 'Fair Trade', 'Rainforest Alliance', 'UTZ Certified'],
     partnerships: ['Local Farmers', 'Export Cooperatives', 'International Buyers', 'Certification Bodies'],
@@ -282,11 +322,7 @@ export const sectorData: Record<string, Sector> = {
       { name: 'Illubabor Zone', projects: 2, coords: [35.9342, 8.5569] },
       { name: 'Sidama Zone', projects: 1, coords: [38.4762, 6.8453] },
     ],
-    videos: [
-      { title: 'Farm to Cup Journey', thumbnail: 'photo-1447933601403-0c6688de566e', duration: '6:30' },
-      { title: 'Farmer Testimonials', thumbnail: 'photo-1498804103079-a6351b050096', duration: '4:20' },
-      { title: 'Processing Methods', thumbnail: 'photo-1509042239860-f550ce710b93', duration: '3:45' },
-    ],
+    videos: [],
   },
   automotives: {
     slug: 'automotives',
