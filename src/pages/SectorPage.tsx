@@ -102,6 +102,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
 
   const isHealthcare = sector.slug === 'healthcare';
   const isRealEstate = sector.slug === 'real-estate';
+  const isAcha = sector.slug === 'acha-forest-coffee';
   const contactEmail = isHealthcare ? 'info@bella-healthcare.com' : isRealEstate ? 'realestate@bellainter.com' : 'info@bellainter.com';
   const inquiryOptions = isHealthcare
     ? [
@@ -418,6 +419,8 @@ const SectorPage = ({ sector }: SectorPageProps) => {
         </div>
       </section>
       )}
+
+      {isAcha && <AchaCoffeeStory />}
 
       {isRealEstate && <RealEstateWelcome />}
       {isRealEstate && <RealEstateLocation />}
