@@ -4,3 +4,4 @@ Sector-specific sales profiles are isolated in a dedicated presentation componen
 The Vite development server proxies Lovable asset paths to the published asset service, matching the production rewrite so CDN media can also be checked locally.
 Real Estate location presentation lives in a dedicated sector-only component; keep Google Maps unaltered and show apartment-side details beside it because the embed does not support reliable custom geographic overlays.
 Real Estate amenities use a dedicated presentation carousel inside the inventory section, leaving the Healthcare partnership carousel unchanged because the two sectors present different content.
+Acha Forest Coffee editorial content (brand film, full-bleed photo bands, farmer split) lives in a dedicated sector-only component `AchaCoffeeStory.tsx` mounted only on the Acha page, so other sector pages keep their shared layout; its media comes from the `achaMedia` map in `src/data/sectors.ts`.
