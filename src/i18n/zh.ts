@@ -394,4 +394,7 @@ export const zh: Record<string, string> = {
   'Every basket of cherries represents a household we partner with — and a forest we are committed to protecting.':
     '每一篮咖啡果都代表着一个与我们合作的家庭——以及一片我们致力于守护的森林。',
   'A partner farmer holding a basket of hand-picked coffee cherries': '一位合作农户手捧装满手工采摘咖啡果的篮子',
+  'Quality Control': '质量控制',
+  'Export Ready': '出口就绪',
+  'Harvest Season': '采收季',
 };
