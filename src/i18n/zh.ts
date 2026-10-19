@@ -363,4 +363,35 @@ export const zh: Record<string, string> = {
   'A top-tier investment in the heart of Wollo Sefer': 'Wollo Sefer 核心地段的顶级投资',
   'Near major hotels, embassies and corporate hubs, properties in this area have a proven track record of securing high-value rental income paid in USD — a powerful hedge against inflation and a brilliant addition to any real estate portfolio.':
     '毗邻主要酒店、使馆与企业总部，该区域房产长期稳定获得以美元计价的高价值租金收入——是抵御通胀的强力屏障，也是任何房产组合的明智之选。',
+
+  // Acha Forest Coffee — editorial story & gallery
+  'Forest-Grown Origin': '森林种植之源',
+  'Coffee cultivated under the natural canopy of Ethiopia’s highland forests.': '咖啡生长于埃塞俄比亚高原森林的天然树冠之下。',
+  'Hand-Picked Harvest': '手工采摘',
+  'Ripe cherries selected by hand, one branch at a time, by our partner farmers.': '合作农户逐枝手工挑选成熟咖啡果。',
+  'Processed with Care': '精心处理',
+  'Sun-dried on raised beds and meticulously sorted before export.': '在高架晒床上日晒干燥，出口前经细致筛选。',
+  'Forest Plantations': '森林种植园',
+  'Coffee growing wild under the highland forest canopy': '咖啡在高原森林树冠下自然生长',
+  'Raised Drying Beds': '高架晒床',
+  'Cherries sun-drying on raised beds at the washing station': '咖啡果在水洗站的高架晒床上日晒干燥',
+  'Our team reviewing parchment coffee with partner farmers': '我们的团队与合作农户一起检查带壳咖啡豆',
+  'A partner farmer with her hand-picked cherries': '一位合作农户与她手工采摘的咖啡果',
+  'Ripe cherries gathered and prepared for processing': '成熟的咖啡果已采收，准备进入处理环节',
+  'Our Brand Film': '品牌影片',
+  'From Our Forests to the World': '从我们的森林走向世界',
+  'Play the Acha Forest Coffee brand film': '播放 Acha Forest Coffee 品牌影片',
+  'Grown in the Wild': '野生生长',
+  'Coffee Under a Forest Canopy': '森林树冠下的咖啡',
+  'Our coffee grows the way it has for centuries — beneath the natural shade of Ethiopia’s highland forests, where biodiversity protects the soil and gives every cherry its distinctive character.':
+    '我们的咖啡沿袭数百年来的生长方式——在埃塞俄比亚高原森林的天然荫蔽下生长，生物多样性守护着土壤，也赋予每一颗咖啡果独特的风味。',
+  'After harvest, cherries are spread across raised drying beds at our washing stations — turned by hand, sorted by eye, and dried slowly under the highland sun.':
+    '采收后，咖啡果被铺放在水洗站的高架晒床上——手工翻动、目检筛选，在高原阳光下缓缓干燥。',
+  'Our Partner Farmers': '我们的合作农户',
+  'The People Behind Every Cup': '每一杯咖啡背后的人们',
+  'We work directly with local farming families across Kaffa, Jimma, Illubabor and Sidama — paying fair prices, sharing agronomy knowledge, and growing together season after season.':
+    '我们与卡法、吉马、伊卢巴博尔和西达马的当地农户家庭直接合作——支付公平价格、分享农艺知识，一季又一季共同成长。',
+  'Every basket of cherries represents a household we partner with — and a forest we are committed to protecting.':
+    '每一篮咖啡果都代表着一个与我们合作的家庭——以及一片我们致力于守护的森林。',
+  'A partner farmer holding a basket of hand-picked coffee cherries': '一位合作农户手捧装满手工采摘咖啡果的篮子',
 };
