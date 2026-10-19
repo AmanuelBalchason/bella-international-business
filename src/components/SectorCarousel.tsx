@@ -1,12 +1,14 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { SectorImage } from '@/data/sectors';
+import { useLanguage } from '@/i18n/LanguageProvider';
 
 interface SectorCarouselProps {
   images: SectorImage[];
 }
 
 const SectorCarousel = ({ images }: SectorCarouselProps) => {
+  const { t } = useLanguage();
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [active, setActive] = useState(0);
 
@@ -53,14 +55,14 @@ const SectorCarousel = ({ images }: SectorCarouselProps) => {
             <div className="overflow-hidden">
               <img
                 src={image.src}
-                alt={image.title}
+                alt={t(image.title)}
                 loading="lazy"
                 className="w-full aspect-[4/3] object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>
             <figcaption className="p-6">
-              <h3 className="font-marcellus text-xl text-foreground mb-2">{image.title}</h3>
-              <p className="font-inter text-sm text-muted-foreground leading-relaxed">{image.description}</p>
+              <h3 className="font-marcellus text-xl text-foreground mb-2">{t(image.title)}</h3>
+              <p className="font-inter text-sm text-muted-foreground leading-relaxed">{t(image.description)}</p>
             </figcaption>
           </figure>
         ))}
