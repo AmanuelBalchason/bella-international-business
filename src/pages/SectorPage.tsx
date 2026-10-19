@@ -13,6 +13,7 @@ import RealEstateSalesTeam from '../components/RealEstateSalesTeam';
 import RealEstateInventory from '../components/RealEstateInventory';
 import RealEstateWelcome from '../components/RealEstateWelcome';
 import RealEstateLocation from '../components/RealEstateLocation';
+import AchaCoffeeStory from '../components/AchaCoffeeStory';
 import { Calendar, Mail, Phone, Send, Play, ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
@@ -101,6 +102,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
 
   const isHealthcare = sector.slug === 'healthcare';
   const isRealEstate = sector.slug === 'real-estate';
+  const isAcha = sector.slug === 'acha-forest-coffee';
   const contactEmail = isHealthcare ? 'info@bella-healthcare.com' : isRealEstate ? 'realestate@bellainter.com' : 'info@bellainter.com';
   const inquiryOptions = isHealthcare
     ? [
@@ -417,6 +419,8 @@ const SectorPage = ({ sector }: SectorPageProps) => {
         </div>
       </section>
       )}
+
+      {isAcha && <AchaCoffeeStory />}
 
       {isRealEstate && <RealEstateWelcome />}
       {isRealEstate && <RealEstateLocation />}
