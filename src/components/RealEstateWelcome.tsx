@@ -2,6 +2,7 @@ import { Check, Clock, TrendingUp, KeyRound, Ruler } from 'lucide-react';
 import { useT } from '@/i18n/LanguageProvider';
 import Reveal from './Reveal';
 import welcomeImage from '@/assets/bella-re-welcome.webp.asset.json';
+import { DiscountedTag } from '@/components/RealEstateDiscount';
 
 const highlights = [
   'Ultimate privacy: only 2 units per floor',
@@ -90,9 +91,12 @@ export default function RealEstateWelcome() {
             <Ruler className="w-4 h-4 text-primary" />
             <p className="font-inter text-sm uppercase tracking-wider text-primary">{t('Unit Specifications')}</p>
           </div>
-          <h3 className="font-marcellus text-2xl sm:text-3xl text-foreground mb-3">
+          <div className="flex flex-wrap items-center gap-3 mb-3">
+          <h3 className="font-marcellus text-2xl sm:text-3xl text-foreground">
             {t('Per-area cost & total pricing')}
           </h3>
+          <DiscountedTag />
+          </div>
           <p className="font-inter text-sm text-muted-foreground max-w-3xl mb-10">
             {t(
               'A limited number of units, carefully tailored to your lifestyle with flexible finishing options. Investors can take advantage of a special discounted rate of 130,000–140,000 ETB per square meter for semi-finished units.'
@@ -114,15 +118,15 @@ export default function RealEstateWelcome() {
                 <dl className="space-y-3 font-inter text-sm border-t border-border pt-4">
                   <div className="flex justify-between gap-4">
                     <dt className="text-muted-foreground">{t('Per-Area Cost (Semi-Finished)')}</dt>
-                    <dd className="font-semibold text-foreground text-right">{t(s.perArea)}</dd>
+                    <dd className="font-semibold text-foreground text-right flex flex-col items-end gap-1">{t(s.perArea)}<DiscountedTag /></dd>
                   </div>
                   <div className="flex justify-between gap-4">
                     <dt className="text-muted-foreground">{t('Total Price (Semi-Finished)')}</dt>
-                    <dd className="font-semibold text-foreground text-right">{s.semi}</dd>
+                    <dd className="font-semibold text-foreground text-right flex flex-col items-end gap-1">{s.semi}<DiscountedTag /></dd>
                   </div>
                   <div className="flex justify-between gap-4">
                     <dt className="text-muted-foreground">{t('Total Price (Fully-Finished)')}</dt>
-                    <dd className="font-semibold text-foreground text-right">{s.full}</dd>
+                    <dd className="font-semibold text-foreground text-right flex flex-col items-end gap-1">{s.full}<DiscountedTag /></dd>
                   </div>
                 </dl>
               </div>
