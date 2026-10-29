@@ -1,4 +1,7 @@
 # Real Estate page
+- [ ] Compact mobile availability into expandable rows while retaining desktop cards.
+- [ ] Display the November 05, 2026 discount deadline and red tags beside all prices.
+- [ ] Limit inventory to the five approved units and verify filters, translations and tour links.
 - [x] Replace the six amenity labels with a bilingual timed illustration slideshow; verify automatic and manual navigation.
 - [x] Remove the Real Estate Overview and bring Find Your Residence below the hero.
 - [x] Add the supplied Google map with branded City Side / River Side details and bilingual copy; verify the page.
