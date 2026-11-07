@@ -2,7 +2,6 @@ import { Check, Clock, TrendingUp, KeyRound, Ruler } from 'lucide-react';
 import { useT } from '@/i18n/LanguageProvider';
 import Reveal from './Reveal';
 import welcomeImage from '@/assets/bella-re-welcome.webp.asset.json';
-import { DiscountedTag } from '@/components/RealEstateDiscount';
 
 const highlights = [
   'Ultimate privacy: only 2 units per floor',
@@ -17,17 +16,19 @@ const specs = [
     name: '2-Bedroom Apartments',
     side: 'River Side (R-Side)',
     area: '128 m²',
-    perArea: '140,000 ETB per m²',
-    semi: '17,920,000 ETB',
-    full: '23,000,000 ETB',
+    perAreaSemi: '160,000 ETB per m²',
+    perAreaFull: '190,000 ETB per m²',
+    semi: '20,480,000 ETB',
+    full: '24,320,000 ETB',
   },
   {
     name: '3-Bedroom Apartments',
     side: 'City Side (C-Side)',
     area: '184 m²',
-    perArea: '130,000 ETB per m²',
-    semi: '23,920,000 ETB',
-    full: '31,200,000 ETB',
+    perAreaSemi: '150,000 ETB per m²',
+    perAreaFull: '180,000 ETB per m²',
+    semi: '27,600,000 ETB',
+    full: '33,120,000 ETB',
   },
 ];
 
@@ -91,15 +92,12 @@ export default function RealEstateWelcome() {
             <Ruler className="w-4 h-4 text-primary" />
             <p className="font-inter text-sm uppercase tracking-wider text-primary">{t('Unit Specifications')}</p>
           </div>
-          <div className="flex flex-wrap items-center gap-3 mb-3">
-          <h3 className="font-marcellus text-2xl sm:text-3xl text-foreground">
+          <h3 className="font-marcellus text-2xl sm:text-3xl text-foreground mb-3">
             {t('Per-area cost & total pricing')}
           </h3>
-          <DiscountedTag />
-          </div>
           <p className="font-inter text-sm text-muted-foreground max-w-3xl mb-10">
             {t(
-              'A limited number of units, carefully tailored to your lifestyle with flexible finishing options. Investors can take advantage of a special discounted rate of 130,000–140,000 ETB per square meter for semi-finished units.'
+              'A limited number of units, carefully tailored to your lifestyle with flexible finishing options. Choose semi-finished to add your own touch, or fully-finished for a move-in-ready home.'
             )}
           </p>
         </Reveal>
@@ -118,15 +116,19 @@ export default function RealEstateWelcome() {
                 <dl className="space-y-3 font-inter text-sm border-t border-border pt-4">
                   <div className="flex justify-between gap-4">
                     <dt className="text-muted-foreground">{t('Per-Area Cost (Semi-Finished)')}</dt>
-                    <dd className="font-semibold text-foreground text-right flex flex-col items-end gap-1">{t(s.perArea)}<DiscountedTag /></dd>
+                    <dd className="font-semibold text-foreground text-right">{t(s.perAreaSemi)}</dd>
+                  </div>
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-muted-foreground">{t('Per-Area Cost (Fully-Finished)')}</dt>
+                    <dd className="font-semibold text-foreground text-right">{t(s.perAreaFull)}</dd>
                   </div>
                   <div className="flex justify-between gap-4">
                     <dt className="text-muted-foreground">{t('Total Price (Semi-Finished)')}</dt>
-                    <dd className="font-semibold text-foreground text-right flex flex-col items-end gap-1">{s.semi}<DiscountedTag /></dd>
+                    <dd className="font-semibold text-foreground text-right">{s.semi}</dd>
                   </div>
                   <div className="flex justify-between gap-4">
                     <dt className="text-muted-foreground">{t('Total Price (Fully-Finished)')}</dt>
-                    <dd className="font-semibold text-foreground text-right flex flex-col items-end gap-1">{s.full}<DiscountedTag /></dd>
+                    <dd className="font-semibold text-foreground text-right">{s.full}</dd>
                   </div>
                 </dl>
               </div>
@@ -147,16 +149,17 @@ export default function RealEstateWelcome() {
                   'One of the most efficient delivery timelines in the city — the project is in its final stages, with complete handover guaranteed in just 6 months, so your capital isn’t tied up for years.'
                 )}
               </p>
-              <div className="grid grid-cols-2 gap-px bg-border border border-border">
+              <div className="grid grid-cols-2 gap-px bg-border border border-border mb-4">
                 <div className="bg-secondary p-4">
                   <p className="font-marcellus text-2xl text-primary">50%</p>
-                  <p className="font-inter text-xs text-muted-foreground mt-1">{t('Down payment — secures your preferred unit and floor')}</p>
+                  <p className="font-inter text-xs text-muted-foreground mt-1">{t('Down payment — at signature, secures your preferred unit and floor')}</p>
                 </div>
                 <div className="bg-secondary p-4">
                   <p className="font-marcellus text-2xl text-primary">50%</p>
-                  <p className="font-inter text-xs text-muted-foreground mt-1">{t('Final payment — at handover, 6 months later')}</p>
+                  <p className="font-inter text-xs text-muted-foreground mt-1">{t('Balance — negotiable schedule within 6 months')}</p>
                 </div>
               </div>
+              <p className="font-inter text-sm font-semibold text-primary">{t('Bank payment option available')}</p>
             </div>
           </Reveal>
 
