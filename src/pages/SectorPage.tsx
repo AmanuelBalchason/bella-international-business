@@ -503,6 +503,12 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                           <span>{isHealthcare ? '+251—913—94—1530' : '+251 911 827024'}</span>
                         </a>
                       )}
+                      {isHealthcare && (
+                        <a href="https://wa.me/251983233333" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary">
+                          <MessageCircle className="w-4 h-4" />
+                          <span>WhatsApp: +251 98 323 3333</span>
+                        </a>
+                      )}
                     </div>
                   </div>
                   <div>
