@@ -248,7 +248,7 @@ export const sectorData: Record<string, Sector> = {
       },
     ],
     partnerStrip: [
-      { label: 'Technology Partners', names: ['Mindray', 'SriTrang', 'Tedia'] },
+      { label: 'Technology Partners', names: ['Zoncare', 'Mindray', 'SriTrang', 'Tedia'] },
       { label: 'Pharmaceutical Suppliers', names: ['Cipla', 'Hetero Healthcare', 'Julphar'] },
       {
         label: 'Institutions Served',

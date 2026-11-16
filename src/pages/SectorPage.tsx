@@ -14,7 +14,7 @@ import RealEstateInventory from '../components/RealEstateInventory';
 import RealEstateWelcome from '../components/RealEstateWelcome';
 import RealEstateLocation from '../components/RealEstateLocation';
 import AchaCoffeeStory from '../components/AchaCoffeeStory';
-import { Calendar, Mail, Phone, Send, Play, ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar, Mail, Phone, Send, Play, ArrowDown, ChevronLeft, ChevronRight, MessageCircle } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -27,6 +27,7 @@ import { usePrefersReducedMotion } from '@/hooks/useInView';
 import { useLanguage } from '@/i18n/LanguageProvider';
 import { useCreateContactSubmission } from '@/hooks/useContactSubmissions';
 import { useToast } from '@/hooks/use-toast';
+import { ZoncareBanner, ZoncarePartnership } from '@/components/ZoncarePartnership';
 
 interface SectorPageProps {
   sector: Sector;
@@ -155,8 +156,11 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       />
       <Header />
 
+      {isHealthcare && <ZoncareBanner />}
+      {isHealthcare && <ZoncarePartnership />}
+
       {/* Hero */}
-      <section className={`relative min-h-[620px] h-[85vh] overflow-hidden ${isRealEstate ? 'bg-primary' : ''}`}>
+      {!isHealthcare && <section className={`relative min-h-[620px] h-[85vh] overflow-hidden ${isRealEstate ? 'bg-primary' : ''}`}>
         {heroSlides.filter((slide) => slide.image).map((slide, i) => (
           <div
             key={slide.image}
@@ -226,7 +230,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
             </div>
           )}
         </div>
-      </section>
+      </section>}
 
       {isRealEstate && <RealEstateInventory />}
 
@@ -497,6 +501,12 @@ const SectorPage = ({ sector }: SectorPageProps) => {
                         <a href={`tel:${isHealthcare ? '+251913941530' : '+251911827024'}`} className="flex items-center gap-2 hover:text-primary">
                           <Phone className="w-4 h-4" />
                           <span>{isHealthcare ? '+251—913—94—1530' : '+251 911 827024'}</span>
+                        </a>
+                      )}
+                      {isHealthcare && (
+                        <a href="https://wa.me/251983233333" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary">
+                          <MessageCircle className="w-4 h-4" />
+                          <span>WhatsApp: +251 98 323 3333</span>
                         </a>
                       )}
                     </div>
