@@ -14,7 +14,7 @@ import RealEstateInventory from '../components/RealEstateInventory';
 import RealEstateWelcome from '../components/RealEstateWelcome';
 import RealEstateLocation from '../components/RealEstateLocation';
 import AchaCoffeeStory from '../components/AchaCoffeeStory';
-import { Calendar, Mail, Phone, Send, Play, ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar, Mail, Phone, Send, Play, ArrowDown, ChevronLeft, ChevronRight, MessageCircle } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
