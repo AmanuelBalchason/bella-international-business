@@ -27,6 +27,7 @@ import { usePrefersReducedMotion } from '@/hooks/useInView';
 import { useLanguage } from '@/i18n/LanguageProvider';
 import { useCreateContactSubmission } from '@/hooks/useContactSubmissions';
 import { useToast } from '@/hooks/use-toast';
+import { ZoncareBanner, ZoncarePartnership } from '@/components/ZoncarePartnership';
 
 interface SectorPageProps {
   sector: Sector;
@@ -155,8 +156,11 @@ const SectorPage = ({ sector }: SectorPageProps) => {
       />
       <Header />
 
+      {isHealthcare && <ZoncareBanner />}
+      {isHealthcare && <ZoncarePartnership />}
+
       {/* Hero */}
-      <section className={`relative min-h-[620px] h-[85vh] overflow-hidden ${isRealEstate ? 'bg-primary' : ''}`}>
+      {!isHealthcare && <section className={`relative min-h-[620px] h-[85vh] overflow-hidden ${isRealEstate ? 'bg-primary' : ''}`}>
         {heroSlides.filter((slide) => slide.image).map((slide, i) => (
           <div
             key={slide.image}
@@ -226,7 +230,7 @@ const SectorPage = ({ sector }: SectorPageProps) => {
             </div>
           )}
         </div>
-      </section>
+      </section>}
 
       {isRealEstate && <RealEstateInventory />}
 
