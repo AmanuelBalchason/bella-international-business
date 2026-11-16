@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Marcellus:wght@400&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marcellus:wght@400&family=Tilt+Warp&family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,6 +10,9 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    --zoncare-ink: 209 77% 25%;
+    --zoncare-pale: 205 60% 97%;
+    --zoncare-peach: 23 100% 87%;
     --background: 0 0% 100%;
     --foreground: 0 0% 10%;
 

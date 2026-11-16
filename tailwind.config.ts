@@ -22,9 +22,12 @@ export default {
 			fontFamily: {
 				'marcellus': ['Marcellus', 'serif'],
 				'inter': ['Inter', 'sans-serif'],
+				'tiltwarp': ['"Tilt Warp"', 'sans-serif'],
+				'dmsans': ['"DM Sans"', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
+				zoncare: { ink: 'hsl(var(--zoncare-ink))', pale: 'hsl(var(--zoncare-pale))', peach: 'hsl(var(--zoncare-peach))' },
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',

@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { ChevronLeft, ChevronRight, MessageCircle } from 'lucide-react';
 import { useLanguage } from '@/i18n/LanguageProvider';
-import { Reveal } from '@/components/Reveal';
+import Reveal from '@/components/Reveal';
 
 const imgs = import.meta.glob('@/assets/zoncare/*.webp.asset.json', { eager: true }) as Record<string, { default: { url: string } }>;
 const img = (id: string) => Object.entries(imgs).find(([k]) => k.endsWith(`/${id}.webp.asset.json`))?.[1].default.url ?? '';
