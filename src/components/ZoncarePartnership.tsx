@@ -39,8 +39,9 @@ export const ZoncareBanner = () => {
         <div>
           <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.22em] mb-5">{t('Bella Healthcare × Zoncare')}</p>
           <h1 className="font-tiltwarp text-4xl sm:text-5xl md:text-6xl leading-[1.05]">
-            {t('Zoncare ultrasound.')}<br />
-            <span className="bg-zoncare-peach px-2 box-decoration-clone">{t('Supported in Ethiopia.')}</span>
+            {t('Zoncare ultrasounds available in Ethiopia')}{' '}
+            <span className="bg-zoncare-peach px-2 box-decoration-clone">{t('EXCLUSIVELY')}</span>{' '}
+            {t('through Bella Healthcare')}
           </h1>
           <p className="text-lg md:text-xl font-medium mt-6 max-w-xl">{t('Bella Healthcare is Zoncare’s exclusive distributor for ultrasound systems in Ethiopia.')}</p>
           <p className="text-base text-zoncare-ink/75 mt-3 max-w-xl">{t('Explore ultrasound systems, ECG machines and patient monitors, with local consultation, financing, installation, training and technical support.')}</p>
@@ -68,15 +69,7 @@ export const ZoncarePartnership = () => {
   return (
     <section className="zoncare font-dmsans bg-background text-zoncare-ink py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal className="max-w-3xl">
-          <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.22em] mb-5">{t('Our Partnership with Zoncare')}</p>
-          <h2 className="font-tiltwarp text-3xl sm:text-4xl md:text-5xl leading-tight">{t('Exclusive distribution.')}<br />{t('Local support.')}</h2>
-          <p className="mt-6 text-base md:text-lg text-zoncare-ink/80">{t('Bella Healthcare and Zoncare have established an exclusive distribution partnership for Zoncare ultrasound systems in Ethiopia. For radiologists, clinicians and procurement teams, Bella provides a local point of contact for system selection, financing, installation, training and technical support.')}</p>
-          <p className="mt-4 text-base md:text-lg text-zoncare-ink/80">{t('Alongside ultrasound systems, explore Zoncare’s ECG and patient monitoring portfolio. Discuss your clinical requirements with our team and register your interest in a demonstration.')}</p>
-          <p className="mt-6 text-sm font-semibold tracking-wide">{t('Consultation · Financing · Installation · Training · Technical support')}</p>
-        </Reveal>
-
-        <div id="zoncare-portfolio" className="mt-16 md:mt-20 scroll-mt-28">
+        <div id="zoncare-portfolio" className="scroll-mt-28">
           <div className="flex items-end justify-between gap-6 mb-8">
             <div>
               <h3 className="font-tiltwarp text-2xl sm:text-3xl md:text-4xl">{t('Explore the Zoncare portfolio.')}</h3>
